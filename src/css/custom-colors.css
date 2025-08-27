@@ -22,7 +22,7 @@ img[alt="logo"],
 .m-nav .logo img {
   max-width: 300px !important;
   max-height: 100px !important;
-  width: auto !important;
+  width: auto !important; 
   height: auto !important;
   object-fit: contain !important;
   display: block !important;
