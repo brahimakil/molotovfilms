@@ -4,7 +4,7 @@ import footerVic1 from "../assets/images/footer_vic-1.svg";
 import footerVic2 from "../assets/images/footer_vic-2.svg";
 import footerVic3 from "../assets/images/footer_vic-3.svg";
 import footerResThumb from "../assets/images/footer_res-thumb.png";
-import footerLogo from "../assets/main logo/Molotove text Final (2).png";
+import footerLogo from "../assets/main logo/Molotov Logo PNG.png";
 
 const FooterOne = () => {
   return (

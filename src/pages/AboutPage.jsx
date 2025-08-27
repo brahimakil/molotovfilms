@@ -7,21 +7,33 @@ import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 
 const AboutPage = () => {
+  // Add loading state and preload optimization
   const [videoUrl, setVideoUrl] = useState('');
+  const [videoLoading, setVideoLoading] = useState(true);
 
   useEffect(() => {
     const getVideoUrl = async () => {
       try {
-        const videoRef = ref(storage, 'homevideo/cover vimeo.mp4');
+        setVideoLoading(true);
+        const videoRef = ref(storage, 'homevideo/cover vimeo.MP4');
         const url = await getDownloadURL(videoRef);
         setVideoUrl(url);
+        setVideoLoading(false);
       } catch (error) {
         console.error('Error getting video URL:', error);
+        setVideoLoading(false);
       }
     };
 
     getVideoUrl();
   }, []);
+
+  // Load appropriate size based on screen
+  const getVideoSize = () => {
+    if (window.innerWidth <= 768) return 'cover-video-480p.MP4';
+    if (window.innerWidth <= 1200) return 'cover-video-720p.MP4';
+    return 'cover-video-1080p.MP4';
+  };
 
   const heroStyles = {
     videoHeroBanner: {
@@ -129,23 +141,35 @@ const AboutPage = () => {
     heroStyles.heroButtons.alignItems = 'center';
   }
 
+  // Add loading placeholder
   return (
     <>
       {/* Professional Video Hero Banner */}
       <section style={heroStyles.videoHeroBanner}>
         <div style={heroStyles.videoContainer}>
-          {videoUrl && (
+          {videoLoading ? (
+            <div style={{
+              height: '100vh',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: '#000'
+            }}>
+              <div style={{ color: '#fff', fontSize: '24px' }}>Loading...</div>
+            </div>
+          ) : videoUrl ? (
             <video
               style={heroStyles.heroVideo}
               autoPlay
               muted
               loop
               playsInline
+              preload="metadata"
             >
               <source src={videoUrl} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-          )}
+          ) : null}
           
           {/* Video Overlay */}
           <div style={heroStyles.videoOverlay}></div>

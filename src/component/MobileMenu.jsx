@@ -18,11 +18,7 @@ const MobileMenu = ({ headerLogImg, addClass }) => {
   const menuItems = [
     {
       label: "Home",
-      sub: [
-        { label: "Home One", path: "/" },
-        { label: "Home Two", path: "/home-two" },
-        { label: "Home Three", path: "/home-three" },
-      ],
+      path: "/",
     },
     {
       label: "Service",
