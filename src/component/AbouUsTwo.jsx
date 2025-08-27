@@ -48,11 +48,11 @@ const AbouUsTwo = () => {
 
             <div className="about_head">
               <h2 className="main_titel_two">
-                We are a creative production house specializing in film, branded content, and digital storytelling.
+                Proven Impact for <br /> <span>Brands & Businesses</span>
               </h2>
 
               <p className="text_lg">
-                Our team combines cinematic quality with marketing strategy, delivering videos that not only look stunning but also perform. From concept to final cut, we handle the entire journey — scriptwriting, shooting, editing, and social media distribution.
+              We are a creative production house specializing in film, branded content, and digital storytelling.
               </p>
 
               <div className="about_two_item">
@@ -61,7 +61,7 @@ const AbouUsTwo = () => {
                   <p className="text_lg">Videos Produced</p>
                 </div>
                 <div className="about_two_item_txt">
-                  <h3 className="text_5xl">1M+</h3>
+                  <h3 className="text_5xl">10M+</h3>
                   <p className="text_lg">Campaign Reach</p>
                 </div>
               </div>

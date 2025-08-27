@@ -17,7 +17,7 @@ const Working = () => {
             <div className="col-xxl-6">
               <div className="working_head">
                 <h2 className="main_titel">
-                  🌟 Why Choose <span>Our Production</span> House?
+                  Let's create powerful videos that <span>inspire, engage, and convert</span>
                 </h2>
 
                 <p>
