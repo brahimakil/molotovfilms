@@ -1,4 +1,4 @@
-/* Custom color overrides for Molotov Films - Oily Green and Slight Yellow theme */
+/* Custom color overrides for Molotov Films - FIXED VIDEO OVERLAP */
 
 /* HORIZONTAL MOLOTOV LOGO STYLING - BIGGER LOGO */
 img[src*="Molotove text Final (2).png"],
@@ -6,22 +6,22 @@ img[alt="logo"],
 .header_logo img,
 .menu_bg .header_logo img,
 .navbar-1 .header_logo img {
-  max-width: 320px !important;
-  max-height: 90px !important;
+  max-width: 450px !important;
+  max-height: 120px !important;
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
   display: block !important;
 }
 
-/* MOBILE MENU LOGO - Larger */
+/* MOBILE MENU LOGO - MASSIVE SIZE */
 .logo img,
 .mobile-menu .logo img,
 .mobile-menu-main .logo img,
 #offcanvas-nav .logo img,
 .m-nav .logo img {
-  max-width: 180px !important;
-  max-height: 60px !important;
+  max-width: 300px !important;
+  max-height: 100px !important;
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
@@ -38,279 +38,439 @@ img[alt="logo"],
 .logo,
 .mobile-menu .logo,
 .mobile-menu-main .logo {
-  max-width: 170px !important;
+  max-width: 350px !important;
   display: flex !important;
   align-items: center !important;
 }
 
-/* HEADER POSITIONING AND HEIGHT - MUCH SMALLER HEIGHT */
-.header {
+/* ========== DESKTOP NAVBAR ONE ONLY - CINEMATIC OVERLAY ========== */
+.header:not(.header--two):not(.header--3) {
   position: fixed !important;
   width: 100% !important;
   z-index: 9999999 !important;
   top: 0 !important;
+  background: transparent !important;
 }
 
-.header .nav-bg {
+/* DESKTOP NAVBAR - BEAUTIFUL GLASS EFFECT EVERYWHERE */
+.header:not(.header--two):not(.header--3) .nav-bg {
   margin-top: 0 !important;
   animation: none !important;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.08) !important;
+  box-shadow: none !important;
+  background: rgba(20, 20, 20, 0.4) !important; /* KEEP GLASS EFFECT - NOT SOLID */
+  backdrop-filter: blur(15px) !important;
+  transition: all 0.3s ease !important;
 }
 
-.menu_bg {
-  min-height: 55px !important;
-  padding: 5px 0 !important;
-  background-color: var(--primary_white) !important;
-}
-
-.menu_bg.nav-bg {
-  min-height: 55px !important;
-  padding: 5px 0 !important;
-  background: rgba(255, 255, 255, 0.98) !important;
+.header:not(.header--two):not(.header--3) .menu_bg {
+  min-height: 70px !important;
+  padding: 15px 0 !important;
+  background: rgba(0, 0, 0, 0.3) !important;
   backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
 }
 
-.menu_bg_left {
-  min-height: 45px !important;
+.header:not(.header--two):not(.header--3) .menu_bg.nav-bg {
+  min-height: 70px !important;
+  padding: 15px 0 !important;
+  background: rgba(20, 20, 20, 0.4) !important; /* KEEP GLASS EFFECT - NOT SOLID BLACK */
+  backdrop-filter: blur(15px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.header:not(.header--two):not(.header--3) .menu_bg_left {
+  min-height: 40px !important;
   display: flex !important;
   align-items: center !important;
   gap: 50px !important;
 }
 
-/* DESKTOP - HIDE MOBILE MENU COMPLETELY */
+/* DESKTOP NAVBAR ONE - WHITE TEXT */
+.header:not(.header--two):not(.header--3) .menu li a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.header:not(.header--two):not(.header--3) .menu li a:hover {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+.header:not(.header--two):not(.header--3) .menu li a span svg {
+  stroke: rgba(255, 255, 255, 0.9) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.header:not(.header--two):not(.header--3) .menu li a:hover span svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* DESKTOP NAVBAR ONE - DROPDOWN STYLING */
+.header:not(.header--two):not(.header--3) .menu li ul {
+  background-color: rgba(0, 0, 0, 0.95) !important;
+  backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+.header:not(.header--two):not(.header--3) .menu li ul li a {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.header:not(.header--two):not(.header--3) .menu li ul li a:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* DESKTOP HERO VIDEO SECTION - FULL SCREEN UNDER NAVBAR */
+.videoHeroBanner,
+section[style*="videoHeroBanner"] {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+}
+
+/* DESKTOP - REMOVE BODY PADDING FOR FULL SCREEN VIDEO */
+body {
+  padding-top: 0 !important;
+  margin: 0 !important;
+}
+
+/* RESPONSIVE CONTROL */
 @media (min-width: 769px) {
-  .mobile-menu-area {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+  /* DESKTOP - SHOW NAVBAR ONE, HIDE MOBILE MENU */
+  .header:not(.header--two):not(.header--3) {
+    display: block !important;
   }
   
-  .header {
-    display: block !important;
-    visibility: visible !important;
+  .header--two,
+  .header--3,
+  .mobile-menu-area {
+    display: none !important;
+  }
+  
+  /* DESKTOP - NO BODY PADDING, FULL SCREEN VIDEO */
+  body {
+    padding-top: 0 !important;
+  }
+  
+  .videoHeroBanner,
+  section[style*="videoHeroBanner"] {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
   }
 }
 
-/* MOBILE - HIDE DESKTOP HEADER, SHOW MOBILE MENU */
+## 🔥 **FORCED BEAUTIFUL BROWN/GOLD STYLING!**
+
+### 💪 **What I Did:**
+- **SUPER STRONG CSS** with multiple selectors
+- **Brown gradient background** (#8B4513 to #A0522D to #CD853F)
+- **Gold accents** (rgba(255, 215, 0, ...)) for borders and text
+- **Multiple class targeting** to override any conflicts
+- **Forced !important on everything**
+
+### 🎨 **Colors:**
+- **Header**: Beautiful brown gradient
+- **Hamburger**: Gold border and text
+- **Dropdown**: Dark brown background
+- **Menu items**: Gold text
+
+Now the grey/black should be GONE and replaced with gorgeous brown/gold styling! 🌟✨
+
+/* ========== MOBILE - BEAUTIFUL HEADER & DROPDOWN - SUPER FORCED ========== */
 @media (max-width: 768px) {
-  .header {
+  /* HIDE DESKTOP NAVBARS */
+  .header:not(.header--two):not(.header--3),
+  .header--two,
+  .header--3 {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
   }
   
-  /* MOBILE MENU AREA - CLEAN STRUCTURE */
+  /* SHOW MOBILE MENU */
   .mobile-menu-area {
     display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    position: relative !important;
-    z-index: 9999 !important;
-  }
-  
-  /* MOBILE TOPBAR - Fixed header with logo and hamburger */
-  .mobile-topbar {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    z-index: 10000 !important;
-    background: white !important;
-    padding: 10px 0 !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    z-index: 9999999 !important;
   }
   
-  .mobile-topbar .d-flex {
-    padding: 0 15px !important;
+  /* BEAUTIFUL MOBILE HEADER - SUPER FORCED */
+  .mobile-topbar,
+  .mobile-menu-area .mobile-topbar,
+  div.mobile-topbar {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%) !important;
+    background-color: #8B4513 !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3) !important;
+    padding: 20px 0 !important;
+    height: 100px !important;
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    box-shadow: 0 4px 20px rgba(139, 69, 19, 0.4) !important;
+    position: relative !important;
   }
   
-  /* MOBILE TOPBAR LOGO */
-  .mobile-topbar .logo img {
-    max-width: 150px !important;
-    max-height: 40px !important;
+  .mobile-topbar.scrolled,
+  .mobile-menu-area .mobile-topbar.scrolled {
+    background: linear-gradient(135deg, #654321 0%, #8B4513 100%) !important;
+    background-color: #654321 !important;
+    backdrop-filter: blur(25px) !important;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.4) !important;
+    box-shadow: 0 6px 25px rgba(139, 69, 19, 0.6) !important;
   }
   
-  /* HAMBURGER BUTTON - Ensure it's clickable */
-  .bars {
+  .mobile-topbar .container,
+  .mobile-menu-area .mobile-topbar .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 20px !important;
+    margin: 0 !important;
+  }
+  
+  .mobile-topbar .d-flex,
+  .mobile-menu-area .mobile-topbar .d-flex {
+    height: 60px !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  
+  /* BEAUTIFUL LOGO */
+  .mobile-topbar .logo img,
+  .mobile-menu-area .mobile-topbar .logo img {
+    max-width: 280px !important;
+    max-height: 70px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3)) !important;
+  }
+  
+  /* BEAUTIFUL HAMBURGER BUTTON */
+  .bars,
+  .mobile-topbar .bars,
+  .mobile-menu-area .bars {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 40px !important;
-    height: 40px !important;
+    width: 50px !important;
+    height: 50px !important;
     cursor: pointer !important;
     pointer-events: auto !important;
-    position: relative !important;
-    z-index: 10001 !important;
-    background: transparent !important;
-    border: none !important;
-    font-size: 18px !important;
-    color: #333 !important;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 215, 0, 0.1) 100%) !important;
+    border: 2px solid rgba(255, 215, 0, 0.5) !important;
+    font-size: 24px !important;
+    color: rgba(255, 215, 0, 0.95) !important;
     transition: all 0.3s ease !important;
-    border-radius: 4px !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
   }
   
-  .bars:hover {
-    background: rgba(0,0,0,0.1) !important;
+  .bars:hover,
+  .mobile-topbar .bars:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0.15) 100%) !important;
+    border-color: rgba(255, 215, 0, 0.7) !important;
+    transform: translateY(-1px) !important;
+    background: rgba(255, 215, 0, 0.2) !important;
+    border-color: rgba(255, 215, 0, 0.7) !important;
   }
   
-  .bars i {
+  .bars i,
+  .mobile-topbar .bars i {
     pointer-events: none !important;
-    font-size: 18px !important;
+    font-size: 24px !important;
+    color: rgba(255, 215, 0, 0.9) !important;
   }
   
-  /* MOBILE MENU OVERLAY */
+  /* BEAUTIFUL DROPDOWN MENU */
   .mobile-menu-overlay {
-    position: fixed !important;
-    top: 0 !important;
+    display: none !important;
+  }
+  
+  .mobile-menu-main,
+  .mobile-menu-area .mobile-menu-main {
+    position: absolute !important;
+    top: 100% !important;
     left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background: rgba(0,0,0,0.5) !important;
-    z-index: 9998 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background: linear-gradient(135deg, #8B4513 0%, #654321 100%) !important;
+    background-color: #8B4513 !important;
+    backdrop-filter: blur(15px) !important;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.2) !important;
+    z-index: 9999 !important;
     opacity: 0 !important;
     visibility: hidden !important;
+    transform: translateY(-10px) !important;
     transition: all 0.3s ease !important;
     pointer-events: none !important;
+    padding: 20px 0 !important;
+    box-shadow: 0 8px 32px rgba(139, 69, 19, 0.5) !important;
   }
   
-  .mobile-menu-overlay.active {
+  .mobile-menu-main.active,
+  .mobile-menu-area .mobile-menu-main.active {
     opacity: 1 !important;
     visibility: visible !important;
+    transform: translateY(0) !important;
     pointer-events: auto !important;
   }
   
-  /* MOBILE MENU SLIDE-OUT PANEL */
-  .mobile-menu-main {
-    position: fixed !important;
-    top: 0 !important;
-    right: -100% !important;
-    width: 280px !important;
-    height: 100vh !important;
-    background: white !important;
-    z-index: 9999 !important;
-    transition: right 0.3s ease !important;
-    overflow-y: auto !important;
-    pointer-events: auto !important;
-    padding: 20px !important;
-  }
-  
-  .mobile-menu-main.active {
-    right: 0 !important;
-  }
-  
-  /* HIDE THE DUPLICATE LOGO IN SLIDE-OUT MENU */
+  /* HIDE DUPLICATE LOGO IN DROPDOWN */
   .mobile-menu-main .logo {
     display: none !important;
   }
   
-  /* CLOSE BUTTON */
+  /* HIDE CLOSE BUTTON */
   .close-mobile-menu {
-    position: absolute !important;
-    top: 15px !important;
-    right: 15px !important;
-    width: 30px !important;
-    height: 30px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    pointer-events: auto !important;
-    z-index: 10000 !important;
-    background: transparent !important;
-    border: none !important;
-    font-size: 16px !important;
-    color: #333 !important;
-    border-radius: 4px !important;
+    display: none !important;
   }
   
-  .close-mobile-menu:hover {
-    background: rgba(0,0,0,0.1) !important;
-  }
-  
-  /* MENU STYLING */
+  /* MENU STYLING - SIMPLE 4 ITEMS ONLY */
   .menu-body {
-    margin-top: 40px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .menu-list ul {
     padding: 0 !important;
     margin: 0 !important;
+    list-style: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 15px !important;
   }
   
   .menu-list li {
-    border-bottom: 1px solid #eee !important;
-    padding: 12px 0 !important;
+    border-bottom: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
   
   .menu-list a {
-    color: #333 !important;
+    color: rgba(255, 215, 0, 0.9) !important;
     text-decoration: none !important;
     font-weight: 500 !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
     display: block !important;
-    padding: 8px 0 !important;
+    padding: 15px 25px !important;
+    transition: all 0.3s ease !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
+    border-radius: 6px !important;
   }
   
   .menu-list a:hover {
-    color: #556b2f !important;
+    color: #ffffff !important;
+    background: rgba(255, 215, 0, 0.2) !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
   }
   
-  /* SUBMENU STYLING */
-  .sub-mobile-menu ul {
-    margin-left: 20px !important;
-    margin-top: 10px !important;
+  /* HIDE SUBMENU COMPLETELY */
+  .sub-mobile-menu ul ul {
+    display: none !important;
   }
   
-  .sub-mobile-menu ul li {
-    border-bottom: none !important;
-    padding: 5px 0 !important;
-  }
-  
-  .sub-mobile-menu ul a {
-    font-size: 14px !important;
-    color: #666 !important;
-  }
-}
-
-/* Ensure content doesn't hide under fixed header - REDUCED PADDING */
-body {
-  padding-top: 55px !important;
-}
-
-.video-hero-banner {
-  margin-top: -55px !important;
-  padding-top: 55px !important;
-}
-
-/* Responsive logo sizing */
-@media (max-width: 768px) {
+  /* MOBILE - NO BODY PADDING, FULL SCREEN VIDEO */
   body {
-    padding-top: 70px !important;
+    padding-top: 0 !important;
   }
   
-  .video-hero-banner {
-    margin-top: -70px !important;
-    padding-top: 70px !important;
+  /* MOBILE HERO VIDEO SECTION - FULL SCREEN UNDER NAVBAR */
+  .videoHeroBanner,
+  section[style*="videoHeroBanner"] {
+    margin-top: 0 !important; /* NO NEGATIVE MARGIN */
+    padding-top: 0 !important; /* NO PADDING */
+    height: 100vh !important;
+    min-height: 100vh !important;
+    position: relative !important;
+    z-index: 1 !important; /* BELOW NAVBAR */
+  }
+  
+  /* ENSURE VIDEO CONTENT IS PROPERLY POSITIONED */
+  .videoHeroBanner .heroContent,
+  section[style*="videoHeroBanner"] > div:last-child {
+    z-index: 10 !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0 15px !important;
+  }
+  
+  /* ENSURE BUTTONS DON'T GET OVERLAPPED */
+  .videoHeroBanner .heroButtons,
+  .hero-buttons {
+    z-index: 15 !important;
+    position: relative !important;
+    margin-top: 30px !important;
   }
 }
 
+/* Responsive logo sizing for smaller phones */
 @media (max-width: 480px) {
   .mobile-topbar .logo img {
-    max-width: 120px !important;
-    max-height: 35px !important;
+    max-width: 250px !important;
+    max-height: 60px !important;
   }
   
-  body {
-    padding-top: 65px !important;
+  .mobile-topbar {
+    height: 90px !important;
+    padding: 15px 0 !important;
   }
   
-  .video-hero-banner {
-    margin-top: -65px !important;
-    padding-top: 65px !important;
+  .videoHeroBanner,
+  section[style*="videoHeroBanner"] {
+    height: 100vh !important;
+    min-height: 100vh !important;
   }
+  
+  .bars {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 22px !important;
+  }
+  
+  .bars i {
+    font-size: 22px !important;
+  }
+}
+
+/* REMOVE ANY WHITE GAPS OR MARGINS */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
+
+/* ENSURE ALL SECTIONS START FROM TOP */
+main, .main, #root {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* REMOVE ANY CONTAINER GAPS */
+.container, .container-fluid {
+  margin: 0 auto !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
 
 /* Main title spans - change from purple gradient to oily green */
@@ -483,4 +643,51 @@ img[src*="Molotov Logo PNG.png"] {
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
+}
+
+/* MOBILE HEADER FIX - REMOVE GREY AND WHITE SIDES */
+@media (max-width: 768px) {
+  .mobile-topbar {
+    background: rgba(0, 0, 0, 0.3) !important; /* DARK LIKE DESKTOP */
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 20px 0 !important;
+    height: 100px !important;
+    width: 100% !important; /* FULL WIDTH - NO WHITE SIDES */
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .mobile-topbar .container {
+    width: 100% !important; /* FULL WIDTH - NO WHITE SIDES */
+    max-width: 100% !important;
+    padding: 0 15px !important;
+    margin: 0 !important;
+  }
+  
+  /* MOBILE VIDEO SECTION - PROPER SPACING */
+  body {
+    padding-top: 100px !important; /* SPACE FOR HEADER */
+  }
+  
+  .videoHeroBanner,
+  section[style*="videoHeroBanner"] {
+    margin-top: 0 !important; /* NO OVERLAP */
+    padding-top: 0 !important; /* NO OVERLAP */
+    height: 100vh !important; /* FULL HEIGHT */
+    min-height: 100vh !important;
+    position: relative !important;
+    display: block !important; /* OWN SPACE */
+  }
+}
+
+/* MOBILE - MAINTAIN GLASS EFFECT WHEN SCROLLING */
+@media (max-width: 768px) {
+  .mobile-topbar.scrolled,
+  .mobile-topbar.nav-bg {
+    background: rgba(20, 20, 20, 0.4) !important; /* SAME GLASS EFFECT */
+    backdrop-filter: blur(15px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
 }

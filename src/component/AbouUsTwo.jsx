@@ -48,17 +48,21 @@ const AbouUsTwo = () => {
 
             <div className="about_head">
               <h2 className="main_titel_two">
-                We offer Real-time <span> Business Grow </span>Solutions
+                We are a creative production house specializing in film, branded content, and digital storytelling.
               </h2>
+
+              <p className="text_lg">
+                Our team combines cinematic quality with marketing strategy, delivering videos that not only look stunning but also perform. From concept to final cut, we handle the entire journey — scriptwriting, shooting, editing, and social media distribution.
+              </p>
 
               <div className="about_two_item">
                 <div className="about_two_item_txt">
-                  <h3 className="text_5xl">$7bil+</h3>
-                  <p className="text_lg">Project Handover</p>
+                  <h3 className="text_5xl">250+</h3>
+                  <p className="text_lg">Videos Produced</p>
                 </div>
                 <div className="about_two_item_txt">
-                  <h3 className="text_5xl">1.9mil+</h3>
-                  <p className="text_lg">Happy customers</p>
+                  <h3 className="text_5xl">1M+</h3>
+                  <p className="text_lg">Campaign Reach</p>
                 </div>
               </div>
             </div>
@@ -68,19 +72,19 @@ const AbouUsTwo = () => {
                 <span>
                   <img src={checkIcon} alt="icon" />
                 </span>
-                Various analysis options.
+                High-quality video production with cinematic standards.
               </li>
               <li>
                 <span>
                   <img src={checkIcon} alt="icon" />
                 </span>
-                Page Load (time, size, number of requests).
+                Content designed for maximum social engagement.
               </li>
               <li>
                 <span>
                   <img src={checkIcon} alt="icon" />
                 </span>
-                Big data analysis.
+                Data-driven approach: test, optimize, and repurpose your videos.
               </li>
             </ul>
 
@@ -89,7 +93,7 @@ const AbouUsTwo = () => {
                 to="/about"
                 className="sara-btn__border sara-btn__border--2"
               >
-                Explore all
+                ✨ Want to know more? Get in Touch
               </Link>
             </div>
           </div>

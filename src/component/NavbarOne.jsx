@@ -180,7 +180,7 @@ const NavbarOne = () => {
         </div>
       </header>
       
-      {/* Always render MobileMenu but use CSS to hide/show */}
+      {/* Mobile Menu with Molotov Logo */}
       <MobileMenu headerLogImg={headerLogImg} addClass={addClass} />
     </>
   );

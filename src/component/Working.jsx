@@ -17,21 +17,19 @@ const Working = () => {
             <div className="col-xxl-6">
               <div className="working_head">
                 <h2 className="main_titel">
-                  Let’s see <span>How do</span> , We are works.
+                  🌟 Why Choose <span>Our Production</span> House?
                 </h2>
 
                 <p>
-                  Sara specializes in data science, machine learning, and
-                  artificial intelligence, delivering business solutions with
-                  blazing speed and striking results.
+                  We align creativity with your marketing goals, delivering cinematic storytelling that inspires, engages, and converts your audience.
                 </p>
 
-                <h6>Want to learn more about us?</h6>
+                <h6>🚀 Ready to bring your brand story to life?</h6>
               </div>
 
               <div className="working_btn">
                 <a href="/contuct-us" className="sara-btn">
-                  Get in Touch
+                  👉 Start Your Project
                 </a>
               </div>
             </div>
@@ -63,11 +61,11 @@ const Working = () => {
                   <div className="working_icon_main">
                     <span className="working_icon">
                       <img src={scanIcon} alt="icon" />
-                      <span className="num">1</span>
+                      <span className="num">🎬</span>
                     </span>
                   </div>
                   <div className="working_icon_item_txt">
-                    <p className="text_2xl">Identify the problem with AI</p>
+                    <p className="text_2xl">Creative Excellence — Every project is designed with cinematic storytelling.</p>
                   </div>
                 </div>
                 <div className="arrow_img">
@@ -80,12 +78,12 @@ const Working = () => {
                   <div className="working_icon_main">
                     <span className="working_icon">
                       <img src={graphIcon} alt="icon" />
-                      <span className="num">2</span>
+                      <span className="num">📈</span>
                     </span>
                   </div>
                   <div className="working_icon_item_txt">
                     <p className="text_2xl">
-                      Collect data with our advanced AI.
+                      Results-Driven — We align creativity with your marketing goals.
                     </p>
                   </div>
                 </div>
@@ -99,11 +97,11 @@ const Working = () => {
                   <div className="working_icon_main">
                     <span className="working_icon">
                       <img src={paperIcon} alt="icon" />
-                      <span className="num">3</span>
+                      <span className="num">🤝</span>
                     </span>
                   </div>
                   <div className="working_icon_item_txt">
-                    <p className="text_2xl">Deliver accurate data solutions.</p>
+                    <p className="text_2xl">Full Partnership — From strategy to publishing, we're with you end-to-end.</p>
                   </div>
                 </div>
               </div>

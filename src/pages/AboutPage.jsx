@@ -39,13 +39,13 @@ const AboutPage = () => {
     videoHeroBanner: {
       position: 'relative',
       height: '100vh',
-      minHeight: '600px',
+      minHeight: '100vh',
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: '-80px', // Adjust based on your header height
-      paddingTop: '80px'   // Add padding to compensate
+      marginTop: '0', // NO NEGATIVE MARGIN
+      paddingTop: '0'  // NO PADDING
     },
     videoContainer: {
       position: 'relative',
@@ -126,26 +126,40 @@ const AboutPage = () => {
     }
   };
 
-  // Media query styles for mobile
+  // Media query styles for mobile - FIXED
   const isMobile = window.innerWidth <= 768;
   if (isMobile) {
-    heroStyles.videoHeroBanner.height = '100vh';
-    heroStyles.videoHeroBanner.minHeight = '500px';
-    heroStyles.videoHeroBanner.marginTop = '-60px';
-    heroStyles.videoHeroBanner.paddingTop = '60px';
-    heroStyles.heroTitle.fontSize = '2.5rem';
-    heroStyles.heroSubtitle.fontSize = '1.1rem';
-    heroStyles.btn.padding = '12px 25px';
-    heroStyles.btn.fontSize = '1rem';
+    // REMOVE ALL POSITIONING OVERRIDES FOR MOBILE
+    heroStyles.heroTitle.fontSize = '1.8rem';
+    heroStyles.heroSubtitle.fontSize = '0.95rem';
+    heroStyles.btn.padding = '10px 20px';
+    heroStyles.btn.fontSize = '0.9rem';
     heroStyles.heroButtons.flexDirection = 'column';
     heroStyles.heroButtons.alignItems = 'center';
+    heroStyles.heroButtons.gap = '10px';
+    heroStyles.heroContent.padding = '0 15px';
+    heroStyles.heroContent.maxWidth = '95%';
+    // REMOVED: All margin/padding overrides that were breaking layout
   }
 
   // Add loading placeholder
   return (
-    <>
+    <div style={{ margin: 0, padding: 0, minHeight: '100vh' }}>
       {/* Professional Video Hero Banner */}
-      <section style={heroStyles.videoHeroBanner}>
+      <section style={{
+        position: 'relative',
+        height: '100vh',
+        minHeight: '100vh',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 0,
+        padding: 0,
+        top: 0,
+        left: 0,
+        right: 0
+      }}>
         <div style={heroStyles.videoContainer}>
           {videoLoading ? (
             <div style={{
@@ -176,14 +190,14 @@ const AboutPage = () => {
           
           {/* Hero Content */}
           <div style={heroStyles.heroContent}>
-            <h1 style={heroStyles.heroTitle}>Welcome to Our Business</h1>
-            <p style={heroStyles.heroSubtitle}>Professional Solutions for Your Success</p>
+            <h1 style={heroStyles.heroTitle}>We Create Films, Ads & Social Content That Drive Impact</h1>
+            <p style={heroStyles.heroSubtitle}>From cinematic commercials to viral Reels, we craft stories that capture attention and grow your brand across every platform.</p>
             <div style={heroStyles.heroButtons}>
               <a 
                 href="#services" 
                 style={{...heroStyles.btn, ...heroStyles.btnPrimary}}
               >
-                Get Started
+                👉 Let's Work Together
               </a>
               <a 
                 href="#about" 
@@ -200,7 +214,7 @@ const AboutPage = () => {
       <ChoseTwo addClass="inner_chose" />
       <Working />
       <Blog />
-    </>
+    </div>
   );
 };
 
