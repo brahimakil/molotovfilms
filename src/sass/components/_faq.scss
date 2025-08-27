@@ -1,0 +1,66 @@
+// faq
+.faq {
+  background: url(../assets/images/faq-bg.png) no-repeat center / cover;
+  padding: 120px 0 170px 0;
+  overflow-x: hidden;
+
+  .accordion {
+    margin-top: 40px;
+    width: 540px;
+  }
+
+  .accordion-item {
+    margin-bottom: 20px;
+    border: 0;
+  }
+  .accordion-item:last-of-type {
+    margin-bottom: 0px;
+  }
+
+  .accordion-button:focus {
+    box-shadow: inherit;
+  }
+  .accordion-button:not(.collapsed) {
+    color: var(--primary_black);
+    background-color: var(--primary_white);
+    box-shadow: inherit;
+  }
+
+  .accordion-button {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--primary_black);
+    padding: 20px 25px;
+  }
+
+  .accordion-body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    color: var(--gray_700);
+    padding-top: 0;
+  }
+  .accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  }
+
+  .testimonails_thumb_main {
+    padding-left: 50px;
+  }
+}
+
+.faq_head {
+  h2 {
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 51.79px;
+    letter-spacing: -0.02em;
+    color: var(--primary_black);
+
+    span {
+      font-family: "Gordita", sans-serif;
+      font-style: italic;
+    }
+  }
+}

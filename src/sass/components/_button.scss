@@ -1,0 +1,96 @@
+@use "./placeholder" as *;
+
+.sara-btn {
+  background: linear-gradient(82.84deg, #6427ff 0.86%, #9068f8 100%);
+  color: var(--primary_white);
+  gap: 10px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 2;
+  overflow: hidden;
+  padding: 0 24px;
+  text-align: center;
+  border-radius: 8px;
+  line-height: 58px;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  font-weight: 500;
+  position: relative;
+  height: 50px;
+
+  &.sara-btn_blue {
+    background: var(--blue);
+  }
+  &.sara-btn_black {
+    background: var(--primary_black);
+  }
+  &.sara-btn_gredinet {
+    background: linear-gradient(126.26deg, #ff172e -4.81%, #ff868b 87.39%);
+  }
+  &.sara-btn_green {
+    background: linear-gradient(94.4deg, #9fe871 -1.4%, #6bd723 101.75%);
+  }
+  &:hover {
+    color: var(--primary_white);
+    transition: all 0.5s ease;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+      rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    &::before {
+      width: 1000px;
+      height: 1000px;
+      display: inline-block;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 1s ease;
+    }
+  }
+  &::before {
+    position: absolute;
+    content: "";
+    width: 0px;
+    height: 0px;
+    background-color: var(--primary_white);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    z-index: 1;
+    left: 0;
+    top: 0;
+  }
+}
+
+.sara-btn__border {
+  border: 1px solid var(--gray_600);
+  color: var(--primary_black);
+  gap: 10px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 2;
+  overflow: hidden;
+  padding: 0 24px;
+  text-align: center;
+  border-radius: 8px !important;
+  line-height: 58px;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  font-weight: 500;
+  height: 50px;
+
+  &.sara-btn__border--2 {
+    &:hover {
+      @extend %txt_anim_hover-2;
+    }
+  }
+  &.sara-btn__border--3 {
+    &:hover {
+      @extend %txt_anim_hover-4;
+    }
+  }
+  &:hover {
+    @extend %txt_anim_hover;
+  }
+}

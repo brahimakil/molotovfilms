@@ -1,0 +1,102 @@
+@use "./placeholder" as *;
+
+.contact_us {
+  padding: 80px 0;
+
+  .mt-60px {
+    margin-top: 50px;
+  }
+}
+
+.contact_us_item {
+  @extend %display-flex_c-c;
+  gap: 16px;
+}
+
+.contact_us_txt {
+  h6 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 25.9px;
+    color: #00284e;
+  }
+
+  p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 44px;
+    letter-spacing: -0.5px;
+    color: var(--gray_700);
+  }
+
+  a {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    color: var(--gray_700);
+  }
+}
+
+.contact_box {
+  @extend %display-flex_c-c;
+  gap: 40px;
+  background-color: var(--gray_100);
+  padding-right: 40px;
+}
+
+.map_thumb {
+  width: 612px;
+  height: 576px;
+  overflow: hidden;
+  border-radius: 16px, 0px, 0px, 16px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.contact_sms_box {
+  h3 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 55px;
+    letter-spacing: -0.03em;
+    color: #222222;
+  }
+
+  p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--gray_700);
+  }
+}
+
+.contact_form {
+  margin-top: 14px;
+
+  .sara-btn {
+    border: 0;
+    margin-top: 30px;
+  }
+}
+
+.contact_form_item {
+  margin-bottom: 16px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  .form-control {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 17.26px;
+    color: var(--primary_black);
+    padding: 18px 20px;
+    background-color: var(--primary_white);
+    border: 0;
+    &:focus {
+      box-shadow: inherit;
+    }
+  }
+}

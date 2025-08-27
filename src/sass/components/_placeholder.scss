@@ -1,0 +1,129 @@
+// display flex placeholder
+
+%display-flex_c-c {
+  display: flex;
+  align-items: center;
+}
+%display-flex_c-s {
+  display: flex;
+  align-items: start;
+}
+
+%display-flex_a-e {
+  display: flex;
+  align-items: end;
+}
+
+%display-flex_j-e {
+  display: flex;
+  justify-content: end;
+}
+
+%display-flex_c-j-c {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+%display-flex_c-j-e {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+%display-flex_c-j-sb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// hover
+%txt_anim_hover {
+  background: linear-gradient(232.42deg, #858dd7 1.36%, #8a2eff 99.95%);
+  background-size: 200% auto !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: shine 3s linear infinite !important;
+}
+
+%txt_anim_hover-2 {
+  background: linear-gradient(
+    90deg,
+    #2783fe -0.01%,
+    #276bfe 36.14%,
+    #2838ff 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+%txt_anim_hover-3 {
+  background: linear-gradient(232.42deg, #fff 1.36%, #fff 99.95%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+%txt_anim_hover-4 {
+  background: linear-gradient(94.4deg, #9fe871 -1.4%, #6bd723 101.75%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+%txt_anim_hover-5 {
+  background: linear-gradient(
+    232.42deg,
+    #858dd7 1.36%,
+    #8a2eff 99.95%
+  ) !important;
+  background-size: 200% auto !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: shine 3s linear infinite !important;
+}
+
+// slick dots
+%slick_dots {
+  .slick-dots {
+    bottom: 25px;
+    display: flex !important;
+    justify-content: start;
+    gap: 8px;
+    li {
+      position: relative;
+      display: inline-block;
+      height: 0;
+      width: 0;
+      button {
+        width: 6px;
+        height: 6px;
+        border: none;
+        border-radius: 50%;
+        background-color: rgba(0, 98, 255, 0.6);
+        text-indent: -9999px;
+        position: relative;
+        padding: 4px;
+        &::after {
+          position: absolute;
+          content: "";
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          border: 1px solid var(--blue);
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          opacity: 0;
+        }
+      }
+    }
+
+    li.slick-active button {
+      background-color: var(--blue);
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}

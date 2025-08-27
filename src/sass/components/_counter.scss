@@ -1,0 +1,31 @@
+// counter
+.counter {
+  padding: 430px 0 120px 0;
+  background-color: #08001c;
+  margin-top: -430px;
+}
+
+.counter_text {
+  svg {
+    font-size: 100px;
+    font-weight: 900;
+    line-height: 128px;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    fill: transparent;
+    stroke: var(--gray_100);
+    stroke-width: 2px;
+    animation: animated-stroke 5s infinite;
+    text-anchor: middle;
+    opacity: 0.3;
+  }
+
+  h5 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 38px;
+    color: var(--primary_white);
+    margin-top: -120px;
+    padding-left: 176px;
+  }
+}

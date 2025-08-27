@@ -1,0 +1,41 @@
+.customers {
+  padding: 80px 0 120px 0;
+  &.style-2 {
+    padding-top: 0;
+    margin-top: -5px;
+  }
+}
+
+.customers_titel {
+  text-align: center;
+  h2 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 25.9px;
+    letter-spacing: -0.5px;
+    color: var(--gray_700);
+
+    span {
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--primary_black);
+      text-decoration-line: underline;
+    }
+  }
+
+  img:hover {
+    filter: brightness(0) invert(1);
+  }
+}
+
+.customers_slick {
+  margin-top: 72px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--gray_400);
+}
+
+// customers--two
+.customers--two {
+  padding-top: 0;
+  margin-top: -5px;
+}

@@ -1,0 +1,266 @@
+@use "./placeholder" as *;
+
+// root
+:root {
+  // color root
+
+  // Primary Color
+  --primary_white: #fff;
+  --primary_black: #111827;
+
+  //   Greyscale
+  --gray_800: #1f2937;
+  --gray_700: #323b49;
+  --gray_600: #718096;
+  --gray_500: #a0aec0;
+  --gray_400: #cbd5e0;
+  --gray_300: #eeeff2;
+  --gray_200: #f1f2f4;
+  --gray_100: #f9fafb;
+  --gray_50: #fafafa;
+
+  //   Success
+  --success_dark: #0ba259;
+  --success_base: #0caf60;
+  --success_light: #55c790;
+
+  //   Error
+  --error_dark: #fd4f4f;
+  --error_base: #fd6a6a;
+  --error_light: #fd8181;
+
+  //   Warning
+  --warning_dark: #e6bb20;
+  --warning_base: #ffd023;
+  --warning_light: #ffde65;
+
+  //   Others
+
+  --amber: #ffc837;
+  --sky: #38bdf8;
+  --teal: #2dd4bf;
+  --orange: #fe964a;
+  --portage: #6427ff;
+  --blue: #0062ff;
+}
+
+.team {
+  padding: 110px 0 120px 0;
+  background: url(../assets/images/team_bg.svg) no-repeat center / cover;
+}
+
+.team_head {
+  text-align: center;
+  .main_titel_two {
+    color: var(--primary_white);
+  }
+}
+
+.team_item {
+  box-shadow: 0px 4px 80px 0px #0000001f;
+  padding: 20px;
+  background-color: var(--primary_white);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.team_item_thumb_main {
+  position: relative;
+}
+
+.team_item_thumb {
+  height: 280px;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.team_item_txt {
+  margin-top: 22px;
+  .text_2xl {
+    font-weight: 500;
+    line-height: 25.9px;
+    color: var(--primary_black);
+  }
+
+  .text_lg {
+    font-weight: 400;
+    line-height: 19.42px;
+    color: var(--gray_600);
+    padding-top: 6px;
+  }
+}
+
+.team-icon_main {
+  position: absolute;
+  bottom: -180px;
+  right: 20px;
+  &:hover {
+    .team_social_icon {
+      visibility: visible;
+      transform: translateY(-163px);
+    }
+  }
+}
+
+.team-icon {
+  &:hover {
+    &.team_social_icon {
+      opacity: 0;
+    }
+  }
+  span {
+    height: 40px;
+    width: 40px;
+    background-color: var(--primary_black);
+    @extend %display-flex_c-j-c;
+
+    svg {
+      stroke: currentColor;
+      color: var(--primary_white);
+    }
+  }
+}
+
+.team_social_icon {
+  transition: all linear 0.5s;
+  visibility: hidden;
+  li {
+    margin-bottom: 1px;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    a {
+      span {
+        background-color: var(--blue);
+        color: var(--gray_100);
+      }
+    }
+  }
+}
+
+.team_slick {
+  margin: 38px -15px;
+  .slick-slide > div {
+    padding: 0 15px;
+  }
+  .slick-dots {
+    margin-top: 36px;
+    display: flex !important;
+    justify-content: center;
+    gap: 8px;
+    li {
+      position: relative;
+      display: inline-block;
+      height: 0;
+      width: 0;
+      button {
+        width: 8px;
+        height: 8px;
+        border: none;
+        border-radius: 100%;
+        background-color: rgba(250, 250, 250, 0.3);
+        text-indent: -9999px;
+        position: relative;
+        padding: 4px;
+        &::after {
+          position: absolute;
+          content: "";
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          border: 1px solid var(--primary_white);
+          width: 14px;
+          height: 14px;
+          gap: 0px;
+          opacity: 0px;
+          border-radius: 50%;
+          opacity: 0;
+        }
+      }
+    }
+
+    li.slick-active button {
+      background-color: var(--primary_white);
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// team_member
+
+.team_member {
+  padding: 80px 0;
+}
+
+// .team_single
+.team_single {
+  padding: 80px 0;
+}
+
+.team_frofile {
+  background: var(--gray_100);
+  @extend %display-flex_c-c;
+  gap: 50px;
+}
+
+.team_frofile_thumb {
+  width: 430px;
+  height: 460px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.team_frofile_info {
+  h3 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 40px;
+    color: var(--primary_black);
+  }
+
+  p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 32px;
+    color: var(--portage);
+  }
+
+  ul {
+    margin-top: 25px;
+    width: 310px;
+    li {
+      margin-bottom: 18px;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+      a {
+        @extend %display-flex_c-j-sb;
+        gap: 50px;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 25px;
+        color: var(--gray_700);
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .social-icon {
+    li {
+      margin-bottom: 0;
+    }
+  }
+}

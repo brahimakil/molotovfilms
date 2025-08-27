@@ -1,0 +1,113 @@
+@use "./placeholder" as *;
+
+.clients {
+  padding: 110px 0 110px 0;
+  background-color: var(--primary_white);
+}
+
+.clients_item_main {
+  padding: 30px;
+  border: 1px solid #f1f2f4;
+  background-color: var(--primary_white);
+  border-radius: 12px;
+  transition: all linear 0.5s;
+
+  &:hover {
+    background-color: var(--gray_200);
+  }
+}
+
+.clients_profile_thumb {
+  height: 52px;
+  width: 52px;
+  overflow: hidden;
+  border-radius: 50%;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.clients_profile_txt {
+  .text_xl {
+    font-weight: 500;
+    line-height: 21.58px;
+    letter-spacing: -1px;
+    color: var(--primary_black);
+  }
+
+  .text_base {
+    font-weight: 400;
+    line-height: 17.26px;
+    color: var(--gray_600);
+  }
+}
+
+.clients_profile {
+  @extend %display-flex_c-c;
+  gap: 12px;
+}
+
+.clients_item_main {
+  margin: 0 15px;
+  .text_lg {
+    padding-top: 15px;
+    font-weight: 400;
+    color: var(--primary_black);
+  }
+}
+
+.clients_reting {
+  @extend %display-flex_c-c;
+  gap: 5px;
+  li {
+    span {
+      svg {
+        fill: currentColor;
+        color: var(--amber);
+      }
+    }
+  }
+}
+
+.clients_icon {
+  svg {
+    stroke: currentColor;
+    color: var(--gray_400);
+  }
+}
+
+.clients_item_btm {
+  margin-top: 10px;
+  @extend %display-flex_c-j-sb;
+}
+
+.clients_btn_main {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.clients_btn {
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--primary_black);
+  transition: all linear 0.5s;
+  text-decoration-line: underline;
+  &:hover {
+    @extend %txt_anim_hover;
+  }
+}
+
+// clients_two
+
+.clients_two {
+  .main_titel {
+    text-align: center;
+  }
+
+  .clients_item_main {
+    margin: 0;
+  }
+}
