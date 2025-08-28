@@ -8,6 +8,8 @@ const VideoComparison = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [videosData, setVideosData] = useState([]);
   const [videosLoading, setVideosLoading] = useState(true);
+  const [videosReady, setVideosReady] = useState({ before: false, after: false });
+  const [canPlay, setCanPlay] = useState(false);
   const containerRef = useRef(null);
   const beforeVideoRef = useRef(null);
   const afterVideoRef = useRef(null);
@@ -26,10 +28,9 @@ const VideoComparison = () => {
       title: 'Project Transformation #2',
       description: 'Another example of our professional video enhancement process'
     }
-    
   ];
 
-  // Fetch videos from Firebase
+  // Fetch videos from Firebase - NO CACHING TO AVOID CORS
   useEffect(() => {
     const getVideoUrls = async () => {
       try {
@@ -63,26 +64,88 @@ const VideoComparison = () => {
     getVideoUrls();
   }, []);
 
-  // Reset slider when changing pages
+  // Reset video states when changing pages
   useEffect(() => {
     setSliderPosition(50);
     setIsDragging(false);
+    setVideosReady({ before: false, after: false });
+    setCanPlay(false);
   }, [currentPage]);
+
+  // Check if both videos are ready to play
+  useEffect(() => {
+    const bothReady = videosReady.before && videosReady.after;
+    setCanPlay(bothReady);
+    
+    if (bothReady) {
+      // Start playing both videos when both are ready
+      setTimeout(() => {
+        if (beforeVideoRef.current && afterVideoRef.current) {
+          beforeVideoRef.current.play().catch(() => {});
+          afterVideoRef.current.play().catch(() => {});
+        }
+      }, 100);
+    }
+  }, [videosReady]);
+
+  // Video ready handlers
+  const handleBeforeVideoCanPlay = () => {
+    setVideosReady(prev => ({ ...prev, before: true }));
+  };
+
+  const handleAfterVideoCanPlay = () => {
+    setVideosReady(prev => ({ ...prev, after: true }));
+  };
 
   // Sync video playback
   const syncVideos = () => {
-    if (beforeVideoRef.current && afterVideoRef.current) {
+    if (beforeVideoRef.current && afterVideoRef.current && canPlay) {
       const beforeVideo = beforeVideoRef.current;
       const afterVideo = afterVideoRef.current;
       
-      afterVideo.currentTime = beforeVideo.currentTime;
+      // Sync time
+      const timeDiff = Math.abs(beforeVideo.currentTime - afterVideo.currentTime);
+      if (timeDiff > 0.1) { // Only sync if difference is significant
+        afterVideo.currentTime = beforeVideo.currentTime;
+      }
       
-      if (!beforeVideo.paused) {
+      // Sync play/pause state
+      if (!beforeVideo.paused && afterVideo.paused) {
         afterVideo.play().catch(() => {});
-      } else {
+      } else if (beforeVideo.paused && !afterVideo.paused) {
         afterVideo.pause();
       }
     }
+  };
+
+  // Enhanced play handler - only play if both videos are ready
+  const handleBeforeVideoPlay = () => {
+    if (canPlay && afterVideoRef.current) {
+      afterVideoRef.current.play().catch(() => {});
+    } else if (!canPlay) {
+      // Pause the video if the other isn't ready
+      beforeVideoRef.current?.pause();
+    }
+  };
+
+  // Enhanced pause handler
+  const handleBeforeVideoPause = () => {
+    if (afterVideoRef.current) {
+      afterVideoRef.current.pause();
+    }
+  };
+
+  // Enhanced time update with sync check
+  const handleBeforeVideoTimeUpdate = () => {
+    if (canPlay) {
+      syncVideos();
+    }
+  };
+
+  // Handle video errors
+  const handleVideoError = (videoType) => {
+    console.error(`${videoType} video failed to load`);
+    setVideosReady(prev => ({ ...prev, [videoType]: false }));
   };
 
   // Navigation functions
@@ -160,29 +223,13 @@ const VideoComparison = () => {
     };
   }, [isDragging]);
 
-  const handleBeforeVideoPlay = () => {
-    if (afterVideoRef.current) {
-      afterVideoRef.current.play().catch(() => {});
-    }
-  };
-
-  const handleBeforeVideoPause = () => {
-    if (afterVideoRef.current) {
-      afterVideoRef.current.pause();
-    }
-  };
-
-  const handleBeforeVideoTimeUpdate = () => {
-    syncVideos();
-  };
-
   // Styles
   const containerStyle = {
     position: 'relative',
     width: '100%',
-    height: '70vh',
-    maxHeight: '600px',
-    minHeight: '400px',
+    height: window.innerWidth <= 768 ? '50vh' : '80vh', // Slightly taller on desktop too
+    maxHeight: window.innerWidth <= 768 ? '400px' : '700px', // Higher max height on desktop
+    minHeight: window.innerWidth <= 768 ? '250px' : '500px', // Higher min height on desktop
     overflow: 'hidden',
     borderRadius: '15px',
     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
@@ -195,7 +242,7 @@ const VideoComparison = () => {
     left: 0,
     width: '100%',
     height: '100%',
-    objectFit: 'cover'
+    objectFit: window.innerWidth <= 768 ? 'contain' : 'cover'
   };
 
   const beforeVideoStyle = {
@@ -283,6 +330,18 @@ const VideoComparison = () => {
     background: '#007bff'
   };
 
+  const loadingIndicatorStyle = {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    padding: '5px 10px',
+    background: 'rgba(0, 123, 255, 0.9)',
+    color: 'white',
+    borderRadius: '15px',
+    fontSize: '12px',
+    zIndex: 5
+  };
+
   const currentVideo = videosData[currentPage];
 
   return (
@@ -302,7 +361,7 @@ const VideoComparison = () => {
         </div>
 
         <div className="row justify-content-center">
-          <div className="col-lg-10">
+          <div className={window.innerWidth <= 768 ? "col-lg-10" : "col-12"}> {/* Full width on desktop */}
             {videosLoading ? (
               <div style={{
                 ...containerStyle,
@@ -328,10 +387,21 @@ const VideoComparison = () => {
                 {/* Video Comparison Container */}
                 <div
                   ref={containerRef}
-                  style={containerStyle}
+                  style={{
+                    ...containerStyle,
+                    maxWidth: window.innerWidth <= 768 ? '100%' : '90%', // Wider on desktop
+                    margin: '0 auto' // Center the container
+                  }}
                   onMouseDown={handleMouseDown}
                   onTouchStart={handleTouchStart}
                 >
+                  {/* Loading Indicator */}
+                  {!canPlay && (
+                    <div style={loadingIndicatorStyle}>
+                      {videosReady.before ? '✓' : '○'} {videosReady.after ? '✓' : '○'}
+                    </div>
+                  )}
+
                   {/* After Video (Background) */}
                   <video
                     ref={afterVideoRef}
@@ -339,6 +409,9 @@ const VideoComparison = () => {
                     muted
                     loop
                     playsInline
+                    preload="auto"
+                    onCanPlay={handleAfterVideoCanPlay}
+                    onError={() => handleVideoError('after')}
                     key={`after-${currentPage}`}
                   >
                     <source src={currentVideo.afterUrl} type="video/mp4" />
@@ -351,10 +424,12 @@ const VideoComparison = () => {
                     muted
                     loop
                     playsInline
+                    preload="auto"
+                    onCanPlay={handleBeforeVideoCanPlay}
                     onPlay={handleBeforeVideoPlay}
                     onPause={handleBeforeVideoPause}
                     onTimeUpdate={handleBeforeVideoTimeUpdate}
-                    autoPlay
+                    onError={() => handleVideoError('before')}
                     key={`before-${currentPage}`}
                   >
                     <source src={currentVideo.beforeUrl} type="video/mp4" />
