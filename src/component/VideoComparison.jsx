@@ -19,14 +19,12 @@ const VideoComparison = () => {
     {
       beforePath: 'before&after/before (ba7er).mp4',
       afterPath: 'before&after/after (ba7er).mp4',
-      title: 'Project Transformation #1',
-      description: 'See how we transformed raw footage into cinematic excellence'
+    
     },
     {
       beforePath: 'before&after/benet (before).mp4',
       afterPath: 'before&after/benet (after).mp4',
-      title: 'Project Transformation #2',
-      description: 'Another example of our professional video enhancement process'
+
     }
   ];
 
@@ -227,9 +225,9 @@ const VideoComparison = () => {
   const containerStyle = {
     position: 'relative',
     width: '100%',
-    height: window.innerWidth <= 768 ? '50vh' : '80vh', // Slightly taller on desktop too
-    maxHeight: window.innerWidth <= 768 ? '400px' : '700px', // Higher max height on desktop
-    minHeight: window.innerWidth <= 768 ? '250px' : '500px', // Higher min height on desktop
+    height: window.innerWidth <= 768 ? '50vh' : '70vh',
+    maxHeight: window.innerWidth <= 768 ? '400px' : '600px',
+    minHeight: window.innerWidth <= 768 ? '250px' : '400px',
     overflow: 'hidden',
     borderRadius: '15px',
     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
@@ -254,13 +252,13 @@ const VideoComparison = () => {
     position: 'absolute',
     top: 0,
     left: `${sliderPosition}%`,
-    width: '4px',
+    width: '2px', // Very thin white line like the image
     height: '100%',
-    background: 'linear-gradient(45deg, #007bff, #0056b3)',
+    background: 'rgba(255, 255, 255, 0.9)', // White instead of blue
     transform: 'translateX(-50%)',
     cursor: 'ew-resize',
     zIndex: 10,
-    boxShadow: '0 0 10px rgba(0, 123, 255, 0.5)'
+    boxShadow: '0 0 8px rgba(255, 255, 255, 0.3)' // White glow
   };
 
   const sliderHandleStyle = {
@@ -268,18 +266,18 @@ const VideoComparison = () => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '40px',
-    height: '40px',
-    background: 'linear-gradient(45deg, #007bff, #0056b3)',
+    width: '20px', // Smaller handle
+    height: '20px',
+    background: 'rgba(255, 255, 255, 0.95)', // White handle
     borderRadius: '50%',
-    border: '3px solid white',
+    border: '2px solid rgba(255, 255, 255, 1)',
     cursor: 'grab',
-    boxShadow: '0 4px 15px rgba(0, 123, 255, 0.4)',
+    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'white',
-    fontSize: '12px',
+    color: '#333', // Dark text on white background
+    fontSize: '10px',
     fontWeight: 'bold'
   };
 
@@ -361,7 +359,7 @@ const VideoComparison = () => {
         </div>
 
         <div className="row justify-content-center">
-          <div className={window.innerWidth <= 768 ? "col-lg-10" : "col-12"}> {/* Full width on desktop */}
+          <div className={window.innerWidth <= 768 ? "col-lg-10" : "col-lg-12"}>
             {videosLoading ? (
               <div style={{
                 ...containerStyle,
@@ -384,104 +382,193 @@ const VideoComparison = () => {
                   </p>
                 </div>
 
-                {/* Video Comparison Container */}
-                <div
-                  ref={containerRef}
-                  style={{
-                    ...containerStyle,
-                    maxWidth: window.innerWidth <= 768 ? '100%' : '90%', // Wider on desktop
-                    margin: '0 auto' // Center the container
-                  }}
-                  onMouseDown={handleMouseDown}
-                  onTouchStart={handleTouchStart}
-                >
-                  {/* Loading Indicator */}
-                  {!canPlay && (
-                    <div style={loadingIndicatorStyle}>
-                      {videosReady.before ? '✓' : '○'} {videosReady.after ? '✓' : '○'}
-                    </div>
-                  )}
+                {/* Video Comparison Container with Side Text */}
+                <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '20px' }}>
+                  {/* Left Side Text */}
+                  <div style={{
+                    fontSize: window.innerWidth <= 768 ? '18px' : '24px',
+                    fontWeight: 'bold',
+                    letterSpacing: '8px',
+                    writingMode: 'vertical-rl',
+                    textOrientation: 'mixed',
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+                    userSelect: 'none',
+                    color: '#333',
+                    minWidth: '40px'
+                  }}>
+                    COLORING
+                  </div>
 
-                  {/* After Video (Background) */}
-                  <video
-                    ref={afterVideoRef}
-                    style={videoStyle}
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    onCanPlay={handleAfterVideoCanPlay}
-                    onError={() => handleVideoError('after')}
-                    key={`after-${currentPage}`}
+                  {/* Video Container */}
+                  <div
+                    ref={containerRef}
+                    style={{
+                      ...containerStyle,
+                      maxWidth: window.innerWidth <= 768 ? '100%' : '90%',
+                      margin: '0 auto',
+                      flex: 1
+                    }}
+                    onMouseDown={handleMouseDown}
+                    onTouchStart={handleTouchStart}
                   >
-                    <source src={currentVideo.afterUrl} type="video/mp4" />
-                  </video>
+                    {/* Loading Indicator */}
+                    {!canPlay && (
+                      <div style={loadingIndicatorStyle}>
+                        Syncing videos... {videosReady.before ? '✓' : '○'} {videosReady.after ? '✓' : '○'}
+                      </div>
+                    )}
 
-                  {/* Before Video (Clipped) */}
-                  <video
-                    ref={beforeVideoRef}
-                    style={beforeVideoStyle}
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    onCanPlay={handleBeforeVideoCanPlay}
-                    onPlay={handleBeforeVideoPlay}
-                    onPause={handleBeforeVideoPause}
-                    onTimeUpdate={handleBeforeVideoTimeUpdate}
-                    onError={() => handleVideoError('before')}
-                    key={`before-${currentPage}`}
-                  >
-                    <source src={currentVideo.beforeUrl} type="video/mp4" />
-                  </video>
+                    {/* After Video (Background) */}
+                    <video
+                      ref={afterVideoRef}
+                      style={videoStyle}
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      onCanPlay={handleAfterVideoCanPlay}
+                      onError={() => handleVideoError('after')}
+                      key={`after-${currentPage}`}
+                    >
+                      <source src={currentVideo.afterUrl} type="video/mp4" />
+                    </video>
 
-                  {/* Slider Line */}
-                  <div style={sliderStyle}>
-                    <div style={sliderHandleStyle}>
-                      ⟷
+                    {/* Before Video (Clipped) */}
+                    <video
+                      ref={beforeVideoRef}
+                      style={beforeVideoStyle}
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      onCanPlay={handleBeforeVideoCanPlay}
+                      onPlay={handleBeforeVideoPlay}
+                      onPause={handleBeforeVideoPause}
+                      onTimeUpdate={handleBeforeVideoTimeUpdate}
+                      onError={() => handleVideoError('before')}
+                      key={`before-${currentPage}`}
+                    >
+                      <source src={currentVideo.beforeUrl} type="video/mp4" />
+                    </video>
+
+                    {/* Slider Line */}
+                    <div style={sliderStyle}>
+                      <div style={sliderHandleStyle}>
+                        ⟷
+                      </div>
                     </div>
                   </div>
 
-                  {/* Labels */}
-                  <div style={{ ...labelStyle, left: '20px' }}>
-                    Before
-                  </div>
-                  <div style={{ ...labelStyle, right: '20px' }}>
-                    After
+                  {/* Right Side Text */}
+                  <div style={{
+                    fontSize: window.innerWidth <= 768 ? '18px' : '24px',
+                    fontWeight: 'bold',
+                    letterSpacing: '8px',
+                    writingMode: 'vertical-rl',
+                    textOrientation: 'mixed',
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+                    userSelect: 'none',
+                    color: '#333',
+                    minWidth: '40px'
+                  }}>
+                    VFX
                   </div>
                 </div>
 
-                {/* Pagination */}
-                <div style={paginationStyle}>
-                  <button
-                    style={navButtonStyle}
+                {/* Modern Navigation - Subtle Arrows */}
+                <div style={{
+                  position: 'relative',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginTop: '30px',
+                  height: '60px'
+                }}>
+                  {/* Left Arrow */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      left: '20%',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#666',
+                      fontSize: '24px',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      borderRadius: '50%',
+                      border: '1px solid #ddd',
+                      background: 'rgba(255, 255, 255, 0.9)'
+                    }}
                     onClick={prevPage}
-                    onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
-                    onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+                    onMouseEnter={(e) => {
+                      e.target.style.color = '#333';
+                      e.target.style.transform = 'scale(1.1)';
+                      e.target.style.borderColor = '#007bff';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.color = '#666';
+                      e.target.style.transform = 'scale(1)';
+                      e.target.style.borderColor = '#ddd';
+                    }}
                   >
-                    ← Previous
-                  </button>
+                    ←
+                  </div>
 
-                  <div style={{ display: 'flex', gap: '10px' }}>
+                  {/* Elegant Dots */}
+                  <div style={{ display: 'flex', gap: '12px' }}>
                     {videoSets.map((_, index) => (
                       <div
                         key={index}
-                        style={index === currentPage ? activeDotStyle : dotStyle}
+                        style={{
+                          width: '10px',
+                          height: '10px',
+                          borderRadius: '50%',
+                          background: index === currentPage ? '#007bff' : '#ddd',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease'
+                        }}
                         onClick={() => goToPage(index)}
-                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.3)'}
                         onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
                       />
                     ))}
                   </div>
 
-                  <button
-                    style={navButtonStyle}
+                  {/* Right Arrow */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      right: '20%',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#666',
+                      fontSize: '24px',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      borderRadius: '50%',
+                      border: '1px solid #ddd',
+                      background: 'rgba(255, 255, 255, 0.9)'
+                    }}
                     onClick={nextPage}
-                    onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
-                    onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+                    onMouseEnter={(e) => {
+                      e.target.style.color = '#333';
+                      e.target.style.transform = 'scale(1.1)';
+                      e.target.style.borderColor = '#007bff';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.color = '#666';
+                      e.target.style.transform = 'scale(1)';
+                      e.target.style.borderColor = '#ddd';
+                    }}
                   >
-                    Next →
-                  </button>
+                    →
+                  </div>
                 </div>
               </>
             ) : (
