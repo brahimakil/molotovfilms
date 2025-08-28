@@ -21,29 +21,30 @@ const ChoseTwo = ({ addClass }) => {
             <div className="col-lg-6 col-xxl-6">
               <div className="chose_two_head">
                 <h2 className="main_titel_three">
-                  Engineering Emotions Through  
-                  <span> Cinematic Arts</span>
+                  A New Standard in <br />
+                  <span>Cinematic Production</span>
                 </h2>
                 <p className="text_lg">
-                Your specialized partner in crafting breathtaking visual narratives. We merge artistry with cutting-edge technology to create unforgettable cinematic experiences for film, television, and premium brands.                </p>
+                  A comprehensive solution for directors and brands seeking a truly premium look, from masterful cinematography and lighting to world-class color grading and finishing.
+                </p>
               </div>
 
               <div className="chose_renge_main">
                 <div className="chose_renge_item">
                   <h6>
-                    Artistic Vision <span>95%</span>
+                    Cinematography <span>95%</span>
                   </h6>
                   <div className="chose_renge_ber"></div>
                 </div>
                 <div className="chose_renge_item">
                   <h6>
-                    Technical Mastery<span>90%</span>
+                    Color Science<span>90%</span>
                   </h6>
                   <div className="chose_renge_ber"></div>
                 </div>
                 <div className="chose_renge_item">
                   <h6>
-                    Narrative Impact<span>85%</span>
+                    Post-Production Workflow<span>85%</span>
                   </h6>
                   <div className="chose_renge_ber"></div>
                 </div>

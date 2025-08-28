@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AbouUsTwo from "../component/AbouUsTwo";
 import ChoseTwo from "../component/ChoseTwo";
 import Working from "../component/Working";
-import Blog from "../component/BlogOne";
+import VideoComparison from "../component/VideoComparison";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 
@@ -190,21 +190,18 @@ const AboutPage = () => {
           
           {/* Hero Content */}
           <div style={heroStyles.heroContent}>
-            <h1 style={heroStyles.heroTitle}>We Create Films, Ads & Social Content That Drive Impact</h1>
+            <h1 style={heroStyles.heroTitle}>
+               We Create Films, <span style={{color: '#6B8E23'}}>Ads & Social Content</span> That Drive Impact
+            </h1>
             <p style={heroStyles.heroSubtitle}>From cinematic commercials to viral Reels, we craft stories that capture attention and grow your brand across every platform.</p>
             <div style={heroStyles.heroButtons}>
               <a 
                 href="#services" 
                 style={{...heroStyles.btn, ...heroStyles.btnPrimary}}
               >
-                👉 Let's Work Together
+                 Let's Work 
               </a>
-              <a 
-                href="#about" 
-                style={{...heroStyles.btn, ...heroStyles.btnOutlineLight}}
-              >
-                Learn More
-              </a>
+              
             </div>
           </div>
         </div>
@@ -213,7 +210,7 @@ const AboutPage = () => {
       <AbouUsTwo />
       <ChoseTwo addClass="inner_chose" />
       <Working />
-      <Blog />
+      <VideoComparison />
     </div>
   );
 };

@@ -65,7 +65,19 @@ const Working = () => {
                     </span>
                   </div>
                   <div className="working_icon_item_txt">
-                    <p className="text_2xl">Creative Excellence — Every project is designed with cinematic storytelling.</p>
+                    <p className="text_2xl">
+                      <span style={{
+                        background: 'linear-gradient(232.42deg, #daa520 1.36%, #ffd700 99.95%)',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontSize: '1.1em',
+                        display: 'block',
+                        marginBottom: '8px'
+                      }}>
+                        Creative Excellence
+                      </span>
+                      Every project is designed with cinematic storytelling.
+                    </p>
                   </div>
                 </div>
                 <div className="arrow_img">
@@ -83,7 +95,17 @@ const Working = () => {
                   </div>
                   <div className="working_icon_item_txt">
                     <p className="text_2xl">
-                      Results-Driven — We align creativity with your marketing goals.
+                      <span style={{
+                        background: 'linear-gradient(232.42deg, #daa520 1.36%, #ffd700 99.95%)',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontSize: '1.1em',
+                        display: 'block',
+                        marginBottom: '8px'
+                      }}>
+                        Results-Driven
+                      </span>
+                      We align creativity with your marketing goals.
                     </p>
                   </div>
                 </div>
@@ -101,7 +123,18 @@ const Working = () => {
                     </span>
                   </div>
                   <div className="working_icon_item_txt">
-                    <p className="text_2xl">Full Partnership — From strategy to publishing, we're with you end-to-end.</p>
+                    <p className="text_2xl">
+                      <span style={{
+                        background: 'linear-gradient(232.42deg, #daa520 1.36%, #ffd700 99.95%)',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontSize: '1.1em'
+                      }}>
+                        Full Partnership
+                      </span>
+                      <br />
+                      From strategy to publishing, we're with you end-to-end.
+                    </p>
                   </div>
                 </div>
               </div>
