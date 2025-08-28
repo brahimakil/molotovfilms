@@ -1,13 +1,13 @@
 /* Custom color overrides for Molotov Films - FIXED VIDEO OVERLAP */
 
-/* HORIZONTAL MOLOTOV LOGO STYLING - BIGGER LOGO */
+/* HORIZONTAL MOLOTOV LOGO STYLING - LARGER LOGO TO FILL NAVBAR HEIGHT */
 img[src*="Molotove text Final (2).png"],
 img[alt="logo"],
 .header_logo img,
 .menu_bg .header_logo img,
 .navbar-1 .header_logo img {
-  max-width: 450px !important;
-  max-height: 120px !important;
+  max-width: 500px !important;     /* Increased from 450px to 500px */
+  max-height: 100px !important;     /* Increased from 60px to 90px - almost fills the navbar */
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
@@ -63,8 +63,8 @@ img[alt="logo"],
 }
 
 .header:not(.header--two):not(.header--3) .menu_bg {
-  min-height: 70px !important;
-  padding: 15px 0 !important;
+  min-height: 45px !important;  /* Reduced from 70px to 45px */
+  padding: 8px 0 !important;    /* Reduced from 15px to 8px */
   background: rgba(0, 0, 0, 0.3) !important;
   backdrop-filter: blur(10px) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -72,8 +72,8 @@ img[alt="logo"],
 }
 
 .header:not(.header--two):not(.header--3) .menu_bg.nav-bg {
-  min-height: 70px !important;
-  padding: 15px 0 !important;
+  min-height: 45px !important;  /* Reduced from 70px to 45px */
+  padding: 8px 0 !important;    /* Reduced from 15px to 8px */
   background: rgba(20, 20, 20, 0.4) !important; /* KEEP GLASS EFFECT - NOT SOLID BLACK */
   backdrop-filter: blur(15px) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
