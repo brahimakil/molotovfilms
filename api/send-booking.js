@@ -39,6 +39,10 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') { res.status(405).end(); return; }
   const { selectedDate, email, subject, name, phone, description } = req.body || {};
 
+  if (!process.env.OWNER_EMAIL || !process.env.GMAIL_APP_PASSWORD) {
+    return res.status(500).json({ success: false, message: 'Email env vars missing' });
+  }
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: { user: OWNER_EMAIL, pass: process.env.GMAIL_APP_PASSWORD }
