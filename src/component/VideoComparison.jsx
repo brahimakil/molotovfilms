@@ -343,8 +343,9 @@ const VideoComparison = () => {
   const currentVideo = videosData[currentPage];
 
   return (
+    
     <section style={{ padding: '80px 0', background: '#f8f9fa' }}>
-      <div className="container">
+      <div className="container"> 
         <div className="row">
           <div className="col-12">
             <div style={{ textAlign: 'center', marginBottom: '50px' }}>

@@ -210,6 +210,7 @@ const AboutPage = () => {
       <AbouUsTwo />
       <ChoseTwo addClass="inner_chose" />
       <Working />
+      <div style={{ height: window.innerWidth <= 768 ? '24px' : '64px' }} />
       <VideoComparison />
     </div>
   );

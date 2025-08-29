@@ -691,3 +691,86 @@ img[src*="Molotov Logo PNG.png"] {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
   }
 }
+
+/* FIX ABOUTUSTWO OVERFLOW ISSUES - CONTAIN ABSOLUTE POSITIONED ELEMENTS */
+.about_us.about_us--two {
+  overflow: hidden !important; /* Clip overflowing decorative elements */
+  position: relative !important;
+}
+
+.text_pos_thumb_main {
+  overflow: hidden !important; /* Prevent decorative elements from extending beyond section */
+  position: relative !important;
+}
+
+/* DESKTOP SPECIFIC FIXES */
+@media (min-width: 769px) {
+  .text_pos_thumb_two {
+    bottom: -200px !important; /* Reduce from -500px to prevent overflow */
+  }
+  
+  .text_pos_thumb_three {
+    bottom: -200px !important; /* Reduce from -525px to prevent overflow */
+  }
+}
+
+/* WORKING SECTION - ENSURE IT'S NOT AFFECTED BY PREVIOUS SECTIONS */
+.working {
+  position: relative !important;
+  z-index: 2 !important;
+  margin-top: 0 !important; /* Reset any negative margins */
+  clear: both !important; /* Clear any floats from previous sections */
+}
+
+/* Working (desktop) — ensure dark area fully contains text + calendar */
+@media (min-width: 992px) {
+  .working {
+    position: relative !important;
+    isolation: isolate !important;                     /* prevent cross-section bleed */
+    overflow: visible !important;
+    padding-bottom: 280px !important;                  /* room for calendar */
+    background: #1b1530 url("../assets/images/working_bg.svg")
+               no-repeat center / cover !important;    /* solid + cover */
+  }
+
+  .working .container {
+    overflow: visible !important;
+  }
+
+  /* Extend dark background a bit below the section to avoid visible edge */
+  .working::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 0; right: 0;
+    bottom: -140px;                                    /* gentle overlap into next section */
+    height: 140px;
+    background: #1b1530;                               /* same dark tone */
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Clip any decorative absolute elements from previous sections on desktop */
+  .about_us.about_us--two,
+  .chose_two {
+    position: relative !important;
+    overflow: hidden !important;
+  }
+}
+
+/* Working: unify bottom, remove seam to next section (desktop) */
+@media (min-width: 992px) {
+  .working {
+    background: #211933 url("../assets/images/working_bg.svg") no-repeat center / cover !important;
+    padding-bottom: 260px !important;  /* ensure dark area covers calendar */
+    position: relative !important;
+  }
+  .working::after { content: none !important; } /* remove previous extender if any */
+
+  /* Make the next section start clean and not introduce a light background */
+  .working + section,
+  .working + div {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    background: transparent !important;
+  }
+}

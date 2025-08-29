@@ -196,14 +196,14 @@
 
 .text_pos_thumb_two {
   position: absolute;
-  bottom: -500px;
+  bottom: -200px;
   right: -80px;
   animation: 6s linear 0s infinite normal none running moving;
 }
 
 .text_pos_thumb_three {
   position: absolute;
-  bottom: -525px;
+  bottom: -200px;
   right: -122px;
   transform: rotate(20deg);
 }
@@ -2918,7 +2918,7 @@ body {
   font-size: 18px;
   font-weight: 400;
   line-height: 19.42px;
-  color: var(v --gray_600);
+  color: v --gray_600;
 }
 .services_head_btm p span a {
   color: var(--primary_black);
