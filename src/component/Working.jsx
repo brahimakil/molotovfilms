@@ -130,11 +130,9 @@ const Working = () => {
         day: 'numeric'
       });
 
-      const response = await fetch('/api/send-booking', {
+      const response = await fetch('https://molotov-backend.vercel.app/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           selectedDate: formattedDate,
           email: formData.email,
