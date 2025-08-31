@@ -55,7 +55,7 @@ const Working = () => {
       const isToday = date.getTime() === today.getTime();
       const isPast = date < today;
       const dayOfWeek = date.getDay();
-      const isWeekend = dayOfWeek === 0 || dayOfWeek === 5; // Sunday or Friday
+      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6; // Sunday or Saturday (not Friday)
       const isAvailable = isCurrentMonth && !isPast && !isWeekend;
 
       days.push({
@@ -168,8 +168,7 @@ const Working = () => {
 
   return (
     <section className="working" style={{
-      // Extend the dark blue background to cover both text and calendar
-      paddingBottom: isMobile ? '60px' : '200px' // Much bigger padding for desktop
+      paddingBottom: isMobile ? '60px' : '200px'
     }}>
       <div className="container">
         <div className="row">
@@ -213,10 +212,10 @@ const Working = () => {
           </div>
         </div>
 
-        {/* PROFESSIONAL CALENDAR BOOKING SYSTEM - RESPECTS WORKING SECTION CSS */}
+        {/* COMPACT CALENDAR BOOKING SYSTEM */}
         <div className="row working_mt">
           <div className="col-12">
-            <div className="booking-system-container" style={{
+          <div className="booking-system-container" style={{
               background: 'rgba(255, 255, 255, 0.95)',
               backdropFilter: 'blur(20px)',
               borderRadius: '25px',
@@ -225,7 +224,8 @@ const Working = () => {
               boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
               position: 'relative',
               zIndex: 10,
-              maxWidth: '100%',
+              maxWidth: isMobile ? '100%' : '900px', // Expanded width
+              margin: '0 auto',
               overflow: 'hidden'
             }}>
               {/* Glassmorphism background effect */}
@@ -240,279 +240,331 @@ const Working = () => {
                 pointerEvents: 'none'
               }} />
 
-              <div className="text-center" style={{ position: 'relative', zIndex: 2, marginBottom: isMobile ? '30px' : '40px' }}>
+              <div className="text-center" style={{ position: 'relative', zIndex: 2, marginBottom: isMobile ? '25px' : '30px' }}>
                 <h2 style={{
                   background: 'linear-gradient(135deg, #6b8e23, #556b2f)',
                   backgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  fontSize: isMobile ? '1.8rem' : '2.5rem',
+                  fontSize: isMobile ? '1.6rem' : '2rem',
                   fontWeight: 'bold',
-                  marginBottom: '15px',
+                  marginBottom: '10px',
                   textAlign: 'center'
                 }}>
-                  📅 Schedule Your Consultation
+                  📅 Select a Date & Time
                 </h2>
-                <p style={{ 
-                  color: '#333', 
-                  fontSize: isMobile ? '0.95rem' : '1.1rem',
-                  maxWidth: '600px',
-                  margin: '0 auto',
-                  lineHeight: '1.6',
-                  textAlign: 'center'
+              </div>
+
+              {/* EXPANDED CALENDAR */}
+              <div style={{ position: 'relative', zIndex: 2 }}>
+                <div className="calendar-wrapper" style={{
+                  background: 'linear-gradient(135deg, #2D3E50, #34495E)',
+                  borderRadius: '16px',
+                  padding: isMobile ? '25px 20px' : '40px 35px', // Increased padding
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.2)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  maxWidth: '100%'
                 }}>
-                  Choose your preferred date and let's discuss how we can bring your vision to life
-                </p>
-              </div>
-
-              <div className="row" style={{ position: 'relative', zIndex: 2, alignItems: 'flex-start' }}>
-                {/* PROFESSIONAL CALENDAR */}
-                <div className={isMobile ? "col-12 mb-4" : "col-lg-7"}>
-                  <div className="calendar-wrapper" style={{
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: '20px',
-                    padding: isMobile ? '20px 15px' : '30px 25px',
-                    boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)',
-                    border: '1px solid rgba(255, 255, 255, 0.3)',
-                    maxWidth: '100%'
+                  {/* Calendar Header */}
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom: '30px', // Increased margin
+                    padding: '0 10px'
                   }}>
-                    {/* Calendar Header */}
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      marginBottom: '20px',
-                      padding: '0 5px'
-                    }}>
-                      <button
-                        onClick={() => navigateMonth('prev')}
-                        style={{
-                          background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
-                          color: 'white',
-                          border: 'none',
-                          borderRadius: '10px',
-                          width: isMobile ? '35px' : '40px',
-                          height: isMobile ? '35px' : '40px',
-                          fontSize: isMobile ? '14px' : '16px',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          transition: 'all 0.3s ease',
-                          boxShadow: '0 4px 12px rgba(107, 122, 71, 0.3)'
-                        }}
-                        onMouseEnter={(e) => e.target.style.transform = 'translateY(-1px)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
-                      >
-                        ‹
-                      </button>
+                    <button
+                      onClick={() => navigateMonth('prev')}
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        color: 'white',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        borderRadius: '8px',
+                        width: '40px',
+                        height: '40px',
+                        fontSize: '18px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        transition: 'all 0.3s ease'
+                      }}
+                      onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.2)'}
+                      onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
+                    >
+                      ‹
+                    </button>
 
-                      <h3 style={{
-                        color: '#333',
-                        fontSize: isMobile ? '1.2rem' : '1.4rem',
-                        fontWeight: '700',
-                        margin: 0,
-                        textAlign: 'center'
-                      }}>
-                        {monthNames[currentMonth]} {currentYear}
-                      </h3>
-
-                      <button
-                        onClick={() => navigateMonth('next')}
-                        style={{
-                          background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
-                          color: 'white',
-                          border: 'none',
-                          borderRadius: '10px',
-                          width: isMobile ? '35px' : '40px',
-                          height: isMobile ? '35px' : '40px',
-                          fontSize: isMobile ? '14px' : '16px',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          transition: 'all 0.3s ease',
-                          boxShadow: '0 4px 12px rgba(107, 122, 71, 0.3)'
-                        }}
-                        onMouseEnter={(e) => e.target.style.transform = 'translateY(-1px)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
-                      >
-                        ›
-                      </button>
-                  </div>
-
-                    {/* Day Headers */}
-                    <div style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(7, 1fr)',
-                      gap: isMobile ? '3px' : '4px',
-                      marginBottom: '12px'
-                    }}>
-                      {dayNames.map((day) => (
-                        <div key={day} style={{
-                          textAlign: 'center',
-                          padding: isMobile ? '8px 3px' : '10px 5px',
-                          fontSize: isMobile ? '0.7rem' : '0.8rem',
-                          fontWeight: '600',
-                          color: '#666',
-                          background: 'rgba(107, 122, 71, 0.08)',
-                          borderRadius: '6px'
-                        }}>
-                          {day}
-                  </div>
-                      ))}
-                </div>
-
-                    {/* Calendar Grid */}
-                    <div style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(7, 1fr)',
-                      gap: isMobile ? '3px' : '4px',
-                      maxHeight: isMobile ? '280px' : '320px',
-                      overflow: 'visible'
-                    }}>
-                      {calendarDays.map((day, index) => {
-                        const isSelected = selectedDate?.fullDate.toDateString() === day.fullDate.toDateString();
-                        
-                        return (
-                          <div
-                            key={index}
-                            onClick={() => handleDateSelect(day)}
-                            style={{
-                              padding: isMobile ? '8px 4px' : '10px 6px',
-                              textAlign: 'center',
-                              borderRadius: '8px',
-                              cursor: day.isAvailable ? 'pointer' : 'not-allowed',
-                              fontSize: isMobile ? '0.75rem' : '0.85rem',
-                              fontWeight: '500',
-                              minHeight: isMobile ? '32px' : '36px',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              position: 'relative',
-                              transition: 'all 0.2s ease',
-                              
-                              // Styling based on day type
-                              ...(isSelected ? {
-                                background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
-                                color: 'white',
-                                transform: 'scale(1.05)',
-                                boxShadow: '0 4px 15px rgba(107, 122, 71, 0.4)',
-                                zIndex: 10
-                              } : day.isAvailable ? {
-                                background: 'rgba(107, 122, 71, 0.08)',
-                                color: '#333',
-                                border: '1px solid transparent'
-                              } : day.isCurrentMonth ? (
-                                day.isWeekend ? {
-                                  background: 'rgba(239, 68, 68, 0.1)',
-                                  color: '#999',
-                                  textDecoration: 'line-through'
-                                } : {
-                                  background: 'rgba(0, 0, 0, 0.05)',
-                                  color: '#ccc'
-                                }
-                              ) : {
-                                background: 'transparent',
-                                color: '#ddd'
-                              })
-                            }}
-                            onMouseEnter={(e) => {
-                              if (day.isAvailable && !isSelected) {
-                                e.target.style.background = 'rgba(107, 122, 71, 0.15)';
-                                e.target.style.transform = 'scale(1.02)';
-                                e.target.style.borderColor = '#6B7A47';
-                              }
-                            }}
-                            onMouseLeave={(e) => {
-                              if (day.isAvailable && !isSelected) {
-                                e.target.style.background = 'rgba(107, 122, 71, 0.08)';
-                                e.target.style.transform = 'scale(1)';
-                                e.target.style.borderColor = 'transparent';
-                              }
-                            }}
-                          >
-                            {day.date}
-                            {day.isToday && (
-                              <div style={{
-                                position: 'absolute',
-                                bottom: '2px',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                width: '3px',
-                                height: '3px',
-                                borderRadius: '50%',
-                                background: isSelected ? 'white' : '#6B7A47'
-                              }} />
-                            )}
-                </div>
-                        );
-                      })}
-              </div>
-
-                    <div style={{
-                      marginTop: '15px',
-                      padding: '12px',
-                      background: 'rgba(107, 122, 71, 0.08)',
-                      borderRadius: '10px',
-                      fontSize: isMobile ? '0.75rem' : '0.8rem',
-                      color: '#666',
+                    <h3 style={{
+                      color: 'white',
+                      fontSize: isMobile ? '1.3rem' : '1.6rem', // Increased font size
+                      fontWeight: '600',
+                      margin: 0,
                       textAlign: 'center'
                     }}>
-                      <div style={{ marginBottom: '6px' }}>
-                        <span style={{ color: '#dc2626' }}>🚫</span> Fridays & Sundays unavailable
-                      </div>
-                      <div>
-                        <span style={{ color: '#6B7A47' }}>✅</span> Green dates available
-                      </div>
-                  </div>
-                  </div>
-                </div>
-
-                {/* BOOKING FORM */}
-                <div className={isMobile ? "col-12" : "col-lg-5"}>
-                  <div style={{
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: '20px',
-                    padding: isMobile ? '20px 15px' : '30px 25px',
-                    boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)',
-                    border: '1px solid rgba(255, 255, 255, 0.3)',
-                    maxWidth: '100%'
-                  }}>
-                    <h3 style={{
-                      color: '#333',
-                      marginBottom: '20px',
-                      textAlign: 'center',
-                      fontSize: isMobile ? '1.2rem' : '1.3rem',
-                      fontWeight: '700'
-                    }}>
-                      📝 Booking Details
+                      {monthNames[currentMonth]} {currentYear}
                     </h3>
-                    
-                    {selectedDate && (
-                      <div style={{
-                        background: 'linear-gradient(135deg, rgba(107, 122, 71, 0.1), rgba(139, 154, 90, 0.08))',
-                        padding: '15px',
-                        borderRadius: '12px',
-                        marginBottom: '20px',
+
+                    <button
+                      onClick={() => navigateMonth('next')}
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        color: 'white',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        borderRadius: '8px',
+                        width: '40px',
+                        height: '40px',
+                        fontSize: '18px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        transition: 'all 0.3s ease'
+                      }}
+                      onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.2)'}
+                      onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
+                    >
+                      ›
+                    </button>
+                  </div>
+
+                  {/* Day Headers */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(7, 1fr)',
+                    gap: '4px', // Increased gap
+                    marginBottom: '15px' // Increased margin
+                  }}>
+                    {['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map((day) => (
+                      <div key={day} style={{
                         textAlign: 'center',
-                        border: '1px solid rgba(107, 122, 71, 0.2)'
+                        padding: isMobile ? '10px 4px' : '12px 6px', // Increased padding
+                        fontSize: isMobile ? '0.75rem' : '0.85rem', // Increased font size
+                        fontWeight: '500',
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px'
                       }}>
-                        <div style={{ fontSize: '0.95rem', fontWeight: 'bold', color: '#6B7A47', marginBottom: '4px' }}>
-                          📅 Selected Date
+                        {day}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Calendar Grid - EXPANDED */}
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(7, 1fr)',
+                    gap: '4px', // Increased gap
+                    maxHeight: isMobile ? '300px' : '380px', // Increased height
+                    overflow: 'visible'
+                  }}>
+                    {calendarDays.map((day, index) => {
+                      const isSelected = selectedDate?.fullDate.toDateString() === day.fullDate.toDateString();
+                      
+                      return (
+                        <div
+                          key={index}
+                          onClick={() => handleDateSelect(day)}
+                          style={{
+                            padding: isMobile ? '12px 6px' : '16px 8px', // Increased padding
+                            textAlign: 'center',
+                            borderRadius: '8px',
+                            cursor: day.isAvailable ? 'pointer' : 'not-allowed',
+                            fontSize: isMobile ? '0.9rem' : '1rem', // Increased font size
+                            fontWeight: '500',
+                            minHeight: isMobile ? '40px' : '50px', // Increased height
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            position: 'relative',
+                            transition: 'all 0.2s ease',
+                            
+                            // Styling based on day type
+                            ...(isSelected ? {
+                              background: '#6B7A47',
+                              color: 'white',
+                              transform: 'scale(1.05)',
+                              boxShadow: '0 4px 15px rgba(107, 122, 71, 0.4)',
+                              zIndex: 10
+                            } : day.isAvailable ? {
+                              background: 'rgba(255, 255, 255, 0.1)',
+                              color: 'white',
+                              border: '1px solid transparent'
+                            } : day.isCurrentMonth ? (
+                              day.isWeekend ? {
+                                background: 'rgba(239, 68, 68, 0.2)',
+                                color: 'rgba(255, 255, 255, 0.4)',
+                                textDecoration: 'line-through'
+                              } : {
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                color: 'rgba(255, 255, 255, 0.3)'
+                              }
+                            ) : {
+                              background: 'transparent',
+                              color: 'rgba(255, 255, 255, 0.2)'
+                            })
+                          }}
+                          onMouseEnter={(e) => {
+                            if (day.isAvailable && !isSelected) {
+                              e.target.style.background = 'rgba(107, 122, 71, 0.3)';
+                              e.target.style.transform = 'scale(1.02)';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (day.isAvailable && !isSelected) {
+                              e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                              e.target.style.transform = 'scale(1)';
+                            }
+                          }}
+                        >
+                          {day.date}
+                          {day.isToday && (
+                            <div style={{
+                              position: 'absolute',
+                              bottom: '4px',
+                              left: '50%',
+                              transform: 'translateX(-50%)',
+                              width: '4px',
+                              height: '4px',
+                              borderRadius: '50%',
+                              background: isSelected ? 'white' : '#6B7A47'
+                            }} />
+                          )}
                         </div>
-                        <div style={{ fontSize: '0.9rem', color: '#333' }}>
-                          {selectedDate.fullDate.toLocaleDateString('en-US', {
-                            weekday: 'long',
-                            month: 'long',
-                            day: 'numeric',
-                            year: 'numeric'
-                          })}
+                      );
+                    })}
+                  </div>
+
+                  <div style={{
+                    marginTop: '20px', // Increased margin
+                    padding: '15px', // Increased padding
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    borderRadius: '10px',
+                    fontSize: isMobile ? '0.8rem' : '0.85rem', // Increased font size
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    textAlign: 'center'
+                  }}>
+                    <div style={{ marginBottom: '6px' }}>
+                      <span style={{ color: '#ef4444' }}>🚫</span> Saturdays & Sundays unavailable
+                    </div>
+                    <div>
+                      <span style={{ color: '#6B7A47' }}>✅</span> Green dates available
+                    </div>
+                  </div>
                 </div>
               </div>
-                    )}
+            </div>
 
+            {/* POPUP BOOKING FORM - Shows when date is selected */}
+            {selectedDate && (
+              <>
+                {/* Backdrop */}
+                <div 
+                  style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'rgba(0, 0, 0, 0.6)',
+                    backdropFilter: 'blur(8px)',
+                    zIndex: 1000,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    animation: 'fadeIn 0.3s ease'
+                  }}
+                  onClick={() => setSelectedDate(null)}
+                >
+                  {/* Popup Content */}
+                  <div 
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.98)',
+                      backdropFilter: 'blur(20px)',
+                      borderRadius: '20px',
+                      padding: isMobile ? '25px 20px' : '35px 30px',
+                      boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      maxWidth: isMobile ? '90vw' : '500px',
+                      width: '100%',
+                      maxHeight: '90vh',
+                      overflow: 'auto',
+                      position: 'relative',
+                      animation: 'slideUp 0.3s ease'
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Close Button */}
+                    <button
+                      onClick={() => setSelectedDate(null)}
+                      style={{
+                        position: 'absolute',
+                        top: '15px',
+                        right: '15px',
+                        background: 'rgba(0, 0, 0, 0.1)',
+                        border: 'none',
+                        borderRadius: '50%',
+                        width: '30px',
+                        height: '30px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '16px',
+                        color: '#666',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = 'rgba(0, 0, 0, 0.2)';
+                        e.target.style.color = '#333';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'rgba(0, 0, 0, 0.1)';
+                        e.target.style.color = '#666';
+                      }}
+                    >
+                      ✕
+                    </button>
+
+                    {/* Popup Header */}
+                    <div style={{
+                      textAlign: 'center',
+                      marginBottom: '25px'
+                    }}>
+                      <h3 style={{
+                        background: 'linear-gradient(135deg, #6b8e23, #556b2f)',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        fontSize: isMobile ? '1.4rem' : '1.6rem',
+                        fontWeight: 'bold',
+                        marginBottom: '10px'
+                      }}>
+                        📝 Booking Details
+                      </h3>
+                    </div>
+
+                    {/* Selected Date Display */}
+                    <div style={{
+                      background: 'linear-gradient(135deg, rgba(107, 122, 71, 0.1), rgba(139, 154, 90, 0.08))',
+                      padding: '15px',
+                      borderRadius: '12px',
+                      marginBottom: '25px',
+                      textAlign: 'center',
+                      border: '1px solid rgba(107, 122, 71, 0.2)'
+                    }}>
+                      <div style={{ fontSize: '0.95rem', fontWeight: 'bold', color: '#6B7A47', marginBottom: '4px' }}>
+                        📅 Selected Date
+                      </div>
+                      <div style={{ fontSize: '0.9rem', color: '#333' }}>
+                        {selectedDate.fullDate.toLocaleDateString('en-US', {
+                          weekday: 'long',
+                          month: 'long',
+                          day: 'numeric',
+                          year: 'numeric'
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Booking Form */}
                     <form onSubmit={handleSubmit}>
                       {[
                         { name: 'email', type: 'email', placeholder: 'Email Address *', required: true },
@@ -582,15 +634,15 @@ const Working = () => {
                             e.target.style.boxShadow = 'none';
                           }}
                         />
-              </div>
+                      </div>
 
                       <button
                         type="submit"
-                        disabled={isSubmitting || !selectedDate}
+                        disabled={isSubmitting}
                         style={{
                           width: '100%',
                           padding: isMobile ? '14px 20px' : '16px 22px',
-                          background: selectedDate && !isSubmitting 
+                          background: !isSubmitting 
                             ? 'linear-gradient(135deg, #6B7A47, #8B9A5A)' 
                             : 'rgba(0, 0, 0, 0.2)',
                           color: 'white',
@@ -598,21 +650,21 @@ const Working = () => {
                           borderRadius: '12px',
                           fontSize: isMobile ? '1rem' : '1.1rem',
                           fontWeight: 'bold',
-                          cursor: selectedDate && !isSubmitting ? 'pointer' : 'not-allowed',
+                          cursor: !isSubmitting ? 'pointer' : 'not-allowed',
                           transition: 'all 0.3s ease',
                           transform: isSubmitting ? 'scale(0.98)' : 'scale(1)',
-                          boxShadow: selectedDate && !isSubmitting 
+                          boxShadow: !isSubmitting 
                             ? '0 6px 20px rgba(107, 122, 71, 0.4)' 
                             : 'none'
                         }}
                         onMouseEnter={(e) => {
-                          if (selectedDate && !isSubmitting) {
+                          if (!isSubmitting) {
                             e.target.style.transform = 'translateY(-1px) scale(1.01)';
                             e.target.style.boxShadow = '0 8px 25px rgba(107, 122, 71, 0.5)';
                           }
                         }}
                         onMouseLeave={(e) => {
-                          if (selectedDate && !isSubmitting) {
+                          if (!isSubmitting) {
                             e.target.style.transform = 'scale(1)';
                             e.target.style.boxShadow = '0 6px 20px rgba(107, 122, 71, 0.4)';
                           }
@@ -631,7 +683,7 @@ const Working = () => {
                               marginRight: '8px'
                             }} />
                             Sending...
-                    </span>
+                          </span>
                         ) : '🚀 Schedule Consultation'}
                       </button>
 
@@ -650,25 +702,39 @@ const Working = () => {
                           fontWeight: '500'
                         }}>
                           {submitMessage}
-                  </div>
+                        </div>
                       )}
                     </form>
                   </div>
                 </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
-        </div>
+       </div>
       </div>
 
       <style jsx>{`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @keyframes slideUp {
+        0% { 
+          opacity: 0; 
+          transform: translateY(30px) scale(0.95); 
         }
-      `}</style>
+        100% { 
+          opacity: 1; 
+          transform: translateY(0) scale(1); 
+        }
+      }
+    `}</style>
     </section>
-  );
+);
 };
 
 export default Working;
