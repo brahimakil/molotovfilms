@@ -774,3 +774,73 @@ img[src*="Molotov Logo PNG.png"] {
     background: transparent !important;
   }
 }
+
+.working_icon {
+  background: linear-gradient(135deg, #6B7A47, #8B9A5A) !important;
+  transition: none !important;
+}
+
+.working_icon:hover {
+  background: linear-gradient(135deg, #6B7A47, #8B9A5A) !important;
+}
+
+.working_icon .num {
+  background: #6B7A47 !important;
+  color: white !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Arrow animations for working process section */
+.arrow_img {
+  animation: arrowFloat 2s ease-in-out infinite !important;
+}
+
+.arrow_img img {
+  transition: all 0.3s ease !important;
+}
+
+/* Stagger the animation for each arrow */
+.working_icon_item:nth-child(1) .arrow_img {
+  animation-delay: 0s !important;
+}
+
+.working_icon_item:nth-child(2) .arrow_img {
+  animation-delay: 0.5s !important;
+}
+
+/* Hover effect for arrows */
+.working_icon_item:hover .arrow_img img {
+  transform: translateX(5px) !important;
+  filter: brightness(1.2) !important;
+}
+
+/* Arrow floating animation */
+@keyframes arrowFloat {
+  0%, 100% {
+    transform: translateX(0px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(8px);
+    opacity: 1;
+  }
+}
+
+/* Alternative pulsing animation - you can use this instead */
+@keyframes arrowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Uncomment this if you prefer pulsing instead of floating */
+/*
+.arrow_img {
+  animation: arrowPulse 1.5s ease-in-out infinite !important;
+}
+*/

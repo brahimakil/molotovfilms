@@ -131,7 +131,10 @@ const ChoseTwo = ({ addClass }) => {
             <div className="col-lg-6 col-xxl-6">
               <div className="chose_two_head">
                 <h2 className="main_titel_three">
-                  A New Standard in Storytelling.
+                  A New Standard in <br />
+                  <span>Story Telling and </span>
+                  <br />
+                  <span>Cinematic Production</span>
                 </h2>
                 <p className="text_lg">
                   A comprehensive solution for directors and brands seeking a truly premium look, from masterful cinematography and lighting to world-class color grading and finishing.

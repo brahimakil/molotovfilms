@@ -8,6 +8,7 @@ import scanIcon from "../assets/images/scan.svg";
 import graphIcon from "../assets/images/graph.svg";
 import paperIcon from "../assets/images/paper.svg";
 import arrowLine from "../assets/images/arrow-line.svg";
+import { FaLightbulb, FaVideo, FaShare } from 'react-icons/fa';
 
 const Working = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -901,13 +902,21 @@ const Working = () => {
               <div className="working_icon_item">
                 <div className="working_icon_item_df">
                   <div className="working_icon_main">
-                    <span className="working_icon">
-                      <img src={scanIcon} alt="icon" />
-                      <span className="num">1</span>
+                    <span className="working_icon" style={{
+                      background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <FaLightbulb size={32} color="white" />
+                      <span className="num" style={{ 
+                        background: 'rgba(255, 255, 255, 0.2)',
+                        color: 'white'
+                      }}>1</span>
                     </span>
                   </div>
                   <div className="working_icon_item_txt">
-                    <p className="text_2xl">🎯 Discover Your Story</p>
+                    <p className="text_2xl">Concept & Strategy</p>
                   </div>
                 </div>
                 <div className="arrow_img">
@@ -918,13 +927,21 @@ const Working = () => {
               <div className="working_icon_item">
                 <div className="working_icon_item_df">
                   <div className="working_icon_main">
-                    <span className="working_icon">
-                      <img src={graphIcon} alt="icon" />
-                      <span className="num">2</span>
+                    <span className="working_icon" style={{
+                      background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <FaVideo size={32} color="white" />
+                      <span className="num" style={{ 
+                        background: 'rgba(255, 255, 255, 0.2)',
+                        color: 'white'
+                      }}>2</span>
                     </span>
                   </div>
                   <div className="working_icon_item_txt">
-                    <p className="text_2xl">🎬 Craft Cinematic Content</p>
+                    <p className="text_2xl">Design & Production</p>
                   </div>
                 </div>
                 <div className="arrow_img">
@@ -935,13 +952,21 @@ const Working = () => {
               <div className="working_icon_item">
                 <div className="working_icon_item_df">
                   <div className="working_icon_main">
-                    <span className="working_icon">
-                      <img src={paperIcon} alt="icon" />
-                      <span className="num">3</span>
+                    <span className="working_icon" style={{
+                      background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <FaShare size={32} color="white" />
+                      <span className="num" style={{ 
+                        background: 'rgba(255, 255, 255, 0.2)',
+                        color: 'white'
+                      }}>3</span>
                     </span>
                   </div>
                   <div className="working_icon_item_txt">
-                    <p className="text_2xl">🚀 Deliver Impact & Results</p>
+                    <p className="text_2xl">Polished & Publish-Ready</p>
                   </div>
                 </div>
               </div>
@@ -968,6 +993,19 @@ const Working = () => {
           opacity: 1; 
           transform: translateY(0) scale(1); 
         }
+      }
+      .working_icon {
+        background: linear-gradient(135deg, #6B7A47, #8B9A5A) !important;
+        transition: none !important;
+      }
+
+      .working_icon:hover {
+        background: linear-gradient(135deg, #6B7A47, #8B9A5A) !important;
+      }
+
+      .working_icon .num {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: white !important;
       }
     `}</style>
     </section>
