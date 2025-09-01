@@ -4,6 +4,10 @@ import workingPos1 from "../assets/images/working-pos-one.svg";
 import workingPos2 from "../assets/images/working_pos_thumb-two.svg";
 import heroUnion from "../assets/images/hero-union.png";
 import molotovLogo from "../assets/main logo/Molotov Logo PNG.png";
+import scanIcon from "../assets/images/scan.svg";
+import graphIcon from "../assets/images/graph.svg";
+import paperIcon from "../assets/images/paper.svg";
+import arrowLine from "../assets/images/arrow-line.svg";
 
 const Working = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -883,6 +887,67 @@ const Working = () => {
             )}
           </div>
        </div>
+      </div>
+
+      {/* WORKING PROCESS SECTION */}
+      <div className="row working_mt" style={{ marginTop: '80px' }}>
+        <div className="col-xxl-12">
+          <div style={{
+            maxWidth: '1500px',
+            margin: '0 auto',
+            padding: '0 40px'
+          }}>
+            <div className="working_icon_item_main">
+              <div className="working_icon_item">
+                <div className="working_icon_item_df">
+                  <div className="working_icon_main">
+                    <span className="working_icon">
+                      <img src={scanIcon} alt="icon" />
+                      <span className="num">1</span>
+                    </span>
+                  </div>
+                  <div className="working_icon_item_txt">
+                    <p className="text_2xl">🎯 Discover Your Story</p>
+                  </div>
+                </div>
+                <div className="arrow_img">
+                  <img src={arrowLine} alt="arrow" />
+                </div>
+              </div>
+
+              <div className="working_icon_item">
+                <div className="working_icon_item_df">
+                  <div className="working_icon_main">
+                    <span className="working_icon">
+                      <img src={graphIcon} alt="icon" />
+                      <span className="num">2</span>
+                    </span>
+                  </div>
+                  <div className="working_icon_item_txt">
+                    <p className="text_2xl">🎬 Craft Cinematic Content</p>
+                  </div>
+                </div>
+                <div className="arrow_img">
+                  <img src={arrowLine} alt="arrow" />
+                </div>
+              </div>
+
+              <div className="working_icon_item">
+                <div className="working_icon_item_df">
+                  <div className="working_icon_main">
+                    <span className="working_icon">
+                      <img src={paperIcon} alt="icon" />
+                      <span className="num">3</span>
+                    </span>
+                  </div>
+                  <div className="working_icon_item_txt">
+                    <p className="text_2xl">🚀 Deliver Impact & Results</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <style jsx>{`

@@ -107,11 +107,11 @@ const AbouUsTwo = () => {
 
             <div className="about_head">
               <h2 className="main_titel_two">
-                Proven Impact for <br /> <span>Brands & Businesses</span>
+              Social-First & Punchy 
               </h2>
 
               <p className="text_lg">
-              We are a creative production house specializing in film, branded content, and digital storytelling.
+              Beautifully shot. Sharply edited. Designed to win attention and action on social.
               </p>
 
               <div className="about_two_item">
@@ -149,19 +149,19 @@ const AbouUsTwo = () => {
                 <span>
                   <img src={checkIcon} alt="icon" />
                 </span>
-                High-quality video production with cinematic standards.
+                High-quality visuals with a storyteller’s touch.
               </li>
               <li>
                 <span>
                   <img src={checkIcon} alt="icon" />
                 </span>
-                Content designed for maximum social engagement.
+                Formats made to stop the scroll and drive engagement.
               </li>
               <li>
                 <span>
                   <img src={checkIcon} alt="icon" />
                 </span>
-                Data-driven approach: test, optimize, and repurpose your videos.
+                Data-led process: iterate fast, amplify what works.
               </li>
             </ul>
 
