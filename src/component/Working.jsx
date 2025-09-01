@@ -3,6 +3,7 @@ import workingThumb from "../assets/images/working_thumb.webp";
 import workingPos1 from "../assets/images/working-pos-one.svg";
 import workingPos2 from "../assets/images/working_pos_thumb-two.svg";
 import heroUnion from "../assets/images/hero-union.png";
+import molotovLogo from "../assets/main logo/Molotov Logo PNG.png";
 
 const Working = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -154,13 +155,16 @@ const Working = () => {
           phone: '',
           name: ''
         });
-        setSelectedDate(null);
-      } else {
+        // Close popup after 2 seconds to show success message
+        setTimeout(() => setSelectedDate(null), 2000);
+      }else {
         setSubmitMessage('❌ Failed to send booking request. Please try again.');
+        setTimeout(() => setSelectedDate(null), 3000);
       }
       
     } catch (error) {
       setSubmitMessage('❌ Connection error. Please check your internet and try again.');
+      setTimeout(() => setSelectedDate(null), 3000);
     }
     
     setIsSubmitting(false);
@@ -215,48 +219,187 @@ const Working = () => {
         {/* COMPACT CALENDAR BOOKING SYSTEM */}
         <div className="row working_mt">
           <div className="col-12">
-          <div className="booking-system-container" style={{
-              background: 'rgba(255, 255, 255, 0.95)',
-              backdropFilter: 'blur(20px)',
-              borderRadius: '25px',
-              padding: isMobile ? '25px 15px' : '40px 30px',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
-              position: 'relative',
-              zIndex: 10,
-              maxWidth: isMobile ? '100%' : '900px', // Expanded width
-              margin: '0 auto',
-              overflow: 'hidden'
-            }}>
-              {/* Glassmorphism background effect */}
+          <div className="voisify-calendar-container" style={{
+  background: 'linear-gradient(135deg, #1e3a5f 0%, #2d4a6b 100%)',
+  borderRadius: '20px',
+  padding: '0',
+  boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)',
+  position: 'relative',
+  zIndex: 10,
+  maxWidth: isMobile ? '100%' : '1000px',
+  margin: '0 auto',
+  overflow: 'hidden',
+  minHeight: isMobile ? '500px' : '600px'
+}}>
+              {/* Left Side - Logo and Info Section */}
               <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'linear-gradient(135deg, rgba(107, 122, 71, 0.05) 0%, rgba(139, 154, 90, 0.03) 100%)',
-                borderRadius: '25px',
-                pointerEvents: 'none'
-              }} />
-
-              <div className="text-center" style={{ position: 'relative', zIndex: 2, marginBottom: isMobile ? '25px' : '30px' }}>
-                <h2 style={{
-                  background: 'linear-gradient(135deg, #6b8e23, #556b2f)',
-                  backgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  fontSize: isMobile ? '1.6rem' : '2rem',
-                  fontWeight: 'bold',
-                  marginBottom: '10px',
-                  textAlign: 'center'
+                display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
+                height: '100%',
+                minHeight: isMobile ? '500px' : '600px'
+              }}>
+                {/* Left Panel */}
+                <div style={{
+                  flex: isMobile ? 'none' : '1',
+                  background: 'linear-gradient(135deg, #1a2f4a 0%, #243447 100%)',
+                  padding: isMobile ? '30px 25px' : '50px 40px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                  position: 'relative',
+                  minHeight: isMobile ? '250px' : '600px'
                 }}>
-                  📅 Select a Date & Time
-                </h2>
-              </div>
+                  
+                  {/* Decorative Background Elements */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '20px',
+                    left: '20px',
+                    width: '60px',
+                    height: '60px',
+                    background: 'rgba(107, 122, 71, 0.1)',
+                    borderRadius: '50%',
+                    filter: 'blur(20px)'
+                  }} />
+                  
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '30px',
+                    right: '30px',
+                    width: '80px',
+                    height: '80px',
+                    background: 'rgba(218, 165, 32, 0.1)',
+                    borderRadius: '50%',
+                    filter: 'blur(25px)'
+                  }} />
 
-              {/* EXPANDED CALENDAR */}
-              <div style={{ position: 'relative', zIndex: 2 }}>
-                <div className="calendar-wrapper" style={{
+                  {/* Logo */}
+                  <div style={{
+                    width: isMobile ? '120px' : '160px',
+                    height: isMobile ? '120px' : '160px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, rgba(107, 122, 71, 0.2), rgba(218, 165, 32, 0.1))',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '25px',
+                    border: '2px solid rgba(255, 255, 255, 0.1)',
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+                    position: 'relative',
+                    zIndex: 2
+                  }}>
+                    <img 
+                      src={molotovLogo}
+                      alt="Molotov Films"
+                      style={{
+                        width: isMobile ? '80px' : '110px',
+                        height: isMobile ? '80px' : '110px',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  </div>
+
+                  {/* Brand Name */}
+                  <h2 style={{
+                    color: 'white',
+                    fontSize: isMobile ? '1.6rem' : '2rem',
+                    fontWeight: 'bold',
+                    marginBottom: '15px',
+                    background: 'linear-gradient(135deg, #6B7A47, #daa520)',
+                    backgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    position: 'relative',
+                    zIndex: 2
+                  }}>
+                    MOLOTOV FILMS
+                  </h2>
+
+                  {/* Service Title */}
+                  <h3 style={{
+                    color: 'rgba(255, 255, 255, 0.9)',
+                    fontSize: isMobile ? '1.2rem' : '1.4rem',
+                    fontWeight: '500',
+                    marginBottom: '20px',
+                    position: 'relative',
+                    zIndex: 2
+                  }}>
+                    Video Production Consultation
+                  </h3>
+
+                  {/* Duration */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '20px',
+                    position: 'relative',
+                    zIndex: 2
+                  }}>
+                    <div style={{
+                      width: '20px',
+                      height: '20px',
+                      borderRadius: '50%',
+                      background: 'rgba(107, 122, 71, 0.3)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginRight: '10px'
+                    }}>
+                      <span style={{ fontSize: '12px', color: 'white' }}>⏱</span>
+                    </div>
+                    <span style={{
+                      color: 'rgba(255, 255, 255, 0.8)',
+                      fontSize: isMobile ? '0.9rem' : '1rem',
+                      fontWeight: '500'
+                    }}>
+                      30 min
+                    </span>
+                  </div>
+
+                  {/* Meeting Info */}
+                  <div style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    borderRadius: '12px',
+                    padding: '15px',
+                    marginBottom: '20px',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    position: 'relative',
+                    zIndex: 2
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      marginBottom: '8px'
+                    }}>
+                      <span style={{ fontSize: '16px', marginRight: '8px' }}>💻</span>
+                      <span style={{
+                        color: 'rgba(255, 255, 255, 0.8)',
+                        fontSize: isMobile ? '0.8rem' : '0.85rem'
+                      }}>
+                        Web conferencing details provided upon confirmation.
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p style={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontSize: isMobile ? '0.85rem' : '0.95rem',
+                    lineHeight: '1.5',
+                    textAlign: 'center',
+                    maxWidth: '280px',
+                    position: 'relative',
+                    zIndex: 2
+                  }}>
+                    Thank you for your interest! At Molotov Films, we're passionate about turning authentic stories into powerful video content that builds trust and elevates your brand.
+                  </p>
+                </div>
+
+                {/* Right Panel - Calendar */}
+                <div style={{
+                  flex: isMobile ? 'none' : '1',
                   background: 'linear-gradient(135deg, #2D3E50, #34495E)',
                   borderRadius: '16px',
                   padding: isMobile ? '25px 20px' : '40px 35px', // Increased padding
@@ -264,190 +407,219 @@ const Working = () => {
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   maxWidth: '100%'
                 }}>
-                  {/* Calendar Header */}
+                  {/* Glassmorphism background effect */}
                   <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginBottom: '30px', // Increased margin
-                    padding: '0 10px'
-                  }}>
-                    <button
-                      onClick={() => navigateMonth('prev')}
-                      style={{
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        color: 'white',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        borderRadius: '8px',
-                        width: '40px',
-                        height: '40px',
-                        fontSize: '18px',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        transition: 'all 0.3s ease'
-                      }}
-                      onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.2)'}
-                      onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
-                    >
-                      ‹
-                    </button>
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'linear-gradient(135deg, rgba(107, 122, 71, 0.05) 0%, rgba(139, 154, 90, 0.03) 100%)',
+                    borderRadius: '25px',
+                    pointerEvents: 'none'
+                  }} />
 
-                    <h3 style={{
-                      color: 'white',
-                      fontSize: isMobile ? '1.3rem' : '1.6rem', // Increased font size
-                      fontWeight: '600',
-                      margin: 0,
+                  <div className="text-center" style={{ position: 'relative', zIndex: 2, marginBottom: isMobile ? '25px' : '30px' }}>
+                    <h2 style={{
+                      background: 'linear-gradient(135deg, #6b8e23, #556b2f)',
+                      backgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      fontSize: isMobile ? '1.6rem' : '2rem',
+                      fontWeight: 'bold',
+                      marginBottom: '10px',
                       textAlign: 'center'
                     }}>
-                      {monthNames[currentMonth]} {currentYear}
-                    </h3>
+                      📅 Select a Date & Time
+                    </h2>
+                  </div>
 
-                    <button
-                      onClick={() => navigateMonth('next')}
-                      style={{
-                        background: 'rgba(255, 255, 255, 0.1)',
+                  {/* EXPANDED CALENDAR */}
+                  <div style={{ position: 'relative', zIndex: 2 }}>
+                    {/* Calendar Header */}
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      marginBottom: '30px', // Increased margin
+                      padding: '0 10px'
+                    }}>
+                      <button
+                        onClick={() => navigateMonth('prev')}
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.1)',
+                          color: 'white',
+                          border: '1px solid rgba(255, 255, 255, 0.2)',
+                          borderRadius: '8px',
+                          width: '40px',
+                          height: '40px',
+                          fontSize: '18px',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          transition: 'all 0.3s ease'
+                        }}
+                        onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.2)'}
+                        onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
+                      >
+                        ‹
+                      </button>
+
+                      <h3 style={{
                         color: 'white',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        borderRadius: '8px',
-                        width: '40px',
-                        height: '40px',
-                        fontSize: '18px',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        transition: 'all 0.3s ease'
-                      }}
-                      onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.2)'}
-                      onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
-                    >
-                      ›
-                    </button>
-                  </div>
-
-                  {/* Day Headers */}
-                  <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(7, 1fr)',
-                    gap: '4px', // Increased gap
-                    marginBottom: '15px' // Increased margin
-                  }}>
-                    {['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map((day) => (
-                      <div key={day} style={{
-                        textAlign: 'center',
-                        padding: isMobile ? '10px 4px' : '12px 6px', // Increased padding
-                        fontSize: isMobile ? '0.75rem' : '0.85rem', // Increased font size
-                        fontWeight: '500',
-                        color: 'rgba(255, 255, 255, 0.7)',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.5px'
+                        fontSize: isMobile ? '1.3rem' : '1.6rem', // Increased font size
+                        fontWeight: '600',
+                        margin: 0,
+                        textAlign: 'center'
                       }}>
-                        {day}
-                      </div>
-                    ))}
-                  </div>
+                        {monthNames[currentMonth]} {currentYear}
+                      </h3>
 
-                  {/* Calendar Grid - EXPANDED */}
-                  <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(7, 1fr)',
-                    gap: '4px', // Increased gap
-                    maxHeight: isMobile ? '300px' : '380px', // Increased height
-                    overflow: 'visible'
-                  }}>
-                    {calendarDays.map((day, index) => {
-                      const isSelected = selectedDate?.fullDate.toDateString() === day.fullDate.toDateString();
-                      
-                      return (
-                        <div
-                          key={index}
-                          onClick={() => handleDateSelect(day)}
-                          style={{
-                            padding: isMobile ? '12px 6px' : '16px 8px', // Increased padding
-                            textAlign: 'center',
-                            borderRadius: '8px',
-                            cursor: day.isAvailable ? 'pointer' : 'not-allowed',
-                            fontSize: isMobile ? '0.9rem' : '1rem', // Increased font size
-                            fontWeight: '500',
-                            minHeight: isMobile ? '40px' : '50px', // Increased height
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            position: 'relative',
-                            transition: 'all 0.2s ease',
-                            
-                            // Styling based on day type
-                            ...(isSelected ? {
-                              background: '#6B7A47',
-                              color: 'white',
-                              transform: 'scale(1.05)',
-                              boxShadow: '0 4px 15px rgba(107, 122, 71, 0.4)',
-                              zIndex: 10
-                            } : day.isAvailable ? {
-                              background: 'rgba(255, 255, 255, 0.1)',
-                              color: 'white',
-                              border: '1px solid transparent'
-                            } : day.isCurrentMonth ? (
-                              day.isWeekend ? {
-                                background: 'rgba(239, 68, 68, 0.2)',
-                                color: 'rgba(255, 255, 255, 0.4)',
-                                textDecoration: 'line-through'
-                              } : {
-                                background: 'rgba(255, 255, 255, 0.05)',
-                                color: 'rgba(255, 255, 255, 0.3)'
-                              }
-                            ) : {
-                              background: 'transparent',
-                              color: 'rgba(255, 255, 255, 0.2)'
-                            })
-                          }}
-                          onMouseEnter={(e) => {
-                            if (day.isAvailable && !isSelected) {
-                              e.target.style.background = 'rgba(107, 122, 71, 0.3)';
-                              e.target.style.transform = 'scale(1.02)';
-                            }
-                          }}
-                          onMouseLeave={(e) => {
-                            if (day.isAvailable && !isSelected) {
-                              e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                              e.target.style.transform = 'scale(1)';
-                            }
-                          }}
-                        >
-                          {day.date}
-                          {day.isToday && (
-                            <div style={{
-                              position: 'absolute',
-                              bottom: '4px',
-                              left: '50%',
-                              transform: 'translateX(-50%)',
-                              width: '4px',
-                              height: '4px',
-                              borderRadius: '50%',
-                              background: isSelected ? 'white' : '#6B7A47'
-                            }} />
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  <div style={{
-                    marginTop: '20px', // Increased margin
-                    padding: '15px', // Increased padding
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    borderRadius: '10px',
-                    fontSize: isMobile ? '0.8rem' : '0.85rem', // Increased font size
-                    color: 'rgba(255, 255, 255, 0.8)',
-                    textAlign: 'center'
-                  }}>
-                    <div style={{ marginBottom: '6px' }}>
-                      <span style={{ color: '#ef4444' }}>🚫</span> Saturdays & Sundays unavailable
+                      <button
+                        onClick={() => navigateMonth('next')}
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.1)',
+                          color: 'white',
+                          border: '1px solid rgba(255, 255, 255, 0.2)',
+                          borderRadius: '8px',
+                          width: '40px',
+                          height: '40px',
+                          fontSize: '18px',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          transition: 'all 0.3s ease'
+                        }}
+                        onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.2)'}
+                        onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
+                      >
+                        ›
+                      </button>
                     </div>
-                    <div>
-                      <span style={{ color: '#6B7A47' }}>✅</span> Green dates available
+
+                    {/* Day Headers */}
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(7, 1fr)',
+                      gap: '4px', // Increased gap
+                      marginBottom: '15px' // Increased margin
+                    }}>
+                      {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((day) => (
+                        <div key={day} style={{
+                          textAlign: 'center',
+                          padding: isMobile ? '10px 4px' : '12px 6px', // Increased padding
+                          fontSize: isMobile ? '0.75rem' : '0.85rem', // Increased font size
+                          fontWeight: '500',
+                          color: 'rgba(255, 255, 255, 0.7)',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.5px'
+                        }}>
+                          {day}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Calendar Grid - EXPANDED */}
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(7, 1fr)',
+                      gap: '4px', // Increased gap
+                      maxHeight: isMobile ? '300px' : '380px', // Increased height
+                      overflow: 'visible'
+                    }}>
+                      {calendarDays.map((day, index) => {
+                        const isSelected = selectedDate?.fullDate.toDateString() === day.fullDate.toDateString();
+                        
+                        return (
+                          <div
+                            key={index}
+                            onClick={() => handleDateSelect(day)}
+                            style={{
+                              padding: isMobile ? '12px 6px' : '16px 8px', // Increased padding
+                              textAlign: 'center',
+                              borderRadius: '8px',
+                              cursor: day.isAvailable ? 'pointer' : 'not-allowed',
+                              fontSize: isMobile ? '0.9rem' : '1rem', // Increased font size
+                              fontWeight: '500',
+                              minHeight: isMobile ? '40px' : '50px', // Increased height
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              position: 'relative',
+                              transition: 'all 0.2s ease',
+                              
+                              // Styling based on day type
+                              ...(isSelected ? {
+                                background: '#6B7A47',
+                                color: 'white',
+                                transform: 'scale(1.05)',
+                                boxShadow: '0 4px 15px rgba(107, 122, 71, 0.4)',
+                                zIndex: 10
+                              } : day.isAvailable ? {
+                                background: 'rgba(255, 255, 255, 0.1)',
+                                color: 'white',
+                                border: '1px solid transparent'
+                              } : day.isCurrentMonth ? (
+                                day.isWeekend ? {
+                                  background: 'rgba(239, 68, 68, 0.2)',
+                                  color: 'rgba(255, 255, 255, 0.4)',
+                                  textDecoration: 'line-through'
+                                } : {
+                                  background: 'rgba(255, 255, 255, 0.05)',
+                                  color: 'rgba(255, 255, 255, 0.3)'
+                                }
+                              ) : {
+                                background: 'transparent',
+                                color: 'rgba(255, 255, 255, 0.2)'
+                              })
+                            }}
+                            onMouseEnter={(e) => {
+                              if (day.isAvailable && !isSelected) {
+                                e.target.style.background = 'rgba(107, 122, 71, 0.3)';
+                                e.target.style.transform = 'scale(1.02)';
+                              }
+                            }}
+                            onMouseLeave={(e) => {
+                              if (day.isAvailable && !isSelected) {
+                                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                                e.target.style.transform = 'scale(1)';
+                              }
+                            }}
+                          >
+                            {day.date}
+                            {day.isToday && (
+                              <div style={{
+                                position: 'absolute',
+                                bottom: '4px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: '4px',
+                                height: '4px',
+                                borderRadius: '50%',
+                                background: isSelected ? 'white' : '#6B7A47'
+                              }} />
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <div style={{
+                      marginTop: '20px', // Increased margin
+                      padding: '15px', // Increased padding
+                      background: 'rgba(255, 255, 255, 0.1)',
+                      borderRadius: '10px',
+                      fontSize: isMobile ? '0.8rem' : '0.85rem', // Increased font size
+                      color: 'rgba(255, 255, 255, 0.8)',
+                      textAlign: 'center'
+                    }}>
+                      <div style={{ marginBottom: '6px' }}>
+                        <span style={{ color: '#ef4444' }}>🚫</span> Saturdays & Sundays unavailable
+                      </div>
+                      <div>
+                        <span style={{ color: '#6B7A47' }}>✅</span> Green dates available
+                      </div>
                     </div>
                   </div>
                 </div>

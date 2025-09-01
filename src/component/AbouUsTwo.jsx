@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 // Image imports
 import aboutPosOne from "../assets/images/about-pos-two.svg";
 import aboutPosTwo from "../assets/images/about-pos-two-2.svg";
@@ -11,8 +11,67 @@ import checkIcon from "../assets/images/a-check.svg";
 import { Link } from "react-router-dom";
 
 const AbouUsTwo = () => {
+  const [videosCount, setVideosCount] = useState(0);
+  const [reachCount, setReachCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef(null);
+
+  // Counter animation function
+  const animateCount = (start, end, duration, setter, suffix = '') => {
+    const startTime = Date.now();
+    const endTime = startTime + duration;
+    
+    const updateCount = () => {
+      const now = Date.now();
+      const progress = Math.min((now - startTime) / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentCount = Math.floor(start + (end - start) * easeOutQuart);
+      
+      setter(currentCount + suffix);
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCount);
+      }
+    };
+    
+    updateCount();
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            
+            // Animate Videos count from 0 to 250
+            animateCount(0, 250, 2000, (count) => setVideosCount(count), '+');
+            
+            // Animate Reach count from 0 to 10 (for 10M+)
+            animateCount(0, 10, 2500, (count) => setReachCount(count), 'M+');
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the element is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasAnimated]);
+
   return (
-    <section className="about_us about_us--two">
+    <section className="about_us about_us--two" ref={sectionRef}>
       <div className="container">
         <div className="row align-items-center flex-column-reverse flex-lg-row">
           <div className="col-lg-6 col-xxl-6">
@@ -57,11 +116,29 @@ const AbouUsTwo = () => {
 
               <div className="about_two_item">
                 <div className="about_two_item_txt">
-                  <h3 className="text_5xl">250+</h3>
+                  <h3 
+                    className="text_5xl" 
+                    style={{
+                      transition: 'transform 0.3s ease',
+                      transform: hasAnimated ? 'scale(1.05)' : 'scale(1)',
+                      color: '#6B7A47'
+                    }}
+                  >
+                    {videosCount}
+                  </h3>
                   <p className="text_lg">Videos Produced</p>
                 </div>
                 <div className="about_two_item_txt">
-                  <h3 className="text_5xl">10M+</h3>
+                  <h3 
+                    className="text_5xl"
+                    style={{
+                      transition: 'transform 0.3s ease',
+                      transform: hasAnimated ? 'scale(1.05)' : 'scale(1)',
+                      color: '#6B7A47'
+                    }}
+                  >
+                    {reachCount}
+                  </h3>
                   <p className="text_lg">Campaign Reach</p>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import choseThumb1 from "../assets/images/chose-two-thumb-1.webp";
 import choseThumb2 from "../assets/images/chose-two-thumb-2.webp";
 import circle2 from "../assets/images/circle-2.svg";
@@ -13,8 +13,67 @@ import innerC1 from "../assets/images/inner-c-1.svg";
 import heroPos1 from "../assets/images/hero-pos-1.png";
 
 const ChoseTwo = ({ addClass }) => {
+  const [artisticProgress, setArtisticProgress] = useState(0);
+  const [storytellingProgress, setStorytellingProgress] = useState(0);
+  const [engagementProgress, setEngagementProgress] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef(null);
+
+  // Progress animation function
+  const animateProgress = (start, end, duration, setter) => {
+    const startTime = Date.now();
+    const endTime = startTime + duration;
+    
+    const updateProgress = () => {
+      const now = Date.now();
+      const progress = Math.min((now - startTime) / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentProgress = start + (end - start) * easeOutQuart;
+      
+      setter(currentProgress);
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateProgress);
+      }
+    };
+    
+    updateProgress();
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            
+            // Animate progress bars with staggered timing
+            setTimeout(() => animateProgress(0, 95, 1500, setArtisticProgress), 300);
+            setTimeout(() => animateProgress(0, 90, 1500, setStorytellingProgress), 600);
+            setTimeout(() => animateProgress(0, 85, 1500, setEngagementProgress), 900);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the element is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [hasAnimated]);
+
   return (
-    <section className={`chose_two ${addClass || ""}`}>
+    <section className={`chose_two ${addClass || ""}`} ref={sectionRef}>
       <div className="container">
         <div className="container">
           <div className="row align-items-center flex-column-reverse flex-lg-row">
@@ -32,21 +91,60 @@ const ChoseTwo = ({ addClass }) => {
               <div className="chose_renge_main">
                 <div className="chose_renge_item">
                   <h6>
-                    Cinematography <span>95%</span>
+                    Artistic impact <span>{Math.round(artisticProgress)}%</span>
                   </h6>
-                  <div className="chose_renge_ber"></div>
+                  <div className="chose_renge_ber" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <div 
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        height: '100%',
+                        width: `${artisticProgress}%`,
+                        background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
+                        transition: 'width 0.3s ease',
+                        borderRadius: 'inherit'
+                      }}
+                    />
+                  </div>
                 </div>
                 <div className="chose_renge_item">
                   <h6>
-                    Color Science<span>90%</span>
+                    Storytelling strength <span>{Math.round(storytellingProgress)}%</span>
                   </h6>
-                  <div className="chose_renge_ber"></div>
+                  <div className="chose_renge_ber" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <div 
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        height: '100%',
+                        width: `${storytellingProgress}%`,
+                        background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
+                        transition: 'width 0.3s ease',
+                        borderRadius: 'inherit'
+                      }}
+                    />
+                  </div>
                 </div>
                 <div className="chose_renge_item">
                   <h6>
-                    Post-Production Workflow<span>85%</span>
+                    Audience engagement <span>{Math.round(engagementProgress)}%</span>
                   </h6>
-                  <div className="chose_renge_ber"></div>
+                  <div className="chose_renge_ber" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <div 
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        height: '100%',
+                        width: `${engagementProgress}%`,
+                        background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
+                        transition: 'width 0.3s ease',
+                        borderRadius: 'inherit'
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

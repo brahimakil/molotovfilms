@@ -350,11 +350,10 @@ const VideoComparison = () => {
           <div className="col-12">
             <div style={{ textAlign: 'center', marginBottom: '50px' }}>
               <h2 className="main_titel_two" style={{ marginBottom: '20px' }}>
-                See the <span>Transformation</span>
+              From Raw to <span>Radiant</span>
               </h2>
               <p className="text_lg" style={{ maxWidth: '600px', margin: '0 auto' }}>
-                Experience the power of our cinematic production. Drag the slider to see the dramatic before and after transformation of our video projects.
-              </p>
+              A cinematic before-and-after showcasing how VFX and color grading bring every frame to life.              </p>
             </div>
           </div>
         </div>
