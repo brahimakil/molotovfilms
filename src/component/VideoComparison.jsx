@@ -3,10 +3,11 @@ import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 
 const VideoComparison = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentCategory, setCurrentCategory] = useState('COLORING'); // COLORING or VFX
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0); // 0, 1, 2 for videos 1, 2, 3
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
-  const [videosData, setVideosData] = useState([]);
+  const [videosData, setVideosData] = useState({});
   const [videosLoading, setVideosLoading] = useState(true);
   const [videosReady, setVideosReady] = useState({ before: false, after: false });
   const [canPlay, setCanPlay] = useState(false);
@@ -14,43 +15,61 @@ const VideoComparison = () => {
   const beforeVideoRef = useRef(null);
   const afterVideoRef = useRef(null);
 
-  // Define both sets of videos
-  const videoSets = [
-    {
-      beforePath: 'before&after/before (ba7er).mp4',
-      afterPath: 'before&after/after (ba7er).mp4',
-    
-    },
-    {
-      beforePath: 'before&after/benet (before).mp4',
-      afterPath: 'before&after/benet (after).mp4',
-
-    }
-  ];
+  // Define video categories and paths
+  const videoCategories = {
+    COLORING: [
+      {
+        beforePath: 'before&after/coloring/coloring 1.mp4',
+        afterPath: 'before&after/coloring/coloring 1.1.mp4',
+      },
+      {
+        beforePath: 'before&after/coloring/coloring 2.mp4',
+        afterPath: 'before&after/coloring/coloring 2.2.mp4',
+      },
+      {
+        beforePath: 'before&after/coloring/coloring 3.mp4',
+        afterPath: 'before&after/coloring/coloring 3.3.mp4',
+      }
+    ],
+    VFX: [
+      {
+        beforePath: 'before&after/before (ba7er).mp4',
+        afterPath: 'before&after/after (ba7er).mp4',
+      },
+      {
+        beforePath: 'before&after/benet (before).mp4',
+        afterPath: 'before&after/benet (after).mp4',
+      }
+    ]
+  };
 
   // Fetch videos from Firebase - NO CACHING TO AVOID CORS
   useEffect(() => {
     const getVideoUrls = async () => {
       try {
         setVideosLoading(true);
+        const loadedVideos = {};
         
-        const videoPromises = videoSets.map(async (videoSet) => {
-          const beforeVideoRef = ref(storage, videoSet.beforePath);
-          const afterVideoRef = ref(storage, videoSet.afterPath);
+        for (const [category, videos] of Object.entries(videoCategories)) {
+          const categoryPromises = videos.map(async (videoSet) => {
+            const beforeVideoRef = ref(storage, videoSet.beforePath);
+            const afterVideoRef = ref(storage, videoSet.afterPath);
+            
+            const [beforeUrl, afterUrl] = await Promise.all([
+              getDownloadURL(beforeVideoRef),
+              getDownloadURL(afterVideoRef)
+            ]);
+            
+            return {
+              ...videoSet,
+              beforeUrl,
+              afterUrl
+            };
+          });
           
-          const [beforeUrl, afterUrl] = await Promise.all([
-            getDownloadURL(beforeVideoRef),
-            getDownloadURL(afterVideoRef)
-          ]);
-          
-          return {
-            ...videoSet,
-            beforeUrl,
-            afterUrl
-          };
-        });
+          loadedVideos[category] = await Promise.all(categoryPromises);
+        }
         
-        const loadedVideos = await Promise.all(videoPromises);
         setVideosData(loadedVideos);
         setVideosLoading(false);
       } catch (error) {
@@ -62,13 +81,13 @@ const VideoComparison = () => {
     getVideoUrls();
   }, []);
 
-  // Reset video states when changing pages
+  // Reset video states when changing category or video
   useEffect(() => {
     setSliderPosition(50);
     setIsDragging(false);
     setVideosReady({ before: false, after: false });
     setCanPlay(false);
-  }, [currentPage]);
+  }, [currentCategory, currentVideoIndex]);
 
   // Check if both videos are ready to play
   useEffect(() => {
@@ -144,19 +163,6 @@ const VideoComparison = () => {
   const handleVideoError = (videoType) => {
     console.error(`${videoType} video failed to load`);
     setVideosReady(prev => ({ ...prev, [videoType]: false }));
-  };
-
-  // Navigation functions
-  const nextPage = () => {
-    setCurrentPage((prev) => (prev + 1) % videoSets.length);
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prev) => (prev - 1 + videoSets.length) % videoSets.length);
-  };
-
-  const goToPage = (pageIndex) => {
-    setCurrentPage(pageIndex);
   };
 
   // Handle mouse events for slider
@@ -281,53 +287,6 @@ const VideoComparison = () => {
     fontWeight: 'bold'
   };
 
-  const labelStyle = {
-    position: 'absolute',
-    bottom: '20px',
-    padding: '8px 16px',
-    background: 'rgba(0, 0, 0, 0.8)',
-    color: 'white',
-    borderRadius: '20px',
-    fontSize: '14px',
-    fontWeight: 'bold',
-    backdropFilter: 'blur(10px)'
-  };
-
-  const paginationStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '20px',
-    marginTop: '30px'
-  };
-
-  const navButtonStyle = {
-    padding: '12px 24px',
-    background: 'linear-gradient(45deg, #007bff, #0056b3)',
-    color: 'white',
-    border: 'none',
-    borderRadius: '25px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    transition: 'all 0.3s ease',
-    boxShadow: '0 4px 15px rgba(0, 123, 255, 0.3)'
-  };
-
-  const dotStyle = {
-    width: '12px',
-    height: '12px',
-    borderRadius: '50%',
-    border: '2px solid #007bff',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease'
-  };
-
-  const activeDotStyle = {
-    ...dotStyle,
-    background: '#007bff'
-  };
-
   const loadingIndicatorStyle = {
     position: 'absolute',
     top: '10px',
@@ -340,20 +299,46 @@ const VideoComparison = () => {
     zIndex: 5
   };
 
-  const currentVideo = videosData[currentPage];
+  // Number tab styles
+  const numberTabStyle = {
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    fontSize: '18px',
+    fontWeight: 'bold',
+    transition: 'all 0.3s ease',
+    marginBottom: '15px',
+    border: '2px solid #ddd',
+    background: 'rgba(255, 255, 255, 0.9)',
+    color: '#666'
+  };
+
+  const activeNumberTabStyle = {
+    ...numberTabStyle,
+    background: 'linear-gradient(45deg, #6B7A47, #8B9A5A)',
+    color: 'white',
+    border: '2px solid #6B7A47',
+    transform: 'scale(1.1)'
+  };
+
+  const currentVideo = videosData[currentCategory] && videosData[currentCategory][currentVideoIndex];
 
   return (
-    
     <section style={{ padding: '80px 0', background: '#f8f9fa' }}>
       <div className="container"> 
         <div className="row">
           <div className="col-12">
             <div style={{ textAlign: 'center', marginBottom: '50px' }}>
               <h2 className="main_titel_two" style={{ marginBottom: '20px' }}>
-              From Raw to <span>Radiant</span>
+                From Raw to <span>Radiant</span>
               </h2>
               <p className="text_lg" style={{ maxWidth: '600px', margin: '0 auto' }}>
-              A cinematic before-and-after showcasing how VFX and color grading bring every frame to life.              </p>
+                A cinematic before-and-after showcasing how VFX and color grading bring every frame to life.
+              </p>
             </div>
           </div>
         </div>
@@ -372,19 +357,42 @@ const VideoComparison = () => {
               </div>
             ) : currentVideo ? (
               <>
-                {/* Current Video Title */}
-                <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-                  <h3 style={{ margin: '0 0 10px 0', fontSize: '24px', fontWeight: 'bold' }}>
-                    {currentVideo.title}
-                  </h3>
-                  <p style={{ margin: 0, color: '#666', fontSize: '16px' }}>
-                    {currentVideo.description}
-                  </p>
-                </div>
-
-                {/* Video Comparison Container with Side Text */}
+                {/* Video Comparison Container with Side Elements */}
                 <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '20px' }}>
-                  {/* Left Side Text */}
+                  {/* Left Side - COLORING Number Tabs */}
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    minWidth: '60px'
+                  }}>
+                    {videosData.COLORING && videosData.COLORING.map((_, index) => (
+                      <div
+                        key={`coloring-${index}`}
+                        style={currentCategory === 'COLORING' && currentVideoIndex === index ? activeNumberTabStyle : numberTabStyle}
+                        onClick={() => {
+                          setCurrentCategory('COLORING');
+                          setCurrentVideoIndex(index);
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!(currentCategory === 'COLORING' && currentVideoIndex === index)) {
+                            e.target.style.background = '#f0f0f0';
+                            e.target.style.transform = 'scale(1.05)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!(currentCategory === 'COLORING' && currentVideoIndex === index)) {
+                            e.target.style.background = 'rgba(255, 255, 255, 0.9)';
+                            e.target.style.transform = 'scale(1)';
+                          }
+                        }}
+                      >
+                        {index + 1}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Category Text */}
                   <div style={{
                     fontSize: window.innerWidth <= 768 ? '18px' : '24px',
                     fontWeight: 'bold',
@@ -396,7 +404,7 @@ const VideoComparison = () => {
                     color: '#333',
                     minWidth: '40px'
                   }}>
-                    COLORING
+                    {currentCategory}
                   </div>
 
                   {/* Video Container */}
@@ -404,7 +412,7 @@ const VideoComparison = () => {
                     ref={containerRef}
                     style={{
                       ...containerStyle,
-                      maxWidth: window.innerWidth <= 768 ? '100%' : '90%',
+                      maxWidth: window.innerWidth <= 768 ? '100%' : '85%', // Changed from 70% to 85%
                       margin: '0 auto',
                       flex: 1
                     }}
@@ -428,7 +436,7 @@ const VideoComparison = () => {
                       preload="auto"
                       onCanPlay={handleAfterVideoCanPlay}
                       onError={() => handleVideoError('after')}
-                      key={`after-${currentPage}`}
+                      key={`after-${currentCategory}-${currentVideoIndex}`}
                     >
                       <source src={currentVideo.afterUrl} type="video/mp4" />
                     </video>
@@ -446,7 +454,7 @@ const VideoComparison = () => {
                       onPause={handleBeforeVideoPause}
                       onTimeUpdate={handleBeforeVideoTimeUpdate}
                       onError={() => handleVideoError('before')}
-                      key={`before-${currentPage}`}
+                      key={`before-${currentCategory}-${currentVideoIndex}`}
                     >
                       <source src={currentVideo.beforeUrl} type="video/mp4" />
                     </video>
@@ -471,103 +479,40 @@ const VideoComparison = () => {
                     color: '#333',
                     minWidth: '40px'
                   }}>
-                    VFX
-                  </div>
-                </div>
-
-                {/* Modern Navigation - Subtle Arrows */}
-                <div style={{
-                  position: 'relative',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginTop: '30px',
-                  height: '60px'
-                }}>
-                  {/* Left Arrow */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      left: '20%',
-                      width: '40px',
-                      height: '40px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#666',
-                      fontSize: '24px',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      borderRadius: '50%',
-                      border: '1px solid #ddd',
-                      background: 'rgba(255, 255, 255, 0.9)'
-                    }}
-                    onClick={prevPage}
-                    onMouseEnter={(e) => {
-                      e.target.style.color = '#333';
-                      e.target.style.transform = 'scale(1.1)';
-                      e.target.style.borderColor = '#007bff';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.color = '#666';
-                      e.target.style.transform = 'scale(1)';
-                      e.target.style.borderColor = '#ddd';
-                    }}
-                  >
-                    ←
+                    {currentCategory === 'COLORING' ? 'GRADING' : 'EFFECTS'}
                   </div>
 
-                  {/* Elegant Dots */}
-                  <div style={{ display: 'flex', gap: '12px' }}>
-                    {videoSets.map((_, index) => (
+                  {/* Right Side - VFX Number Tabs */}
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    minWidth: '60px'
+                  }}>
+                    {videosData.VFX && videosData.VFX.map((_, index) => (
                       <div
-                        key={index}
-                        style={{
-                          width: '10px',
-                          height: '10px',
-                          borderRadius: '50%',
-                          background: index === currentPage ? '#007bff' : '#ddd',
-                          cursor: 'pointer',
-                          transition: 'all 0.3s ease'
+                        key={`vfx-${index}`}
+                        style={currentCategory === 'VFX' && currentVideoIndex === index ? activeNumberTabStyle : numberTabStyle}
+                        onClick={() => {
+                          setCurrentCategory('VFX');
+                          setCurrentVideoIndex(index);
                         }}
-                        onClick={() => goToPage(index)}
-                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.3)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                      />
+                        onMouseEnter={(e) => {
+                          if (!(currentCategory === 'VFX' && currentVideoIndex === index)) {
+                            e.target.style.background = '#f0f0f0';
+                            e.target.style.transform = 'scale(1.05)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!(currentCategory === 'VFX' && currentVideoIndex === index)) {
+                            e.target.style.background = 'rgba(255, 255, 255, 0.9)';
+                            e.target.style.transform = 'scale(1)';
+                          }
+                        }}
+                      >
+                        {index + 1}
+                      </div>
                     ))}
-                  </div>
-
-                  {/* Right Arrow */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      right: '20%',
-                      width: '40px',
-                      height: '40px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#666',
-                      fontSize: '24px',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      borderRadius: '50%',
-                      border: '1px solid #ddd',
-                      background: 'rgba(255, 255, 255, 0.9)'
-                    }}
-                    onClick={nextPage}
-                    onMouseEnter={(e) => {
-                      e.target.style.color = '#333';
-                      e.target.style.transform = 'scale(1.1)';
-                      e.target.style.borderColor = '#007bff';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.color = '#666';
-                      e.target.style.transform = 'scale(1)';
-                      e.target.style.borderColor = '#ddd';
-                    }}
-                  >
-                    →
                   </div>
                 </div>
               </>
