@@ -132,7 +132,7 @@ const ChoseTwo = ({ addClass }) => {
               <div className="chose_two_head">
                 <h2 className="main_titel_three">
                   A New Standard in <br />
-                  <span>Story Telling and </span>
+                  <span>StoryTelling and </span>
                   <br />
                   <span>Cinematic Production</span>
                 </h2>

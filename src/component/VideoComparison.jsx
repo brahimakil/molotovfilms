@@ -404,7 +404,7 @@ const VideoComparison = () => {
                     color: '#333',
                     minWidth: '40px'
                   }}>
-                    {currentCategory}
+                    COLORING
                   </div>
 
                   {/* Video Container */}
@@ -479,7 +479,7 @@ const VideoComparison = () => {
                     color: '#333',
                     minWidth: '40px'
                   }}>
-                    {currentCategory === 'COLORING' ? 'GRADING' : 'EFFECTS'}
+                    VFX
                   </div>
 
                   {/* Right Side - VFX Number Tabs */}

@@ -139,64 +139,11 @@ const FooterOne = () => {
                 </div>
               </div>
 
-              <div className="col-6 col-lg-3 ml_10px res-ml">
-                <div className="footer_item">
-                  <h3 className="text_2xl">Support</h3>
-                  <ul className="footer_link">
-                    <li>
-                      <Link to="/blog-details" className="text_lg">
-                        Item Support
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/blog-details" className="text_lg">
-                        Forum
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/blog-details" className="text_lg">
-                        Report Abuse
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/blog-details" className="text_lg">
-                        Live
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
 
               <div className="col-6 col-lg-3 ml_10px res-mt">
                 <div className="footer_item">
-                  <h3 className="text_2xl">Products</h3>
-                  <ul className="footer_link">
-                    <li>
-                      <Link to="/blog-details" className="text_lg">
-                        Take the tour
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/contuct-us" className="text_lg">
-                        Live chat
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/services" className="text_lg">
-                        Self-service
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/blog-grid" className="text_lg">
-                        Social
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/blog-details" className="text_lg">
-                        Jano Reviews
-                      </Link>
-                    </li>
-                  </ul>
+                 
+                
                 </div>
               </div>
 
@@ -233,7 +180,7 @@ const FooterOne = () => {
             <div className="col-md-6 col-xxl-6">
               <div className="copy_write_txt">
                 <h4 className="text_lg">
-                  2024 © All rights reserved by
+                  2025 © All rights reserved by
                   <span>
                     <Link to="#"> Sara. </Link>
                   </span>

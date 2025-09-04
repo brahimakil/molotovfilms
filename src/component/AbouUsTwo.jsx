@@ -107,7 +107,7 @@ const AbouUsTwo = () => {
 
             <div className="about_head">
               <h2 className="main_titel_two">
-              Social-First & Punchy 
+              Social-First & <span>Punchy</span> 
               </h2>
 
               <p className="text_lg">
