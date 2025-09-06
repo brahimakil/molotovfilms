@@ -336,7 +336,6 @@ const ServicesPage = () => {
       </section>
 
       <InnerServices />
-      <Faq />
       <Testimonials addClass="inner_testimonails" />
       <Blog />
     </div>
