@@ -7,153 +7,117 @@ import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 
 const ServicesPage = () => {
-  // Add loading state and preload optimization
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoading, setVideoLoading] = useState(true);
+  const [videoError, setVideoError] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoRef = useRef(null);
+  const heroRef = useRef(null);
 
+  // Lazy load video only when hero section is in view
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !shouldLoadVideo) {
+            setShouldLoadVideo(true);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '100px' }
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [shouldLoadVideo]);
+
+  // Load video with caching and timeout handling
+  useEffect(() => {
+    if (!shouldLoadVideo) return;
+
     const getVideoUrl = async () => {
+      const cacheKey = 'services_hero_video_url';
+      const cacheTimeKey = 'services_hero_video_timestamp';
+      const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+
       try {
         setVideoLoading(true);
-        const videoRef = ref(storage, 'servicesvideos/headerofservicespage.mp4');
-        const url = await getDownloadURL(videoRef);
+        setVideoError(false);
+        
+        // Check if we have a cached URL that's still valid
+        const cachedUrl = localStorage.getItem(cacheKey);
+        const cachedTime = localStorage.getItem(cacheTimeKey);
+        const now = Date.now();
+        
+        if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+          console.log('Loading Services hero video from cache');
+          setVideoUrl(cachedUrl);
+          setVideoLoading(false);
+          return;
+        }
+
+        console.log('Fetching Services hero video from Firebase Storage');
+        
+        // Create timeout promise
+        const timeout = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Video load timeout')), 10000)
+        );
+        
+        // Try to get optimized version first, fallback to original
+        let videoPath = 'servicesvideos/headerofservicespage-optimized.mp4';
+        
+        const videoPromise = getDownloadURL(ref(storage, videoPath)).catch(() => {
+          console.log('Optimized version not found, falling back to original');
+          return getDownloadURL(ref(storage, 'servicesvideos/headerofservicespage.mp4'));
+        });
+
+        const url = await Promise.race([videoPromise, timeout]);
+        
+        // Cache the URL and timestamp
+        localStorage.setItem(cacheKey, url);
+        localStorage.setItem(cacheTimeKey, now.toString());
+        
         setVideoUrl(url);
         setVideoLoading(false);
+        console.log('Services hero video loaded and cached successfully');
+        
       } catch (error) {
-        console.error('Error getting video URL:', error);
+        console.error('Error getting Services hero video URL:', error);
         setVideoLoading(false);
+        setVideoError(true);
+        
+        // Clear any invalid cached data
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(cacheTimeKey);
       }
     };
 
     getVideoUrl();
-  }, []);
+  }, [shouldLoadVideo]);
 
-  // Enhanced autoplay handling with scroll protection
+  // Optimized video play handling
   useEffect(() => {
     if (videoRef.current && videoUrl && !videoLoading) {
       const video = videoRef.current;
       
       const playVideo = async () => {
         try {
-          video.muted = true; // Ensure muted for autoplay
+          video.muted = true;
+          video.playbackRate = 1; // Normal speed
           await video.play();
         } catch (error) {
           console.log('Autoplay prevented:', error);
-          // Fallback: try to play on user interaction
-          const playOnInteraction = () => {
-            video?.play().catch(console.error);
-            document.removeEventListener('click', playOnInteraction);
-            document.removeEventListener('touchstart', playOnInteraction);
-          };
-          document.addEventListener('click', playOnInteraction);
-          document.addEventListener('touchstart', playOnInteraction);
         }
       };
 
-      // Keep video playing on scroll and other events
-      const ensureVideoPlays = () => {
-        if (video && video.paused && !video.ended) {
-          video.play().catch(console.error);
-        }
-      };
-
-      // Add event listeners to prevent video from stopping
-      const handleVisibilityChange = () => {
-        if (!document.hidden && video && video.paused) {
-          video.play().catch(console.error);
-        }
-      };
-
-      const handleScroll = () => {
-        // Small delay to avoid too frequent calls
-        setTimeout(() => {
-          if (video && video.paused && !video.ended) {
-            video.play().catch(console.error);
-          }
-        }, 100);
-      };
-
-      const handleFocus = () => {
-        if (video && video.paused && !video.ended) {
-          video.play().catch(console.error);
-        }
-      };
-
-      // Intersection Observer to keep video playing when in view
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && video && video.paused && !video.ended) {
-              video.play().catch(console.error);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      // Initial play
-      const timer = setTimeout(playVideo, 100);
-
-      // Add all event listeners
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-      document.addEventListener('scroll', handleScroll, { passive: true });
-      window.addEventListener('focus', handleFocus);
-      
-      // Start observing the video element
-      if (video) {
-        observer.observe(video);
-      }
-
-      // Cleanup function
-      return () => {
-        clearTimeout(timer);
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-        document.removeEventListener('scroll', handleScroll);
-        window.removeEventListener('focus', handleFocus);
-        observer.disconnect();
-      };
+      // Simple play on load
+      const timer = setTimeout(playVideo, 500);
+      return () => clearTimeout(timer);
     }
   }, [videoUrl, videoLoading]);
-
-  // Additional effect to handle video pause events
-  useEffect(() => {
-    if (videoRef.current) {
-      const video = videoRef.current;
-      
-      const handlePause = () => {
-        // If video pauses unexpectedly, try to resume it
-        setTimeout(() => {
-          if (video && video.paused && !video.ended) {
-            video.play().catch(console.error);
-          }
-        }, 50);
-      };
-
-      const handleEnded = () => {
-        // Restart video when it ends (since it should loop)
-        if (video) {
-          video.currentTime = 0;
-          video.play().catch(console.error);
-        }
-      };
-
-      video.addEventListener('pause', handlePause);
-      video.addEventListener('ended', handleEnded);
-
-      return () => {
-        video.removeEventListener('pause', handlePause);
-        video.removeEventListener('ended', handleEnded);
-      };
-    }
-  }, [videoUrl, videoLoading]);
-
-  // Load appropriate size based on screen
-  const getVideoSize = () => {
-    if (window.innerWidth <= 768) return 'cover-video-480p.MP4';
-    if (window.innerWidth <= 1200) return 'cover-video-720p.MP4';
-    return 'cover-video-1080p.MP4';
-  };
 
   const heroStyles = {
     videoHeroBanner: {
@@ -164,8 +128,7 @@ const ServicesPage = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: '0', // NO NEGATIVE MARGIN
-      paddingTop: '0'  // NO PADDING
+      backgroundColor: '#000', // Fallback background
     },
     videoContainer: {
       position: 'relative',
@@ -238,18 +201,34 @@ const ServicesPage = () => {
       color: 'white',
       boxShadow: '0 4px 15px rgba(0, 123, 255, 0.3)'
     },
-    btnOutlineLight: {
-      border: '2px solid white',
+    loadingPlaceholder: {
+      height: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      color: 'white'
+    },
+    fallbackImage: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       color: 'white',
-      background: 'rgba(255, 255, 255, 0.1)',
-      backdropFilter: 'blur(10px)'
+      fontSize: '1.5rem',
+      zIndex: 1
     }
   };
 
-  // Media query styles for mobile - FIXED
+  // Mobile responsive styles
   const isMobile = window.innerWidth <= 768;
   if (isMobile) {
-    // REMOVE ALL POSITIONING OVERRIDES FOR MOBILE
     heroStyles.heroTitle.fontSize = '1.8rem';
     heroStyles.heroSubtitle.fontSize = '0.95rem';
     heroStyles.btn.padding = '10px 20px';
@@ -259,37 +238,26 @@ const ServicesPage = () => {
     heroStyles.heroButtons.gap = '10px';
     heroStyles.heroContent.padding = '0 15px';
     heroStyles.heroContent.maxWidth = '95%';
-    // REMOVED: All margin/padding overrides that were breaking layout
   }
 
-  // Add loading placeholder
   return (
     <div style={{ margin: 0, padding: 0, minHeight: '100vh' }}>
-      {/* Professional Video Hero Banner */}
-      <section style={{
-        position: 'relative',
-        height: '100vh',
-        minHeight: '100vh',
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: 0,
-        padding: 0,
-        top: 0,
-        left: 0,
-        right: 0
-      }}>
+      {/* Optimized Video Hero Banner */}
+      <section ref={heroRef} style={heroStyles.videoHeroBanner}>
         <div style={heroStyles.videoContainer}>
-          {videoLoading ? (
-            <div style={{
-              height: '100vh',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: '#000'
-            }}>
-              <div style={{ color: '#fff', fontSize: '24px' }}>Loading...</div>
+          {videoLoading && !videoError ? (
+            <div style={heroStyles.loadingPlaceholder}>
+              <div style={{ fontSize: '24px', marginBottom: '20px' }}>
+                {localStorage.getItem('services_hero_video_url') ? 'Loading from cache...' : 'Loading...'}
+              </div>
+              <div style={{ fontSize: '16px', opacity: 0.8 }}>Preparing your experience</div>
+            </div>
+          ) : videoError ? (
+            <div style={heroStyles.fallbackImage}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
+                <div>Our Services</div>
+              </div>
             </div>
           ) : videoUrl ? (
             <video
@@ -299,14 +267,9 @@ const ServicesPage = () => {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata" // Changed from "auto" to "metadata"
               controls={false}
-              onLoadedData={() => {
-                // Force play when video data is loaded
-                if (videoRef.current) {
-                  videoRef.current.play().catch(console.error);
-                }
-              }}
+              poster="" // Add a poster image if you have one
             >
               <source src={videoUrl} type="video/mp4" />
               Your browser does not support the video tag.
@@ -321,7 +284,10 @@ const ServicesPage = () => {
             <h1 style={heroStyles.heroTitle}>
               Our <span style={{color: '#6B8E23'}}>Services</span> & Expertise
             </h1>
-            <p style={heroStyles.heroSubtitle}>Comprehensive video production services from concept to delivery. We bring your vision to life with professional quality and creative excellence.</p>
+            <p style={heroStyles.heroSubtitle}>
+              Comprehensive video production services from concept to delivery. 
+              We bring your vision to life with professional quality and creative excellence.
+            </p>
             <div style={heroStyles.heroButtons}>
               <a 
                 href="#services" 
@@ -329,7 +295,6 @@ const ServicesPage = () => {
               >
                  View Services 
               </a>
-              
             </div>
           </div>
         </div>

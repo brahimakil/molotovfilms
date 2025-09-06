@@ -29,12 +29,12 @@ function App() {
         {/* Home One */}
         <Route path="/" element={<HomeOneLayout />}> 
           <Route index element={<AboutPage />} />
+          <Route path="services" element={<ServicesPage />} />
         </Route> 
 
       
         {/* Inner Page */}
         <Route element={<InnerPageLayout />}>
-          <Route path="services" element={<ServicesPage />} />
           <Route path="about" element={<HomeOne />} />
           <Route path="blog-grid" element={<BlogGridPage />} />
           <Route path="blog-details" element={<BlogDetailsPage />} />

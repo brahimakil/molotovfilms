@@ -12,26 +12,89 @@ import profileImg from "../assets/images/t-prof-1.svg";
 const Testimonials = ({ addClass }) => {
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoading, setVideoLoading] = useState(true);
+  const [videoError, setVideoError] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoRef = useRef(null);
+  const sectionRef = useRef(null);
 
+  // Lazy load video when section comes into view
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !shouldLoadVideo) {
+            setShouldLoadVideo(true);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '200px' }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [shouldLoadVideo]);
+
+  // Load video with caching and timeout handling
+  useEffect(() => {
+    if (!shouldLoadVideo) return;
+
     const getVideoUrl = async () => {
+      const cacheKey = 'testimonials_video_url';
+      const cacheTimeKey = 'testimonials_video_timestamp';
+      const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+
       try {
         setVideoLoading(true);
-        const videoRef = ref(storage, 'servicesvideos/Avant Premier.mp4');
-        const url = await getDownloadURL(videoRef);
+        setVideoError(false);
+        
+        // Check if we have a cached URL that's still valid
+        const cachedUrl = localStorage.getItem(cacheKey);
+        const cachedTime = localStorage.getItem(cacheTimeKey);
+        const now = Date.now();
+        
+        if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+          console.log('Loading Testimonials video from cache');
+          setVideoUrl(cachedUrl);
+          setVideoLoading(false);
+          return;
+        }
+
+        console.log('Fetching Testimonials video from Firebase Storage');
+        
+        // Create timeout promise
+        const timeout = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Testimonials video load timeout')), 8000)
+        );
+        
+        const videoPromise = getDownloadURL(ref(storage, 'servicesvideos/Avant Premier.mp4'));
+        const url = await Promise.race([videoPromise, timeout]);
+        
+        // Cache the URL and timestamp
+        localStorage.setItem(cacheKey, url);
+        localStorage.setItem(cacheTimeKey, now.toString());
+        
         setVideoUrl(url);
         setVideoLoading(false);
+        console.log('Testimonials video loaded and cached successfully');
+        
       } catch (error) {
-        console.error('Error getting video URL:', error);
+        console.error('Error getting Testimonials video URL:', error);
         setVideoLoading(false);
+        setVideoError(true);
+        
+        // Clear any invalid cached data
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(cacheTimeKey);
       }
     };
 
     getVideoUrl();
-  }, []);
+  }, [shouldLoadVideo]);
 
-  // Enhanced autoplay handling with scroll protection
+  // Simple video play handling
   useEffect(() => {
     if (videoRef.current && videoUrl && !videoLoading) {
       const video = videoRef.current;
@@ -42,93 +105,11 @@ const Testimonials = ({ addClass }) => {
           await video.play();
         } catch (error) {
           console.log('Autoplay prevented:', error);
-          const playOnInteraction = () => {
-            video?.play().catch(console.error);
-            document.removeEventListener('click', playOnInteraction);
-            document.removeEventListener('touchstart', playOnInteraction);
-          };
-          document.addEventListener('click', playOnInteraction);
-          document.addEventListener('touchstart', playOnInteraction);
         }
       };
 
-      const handleVisibilityChange = () => {
-        if (!document.hidden && video && video.paused) {
-          video.play().catch(console.error);
-        }
-      };
-
-      const handleScroll = () => {
-        setTimeout(() => {
-          if (video && video.paused && !video.ended) {
-            video.play().catch(console.error);
-          }
-        }, 100);
-      };
-
-      const handleFocus = () => {
-        if (video && video.paused && !video.ended) {
-          video.play().catch(console.error);
-        }
-      };
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && video && video.paused && !video.ended) {
-              video.play().catch(console.error);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      const timer = setTimeout(playVideo, 100);
-
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-      document.addEventListener('scroll', handleScroll, { passive: true });
-      window.addEventListener('focus', handleFocus);
-      
-      if (video) {
-        observer.observe(video);
-      }
-
-      return () => {
-        clearTimeout(timer);
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-        document.removeEventListener('scroll', handleScroll);
-        window.removeEventListener('focus', handleFocus);
-        observer.disconnect();
-      };
-    }
-  }, [videoUrl, videoLoading]);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      const video = videoRef.current;
-      
-      const handlePause = () => {
-        setTimeout(() => {
-          if (video && video.paused && !video.ended) {
-            video.play().catch(console.error);
-          }
-        }, 50);
-      };
-
-      const handleEnded = () => {
-        if (video) {
-          video.currentTime = 0;
-          video.play().catch(console.error);
-        }
-      };
-
-      video.addEventListener('pause', handlePause);
-      video.addEventListener('ended', handleEnded);
-
-      return () => {
-        video.removeEventListener('pause', handlePause);
-        video.removeEventListener('ended', handleEnded);
-      };
+      const timer = setTimeout(playVideo, 300);
+      return () => clearTimeout(timer);
     }
   }, [videoUrl, videoLoading]);
 
@@ -163,12 +144,12 @@ const Testimonials = ({ addClass }) => {
   };
 
   return (
-    <section className={`testimonails ${addClass || ""}`}>
+    <section ref={sectionRef} className={`testimonails ${addClass || ""}`}>
       <div className="container">
         <div className="row align-items-center">
           <div className="col-xxl-6">
             <div className="testimonails_thumb_main">
-              {videoLoading ? (
+              {videoLoading && !videoError ? (
                 <div 
                   className="testimonails_thumb"
                   style={{
@@ -178,11 +159,37 @@ const Testimonials = ({ addClass }) => {
                     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                     borderRadius: '15px',
                     color: 'white',
-                    fontSize: '18px',
-                    fontWeight: 'bold'
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    minHeight: '300px',
+                    flexDirection: 'column',
+                    gap: '10px'
                   }}
                 >
-                  Loading Video...
+                  <div>
+                    {localStorage.getItem('testimonials_video_url') ? 'Loading from cache...' : 'Loading Video...'}
+                  </div>
+                  {localStorage.getItem('testimonials_video_url') && (
+                    <div style={{ fontSize: '12px', opacity: 0.8 }}>
+                      Using cached version
+                    </div>
+                  )}
+                </div>
+              ) : videoError ? (
+                <div 
+                  className="testimonials_thumb"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: '#f0f0f0',
+                    borderRadius: '15px',
+                    color: '#666',
+                    fontSize: '16px',
+                    minHeight: '300px'
+                  }}
+                >
+                  Video unavailable
                 </div>
               ) : videoUrl ? (
                 <video
@@ -198,33 +205,14 @@ const Testimonials = ({ addClass }) => {
                   muted
                   loop
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   controls={false}
-                  onLoadedData={() => {
-                    if (videoRef.current) {
-                      videoRef.current.play().catch(console.error);
-                    }
-                  }}
                 >
                   <source src={videoUrl} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-              ) : (
-                <div 
-                  className="testimonails_thumb"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: '#f0f0f0',
-                    borderRadius: '15px',
-                    color: '#666',
-                    fontSize: '16px'
-                  }}
-                >
-                  Failed to load video
-                </div>
-              )}
+              ) : null}
+              
               <img
                 src={thumbPos}
                 alt="pos"
