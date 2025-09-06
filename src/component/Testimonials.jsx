@@ -138,7 +138,8 @@ const Testimonials = ({ addClass }) => {
   };
 
   const testimonial = {
-    text: `Sara's contributions significantly reduced our marketing budget. Our clients expect a partner who consistently excels in delivering high-quality products.`,
+    text: `Production that performs.
+End-to-end production + strategic thinking. A team that treats every frame like a promise — to audiences and to you.`,
     name: "Martin Jonas",
     role: "Head of marketing, Inter inc.",
   };
@@ -234,7 +235,8 @@ const Testimonials = ({ addClass }) => {
           <div className="col-xxl-6 testimonails_pl">
             <div className="testimonails_head">
               <h2 className="main_titel_two">
-                Don't Trust Us, Trust Our <span> What Client Say?</span>
+              Confident & <span>results-driven</span>
+
               </h2>
             </div>
 

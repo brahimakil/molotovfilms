@@ -49,7 +49,7 @@ const BlogOne = () => {
           <div className="col-8 col-md-8 col-xxl-6">
             <div className="blog_head">
               <h2 className="main_titel">
-                Our Latest <span>News & Blog</span>
+                Our Latest <span>Work</span>
               </h2>
             </div>
           </div>
