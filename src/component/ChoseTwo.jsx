@@ -19,12 +19,20 @@ const ChoseTwo = ({ addClass }) => {
   const [storytellingProgress, setStorytellingProgress] = useState(0);
   const [engagementProgress, setEngagementProgress] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
+  
+  // Main video (reel making off)
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  
+  // Story board video (new)
+  const [storyBoardUrl, setStoryBoardUrl] = useState('');
+  const [storyBoardLoaded, setStoryBoardLoaded] = useState(false);
+  const [storyBoardError, setStoryBoardError] = useState(false);
+  
   const sectionRef = useRef(null);
 
-  // Load video from Firebase with caching
+  // Load main video from Firebase with caching
   useEffect(() => {
     const loadVideo = async () => {
       const cacheKey = 'molotov_chosetwo_video_url';
@@ -38,13 +46,13 @@ const ChoseTwo = ({ addClass }) => {
         const now = Date.now();
         
         if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
-          console.log('Loading ChoseTwo video from cache');
+          console.log('Loading ChoseTwo main video from cache');
           setVideoUrl(cachedUrl);
           setVideoLoaded(true);
           return;
         }
         
-        console.log('Fetching ChoseTwo video from Firebase Storage');
+        console.log('Fetching ChoseTwo main video from Firebase Storage');
         const videoRef = ref(storage, 'chosetwo/reel making offf new.mp4');
         const url = await getDownloadURL(videoRef);
         
@@ -54,10 +62,10 @@ const ChoseTwo = ({ addClass }) => {
         
         setVideoUrl(url);
         setVideoLoaded(true);
-        console.log('ChoseTwo video loaded and cached successfully');
+        console.log('ChoseTwo main video loaded and cached successfully');
         
       } catch (error) {
-        console.error('Error loading ChoseTwo video:', error);
+        console.error('Error loading ChoseTwo main video:', error);
         setVideoError(true);
         setVideoLoaded(false);
         
@@ -68,6 +76,52 @@ const ChoseTwo = ({ addClass }) => {
     };
 
     loadVideo();
+  }, []);
+
+  // Load story board video from Firebase with caching
+  useEffect(() => {
+    const loadStoryBoardVideo = async () => {
+      const cacheKey = 'molotov_chosetwo_storyboard_url';
+      const cacheTimeKey = 'molotov_chosetwo_storyboard_timestamp';
+      const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+      
+      try {
+        // Check if we have a cached URL that's still valid
+        const cachedUrl = localStorage.getItem(cacheKey);
+        const cachedTime = localStorage.getItem(cacheTimeKey);
+        const now = Date.now();
+        
+        if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+          console.log('Loading ChoseTwo story board video from cache');
+          setStoryBoardUrl(cachedUrl);
+          setStoryBoardLoaded(true);
+          return;
+        }
+        
+        console.log('Fetching ChoseTwo story board video from Firebase Storage');
+        const videoRef = ref(storage, 'chosetwo/story bord.mp4');
+        const url = await getDownloadURL(videoRef);
+        
+        // Cache the URL and timestamp
+        localStorage.setItem(cacheKey, url);
+        localStorage.setItem(cacheTimeKey, now.toString());
+        
+        setStoryBoardUrl(url);
+        setStoryBoardLoaded(true);
+        console.log('ChoseTwo story board video loaded and cached successfully');
+        
+      } catch (error) {
+        console.error('Error loading ChoseTwo story board video:', error);
+        setStoryBoardError(true);
+        setStoryBoardLoaded(false);
+        
+        // Clear any invalid cached data
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(cacheTimeKey);
+      }
+    };
+
+    loadStoryBoardVideo();
   }, []);
 
   // Progress animation function
@@ -206,7 +260,49 @@ const ChoseTwo = ({ addClass }) => {
               <div className="chose_two_thumb_main">
                 <div className="chose_two_thumb_item">
                   <div className="chose_two_thumb">
-                    <img src={choseThumb1} alt="thumb" />
+                    {storyBoardLoaded && storyBoardUrl ? (
+                      <video
+                        src={storyBoardUrl}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          borderRadius: 'inherit'
+                        }}
+                        onLoadStart={() => console.log('ChoseTwo story board video loading started')}
+                        onCanPlayThrough={() => console.log('ChoseTwo story board video can play through')}
+                        onError={(e) => {
+                          console.error('ChoseTwo story board video playback error:', e);
+                          setStoryBoardError(true);
+                        }}
+                      />
+                    ) : storyBoardError ? (
+                      <img src={choseThumb1} alt="thumb" />
+                    ) : (
+                      <div style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #f0f0f0, #e0e0e0)',
+                        borderRadius: 'inherit'
+                      }}>
+                        <div style={{
+                          width: '40px',
+                          height: '40px',
+                          border: '3px solid #6B7A47',
+                          borderTop: '3px solid transparent',
+                          borderRadius: '50%',
+                          animation: 'spin 1s linear infinite'
+                        }} />
+                      </div>
+                    )}
                   </div>
 
                   <div className="chose_two_thumb_two">
@@ -224,10 +320,10 @@ const ChoseTwo = ({ addClass }) => {
                           objectFit: 'cover',
                           borderRadius: 'inherit'
                         }}
-                        onLoadStart={() => console.log('ChoseTwo video loading started')}
-                        onCanPlayThrough={() => console.log('ChoseTwo video can play through')}
+                        onLoadStart={() => console.log('ChoseTwo main video loading started')}
+                        onCanPlayThrough={() => console.log('ChoseTwo main video can play through')}
                         onError={(e) => {
-                          console.error('ChoseTwo video playback error:', e);
+                          console.error('ChoseTwo main video playback error:', e);
                           setVideoError(true);
                         }}
                       />

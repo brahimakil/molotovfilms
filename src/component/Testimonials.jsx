@@ -11,45 +11,19 @@ import profileImg from "../assets/images/t-prof-1.svg";
 
 const Testimonials = ({ addClass }) => {
   const [videoUrl, setVideoUrl] = useState('');
-  const [videoLoading, setVideoLoading] = useState(true);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
 
-  // Lazy load video when section comes into view
+  // Load video immediately on mount (exactly like ChoseTwo - NO LAZY LOADING)
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !shouldLoadVideo) {
-            setShouldLoadVideo(true);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '200px' }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [shouldLoadVideo]);
-
-  // Load video with caching and timeout handling
-  useEffect(() => {
-    if (!shouldLoadVideo) return;
-
-    const getVideoUrl = async () => {
+    const loadVideo = async () => {
       const cacheKey = 'testimonials_video_url';
       const cacheTimeKey = 'testimonials_video_timestamp';
       const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
-
+      
       try {
-        setVideoLoading(true);
-        setVideoError(false);
-        
         // Check if we have a cached URL that's still valid
         const cachedUrl = localStorage.getItem(cacheKey);
         const cachedTime = localStorage.getItem(cacheTimeKey);
@@ -58,32 +32,26 @@ const Testimonials = ({ addClass }) => {
         if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
           console.log('Loading Testimonials video from cache');
           setVideoUrl(cachedUrl);
-          setVideoLoading(false);
+          setVideoLoaded(true);
           return;
         }
-
+        
         console.log('Fetching Testimonials video from Firebase Storage');
-        
-        // Create timeout promise
-        const timeout = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Testimonials video load timeout')), 8000)
-        );
-        
-        const videoPromise = getDownloadURL(ref(storage, 'servicesvideos/Avant Premier.mp4'));
-        const url = await Promise.race([videoPromise, timeout]);
+        const videoRef = ref(storage, 'servicesvideos/Avant Premier.mp4');
+        const url = await getDownloadURL(videoRef);
         
         // Cache the URL and timestamp
         localStorage.setItem(cacheKey, url);
         localStorage.setItem(cacheTimeKey, now.toString());
         
         setVideoUrl(url);
-        setVideoLoading(false);
+        setVideoLoaded(true);
         console.log('Testimonials video loaded and cached successfully');
         
       } catch (error) {
-        console.error('Error getting Testimonials video URL:', error);
-        setVideoLoading(false);
+        console.error('Error loading Testimonials video:', error);
         setVideoError(true);
+        setVideoLoaded(false);
         
         // Clear any invalid cached data
         localStorage.removeItem(cacheKey);
@@ -91,27 +59,8 @@ const Testimonials = ({ addClass }) => {
       }
     };
 
-    getVideoUrl();
-  }, [shouldLoadVideo]);
-
-  // Simple video play handling
-  useEffect(() => {
-    if (videoRef.current && videoUrl && !videoLoading) {
-      const video = videoRef.current;
-      
-      const playVideo = async () => {
-        try {
-          video.muted = true;
-          await video.play();
-        } catch (error) {
-          console.log('Autoplay prevented:', error);
-        }
-      };
-
-      const timer = setTimeout(playVideo, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [videoUrl, videoLoading]);
+    loadVideo();
+  }, []);
 
   const settings = {
     slidesToShow: 1,
@@ -150,32 +99,33 @@ End-to-end production + strategic thinking. A team that treats every frame like 
         <div className="row align-items-center">
           <div className="col-xxl-6">
             <div className="testimonails_thumb_main">
-              {videoLoading && !videoError ? (
-                <div 
+              {videoLoaded && videoUrl ? (
+                <video
+                  ref={videoRef}
                   className="testimonails_thumb"
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    borderRadius: '15px',
-                    color: 'white',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                    minHeight: '300px',
-                    flexDirection: 'column',
-                    gap: '10px'
+                    width: '100%',
+                    height: '1000px',
+                    maxHeight: '1000px',
+                    objectFit: 'cover',
+                    borderRadius: '15px'
+                  }}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  controls={false}
+                  onLoadStart={() => console.log('Testimonials video loading started')}
+                  onCanPlayThrough={() => console.log('Testimonials video can play through')}
+                  onError={(e) => {
+                    console.error('Testimonials video playback error:', e);
+                    setVideoError(true);
                   }}
                 >
-                  <div>
-                    {localStorage.getItem('testimonials_video_url') ? 'Loading from cache...' : 'Loading Video...'}
-                  </div>
-                  {localStorage.getItem('testimonials_video_url') && (
-                    <div style={{ fontSize: '12px', opacity: 0.8 }}>
-                      Using cached version
-                    </div>
-                  )}
-                </div>
+                  <source src={videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               ) : videoError ? (
                 <div 
                   className="testimonials_thumb"
@@ -187,32 +137,43 @@ End-to-end production + strategic thinking. A team that treats every frame like 
                     borderRadius: '15px',
                     color: '#666',
                     fontSize: '16px',
-                    minHeight: '300px'
+                    height: '1000px',
+                    maxHeight: '1000px',
+                    flexDirection: 'column',
+                    gap: '10px'
                   }}
                 >
-                  Video unavailable
+                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>⚠️</div>
+                  <div>Video unavailable</div>
                 </div>
-              ) : videoUrl ? (
-                <video
-                  ref={videoRef}
+              ) : (
+                <div 
                   className="testimonails_thumb"
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    borderRadius: '15px'
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #f0f0f0, #e0e0e0)',
+                    borderRadius: '15px',
+                    color: '#666',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    height: '1000px',
+                    maxHeight: '1000px',
+                    flexDirection: 'column',
+                    gap: '10px'
                   }}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  controls={false}
                 >
-                  <source src={videoUrl} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              ) : null}
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    border: '3px solid #6B7A47',
+                    borderTop: '3px solid transparent',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite'
+                  }} />
+                </div>
+              )}
               
               <img
                 src={thumbPos}
@@ -236,7 +197,6 @@ End-to-end production + strategic thinking. A team that treats every frame like 
             <div className="testimonails_head">
               <h2 className="main_titel_two">
               Confident & <span>results-driven</span>
-
               </h2>
             </div>
 
@@ -268,6 +228,13 @@ End-to-end production + strategic thinking. A team that treats every frame like 
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </section>
   );
 };

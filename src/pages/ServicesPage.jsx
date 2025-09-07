@@ -8,45 +8,19 @@ import { ref, getDownloadURL } from 'firebase/storage';
 
 const ServicesPage = () => {
   const [videoUrl, setVideoUrl] = useState('');
-  const [videoLoading, setVideoLoading] = useState(true);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoRef = useRef(null);
   const heroRef = useRef(null);
 
-  // Lazy load video only when hero section is in view
+  // Load video immediately on mount (exactly like ChoseTwo - NO LAZY LOADING)
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !shouldLoadVideo) {
-            setShouldLoadVideo(true);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '100px' }
-    );
-
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [shouldLoadVideo]);
-
-  // Load video with caching and timeout handling
-  useEffect(() => {
-    if (!shouldLoadVideo) return;
-
-    const getVideoUrl = async () => {
+    const loadVideo = async () => {
       const cacheKey = 'services_hero_video_url';
       const cacheTimeKey = 'services_hero_video_timestamp';
       const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
-
+      
       try {
-        setVideoLoading(true);
-        setVideoError(false);
-        
         // Check if we have a cached URL that's still valid
         const cachedUrl = localStorage.getItem(cacheKey);
         const cachedTime = localStorage.getItem(cacheTimeKey);
@@ -55,39 +29,45 @@ const ServicesPage = () => {
         if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
           console.log('Loading Services hero video from cache');
           setVideoUrl(cachedUrl);
-          setVideoLoading(false);
+          setVideoLoaded(true);
           return;
         }
-
-        console.log('Fetching Services hero video from Firebase Storage');
         
-        // Create timeout promise
-        const timeout = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Video load timeout')), 10000)
-        );
+        console.log('Fetching Services hero video from Firebase Storage');
         
         // Try to get optimized version first, fallback to original
         let videoPath = 'servicesvideos/headerofservicespage-optimized.mp4';
         
-        const videoPromise = getDownloadURL(ref(storage, videoPath)).catch(() => {
+        const videoRefFirebase = ref(storage, videoPath);
+        
+        try {
+          const url = await getDownloadURL(videoRefFirebase);
+          
+          // Cache the URL and timestamp
+          localStorage.setItem(cacheKey, url);
+          localStorage.setItem(cacheTimeKey, now.toString());
+          
+          setVideoUrl(url);
+          setVideoLoaded(true);
+          console.log('Services hero video loaded and cached successfully');
+        } catch (optimizedError) {
           console.log('Optimized version not found, falling back to original');
-          return getDownloadURL(ref(storage, 'servicesvideos/headerofservicespage.mp4'));
-        });
-
-        const url = await Promise.race([videoPromise, timeout]);
-        
-        // Cache the URL and timestamp
-        localStorage.setItem(cacheKey, url);
-        localStorage.setItem(cacheTimeKey, now.toString());
-        
-        setVideoUrl(url);
-        setVideoLoading(false);
-        console.log('Services hero video loaded and cached successfully');
+          const fallbackRef = ref(storage, 'servicesvideos/headerofservicespage.mp4');
+          const fallbackUrl = await getDownloadURL(fallbackRef);
+          
+          // Cache the fallback URL and timestamp
+          localStorage.setItem(cacheKey, fallbackUrl);
+          localStorage.setItem(cacheTimeKey, now.toString());
+          
+          setVideoUrl(fallbackUrl);
+          setVideoLoaded(true);
+          console.log('Services hero video (fallback) loaded and cached successfully');
+        }
         
       } catch (error) {
-        console.error('Error getting Services hero video URL:', error);
-        setVideoLoading(false);
+        console.error('Error loading Services hero video:', error);
         setVideoError(true);
+        setVideoLoaded(false);
         
         // Clear any invalid cached data
         localStorage.removeItem(cacheKey);
@@ -95,29 +75,8 @@ const ServicesPage = () => {
       }
     };
 
-    getVideoUrl();
-  }, [shouldLoadVideo]);
-
-  // Optimized video play handling
-  useEffect(() => {
-    if (videoRef.current && videoUrl && !videoLoading) {
-      const video = videoRef.current;
-      
-      const playVideo = async () => {
-        try {
-          video.muted = true;
-          video.playbackRate = 1; // Normal speed
-          await video.play();
-        } catch (error) {
-          console.log('Autoplay prevented:', error);
-        }
-      };
-
-      // Simple play on load
-      const timer = setTimeout(playVideo, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [videoUrl, videoLoading]);
+    loadVideo();
+  }, []);
 
   const heroStyles = {
     videoHeroBanner: {
@@ -245,21 +204,7 @@ const ServicesPage = () => {
       {/* Optimized Video Hero Banner */}
       <section ref={heroRef} style={heroStyles.videoHeroBanner}>
         <div style={heroStyles.videoContainer}>
-          {videoLoading && !videoError ? (
-            <div style={heroStyles.loadingPlaceholder}>
-              <div style={{ fontSize: '24px', marginBottom: '20px' }}>
-                {localStorage.getItem('services_hero_video_url') ? 'Loading from cache...' : 'Loading...'}
-              </div>
-              <div style={{ fontSize: '16px', opacity: 0.8 }}>Preparing your experience</div>
-            </div>
-          ) : videoError ? (
-            <div style={heroStyles.fallbackImage}>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
-                <div>Our Services</div>
-              </div>
-            </div>
-          ) : videoUrl ? (
+          {videoLoaded && videoUrl ? (
             <video
               ref={videoRef}
               style={heroStyles.heroVideo}
@@ -267,14 +212,44 @@ const ServicesPage = () => {
               muted
               loop
               playsInline
-              preload="metadata" // Changed from "auto" to "metadata"
+              preload="metadata"
               controls={false}
-              poster="" // Add a poster image if you have one
+              onLoadStart={() => console.log('Services video loading started')}
+              onCanPlayThrough={() => console.log('Services video can play through')}
+              onError={(e) => {
+                console.error('Services video playback error:', e);
+                setVideoError(true);
+              }}
             >
               <source src={videoUrl} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-          ) : null}
+          ) : videoError ? (
+            <div style={heroStyles.fallbackImage}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
+                <div>Our Services</div>
+              </div>
+            </div>
+          ) : (
+            <div style={heroStyles.loadingPlaceholder}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  border: '3px solid #6B7A47',
+                  borderTop: '3px solid transparent',
+                  borderRadius: '50%',
+                  animation: 'spin 1s linear infinite',
+                  margin: '0 auto 20px'
+                }} />
+                <div style={{ fontSize: '18px', marginBottom: '10px' }}>
+                  {localStorage.getItem('services_hero_video_url') ? 'Loading from cache...' : 'Loading...'}
+                </div>
+                <div style={{ fontSize: '14px', opacity: 0.8 }}>Preparing your experience</div>
+              </div>
+            </div>
+          )}
           
           {/* Video Overlay */}
           <div style={heroStyles.videoOverlay}></div>
@@ -303,6 +278,13 @@ const ServicesPage = () => {
       <InnerServices />
       <Testimonials addClass="inner_testimonails" />
       <Blog />
+
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 };

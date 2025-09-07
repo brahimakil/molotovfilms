@@ -8,12 +8,16 @@ const VideoComparison = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const [videosData, setVideosData] = useState({});
-  const [videosLoading, setVideosLoading] = useState(true);
+  const [videosLoading, setVideosLoading] = useState(false);
   const [videosReady, setVideosReady] = useState({ before: false, after: false });
   const [canPlay, setCanPlay] = useState(false);
+  const [shouldLoadVideos, setShouldLoadVideos] = useState(false);
+  const [currentVideoLoading, setCurrentVideoLoading] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const containerRef = useRef(null);
   const beforeVideoRef = useRef(null);
   const afterVideoRef = useRef(null);
+  const sectionRef = useRef(null);
 
   // Define video categories and paths
   const videoCategories = {
@@ -43,43 +47,112 @@ const VideoComparison = () => {
     ]
   };
 
-  // Fetch videos from Firebase - NO CACHING TO AVOID CORS
+  // Lazy load videos only when section is in view
   useEffect(() => {
-    const getVideoUrls = async () => {
-      try {
-        setVideosLoading(true);
-        const loadedVideos = {};
-        
-        for (const [category, videos] of Object.entries(videoCategories)) {
-          const categoryPromises = videos.map(async (videoSet) => {
-            const beforeVideoRef = ref(storage, videoSet.beforePath);
-            const afterVideoRef = ref(storage, videoSet.afterPath);
-            
-            const [beforeUrl, afterUrl] = await Promise.all([
-              getDownloadURL(beforeVideoRef),
-              getDownloadURL(afterVideoRef)
-            ]);
-            
-            return {
-              ...videoSet,
-              beforeUrl,
-              afterUrl
-            };
-          });
-          
-          loadedVideos[category] = await Promise.all(categoryPromises);
-        }
-        
-        setVideosData(loadedVideos);
-        setVideosLoading(false);
-      } catch (error) {
-        console.error('Error getting video URLs:', error);
-        setVideosLoading(false);
-      }
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !shouldLoadVideos) {
+            console.log('VideoComparison section in view, starting to load videos');
+            setShouldLoadVideos(true);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: '100px' }
+    );
 
-    getVideoUrls();
-  }, []);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [shouldLoadVideos]);
+
+  // Load current video pair with caching
+  const loadVideoUrls = async (category, index) => {
+    const videoSet = videoCategories[category][index];
+    const cacheKey = `video_comparison_${category}_${index}`;
+    const cacheTimeKey = `video_comparison_${category}_${index}_timestamp`;
+    const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+
+    try {
+      setCurrentVideoLoading(true);
+      setVideoError(false);
+      
+      // Check if we have cached URLs that are still valid
+      const cachedData = localStorage.getItem(cacheKey);
+      const cachedTime = localStorage.getItem(cacheTimeKey);
+      const now = Date.now();
+      
+      if (cachedData && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+        console.log(`Loading ${category} video ${index + 1} from cache`);
+        const parsedData = JSON.parse(cachedData);
+        setVideosData(prev => ({
+          ...prev,
+          [category]: {
+            ...prev[category],
+            [index]: parsedData
+          }
+        }));
+        setCurrentVideoLoading(false);
+        return;
+      }
+
+      console.log(`Fetching ${category} video ${index + 1} from Firebase Storage`);
+      
+      // Create timeout promise
+      const timeout = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Video load timeout')), 15000)
+      );
+      
+      const beforeVideoRef = ref(storage, videoSet.beforePath);
+      const afterVideoRef = ref(storage, videoSet.afterPath);
+      
+      const videoPromises = Promise.all([
+        getDownloadURL(beforeVideoRef),
+        getDownloadURL(afterVideoRef)
+      ]);
+
+      const [beforeUrl, afterUrl] = await Promise.race([videoPromises, timeout]);
+      
+      const videoData = {
+        ...videoSet,
+        beforeUrl,
+        afterUrl
+      };
+      
+      // Cache the URLs and timestamp
+      localStorage.setItem(cacheKey, JSON.stringify(videoData));
+      localStorage.setItem(cacheTimeKey, now.toString());
+      
+      setVideosData(prev => ({
+        ...prev,
+        [category]: {
+          ...prev[category],
+          [index]: videoData
+        }
+      }));
+      
+      setCurrentVideoLoading(false);
+      console.log(`${category} video ${index + 1} loaded and cached successfully`);
+      
+    } catch (error) {
+      console.error(`Error loading ${category} video ${index + 1}:`, error);
+      setCurrentVideoLoading(false);
+      setVideoError(true);
+      
+      // Clear any invalid cached data
+      localStorage.removeItem(cacheKey);
+      localStorage.removeItem(cacheTimeKey);
+    }
+  };
+
+  // Load current video when shouldLoadVideos becomes true or when video changes
+  useEffect(() => {
+    if (shouldLoadVideos) {
+      loadVideoUrls(currentCategory, currentVideoIndex);
+    }
+  }, [shouldLoadVideos, currentCategory, currentVideoIndex]);
 
   // Reset video states when changing category or video
   useEffect(() => {
@@ -107,10 +180,12 @@ const VideoComparison = () => {
 
   // Video ready handlers
   const handleBeforeVideoCanPlay = () => {
+    console.log('Before video ready');
     setVideosReady(prev => ({ ...prev, before: true }));
   };
 
   const handleAfterVideoCanPlay = () => {
+    console.log('After video ready');
     setVideosReady(prev => ({ ...prev, after: true }));
   };
 
@@ -163,6 +238,7 @@ const VideoComparison = () => {
   const handleVideoError = (videoType) => {
     console.error(`${videoType} video failed to load`);
     setVideosReady(prev => ({ ...prev, [videoType]: false }));
+    setVideoError(true);
   };
 
   // Handle mouse events for slider
@@ -328,7 +404,7 @@ const VideoComparison = () => {
   const currentVideo = videosData[currentCategory] && videosData[currentCategory][currentVideoIndex];
 
   return (
-    <section style={{ padding: '80px 0', background: '#f8f9fa' }}>
+    <section ref={sectionRef} style={{ padding: '80px 0', background: '#f8f9fa' }}>
       <div className="container"> 
         <div className="row">
           <div className="col-12">
@@ -345,7 +421,20 @@ const VideoComparison = () => {
 
         <div className="row justify-content-center">
           <div className={window.innerWidth <= 768 ? "col-lg-10" : "col-lg-12"}>
-            {videosLoading ? (
+            {!shouldLoadVideos ? (
+              <div style={{
+                ...containerStyle,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'linear-gradient(135deg, #f0f0f0, #e0e0e0)'
+              }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
+                  <div style={{ fontSize: '18px', color: '#666' }}>Scroll down to load videos</div>
+                </div>
+              </div>
+            ) : currentVideoLoading && !currentVideo ? (
               <div style={{
                 ...containerStyle,
                 display: 'flex',
@@ -353,7 +442,48 @@ const VideoComparison = () => {
                 justifyContent: 'center',
                 background: '#000'
               }}>
-                <div style={{ color: '#fff', fontSize: '24px' }}>Loading videos...</div>
+                <div style={{ textAlign: 'center', color: '#fff' }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    border: '3px solid #6B7A47',
+                    borderTop: '3px solid transparent',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite',
+                    margin: '0 auto 20px'
+                  }} />
+                  <div style={{ fontSize: '18px' }}>Loading {currentCategory} Video {currentVideoIndex + 1}...</div>
+                  <div style={{ fontSize: '14px', opacity: 0.7, marginTop: '5px' }}>
+                    {localStorage.getItem(`video_comparison_${currentCategory}_${currentVideoIndex}`) ? 'Loading from cache...' : 'Fetching from server...'}
+                  </div>
+                </div>
+              </div>
+            ) : videoError ? (
+              <div style={{
+                ...containerStyle,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'linear-gradient(135deg, #f0f0f0, #e0e0e0)'
+              }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>⚠️</div>
+                  <div style={{ fontSize: '18px', color: '#666' }}>Failed to load videos</div>
+                  <button 
+                    onClick={() => loadVideoUrls(currentCategory, currentVideoIndex)}
+                    style={{
+                      marginTop: '10px',
+                      padding: '8px 16px',
+                      background: '#6B7A47',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '5px',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Retry
+                  </button>
+                </div>
               </div>
             ) : currentVideo ? (
               <>
@@ -366,7 +496,7 @@ const VideoComparison = () => {
                     alignItems: 'center',
                     minWidth: '60px'
                   }}>
-                    {videosData.COLORING && videosData.COLORING.map((_, index) => (
+                    {videoCategories.COLORING.map((_, index) => (
                       <div
                         key={`coloring-${index}`}
                         style={currentCategory === 'COLORING' && currentVideoIndex === index ? activeNumberTabStyle : numberTabStyle}
@@ -433,8 +563,10 @@ const VideoComparison = () => {
                       muted
                       loop
                       playsInline
-                      preload="auto"
+                      preload="metadata"
                       onCanPlay={handleAfterVideoCanPlay}
+                      onLoadStart={() => console.log('After video loading started')}
+                      onCanPlayThrough={() => console.log('After video can play through')}
                       onError={() => handleVideoError('after')}
                       key={`after-${currentCategory}-${currentVideoIndex}`}
                     >
@@ -448,11 +580,13 @@ const VideoComparison = () => {
                       muted
                       loop
                       playsInline
-                      preload="auto"
+                      preload="metadata"
                       onCanPlay={handleBeforeVideoCanPlay}
                       onPlay={handleBeforeVideoPlay}
                       onPause={handleBeforeVideoPause}
                       onTimeUpdate={handleBeforeVideoTimeUpdate}
+                      onLoadStart={() => console.log('Before video loading started')}
+                      onCanPlayThrough={() => console.log('Before video can play through')}
                       onError={() => handleVideoError('before')}
                       key={`before-${currentCategory}-${currentVideoIndex}`}
                     >
@@ -489,7 +623,7 @@ const VideoComparison = () => {
                     alignItems: 'center',
                     minWidth: '60px'
                   }}>
-                    {videosData.VFX && videosData.VFX.map((_, index) => (
+                    {videoCategories.VFX.map((_, index) => (
                       <div
                         key={`vfx-${index}`}
                         style={currentCategory === 'VFX' && currentVideoIndex === index ? activeNumberTabStyle : numberTabStyle}
@@ -524,6 +658,13 @@ const VideoComparison = () => {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </section>
   );
 };
