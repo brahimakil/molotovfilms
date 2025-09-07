@@ -13,36 +13,68 @@ const Testimonials = ({ addClass }) => {
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
 
-  // Load video immediately on mount (exactly like ChoseTwo - NO LAZY LOADING)
+  // Check cache immediately on mount
   useEffect(() => {
+    const cacheKey = 'testimonials_video_url';
+    const cacheTimeKey = 'testimonials_video_timestamp';
+    const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+    
+    const cachedUrl = localStorage.getItem(cacheKey);
+    const cachedTime = localStorage.getItem(cacheTimeKey);
+    const now = Date.now();
+    
+    if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+      console.log('Testimonials video loaded instantly from cache');
+      setVideoUrl(cachedUrl);
+      setVideoLoaded(true);
+    }
+  }, []);
+
+  // Intersection observer for uncached videos
+  useEffect(() => {
+    // If video is already loaded from cache, don't set up observer
+    if (videoLoaded) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !shouldLoadVideo && !videoLoaded) {
+            console.log('Testimonials section in view, loading video');
+            setShouldLoadVideo(true);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: '100px' }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [videoLoaded, shouldLoadVideo]);
+
+  // Load video only if not cached and section is in view
+  useEffect(() => {
+    if (!shouldLoadVideo || videoLoaded) return;
+
     const loadVideo = async () => {
       const cacheKey = 'testimonials_video_url';
       const cacheTimeKey = 'testimonials_video_timestamp';
       const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
       
       try {
-        // Check if we have a cached URL that's still valid
-        const cachedUrl = localStorage.getItem(cacheKey);
-        const cachedTime = localStorage.getItem(cacheTimeKey);
-        const now = Date.now();
-        
-        if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
-          console.log('Loading Testimonials video from cache');
-          setVideoUrl(cachedUrl);
-          setVideoLoaded(true);
-          return;
-        }
-        
         console.log('Fetching Testimonials video from Firebase Storage');
         const videoRef = ref(storage, 'servicesvideos/Avant Premier.mp4');
         const url = await getDownloadURL(videoRef);
         
         // Cache the URL and timestamp
         localStorage.setItem(cacheKey, url);
-        localStorage.setItem(cacheTimeKey, now.toString());
+        localStorage.setItem(cacheTimeKey, Date.now().toString());
         
         setVideoUrl(url);
         setVideoLoaded(true);
@@ -60,7 +92,7 @@ const Testimonials = ({ addClass }) => {
     };
 
     loadVideo();
-  }, []);
+  }, [shouldLoadVideo, videoLoaded]);
 
   const settings = {
     slidesToShow: 1,
@@ -146,6 +178,36 @@ End-to-end production + strategic thinking. A team that treats every frame like 
                   <div style={{ fontSize: '2rem', marginBottom: '10px' }}>⚠️</div>
                   <div>Video unavailable</div>
                 </div>
+              ) : shouldLoadVideo || localStorage.getItem('testimonials_video_url') ? (
+                <div 
+                  className="testimonails_thumb"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    borderRadius: '15px',
+                    color: 'white',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    height: '1000px',
+                    maxHeight: '1000px',
+                    flexDirection: 'column',
+                    gap: '10px'
+                  }}
+                >
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    border: '3px solid #ffffff',
+                    borderTop: '3px solid transparent',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite'
+                  }} />
+                  <div style={{ fontSize: '14px', opacity: 0.9 }}>
+                    Loading video...
+                  </div>
+                </div>
               ) : (
                 <div 
                   className="testimonails_thumb"
@@ -164,14 +226,8 @@ End-to-end production + strategic thinking. A team that treats every frame like 
                     gap: '10px'
                   }}
                 >
-                  <div style={{
-                    width: '40px',
-                    height: '40px',
-                    border: '3px solid #6B7A47',
-                    borderTop: '3px solid transparent',
-                    borderRadius: '50%',
-                    animation: 'spin 1s linear infinite'
-                  }} />
+                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
+                  <div>Video loads when in view</div>
                 </div>
               )}
               

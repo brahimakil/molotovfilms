@@ -10,29 +10,39 @@ const ServicesPage = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoRef = useRef(null);
   const heroRef = useRef(null);
 
-  // Load video immediately on mount (exactly like ChoseTwo - NO LAZY LOADING)
+  // Check cache immediately on mount
   useEffect(() => {
+    const cacheKey = 'services_hero_video_url';
+    const cacheTimeKey = 'services_hero_video_timestamp';
+    const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+    
+    const cachedUrl = localStorage.getItem(cacheKey);
+    const cachedTime = localStorage.getItem(cacheTimeKey);
+    const now = Date.now();
+    
+    if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+      console.log('Services hero video loaded instantly from cache');
+      setVideoUrl(cachedUrl);
+      setVideoLoaded(true);
+    } else {
+      // Hero section is always in view, so load immediately if not cached
+      setShouldLoadVideo(true);
+    }
+  }, []);
+
+  // Load video only if not cached
+  useEffect(() => {
+    if (!shouldLoadVideo || videoLoaded) return;
+
     const loadVideo = async () => {
       const cacheKey = 'services_hero_video_url';
       const cacheTimeKey = 'services_hero_video_timestamp';
-      const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
       
       try {
-        // Check if we have a cached URL that's still valid
-        const cachedUrl = localStorage.getItem(cacheKey);
-        const cachedTime = localStorage.getItem(cacheTimeKey);
-        const now = Date.now();
-        
-        if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
-          console.log('Loading Services hero video from cache');
-          setVideoUrl(cachedUrl);
-          setVideoLoaded(true);
-          return;
-        }
-        
         console.log('Fetching Services hero video from Firebase Storage');
         
         // Try to get optimized version first, fallback to original
@@ -45,7 +55,7 @@ const ServicesPage = () => {
           
           // Cache the URL and timestamp
           localStorage.setItem(cacheKey, url);
-          localStorage.setItem(cacheTimeKey, now.toString());
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
           
           setVideoUrl(url);
           setVideoLoaded(true);
@@ -57,7 +67,7 @@ const ServicesPage = () => {
           
           // Cache the fallback URL and timestamp
           localStorage.setItem(cacheKey, fallbackUrl);
-          localStorage.setItem(cacheTimeKey, now.toString());
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
           
           setVideoUrl(fallbackUrl);
           setVideoLoaded(true);
@@ -76,7 +86,7 @@ const ServicesPage = () => {
     };
 
     loadVideo();
-  }, []);
+  }, [shouldLoadVideo, videoLoaded]);
 
   const heroStyles = {
     videoHeroBanner: {
