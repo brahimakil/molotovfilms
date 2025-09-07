@@ -16,29 +16,44 @@ const AbouUsTwo = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef(null);
 
-  // Counter animation function
-  const animateCount = (start, end, duration, setter, suffix = '') => {
+  // Add missing state at the top
+  const [artisticProgress, setArtisticProgress] = useState(0);
+  const [storytellingProgress, setStorytellingProgress] = useState(0);
+  const [engagementProgress, setEngagementProgress] = useState(0);
+
+  // Add missing animation function
+  const animateCount = (start, end, duration, setter, suffix) => {
     const startTime = Date.now();
-    const endTime = startTime + duration;
-    
-    const updateCount = () => {
-      const now = Date.now();
-      const progress = Math.min((now - startTime) / duration, 1);
-      
-      // Easing function for smooth animation
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      const currentCount = Math.floor(start + (end - start) * easeOutQuart);
-      
-      setter(currentCount + suffix);
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = start + (end - start) * progress;
+      setter(Math.round(current));
       
       if (progress < 1) {
-        requestAnimationFrame(updateCount);
+        requestAnimationFrame(animate);
       }
     };
-    
-    updateCount();
+    animate();
   };
 
+  // Add missing animation function before useEffect
+  const animateProgress = (start, end, duration, setter) => {
+    const startTime = Date.now();
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = start + (end - start) * progress;
+      setter(Math.round(current));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    animate();
+  };
+
+  // Fix the useEffect - remove localStorage
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -46,17 +61,13 @@ const AbouUsTwo = () => {
           if (entry.isIntersecting && !hasAnimated) {
             setHasAnimated(true);
             
-            // Animate Videos count from 0 to 250
-            animateCount(0, 250, 2000, (count) => setVideosCount(count), '+');
-            
-            // Animate Reach count from 0 to 10 (for 10M+)
-            animateCount(0, 10, 2500, (count) => setReachCount(count), 'M+');
+            // Animate counts
+            animateCount(0, 250, 2000, setVideosCount);
+            animateCount(0, 10, 2500, setReachCount);
           }
         });
       },
-      {
-        threshold: 0.3, // Trigger when 30% of the element is visible
-      }
+      { threshold: 0.3 }
     );
 
     if (sectionRef.current) {

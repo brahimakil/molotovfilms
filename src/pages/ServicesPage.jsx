@@ -11,10 +11,19 @@ const ServicesPage = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  
+  // Section loading states
+  const [loadInnerServices, setLoadInnerServices] = useState(false);
+  const [loadTestimonials, setLoadTestimonials] = useState(false);
+  const [loadBlog, setLoadBlog] = useState(false);
+
   const videoRef = useRef(null);
   const heroRef = useRef(null);
+  const innerServicesRef = useRef(null);
+  const testimonialsRef = useRef(null);
+  const blogRef = useRef(null);
 
-  // Check cache immediately on mount
+  // Check cache immediately and load video header first
   useEffect(() => {
     const cacheKey = 'services_hero_video_url';
     const cacheTimeKey = 'services_hero_video_timestamp';
@@ -87,6 +96,71 @@ const ServicesPage = () => {
 
     loadVideo();
   }, [shouldLoadVideo, videoLoaded]);
+
+  // Progressive section loading with IntersectionObserver
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '200px' // Start loading 200px before section is visible
+    };
+
+    const observers = [];
+
+    // InnerServices Observer (loads first after hero)
+    if (innerServicesRef.current) {
+      const innerServicesObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !loadInnerServices) {
+              console.log('Loading InnerServices section');
+              setLoadInnerServices(true);
+            }
+          });
+        },
+        observerOptions
+      );
+      innerServicesObserver.observe(innerServicesRef.current);
+      observers.push(innerServicesObserver);
+    }
+
+    // Testimonials Observer (loads after InnerServices)
+    if (testimonialsRef.current) {
+      const testimonialsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !loadTestimonials && loadInnerServices) {
+              console.log('Loading Testimonials section');
+              setLoadTestimonials(true);
+            }
+          });
+        },
+        observerOptions
+      );
+      testimonialsObserver.observe(testimonialsRef.current);
+      observers.push(testimonialsObserver);
+    }
+
+    // Blog Observer (loads last)
+    if (blogRef.current) {
+      const blogObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !loadBlog && loadTestimonials) {
+              console.log('Loading Blog section');
+              setLoadBlog(true);
+            }
+          });
+        },
+        observerOptions
+      );
+      blogObserver.observe(blogRef.current);
+      observers.push(blogObserver);
+    }
+
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+    };
+  }, [loadInnerServices, loadTestimonials, loadBlog]);
 
   const heroStyles = {
     videoHeroBanner: {
@@ -209,9 +283,36 @@ const ServicesPage = () => {
     heroStyles.heroContent.maxWidth = '95%';
   }
 
+  // Section placeholder component
+  const SectionPlaceholder = ({ height = '400px', message = 'Loading section...' }) => (
+    <div style={{
+      height,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'linear-gradient(135deg, #f8f9fa, #e9ecef)',
+      color: '#666',
+      fontSize: '16px',
+      fontWeight: '500'
+    }}>
+      <div style={{ textAlign: 'center' }}>
+        <div style={{
+          width: '30px',
+          height: '30px',
+          border: '3px solid #6B7A47',
+          borderTop: '3px solid transparent',
+          borderRadius: '50%',
+          animation: 'spin 1s linear infinite',
+          margin: '0 auto 15px'
+        }} />
+        {message}
+      </div>
+    </div>
+  );
+
   return (
     <div style={{ margin: 0, padding: 0, minHeight: '100vh' }}>
-      {/* Optimized Video Hero Banner */}
+      {/* Hero Video Section - Loads First */}
       <section ref={heroRef} style={heroStyles.videoHeroBanner}>
         <div style={heroStyles.videoContainer}>
           {videoLoaded && videoUrl ? (
@@ -285,9 +386,32 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      <InnerServices />
-      <Testimonials addClass="inner_testimonails" />
-      <Blog />
+      {/* InnerServices Section - Loads Second */}
+      <div ref={innerServicesRef}>
+        {loadInnerServices ? (
+          <InnerServices />
+        ) : (
+          <SectionPlaceholder height="600px" message="Loading Services section..." />
+        )}
+      </div>
+
+      {/* Testimonials Section - Loads Third */}
+      <div ref={testimonialsRef}>
+        {loadTestimonials ? (
+          <Testimonials addClass="inner_testimonails" />
+        ) : (
+          <SectionPlaceholder height="500px" message="Loading Testimonials section..." />
+        )}
+      </div>
+
+      {/* Blog Section - Loads Last */}
+      <div ref={blogRef}>
+        {loadBlog ? (
+          <Blog />
+        ) : (
+          <SectionPlaceholder height="400px" message="Loading Blog section..." />
+        )}
+      </div>
 
       <style jsx>{`
         @keyframes spin {

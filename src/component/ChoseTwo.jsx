@@ -32,6 +32,22 @@ const ChoseTwo = ({ addClass }) => {
   
   const sectionRef = useRef(null);
 
+  // Add missing animation function before useEffect
+  const animateProgress = (start, end, duration, setter) => {
+    const startTime = Date.now();
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = start + (end - start) * progress;
+      setter(Math.round(current));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    animate();
+  };
+
   // Load main video from Firebase with caching
   useEffect(() => {
     const loadVideo = async () => {
@@ -124,29 +140,7 @@ const ChoseTwo = ({ addClass }) => {
     loadStoryBoardVideo();
   }, []);
 
-  // Progress animation function
-  const animateProgress = (start, end, duration, setter) => {
-    const startTime = Date.now();
-    const endTime = startTime + duration;
-    
-    const updateProgress = () => {
-      const now = Date.now();
-      const progress = Math.min((now - startTime) / duration, 1);
-      
-      // Easing function for smooth animation
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      const currentProgress = start + (end - start) * easeOutQuart;
-      
-      setter(currentProgress);
-      
-      if (progress < 1) {
-        requestAnimationFrame(updateProgress);
-      }
-    };
-    
-    updateProgress();
-  };
-
+  // Fix the useEffect - remove localStorage, keep it simple
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -161,9 +155,7 @@ const ChoseTwo = ({ addClass }) => {
           }
         });
       },
-      {
-        threshold: 0.3, // Trigger when 30% of the element is visible
-      }
+      { threshold: 0.3 }
     );
 
     if (sectionRef.current) {
