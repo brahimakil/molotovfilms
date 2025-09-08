@@ -120,7 +120,7 @@ const Testimonials = ({ addClass }) => {
 
   const testimonial = {
     text: `Production that performs.
-End-to-end production + strategic thinking. A team that treats every frame like a promise — to audiences and to you.`,
+End-to-end production + strategic thinking. A team that treats every frame like a promise — to audiences and to you.\n\nMeet the team — filmmakers, producers and storytellers turning bold ideas into world-class work.`,
     name: "Martin Jonas",
     role: "Head of marketing, Inter inc.",
   };
@@ -130,15 +130,15 @@ End-to-end production + strategic thinking. A team that treats every frame like 
       <div className="container">
         <div className="row align-items-center">
           <div className="col-xxl-6">
-            <div className="testimonails_thumb_main">
+          <div className="testimonails_thumb_main" style={{ maxWidth: '450px', margin: '0 auto' }}>
               {videoLoaded && videoUrl ? (
                 <video
                   ref={videoRef}
                   className="testimonails_thumb"
                   style={{
                     width: '100%',
-                    height: '1000px',
-                    maxHeight: '1000px',
+                    height: '600px', // Reduced from 1000px
+                    maxHeight: '600px', // Reduced from 1000px
                     objectFit: 'cover',
                     borderRadius: '15px'
                   }}
@@ -169,8 +169,8 @@ End-to-end production + strategic thinking. A team that treats every frame like 
                     borderRadius: '15px',
                     color: '#666',
                     fontSize: '16px',
-                    height: '1000px',
-                    maxHeight: '1000px',
+                    height: '600px', // Reduced from 1000px
+                    maxHeight: '600px', // Reduced from 1000px
                     flexDirection: 'column',
                     gap: '10px'
                   }}
@@ -190,8 +190,8 @@ End-to-end production + strategic thinking. A team that treats every frame like 
                     color: 'white',
                     fontSize: '16px',
                     fontWeight: 'bold',
-                    height: '1000px',
-                    maxHeight: '1000px',
+                    height: '600px', // Reduced from 1000px
+                    maxHeight: '600px', // Reduced from 1000px
                     flexDirection: 'column',
                     gap: '10px'
                   }}
@@ -220,8 +220,8 @@ End-to-end production + strategic thinking. A team that treats every frame like 
                     color: '#666',
                     fontSize: '16px',
                     fontWeight: 'bold',
-                    height: '1000px',
-                    maxHeight: '1000px',
+                    height: '600px', // Reduced from 1000px
+                    maxHeight: '600px', // Reduced from 1000px
                     flexDirection: 'column',
                     gap: '10px'
                   }}
@@ -255,7 +255,6 @@ End-to-end production + strategic thinking. A team that treats every frame like 
               Confident & <span>results-driven</span>
               </h2>
             </div>
-
             <Slider {...settings} className="testimonails_slick">
               {Array(5)
                 .fill(testimonial)
@@ -264,7 +263,11 @@ End-to-end production + strategic thinking. A team that treats every frame like 
                     <span className="icon">
                       <img src={icon} alt="icon" />
                     </span>
-                    <h4 className="text_4xl">{item.text}</h4>
+                    <div className="text_4xl">
+                      <p>Production that performs.
+End-to-end production + strategic thinking. A team that treats every frame like a promise — to audiences and to you.</p>
+                      <p>Meet the team — filmmakers, producers and storytellers turning bold ideas into world-class work.</p>
+                    </div>
                     <div className="testimonails_slick_prof_item">
                       <img
                         src={profileImg}

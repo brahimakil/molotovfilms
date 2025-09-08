@@ -15,9 +15,7 @@ const InnerServices = () => {
           <div className="col-xxl-6 offset-xxl-1">
             <div className="services_txt">
               <p className="text_lg">
-                This list encompasses a broad range of services that can help
-                businesses manage and optimize their IT infrastructure, enhance
-                their security posture, support their digital transformation.
+              We craft films and media that move audiences from compact social reels to feature-length documentaries. Production, cinematography, editing and distribution strategy tailored to your story.
               </p>
             </div>
           </div>
