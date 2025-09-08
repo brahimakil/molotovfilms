@@ -26,21 +26,16 @@ const ServiceDetailsPage = () => {
             <div className="col-xxl-8 col-lg-7">
               <div className="service_details_head">
                 <h2 className="text_5xl">
-                  Digital Transformation with Artificial Intelligent
-                </h2>
+                POP. CUT. ROLL. REPEAT.
+                Big ideas. Brighter execution. Films that shout.</h2>
               </div>
               <div className="service_details_thumb">
                 <img src={mainImage} alt="Digital Transformation" />
               </div>
               <div className="service_details_txt">
                 <p className="text_lg">
-                  Seamlessly negotiate multifunctional solutions after
-                  high-payoff internal or "organic" sources. Phosfluorescently
-                  incentivize customized web services via superior services.
-                  Synergistically empower progressive imperatives with wireless
-                  metrics. Monotonectally formulate high-payoff meta-services
-                  through business innovation. Compellingly empower dynamic
-                  initiatives through enterprise deliverables.
+                We’re a production studio that paints in light and sound  militant about craft, reckless about boring.
+
                 </p>
               </div>
 
@@ -60,15 +55,11 @@ const ServiceDetailsPage = () => {
                           fill="url(#paint0_linear_2489_22109)"
                         />
                         <path
-                          d="M10.7393 14.738C9.8326 14.738 9.08594 15.4847 9.08594 16.4091V30.1514C9.08594 31.058 9.8326 31.8047 10.7393 31.8047C11.6637 31.8047 12.4104 31.058 12.4104 30.1514V16.4091C12.4104 15.4847 11.6637 14.738 10.7393 14.738Z"
+                          d="M8.5 12C7.67157 12 7 12.6716 7 13.5V26.5C7 27.3284 7.67157 28 8.5 28H31.5C32.3284 28 33 27.3284 33 26.5V13.5C33 12.6716 32.3284 12 31.5 12H8.5ZM12 16H28V18H12V16ZM12 20H24V22H12V20ZM12 24H20V26H12V24Z"
                           fill="white"
                         />
                         <path
-                          d="M20.0713 8.17798C19.1646 8.17798 18.418 8.92465 18.418 9.84909V30.1513C18.418 31.058 19.1646 31.8046 20.0713 31.8046C20.9957 31.8046 21.7424 31.058 21.7424 30.1513V9.84909C21.7424 8.92465 20.9957 8.17798 20.0713 8.17798Z"
-                          fill="white"
-                        />
-                        <path
-                          d="M29.2805 21.9912C28.356 21.9912 27.6094 22.7379 27.6094 23.6623V30.1512C27.6094 31.0579 28.356 31.8045 29.2627 31.8045C30.1872 31.8045 30.9338 31.0579 30.9338 30.1512V23.6623C30.9338 22.7379 30.1872 21.9912 29.2805 21.9912Z"
+                          d="M28 8C29.1046 8 30 8.89543 30 10C30 11.1046 29.1046 12 28 12C26.8954 12 26 11.1046 26 10C26 8.89543 26.8954 8 28 8Z"
                           fill="white"
                         />
                         <defs>
@@ -87,8 +78,7 @@ const ServiceDetailsPage = () => {
                       </svg>
                     </span>
                     <Link to="#" className="text_xl">
-                      {" "}
-                      C++ Coding{" "}
+                      Pre-Production
                     </Link>
                   </div>
                 </div>
@@ -103,17 +93,20 @@ const ServiceDetailsPage = () => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M18.3265 30.1924C8.4425 30.1924 0 31.7507 0 37.984C0 44.2197 8.38979 45.833 18.3265 45.833C28.2104 45.833 36.6529 44.277 36.6529 38.0413C36.6529 31.8057 28.2654 30.1924 18.3265 30.1924Z"
-                          fill="url(#paint0_linear_2489_22120)"
+                          d="M29.3265 30.1924H7.99318C1.18425 30.1924 0 31.7507 0 37.984C0 44.2197 1.38979 45.833 7.99318 45.833H29.3265C35.9299 45.833 37.3197 44.277 37.3197 38.0413C37.3197 31.8057 35.9299 30.1924 29.3265 30.1924Z"
+                          fill="url(#paint0_linear_production)"
                         />
                         <path
-                          opacity="0.4"
-                          d="M18.3267 24.255C25.0596 24.255 30.4542 18.8581 30.4542 12.1275C30.4542 5.39687 25.0596 0 18.3267 0C11.5961 0 6.19922 5.39687 6.19922 12.1275C6.19922 18.8581 11.5961 24.255 18.3267 24.255Z"
-                          fill="url(#paint1_linear_2489_22120)"
+                          d="M8.5 2C5.46243 2 3 4.46243 3 7.5V22.5C3 25.5376 5.46243 28 8.5 28H28.5C31.5376 28 34 25.5376 34 22.5V7.5C34 4.46243 31.5376 2 28.5 2H8.5Z"
+                          fill="url(#paint1_linear_production)"
+                        />
+                        <path
+                          d="M12 8L26 15L12 22V8Z"
+                          fill="white"
                         />
                         <defs>
                           <linearGradient
-                            id="paint0_linear_2489_22120"
+                            id="paint0_linear_production"
                             x1="1.0398"
                             y1="43.4268"
                             x2="38.5348"
@@ -124,7 +117,7 @@ const ServiceDetailsPage = () => {
                             <stop offset="1" stopColor="#7D51ED" />
                           </linearGradient>
                           <linearGradient
-                            id="paint1_linear_2489_22120"
+                            id="paint1_linear_production"
                             x1="6.8873"
                             y1="20.5235"
                             x2="33.1563"
@@ -138,8 +131,7 @@ const ServiceDetailsPage = () => {
                       </svg>
                     </span>
                     <Link to="#" className="text_xl">
-                      {" "}
-                      AI Technology{" "}
+                      Production
                     </Link>
                   </div>
                 </div>
@@ -154,17 +146,24 @@ const ServiceDetailsPage = () => {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          opacity="0.4"
-                          d="M25.5 0C30.7741 0 35.7746 1.82982 40.1283 5.21745C44.482 8.57789 48.1888 13.5011 50.8507 19.6582C51.0498 20.1255 51.0498 20.672 50.8507 21.1171C45.5268 33.4313 36.0483 40.8 25.5 40.8H25.4751C14.9517 40.8 5.47317 33.4313 0.149268 21.1171C-0.0497561 20.672 -0.0497561 20.1255 0.149268 19.6582C5.47317 7.34153 14.9517 0 25.4751 0H25.5ZM25.5 10.5091C20.002 10.5091 15.5488 14.9353 15.5488 20.4C15.5488 25.84 20.002 30.2662 25.5 30.2662C30.9732 30.2662 35.4263 25.84 35.4263 20.4C35.4263 14.9353 30.9732 10.5091 25.5 10.5091Z"
-                          fill="url(#paint0_linear_2489_22130)"
+                          d="M2 2C0.895431 2 0 2.89543 0 4V37C0 38.1046 0.895431 39 2 39H49C50.1046 39 51 38.1046 51 37V4C51 2.89543 50.1046 2 49 2H2Z"
+                          fill="url(#paint0_linear_postproduction)"
                         />
                         <path
-                          d="M31.6993 20.392C31.6993 23.7797 28.913 26.5491 25.5047 26.5491C22.0715 26.5491 19.2852 23.7797 19.2852 20.392C19.2852 19.9717 19.3349 19.5785 19.4095 19.1829H19.5339C22.2954 19.1829 24.5344 17.0069 24.6339 14.2844C24.9076 14.2374 25.2061 14.2102 25.5047 14.2102C28.913 14.2102 31.6993 16.9797 31.6993 20.392Z"
-                          fill="url(#paint1_linear_2489_22130)"
+                          d="M6 8H45V33H6V8Z"
+                          fill="white"
+                        />
+                        <path
+                          d="M8 10H43V12H8V10ZM8 14H39V16H8V14ZM8 18H35V20H8V18ZM8 22H31V24H8V22ZM8 26H27V28H8V26ZM8 30H23V32H8V30Z"
+                          fill="url(#paint1_linear_postproduction)"
+                        />
+                        <path
+                          d="M45 10C46.1046 10 47 10.8954 47 12C47 13.1046 46.1046 14 45 14C43.8954 14 43 13.1046 43 12C43 10.8954 43.8954 10 45 10Z"
+                          fill="white"
                         />
                         <defs>
                           <linearGradient
-                            id="paint0_linear_2489_22130"
+                            id="paint0_linear_postproduction"
                             x1="1.44681"
                             y1="34.5231"
                             x2="56.2784"
@@ -175,7 +174,7 @@ const ServiceDetailsPage = () => {
                             <stop offset="1" stopColor="#7D51ED" />
                           </linearGradient>
                           <linearGradient
-                            id="paint1_linear_2489_22130"
+                            id="paint1_linear_postproduction"
                             x1="19.6373"
                             y1="24.6508"
                             x2="33.0801"
@@ -189,8 +188,7 @@ const ServiceDetailsPage = () => {
                       </svg>
                     </span>
                     <Link to="#" className="text_xl">
-                      {" "}
-                      Auto Algorithm{" "}
+                      Post-Production
                     </Link>
                   </div>
                 </div>
@@ -198,11 +196,7 @@ const ServiceDetailsPage = () => {
 
               <div className="service_details_txt">
                 <p className="text_lg">
-                  Assertively synergize emerging e-business through dynamic
-                  expertise. Objectively pursue vertical e-markets rather than
-                  multifunctional e-markets. Intrinsicly seize enterprise-wide
-                  growth strategies rather than 24/365 deliverables.
-                  Conveniently integrate revolutionary internal.
+                Imagine a comic-strip panel where every frame is a film poster. That’s our approach: theatrical boldness, cinematic discipline. We take projects from scribbles on a napkin to festival-ready masters — with scriptsmiths, scouts, crews and mixers who love the weird work as much as the clean one.
                 </p>
               </div>
 
@@ -546,20 +540,58 @@ const ServiceDetailsPage = () => {
                 <h3>Categories</h3>
                 <ul>
                   <li className="text_2xl">
-                    Digital Service <span className="text_lg">(12)</span>
+                  (Concept & Development)
                   </li>
                   <li className="text_2xl">
-                    IT Service<span className="text_lg">(20)</span>
+                  The Sketchboard (Pre-prep & Story)
+                  
                   </li>
                   <li className="text_2xl">
-                    SEO Marketing <span className="text_lg">(65)</span>
+                  Cast & Characters (Casting + Talent)
+                  
                   </li>
                   <li className="text_2xl">
-                    Digital Service <span className="text_lg">(65)</span>
+                  The Location Hunt (Scouting & Permits)
+                  
                   </li>
                   <li className="text_2xl">
-                    Digital Service <span className="text_lg">(65)</span>
+                  Lights Out (Cinematography & Lighting)
+                  
                   </li>
+                  <li className="text_2xl">
+                  Boom & Breath (Production Sound)
+                    
+                  </li>
+                  <li className="text_2xl">
+                  Set Candy (Production Design & Wardrobe)
+                  
+                  </li>
+                  <li className="text_2xl">
+                  Shoot Day (Full Production Services)
+                  
+                  </li>
+                  <li className="text_2xl">
+                  Cut & Rhythm (Editing & Offline)
+                  
+                  </li>
+                  <li className="text_2xl">
+                  Colour Punch (Grading & Finish)
+                  
+                  </li>
+                  <li className="text_2xl">
+                  Spark FX (VFX & Motion Graphics)
+                     
+                  </li>
+                  <li className="text_2xl">
+                  Ear Candy (Sound Design & Score)
+                 
+                  </li>  <li className="text_2xl">
+                  Rollout Riot (Marketing & Release)
+                 
+                  </li>  <li className="text_2xl">
+                  Festival Kit (DCPs, Deliverables & Distribution)
+                  </li>  
+
                 </ul>
               </div>
 

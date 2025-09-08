@@ -368,11 +368,10 @@ const ServicesPage = () => {
           {/* Hero Content */}
           <div style={heroStyles.heroContent}>
             <h1 style={heroStyles.heroTitle}>
-              Our <span style={{color: '#6B8E23'}}>Services</span> & Expertise
+              All <span style={{color: '#6B8E23'}}>Media.</span> All <span style={{color: '#6B8E23'}}> Stories.</span> One <span style={{color: '#6B8E23'}}> Production </span> House.
             </h1>
             <p style={heroStyles.heroSubtitle}>
-              Comprehensive video production services from concept to delivery. 
-              We bring your vision to life with professional quality and creative excellence.
+            We create it all — films, videos, and everything media. A film house built to turn vision into unforgettable stories.
             </p>
             <div style={heroStyles.heroButtons}>
               <a 

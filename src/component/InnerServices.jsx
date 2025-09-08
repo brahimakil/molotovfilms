@@ -8,15 +8,14 @@ const InnerServices = () => {
         <div className="row">
           <div className="col-lg-12 col-xxl-5">
             <h2 className="main_titel">
-              Services We Provide with <span>Get Benefited.</span>
+            Crafted for Every Screen
             </h2>
           </div>
 
           <div className="col-xxl-6 offset-xxl-1">
             <div className="services_txt">
               <p className="text_lg">
-              We craft films and media that move audiences from compact social reels to feature-length documentaries. Production, cinematography, editing and distribution strategy tailored to your story.
-              </p>
+              We build work that cuts through the noise , snackable social content, cinematic shorts, and full-length documentaries. End-to-end production, expert cinematography, precision editing and distribution plans engineered to grow your audience and impact.              </p>
             </div>
           </div>
         </div>
