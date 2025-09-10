@@ -34,7 +34,7 @@ const ServiceDetailsPage = () => {
               </div>
               <div className="service_details_txt">
                 <p className="text_lg">
-                We’re a production studio that paints in light and sound  militant about craft, reckless about boring.
+                We’re a production home that paints in light and sound  militant about craft, reckless about boring.
 
                 </p>
               </div>
@@ -203,7 +203,7 @@ const ServiceDetailsPage = () => {
               <div className="row">
                 <div className="col-lg-6">
                   <div className="our_goal_item">
-                    <h2>Our Goal</h2>
+                    <h2>🎯 Our Goal — Molotov Films</h2>
                     <ul>
                       <li>
                         <span>
@@ -235,7 +235,7 @@ const ServiceDetailsPage = () => {
                             </defs>
                           </svg>
                         </span>
-                        Various analysis options.
+                        Blow up mediocrity with films, reels, and shorts that ignite.
                       </li>
                       <li>
                         <span>
@@ -267,8 +267,8 @@ const ServiceDetailsPage = () => {
                             </defs>
                           </svg>
                         </span>
-                        Page Load (time, number of requests).
-                      </li>
+                        Craft cinema that refuses to be scrolled past.
+                        </li>
                       <li>
                         <span>
                           <svg
@@ -299,8 +299,8 @@ const ServiceDetailsPage = () => {
                             </defs>
                           </svg>
                         </span>
-                        Big data analysis.
-                      </li>
+                        Turn ideas into weapons — precise, bold, unforgettable.
+                        </li>
                       <li>
                         <span>
                           <svg
@@ -331,8 +331,8 @@ const ServiceDetailsPage = () => {
                             </defs>
                           </svg>
                         </span>
-                        Lorem analysis somthing
-                      </li>
+                        Stay raw, stay cinematic, stay dangerous.
+                        </li>
                     </ul>
                   </div>
                 </div>
@@ -341,9 +341,11 @@ const ServiceDetailsPage = () => {
                   <div className="our_goal_item">
                     <h2>The Challange</h2>
                     <p>
-                      Evernote Web offers a complete lineup of features from any
-                      major Maecena quis interdum, orci at euis dapibus, mass
-                      ante pharetra tellus done
+                    The industry runs on safe bets, empty trends, and fast churn.
+Our challenge is to resist the bland, to carve beauty out of chaos, and to make every frame hit harder than the last.
+We don’t adapt to platforms , we bend them.
+We don’t follow timelines , we weaponize them.
+At Molotov, every project is a strike , calculated, explosive, and built to leave a mark.
                     </p>
                   </div>
                 </div>
@@ -359,7 +361,7 @@ const ServiceDetailsPage = () => {
                     </div>
 
                     <div className="ratio_item_inner">
-                      <h2 className="text_xl">86%</h2>
+                      <h2 className="text_xl">91%</h2>
                       <span className="circel">
                         <svg
                           width="114"
@@ -401,7 +403,7 @@ const ServiceDetailsPage = () => {
                       <Link to="#"> Details </Link>
                     </div>
                     <div className="ratio_item_inner">
-                      <h2 className="text_xl">44%</h2>
+                      <h2 className="text_xl">9%</h2>
                       <span className="circel two">
                         <svg
                           width="57"
@@ -459,11 +461,9 @@ const ServiceDetailsPage = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="s_text_main">
-                    <h2>Easy Process for Service</h2>
+                    <h2>🎬 Easy Process, Big Impact</h2>
                     <p className="text_lg">
-                      One touch of a red-hot stove is usually all we need to
-                      avoid that kind of discomfort in quis elit future. The
-                      same Duis aute irure dolor in reprehenderit .
+                    We keep it sharp, fast, and cinematic. No endless meetings, no empty talk — just fire on screen.
                     </p>
                     <ul>
                       <li>
@@ -483,47 +483,57 @@ const ServiceDetailsPage = () => {
                             />
                           </svg>
                         </span>
-                        Find the problem first
-                      </li>
-                      <li>
-                        <span>
-                          <svg
-                            width="16"
-                            height="13"
-                            viewBox="0 0 16 13"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M1 6.37099L5.57333 11.467L14.72 1.66699"
-                              stroke="#111827"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                            />
-                          </svg>
+                        🔍 Find the Spark
+                        </li>
+                        <span style={{ marginLeft: '40px', display: 'block', fontSize: '16px', color: '#666', marginBottom: '15px' }}>
+                        Every story has a pulse. We dig until we catch it — the problem, the vibe, the hook.
                         </span>
-                        Make research and find out the solution
-                      </li>
-                      <li>
-                        <span>
-                          <svg
-                            width="16"
-                            height="13"
-                            viewBox="0 0 16 13"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M1 6.37099L5.57333 11.467L14.72 1.66699"
-                              stroke="#111827"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                            />
-                          </svg>
+
+                        <li>
+                          <span>
+                            <svg
+                              width="16"
+                              height="13"
+                              viewBox="0 0 16 13"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1 6.37099L5.57333 11.467L14.72 1.66699"
+                                stroke="#111827"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            </svg>
+                          </span>
+                          🧠 Shape the Vision
+                        </li>
+                        <span style={{ marginLeft: '40px', display: 'block', fontSize: '16px', color: '#666', marginBottom: '15px' }}>
+                        Research, remix, and sharpen. Pop culture, history, street noise — it all feeds the frame.
                         </span>
-                        Finalise the solution & apply.
-                      </li>
-                    </ul>
+
+                        <li>
+                          <span>
+                            <svg
+                              width="16"
+                              height="13"
+                              viewBox="0 0 16 13"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1 6.37099L5.57333 11.467L14.72 1.66699"
+                                stroke="#111827"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            </svg>
+                          </span>
+                          🎥 Light the Fuse
+                          </li>
+                        <span style={{ marginLeft: '40px', display: 'block', fontSize: '16px', color: '#666', marginBottom: '15px' }}>
+                        Plan it, shoot it, cut it. Fast when needed, timeless when it counts.                        </span>
+                      </ul>
                     <p className="text_lg">
                       One touch of a red-hot stove is usually all we need to
                       avoid that kind of discomfort in quis future. The same
@@ -537,61 +547,50 @@ const ServiceDetailsPage = () => {
 
             <div className="col-xxl-4 col-lg-5 res_mt">
               <div className="card_item">
-                <h3>Categories</h3>
+                <h3>🎨 Categories</h3>
                 <ul>
                   <li className="text_2xl">
-                  (Concept & Development)
+                    Idea Spark → Concept & Development
                   </li>
                   <li className="text_2xl">
-                  The Sketchboard (Pre-prep & Story)
-                  
+                    Story Sketch → Pre-prep & Story
                   </li>
                   <li className="text_2xl">
-                  Cast & Characters (Casting + Talent)
-                  
+                    Faces & Voices → Casting & Talent
                   </li>
                   <li className="text_2xl">
-                  The Location Hunt (Scouting & Permits)
-                  
+                    Scene Hunt → Locations & Permits
                   </li>
                   <li className="text_2xl">
-                  Lights Out (Cinematography & Lighting)
-                  
+                    Frame & Flame → Cinematography & Lighting
                   </li>
                   <li className="text_2xl">
-                  Boom & Breath (Production Sound)
-                    
+                    Sound Check → Production Audio
                   </li>
                   <li className="text_2xl">
-                  Set Candy (Production Design & Wardrobe)
-                  
+                    Style & Skin → Design & Wardrobe
                   </li>
                   <li className="text_2xl">
-                  Shoot Day (Full Production Services)
-                  
+                    Action Day → Full Production
                   </li>
                   <li className="text_2xl">
-                  Cut & Rhythm (Editing & Offline)
-                  
+                    Cut & Flow → Editing
                   </li>
                   <li className="text_2xl">
-                  Colour Punch (Grading & Finish)
-                  
+                    Color Pop → Grading & Finish
                   </li>
                   <li className="text_2xl">
-                  Spark FX (VFX & Motion Graphics)
-                     
+                    Motion Magic → VFX & Graphics
                   </li>
                   <li className="text_2xl">
-                  Ear Candy (Sound Design & Score)
-                 
-                  </li>  <li className="text_2xl">
-                  Rollout Riot (Marketing & Release)
-                 
-                  </li>  <li className="text_2xl">
-                  Festival Kit (DCPs, Deliverables & Distribution)
-                  </li>  
-
+                    Sound Rush → Design & Score
+                  </li>
+                  <li className="text_2xl">
+                    Hype Drop → Marketing & Release
+                  </li>
+                  <li className="text_2xl">
+                    Fest Pack → DCPs & Distribution
+                  </li>
                 </ul>
               </div>
 
