@@ -26,15 +26,25 @@ const ServiceDetailsPage = () => {
             <div className="col-xxl-8 col-lg-7">
               <div className="service_details_head">
                 <h2 className="text_5xl">
-                POP. CUT. ROLL. REPEAT.
-                Big ideas. Brighter execution. Films that shout.</h2>
+                  <span style={{
+                    background: 'linear-gradient(232.42deg, #6427FF 1.36%, #7D51ED 99.95%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    fontWeight: '700'
+                  }}>
+                    POP. CUT. ROLL. REPEAT.
+                  </span>
+                  <br />
+                  Big ideas. Brighter execution. Films that shout.
+                </h2>
               </div>
               <div className="service_details_thumb">
                 <img src={mainImage} alt="Digital Transformation" />
               </div>
               <div className="service_details_txt">
                 <p className="text_lg">
-                We’re a production home that paints in light and sound  militant about craft, reckless about boring.
+                We’re a production house that paints in light and sound  militant about craft, reckless about boring.
 
                 </p>
               </div>
@@ -203,7 +213,7 @@ const ServiceDetailsPage = () => {
               <div className="row">
                 <div className="col-lg-6">
                   <div className="our_goal_item">
-                    <h2>🎯 Our Goal — Molotov Films</h2>
+                    <h2>Our Goal </h2>
                     <ul>
                       <li>
                         <span>
@@ -339,7 +349,7 @@ const ServiceDetailsPage = () => {
 
                 <div className="col-lg-6">
                   <div className="our_goal_item">
-                    <h2>The Challange</h2>
+                    <h2>The Challenge</h2>
                     <p>
                     The industry runs on safe bets, empty trends, and fast churn.
 Our challenge is to resist the bland, to carve beauty out of chaos, and to make every frame hit harder than the last.
@@ -547,7 +557,16 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
 
             <div className="col-xxl-4 col-lg-5 res_mt">
               <div className="card_item">
-                <h3>🎨 Categories</h3>
+                <h3 style={{
+                  background: 'linear-gradient(232.42deg, #6427FF 1.36%, #7D51ED 99.95%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  fontStyle: 'oblique 15deg',
+                  fontWeight: '600'
+                }}>
+                  The Pitch Package
+                </h3>
                 <ul>
                   <li className="text_2xl">
                     Idea Spark → Concept & Development
