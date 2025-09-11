@@ -1486,46 +1486,46 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                 </h3>
                 <ul>
                   <li className="text_2xl">
-                    Idea Spark → Concept & Development
+                    Idea Spark <span style={{ color: '#daa520' }}>→ Concept & Development</span>
                   </li>
                   <li className="text_2xl">
-                    Story Sketch → Pre-prep & Story
+                    Story Sketch <span style={{ color: '#daa520' }}>→ Pre-prep & Story</span>
                   </li>
                   <li className="text_2xl">
-                    Faces & Voices → Casting & Talent
+                    Faces & Voices <span style={{ color: '#daa520' }}>→ Casting & Talent</span>
                   </li>
                   <li className="text_2xl">
-                    Scene Hunt → Locations & Permits
+                    Scene Hunt <span style={{ color: '#daa520' }}>→ Locations & Permits</span>
                   </li>
                   <li className="text_2xl">
-                    Frame & Flame → Cinematography & Lighting
+                    Frame & Flame <span style={{ color: '#daa520' }}>→ Cinematography & Lighting</span>
                   </li>
                   <li className="text_2xl">
-                    Sound Check → Production Audio
+                    Sound Check <span style={{ color: '#daa520' }}>→ Production Audio</span>
                   </li>
                   <li className="text_2xl">
-                    Style & Skin → Design & Wardrobe
+                    Style & Skin <span style={{ color: '#daa520' }}>→ Design & Wardrobe</span>
                   </li>
                   <li className="text_2xl">
-                    Action Day → Full Production
+                    Action Day <span style={{ color: '#daa520' }}>→ Full Production</span>
                   </li>
                   <li className="text_2xl">
-                    Cut & Flow → Editing
+                    Cut & Flow <span style={{ color: '#daa520' }}>→ Editing</span>
                   </li>
                   <li className="text_2xl">
-                    Color Pop → Grading & Finish
+                    Color Pop <span style={{ color: '#daa520' }}>→ Grading & Finish</span>
                   </li>
                   <li className="text_2xl">
-                    Motion Magic → VFX & Graphics
+                    Motion Magic <span style={{ color: '#daa520' }}>→ VFX & Graphics</span>
                   </li>
                   <li className="text_2xl">
-                    Sound Rush → Design & Score
+                    Sound Rush <span style={{ color: '#daa520' }}>→ Design & Score</span>
                   </li>
                   <li className="text_2xl">
-                    Hype Drop → Marketing & Release
+                    Hype Drop <span style={{ color: '#daa520' }}>→ Marketing & Release</span>
                   </li>
                   <li className="text_2xl">
-                    Fest Pack → DCPs & Distribution
+                    Fest Pack <span style={{ color: '#daa520' }}>→ DCPs & Distribution</span>
                   </li>
                 </ul>
               </div>
