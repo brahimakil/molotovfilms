@@ -605,7 +605,7 @@ const ServiceDetailsPage = () => {
               <div className="service_details_head">
                 <h2 className="text_5xl">
                   <span style={{
-                    background: 'linear-gradient(232.42deg,hsl(60, 100.00%, 57.60%) 1.36%, #7D51ED 99.95%)',
+                    background: 'linear-gradient(232.42deg, #556b2f 1.36%, #6b8e23 99.95%)', // Changed to oily green
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -724,8 +724,8 @@ const ServiceDetailsPage = () => {
                             y2="28.8605"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop stopColor="#6427FF" />
-                            <stop offset="1" stopColor="#7D51ED" />
+                            <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                            <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                           </linearGradient>
                         </defs>
                       </svg>
@@ -766,8 +766,8 @@ const ServiceDetailsPage = () => {
                             y2="33.3146"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop stopColor="#6427FF" />
-                            <stop offset="1" stopColor="#7D51ED" />
+                            <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                            <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                           </linearGradient>
                           <linearGradient
                             id="paint1_linear_production"
@@ -777,8 +777,8 @@ const ServiceDetailsPage = () => {
                             y2="17.5003"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop stopColor="#6427FF" />
-                            <stop offset="1" stopColor="#7D51ED" />
+                            <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                            <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                           </linearGradient>
                         </defs>
                       </svg>
@@ -823,8 +823,8 @@ const ServiceDetailsPage = () => {
                             y2="26.6352"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop stopColor="#6427FF" />
-                            <stop offset="1" stopColor="#7D51ED" />
+                            <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                            <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                           </linearGradient>
                           <linearGradient
                             id="paint1_linear_postproduction"
@@ -834,8 +834,8 @@ const ServiceDetailsPage = () => {
                             y2="23.0943"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop stopColor="#6427FF" />
-                            <stop offset="1" stopColor="#7D51ED" />
+                            <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                            <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                           </linearGradient>
                         </defs>
                       </svg>
@@ -882,8 +882,8 @@ const ServiceDetailsPage = () => {
                                 y2="6.88363"
                                 gradientUnits="userSpaceOnUse"
                               >
-                                <stop stopColor="#6427FF" />
-                                <stop offset="1" stopColor="#7D51ED" />
+                                <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                                <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                               </linearGradient>
                             </defs>
                           </svg>
@@ -901,21 +901,21 @@ const ServiceDetailsPage = () => {
                           >
                             <path
                               d="M1 6.76923L5.8 10.2308L13 1"
-                              stroke="url(#paint0_linear_2489_22259)"
+                              stroke="url(#paint0_linear_2489_22259_2)"
                               strokeWidth="2"
                               strokeLinecap="round"
                             />
                             <defs>
                               <linearGradient
-                                id="paint0_linear_2489_22259"
+                                id="paint0_linear_2489_22259_2"
                                 x1="1.34043"
                                 y1="8.81065"
                                 x2="14.2207"
                                 y2="6.88363"
                                 gradientUnits="userSpaceOnUse"
                               >
-                                <stop stopColor="#6427FF" />
-                                <stop offset="1" stopColor="#7D51ED" />
+                                <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                                <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                               </linearGradient>
                             </defs>
                           </svg>
@@ -933,21 +933,21 @@ const ServiceDetailsPage = () => {
                           >
                             <path
                               d="M1 6.76923L5.8 10.2308L13 1"
-                              stroke="url(#paint0_linear_2489_22259)"
+                              stroke="url(#paint0_linear_2489_22259_3)"
                               strokeWidth="2"
                               strokeLinecap="round"
                             />
                             <defs>
                               <linearGradient
-                                id="paint0_linear_2489_22259"
+                                id="paint0_linear_2489_22259_3"
                                 x1="1.34043"
                                 y1="8.81065"
                                 x2="14.2207"
                                 y2="6.88363"
                                 gradientUnits="userSpaceOnUse"
                               >
-                                <stop stopColor="#6427FF" />
-                                <stop offset="1" stopColor="#7D51ED" />
+                                <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                                <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                               </linearGradient>
                             </defs>
                           </svg>
@@ -965,21 +965,21 @@ const ServiceDetailsPage = () => {
                           >
                             <path
                               d="M1 6.76923L5.8 10.2308L13 1"
-                              stroke="url(#paint0_linear_2489_22259)"
+                              stroke="url(#paint0_linear_2489_22259_4)"
                               strokeWidth="2"
                               strokeLinecap="round"
                             />
                             <defs>
                               <linearGradient
-                                id="paint0_linear_2489_22259"
+                                id="paint0_linear_2489_22259_4"
                                 x1="1.34043"
                                 y1="8.81065"
                                 x2="14.2207"
                                 y2="6.88363"
                                 gradientUnits="userSpaceOnUse"
                               >
-                                <stop stopColor="#6427FF" />
-                                <stop offset="1" stopColor="#7D51ED" />
+                                <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                                <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                               </linearGradient>
                             </defs>
                           </svg>
@@ -1038,8 +1038,8 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                               y2="80.9234"
                               gradientUnits="userSpaceOnUse"
                             >
-                              <stop stopColor="#6427FF" />
-                              <stop offset="1" stopColor="#7D51ED" />
+                              <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                              <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                             </linearGradient>
                           </defs>
                         </svg>
@@ -1332,7 +1332,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                             />
                           </svg>
                         </span>
-                        🔍 Find the Spark
+                         Find the Spark
                         </li>
                         <span style={{ marginLeft: '40px', display: 'block', fontSize: '16px', color: '#666', marginBottom: '15px' }}>
                         Every story has a pulse. We dig until we catch it — the problem, the vibe, the hook.
@@ -1342,20 +1342,44 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                           <span>
                             <svg
                               width="16"
-                              height="13"
-                              viewBox="0 0 16 13"
+                              height="16"
+                              viewBox="0 0 16 16"
                               fill="none"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M1 6.37099L5.57333 11.467L14.72 1.66699"
-                                stroke="#111827"
-                                strokeWidth="2"
-                                strokeLinecap="round"
+                                d="M8 1L10.5 6H15L11.5 9.5L13 15L8 12L3 15L4.5 9.5L1 6H5.5L8 1Z"
+                                fill="url(#paint0_linear_vision)"
+                                stroke="url(#paint1_linear_vision)"
+                                strokeWidth="0.5"
                               />
+                              <defs>
+                                <linearGradient
+                                  id="paint0_linear_vision"
+                                  x1="1"
+                                  y1="8"
+                                  x2="15"
+                                  y2="8"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                                  <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
+                                </linearGradient>
+                                <linearGradient
+                                  id="paint1_linear_vision"
+                                  x1="1"
+                                  y1="8"
+                                  x2="15"
+                                  y2="8"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                                  <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
+                                </linearGradient>
+                              </defs>
                             </svg>
                           </span>
-                          🧠 Shape the Vision
+                           Shape the Vision
                         </li>
                         <span style={{ marginLeft: '40px', display: 'block', fontSize: '16px', color: '#666', marginBottom: '15px' }}>
                         Research, remix, and sharpen. Pop culture, history, street noise — it all feeds the frame.
@@ -1365,20 +1389,74 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                           <span>
                             <svg
                               width="16"
-                              height="13"
-                              viewBox="0 0 16 13"
+                              height="16"
+                              viewBox="0 0 16 16"
                               fill="none"
                               xmlns="http://www.w3.org/2000/svg"
                             >
+                              <circle cx="8" cy="8" r="6" fill="none" stroke="url(#paint0_linear_fuse)" strokeWidth="1.5"/>
                               <path
-                                d="M1 6.37099L5.57333 11.467L14.72 1.66699"
-                                stroke="#111827"
-                                strokeWidth="2"
+                                d="M8 4V8L11 11"
+                                stroke="url(#paint1_linear_fuse)"
+                                strokeWidth="1.5"
                                 strokeLinecap="round"
                               />
+                              <circle cx="8" cy="8" r="1" fill="url(#paint2_linear_fuse)"/>
+                              <path
+                                d="M8 2L7 1M8 2L9 1M14 8L15 7M14 8L15 9M8 14L9 15M8 14L7 15M2 8L1 9M2 8L1 7"
+                                stroke="url(#paint3_linear_fuse)"
+                                strokeWidth="1"
+                                strokeLinecap="round"
+                              />
+                              <defs>
+                                <linearGradient
+                                  id="paint0_linear_fuse"
+                                  x1="2"
+                                  y1="8"
+                                  x2="14"
+                                  y2="8"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                                  <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
+                                </linearGradient>
+                                <linearGradient
+                                  id="paint1_linear_fuse"
+                                  x1="8"
+                                  y1="4"
+                                  x2="11"
+                                  y2="11"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                                  <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
+                                </linearGradient>
+                                <linearGradient
+                                  id="paint2_linear_fuse"
+                                  x1="7"
+                                  y1="8"
+                                  x2="9"
+                                  y2="8"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                                  <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
+                                </linearGradient>
+                                <linearGradient
+                                  id="paint3_linear_fuse"
+                                  x1="1"
+                                  y1="8"
+                                  x2="15"
+                                  y2="8"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop stopColor="#556b2f" /> {/* Changed from #6427FF */}
+                                  <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
+                                </linearGradient>
+                              </defs>
                             </svg>
                           </span>
-                          🎥 Light the Fuse
+                         Light the Fuse
                           </li>
                         <span style={{ marginLeft: '40px', display: 'block', fontSize: '16px', color: '#666', marginBottom: '15px' }}>
                         Plan it, shoot it, cut it. Fast when needed, timeless when it counts.                        </span>
@@ -1397,7 +1475,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
             <div className="col-xxl-4 col-lg-5 res_mt">
               <div className="card_item">
                 <h3 style={{
-                  background: 'linear-gradient(232.42deg, #6427FF 1.36%, #7D51ED 99.95%)',
+                  background: 'linear-gradient(232.42deg, #556b2f 1.36%, #6b8e23 99.95%)', // Changed to oily green
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',

@@ -30,6 +30,7 @@ function App() {
         <Route path="/" element={<HomeOneLayout />}> 
           <Route index element={<AboutPage />} />
           <Route path="services" element={<ServicesPage />} />
+          <Route path="services-detais" element={<ServiceDetailsPage />} />
         </Route> 
 
       
@@ -42,7 +43,6 @@ function App() {
           <Route path="contuct-us" element={<ContactUsPage />} />
           <Route path="faq" element={<FAQPage />} />
           <Route path="pricing" element={<PricingPage />} />
-          <Route path="services-detais" element={<ServiceDetailsPage />} />
           <Route path="single-member" element={<SingleMemberPage />} />
           <Route path="team" element={<TeamMemberPage />} />
           <Route path="testimonial" element={<TestimonialPage />} />
