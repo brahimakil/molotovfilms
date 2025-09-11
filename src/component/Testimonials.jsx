@@ -118,12 +118,18 @@ const Testimonials = ({ addClass }) => {
     ],
   };
 
-  const testimonial = {
-    text: `Production that performs.
-End-to-end production + strategic thinking. A team that treats every frame like a promise — to audiences and to you.\n\nMeet the team — filmmakers, producers and storytellers turning bold ideas into world-class work.`,
-    name: "Martin Jonas",
-    role: "Head of marketing, Inter inc.",
-  };
+  const testimonials = [
+    {
+      text: `I walk at the edge where vision becomes form — carrying a spark through shadow and noise until it breathes as light, sound, and movement. My task is to guard the fragile essence of a story, shaping it with patience and fire, guiding every gesture toward a single pulse. Each work becomes more than a film: it is a dream distilled, an echo that lingers long after the screen goes dark.`,
+      name: "Elio Zeaiter",
+      role: "Producer",
+    },
+    {
+      text: `I carry the voice of our work into the world. My role is to shape how projects are seen, remembered, and desired — building strategies that connect vision to audience with clarity and force. I study markets, craft campaigns, oversee branding, and design the pathways that bring our films from set to screen to conversation. Every poster, release, and message is a frame in the larger story: ensuring our company is not just seen, but recognized and remembered.`,
+      name: "Sara",
+      role: "Marketing Manager",
+    }
+  ];
 
   return (
     <section ref={sectionRef} className={`testimonails ${addClass || ""}`}>
@@ -256,33 +262,55 @@ End-to-end production + strategic thinking. A team that treats every frame like 
               </h2>
             </div>
             <Slider {...settings} className="testimonails_slick">
-              {Array(5)
-                .fill(testimonial)
-                .map((item, i) => (
-                  <div key={i} className="testimonails_slick_item">
-                    <span className="icon">
-                      <img src={icon} alt="icon" />
-                    </span>
-                    <div className="text_4xl">
-                      <p>Production that performs.
-End-to-end production + strategic thinking. A team that treats every frame like a promise — to audiences and to you.</p>
-                      <p>Meet the team — filmmakers, producers and storytellers turning bold ideas into world-class work.</p>
-                    </div>
-                    <div className="testimonails_slick_prof_item">
-                      <img
-                        src={profileImg}
-                        alt="profile"
-                        className="testimonails_slick_prof_thumb"
+              {testimonials.map((item, i) => (
+                <div key={i} className="testimonails_slick_item">
+                  <span className="testimonails_slick_item_icon">
+                    <svg
+                      width="60"
+                      height="45"
+                      viewBox="0 0 60 45"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0 45V27.1875C0 12.1875 10.5 0 25.5 0V7.875C17.625 7.875 11.25 14.0625 11.25 21.9375V22.5H25.5V45H0ZM34.5 45V27.1875C34.5 12.1875 45 0 60 0V7.875C52.125 7.875 45.75 14.0625 45.75 21.9375V22.5H60V45H34.5Z"
+                        fill="url(#paint0_linear_2489_21992)"
                       />
-                      <div className="testimonails_slick_prof_txt">
-                        <a href="#" className="text_2xl">
-                          {item.name}
-                        </a>
-                        <p className="text_lg">{item.role}</p>
-                      </div>
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_2489_21992"
+                          x1="1.70213"
+                          y1="38.1818"
+                          x2="66.3191"
+                          y2="30.9545"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stopColor="#6427FF" />
+                          <stop offset="1" stopColor="#7D51ED" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </span>
+                  <div className="text_4xl">
+                    <p className="text_lg">
+                      {item.text}
+                    </p>
+                  </div>
+                  <div className="testimonails_slick_prof_item">
+                    <img
+                      src={profileImg}
+                      alt="profile"
+                      className="testimonails_slick_prof_thumb"
+                    />
+                    <div className="testimonails_slick_prof_txt">
+                      <a href="#" className="text_2xl">
+                        {item.name}
+                      </a>
+                      <p className="text_lg">{item.role}</p>
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
             </Slider>
           </div>
         </div>
