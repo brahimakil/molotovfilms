@@ -416,8 +416,8 @@ const ServiceDetailsPage = () => {
   const heroStyles = {
     videoHeroBanner: {
       position: 'relative',
-      height: '100vh',
-      minHeight: '100vh',
+      height: '60vh', // Changed back from 100vh to 60vh
+      minHeight: '400px', // Changed back from 100vh to 400px
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
@@ -444,7 +444,7 @@ const ServiceDetailsPage = () => {
       left: 0,
       width: '100%',
       height: '100%',
-      background: 'rgba(0, 0, 0, 0.5)',
+      background: 'rgba(0, 0, 0, 0.6)', // Slightly darker overlay for smaller section
       zIndex: 2
     },
     heroContent: {
@@ -457,18 +457,18 @@ const ServiceDetailsPage = () => {
       textAlign: 'center',
       padding: '0 20px',
       width: '100%',
-      maxWidth: '800px'
+      maxWidth: '700px' // Slightly smaller max width
     },
     heroTitle: {
-      fontSize: '3.5rem',
+      fontSize: '2.8rem', // Reduced from 3.5rem
       fontWeight: 700,
-      marginBottom: '1rem',
+      marginBottom: '0.8rem', // Reduced margin
       textShadow: '3px 3px 6px rgba(0, 0, 0, 0.7)',
       lineHeight: '1.2'
     },
     heroSubtitle: {
-      fontSize: '1.25rem',
-      marginBottom: '2rem',
+      fontSize: '1.1rem', // Reduced from 1.25rem
+      marginBottom: '1.5rem', // Reduced margin
       opacity: 0.95,
       textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)'
     },
@@ -478,7 +478,7 @@ const ServiceDetailsPage = () => {
       alignItems: 'center',
       gap: '10px',
       marginTop: '1rem',
-      fontSize: '1.1rem',
+      fontSize: '1rem', // Slightly smaller
       textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)'
     },
     breadcrumbLink: {
@@ -605,7 +605,7 @@ const ServiceDetailsPage = () => {
               <div className="service_details_head">
                 <h2 className="text_5xl">
                   <span style={{
-                    background: 'linear-gradient(232.42deg, #6427FF 1.36%, #7D51ED 99.95%)',
+                    background: 'linear-gradient(232.42deg,hsl(60, 100.00%, 57.60%) 1.36%, #7D51ED 99.95%)',
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
