@@ -1,25 +1,603 @@
-import React from "react";
-import PageHeader from "../component/PageHeader";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { storage } from "../firebase/config";
+import { ref, getDownloadURL } from 'firebase/storage';
 
 // Import images
-import mainImage from "../assets/images/Image.webp";
-import s3Image from "../assets/images/s-3.webp";
-import s2Image from "../assets/images/s-2.webp";
-import s1Image from "../assets/images/s-1.webp";
+// import s3Image from "../assets/images/s-3.webp"; // Remove this line
 
 const ServiceDetailsPage = () => {
+  const [videoUrl, setVideoUrl] = useState('');
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  // Add state for the Low Budget Heist video
+  const [heistVideoUrl, setHeistVideoUrl] = useState('');
+  const [heistVideoLoaded, setHeistVideoLoaded] = useState(false);
+  const [heistVideoError, setHeistVideoError] = useState(false);
+  const [shouldLoadHeistVideo, setShouldLoadHeistVideo] = useState(false);
+
+  // Add state for the Low Budget Heist2 video
+  const [heist2VideoUrl, setHeist2VideoUrl] = useState('');
+  const [heist2VideoLoaded, setHeist2VideoLoaded] = useState(false);
+  const [heist2VideoError, setHeist2VideoError] = useState(false);
+  const [shouldLoadHeist2Video, setShouldLoadHeist2Video] = useState(false);
+
+  // Add state for the main video (replacing mainImage)
+  const [mainVideoUrl, setMainVideoUrl] = useState('');
+  const [mainVideoLoaded, setMainVideoLoaded] = useState(false);
+  const [mainVideoError, setMainVideoError] = useState(false);
+  const [shouldLoadMainVideo, setShouldLoadMainVideo] = useState(false);
+
+  // Add state for the s3 video (replacing s3Image)
+  const [s3VideoUrl, setS3VideoUrl] = useState('');
+  const [s3VideoLoaded, setS3VideoLoaded] = useState(false);
+  const [s3VideoError, setS3VideoError] = useState(false);
+  const [shouldLoadS3Video, setShouldLoadS3Video] = useState(false);
+
+  const videoRef = useRef(null);
+  const heroRef = useRef(null);
+  const heistVideoRef = useRef(null);
+  const heist2VideoRef = useRef(null);
+  const mainVideoRef = useRef(null);
+  const s3VideoRef = useRef(null);
+
+  // Check cache immediately and load video header first
+  useEffect(() => {
+    const cacheKey = 'service_details_hero_video_url';
+    const cacheTimeKey = 'service_details_hero_video_timestamp';
+    const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+    
+    const cachedUrl = localStorage.getItem(cacheKey);
+    const cachedTime = localStorage.getItem(cacheTimeKey);
+    const now = Date.now();
+    
+    if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+      console.log('Service Details hero video loaded instantly from cache');
+      setVideoUrl(cachedUrl);
+      setVideoLoaded(true);
+    } else {
+      // Hero section is always in view, so load immediately if not cached
+      setShouldLoadVideo(true);
+    }
+  }, []);
+
+  // Load video only if not cached
+  useEffect(() => {
+    if (!shouldLoadVideo || videoLoaded) return;
+
+    const loadVideo = async () => {
+      const cacheKey = 'service_details_hero_video_url';
+      const cacheTimeKey = 'service_details_hero_video_timestamp';
+      
+      try {
+        console.log('Fetching Service Details hero video from Firebase Storage');
+        
+        // Try to get optimized version first, fallback to original
+        let videoPath = 'servicedetails(reels..)/reels section-optimized.mp4';
+        
+        const videoRefFirebase = ref(storage, videoPath);
+        
+        try {
+          const url = await getDownloadURL(videoRefFirebase);
+          
+          // Cache the URL and timestamp
+          localStorage.setItem(cacheKey, url);
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
+          
+          setVideoUrl(url);
+          setVideoLoaded(true);
+          console.log('Service Details hero video loaded and cached successfully');
+        } catch (optimizedError) {
+          console.log('Optimized version not found, falling back to original');
+          const fallbackRef = ref(storage, 'servicedetails(reels..)/reels section.mp4');
+          const fallbackUrl = await getDownloadURL(fallbackRef);
+          
+          // Cache the fallback URL and timestamp
+          localStorage.setItem(cacheKey, fallbackUrl);
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
+          
+          setVideoUrl(fallbackUrl);
+          setVideoLoaded(true);
+          console.log('Service Details hero video (fallback) loaded and cached successfully');
+        }
+        
+      } catch (error) {
+        console.error('Error loading Service Details hero video:', error);
+        setVideoError(true);
+        setVideoLoaded(false);
+        
+        // Clear any invalid cached data
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(cacheTimeKey);
+      }
+    };
+
+    loadVideo();
+  }, [shouldLoadVideo, videoLoaded]);
+
+  // Add useEffect for checking heist video cache
+  useEffect(() => {
+    const cacheKey = 'heist_video_url';
+    const cacheTimeKey = 'heist_video_timestamp';
+    const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+    
+    const cachedUrl = localStorage.getItem(cacheKey);
+    const cachedTime = localStorage.getItem(cacheTimeKey);
+    const now = Date.now();
+    
+    if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+      console.log('Heist video loaded instantly from cache');
+      setHeistVideoUrl(cachedUrl);
+      setHeistVideoLoaded(true);
+    } else {
+      // Load when needed
+      setShouldLoadHeistVideo(true);
+    }
+  }, []);
+
+  // Add useEffect for loading heist video
+  useEffect(() => {
+    if (!shouldLoadHeistVideo || heistVideoLoaded) return;
+
+    const loadHeistVideo = async () => {
+      const cacheKey = 'heist_video_url';
+      const cacheTimeKey = 'heist_video_timestamp';
+      
+      try {
+        console.log('Fetching Heist video from Firebase Storage');
+        
+        // Try to get optimized version first, fallback to original
+        let videoPath = 'servicedetails(reels..)/Low Budget Heist website 1-optimized.mp4';
+        
+        const videoRefFirebase = ref(storage, videoPath);
+        
+        try {
+          const url = await getDownloadURL(videoRefFirebase);
+          
+          // Cache the URL and timestamp
+          localStorage.setItem(cacheKey, url);
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
+          
+          setHeistVideoUrl(url);
+          setHeistVideoLoaded(true);
+          console.log('Heist video loaded and cached successfully');
+        } catch (optimizedError) {
+          console.log('Optimized version not found, falling back to original');
+          const fallbackRef = ref(storage, 'servicedetails(reels..)/Low Budget Heist website 1.mp4');
+          const fallbackUrl = await getDownloadURL(fallbackRef);
+          
+          // Cache the fallback URL and timestamp
+          localStorage.setItem(cacheKey, fallbackUrl);
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
+          
+          setHeistVideoUrl(fallbackUrl);
+          setHeistVideoLoaded(true);
+          console.log('Heist video (fallback) loaded and cached successfully');
+        }
+        
+      } catch (error) {
+        console.error('Error loading Heist video:', error);
+        setHeistVideoError(true);
+        setHeistVideoLoaded(false);
+        
+        // Clear any invalid cached data
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(cacheTimeKey);
+      }
+    };
+
+    loadHeistVideo();
+  }, [shouldLoadHeistVideo, heistVideoLoaded]);
+
+  // Add useEffect for checking heist2 video cache
+  useEffect(() => {
+    const cacheKey = 'heist2_video_url';
+    const cacheTimeKey = 'heist2_video_timestamp';
+    const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+    
+    const cachedUrl = localStorage.getItem(cacheKey);
+    const cachedTime = localStorage.getItem(cacheTimeKey);
+    const now = Date.now();
+    
+    if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+      console.log('Heist2 video loaded instantly from cache');
+      setHeist2VideoUrl(cachedUrl);
+      setHeist2VideoLoaded(true);
+    } else {
+      // Load when needed
+      setShouldLoadHeist2Video(true);
+    }
+  }, []);
+
+  // Add useEffect for loading heist2 video
+  useEffect(() => {
+    if (!shouldLoadHeist2Video || heist2VideoLoaded) return;
+
+    const loadHeist2Video = async () => {
+      const cacheKey = 'heist2_video_url';
+      const cacheTimeKey = 'heist2_video_timestamp';
+      
+      try {
+        console.log('Fetching Heist2 video from Firebase Storage');
+        
+        // Try to get optimized version first, fallback to original
+        let videoPath = 'servicedetails(reels..)/Low Budget Heist2-optimized.mp4';
+        
+        const videoRefFirebase = ref(storage, videoPath);
+        
+        try {
+          const url = await getDownloadURL(videoRefFirebase);
+          
+          // Cache the URL and timestamp
+          localStorage.setItem(cacheKey, url);
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
+          
+          setHeist2VideoUrl(url);
+          setHeist2VideoLoaded(true);
+          console.log('Heist2 video loaded and cached successfully');
+        } catch (optimizedError) {
+          console.log('Optimized version not found, falling back to original');
+          const fallbackRef = ref(storage, 'servicedetails(reels..)/Low Budget Heist2.mp4');
+          const fallbackUrl = await getDownloadURL(fallbackRef);
+          
+          // Cache the fallback URL and timestamp
+          localStorage.setItem(cacheKey, fallbackUrl);
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
+          
+          setHeist2VideoUrl(fallbackUrl);
+          setHeist2VideoLoaded(true);
+          console.log('Heist2 video (fallback) loaded and cached successfully');
+        }
+        
+      } catch (error) {
+        console.error('Error loading Heist2 video:', error);
+        setHeist2VideoError(true);
+        setHeist2VideoLoaded(false);
+        
+        // Clear any invalid cached data
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(cacheTimeKey);
+      }
+    };
+
+    loadHeist2Video();
+  }, [shouldLoadHeist2Video, heist2VideoLoaded]);
+
+  // Add useEffect for checking main video cache
+  useEffect(() => {
+    const cacheKey = 'main_video_url';
+    const cacheTimeKey = 'main_video_timestamp';
+    const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+    
+    const cachedUrl = localStorage.getItem(cacheKey);
+    const cachedTime = localStorage.getItem(cacheTimeKey);
+    const now = Date.now();
+    
+    if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+      console.log('Main video loaded instantly from cache');
+      setMainVideoUrl(cachedUrl);
+      setMainVideoLoaded(true);
+    } else {
+      // Load when needed
+      setShouldLoadMainVideo(true);
+    }
+  }, []);
+
+  // Add useEffect for loading main video
+  useEffect(() => {
+    if (!shouldLoadMainVideo || mainVideoLoaded) return;
+
+    const loadMainVideo = async () => {
+      const cacheKey = 'main_video_url';
+      const cacheTimeKey = 'main_video_timestamp';
+      
+      try {
+        console.log('Fetching Main video from Firebase Storage');
+        
+        // Try to get optimized version first, fallback to original
+        let videoPath = 'servicedetails(reels..)/videoinplaceofimage-optimized.mp4';
+        
+        const videoRefFirebase = ref(storage, videoPath);
+        
+        try {
+          const url = await getDownloadURL(videoRefFirebase);
+          
+          // Cache the URL and timestamp
+          localStorage.setItem(cacheKey, url);
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
+          
+          setMainVideoUrl(url);
+          setMainVideoLoaded(true);
+          console.log('Main video loaded and cached successfully');
+        } catch (optimizedError) {
+          console.log('Optimized version not found, falling back to original');
+          const fallbackRef = ref(storage, 'servicedetails(reels..)/videoinplaceofimage.mp4');
+          const fallbackUrl = await getDownloadURL(fallbackRef);
+          
+          // Cache the fallback URL and timestamp
+          localStorage.setItem(cacheKey, fallbackUrl);
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
+          
+          setMainVideoUrl(fallbackUrl);
+          setMainVideoLoaded(true);
+          console.log('Main video (fallback) loaded and cached successfully');
+        }
+        
+      } catch (error) {
+        console.error('Error loading Main video:', error);
+        setMainVideoError(true);
+        setMainVideoLoaded(false);
+        
+        // Clear any invalid cached data
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(cacheTimeKey);
+      }
+    };
+
+    loadMainVideo();
+  }, [shouldLoadMainVideo, mainVideoLoaded]);
+
+  // Add useEffect for checking s3 video cache
+  useEffect(() => {
+    const cacheKey = 's3_video_url';
+    const cacheTimeKey = 's3_video_timestamp';
+    const cacheExpiration = 24 * 60 * 60 * 1000; // 24 hours
+    
+    const cachedUrl = localStorage.getItem(cacheKey);
+    const cachedTime = localStorage.getItem(cacheTimeKey);
+    const now = Date.now();
+    
+    if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
+      console.log('S3 video loaded instantly from cache');
+      setS3VideoUrl(cachedUrl);
+      setS3VideoLoaded(true);
+    } else {
+      // Load when needed
+      setShouldLoadS3Video(true);
+    }
+  }, []);
+
+  // Add useEffect for loading s3 video
+  useEffect(() => {
+    if (!shouldLoadS3Video || s3VideoLoaded) return;
+
+    const loadS3Video = async () => {
+      const cacheKey = 's3_video_url';
+      const cacheTimeKey = 's3_video_timestamp';
+      
+      try {
+        console.log('Fetching S3 video from Firebase Storage');
+        
+        // Try to get optimized version first, fallback to original
+        let videoPath = 'servicedetails(reels..)/low budget heist3-optimized.mp4';
+        
+        const videoRefFirebase = ref(storage, videoPath);
+        
+        try {
+          const url = await getDownloadURL(videoRefFirebase);
+          
+          // Cache the URL and timestamp
+          localStorage.setItem(cacheKey, url);
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
+          
+          setS3VideoUrl(url);
+          setS3VideoLoaded(true);
+          console.log('S3 video loaded and cached successfully');
+        } catch (optimizedError) {
+          console.log('Optimized version not found, falling back to original');
+          const fallbackRef = ref(storage, 'servicedetails(reels..)/low budget heist3.mp4');
+          const fallbackUrl = await getDownloadURL(fallbackRef);
+          
+          // Cache the fallback URL and timestamp
+          localStorage.setItem(cacheKey, fallbackUrl);
+          localStorage.setItem(cacheTimeKey, Date.now().toString());
+          
+          setS3VideoUrl(fallbackUrl);
+          setS3VideoLoaded(true);
+          console.log('S3 video (fallback) loaded and cached successfully');
+        }
+        
+      } catch (error) {
+        console.error('Error loading S3 video:', error);
+        setS3VideoError(true);
+        setS3VideoLoaded(false);
+        
+        // Clear any invalid cached data
+        localStorage.removeItem(cacheKey);
+        localStorage.removeItem(cacheTimeKey);
+      }
+    };
+
+    loadS3Video();
+  }, [shouldLoadS3Video, s3VideoLoaded]);
+
+  const heroStyles = {
+    videoHeroBanner: {
+      position: 'relative',
+      height: '100vh',
+      minHeight: '100vh',
+      overflow: 'hidden',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#000', // Fallback background
+    },
+    videoContainer: {
+      position: 'relative',
+      width: '100%',
+      height: '100%'
+    },
+    heroVideo: {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      zIndex: 1
+    },
+    videoOverlay: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: 'rgba(0, 0, 0, 0.5)',
+      zIndex: 2
+    },
+    heroContent: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 10,
+      color: 'white',
+      textAlign: 'center',
+      padding: '0 20px',
+      width: '100%',
+      maxWidth: '800px'
+    },
+    heroTitle: {
+      fontSize: '3.5rem',
+      fontWeight: 700,
+      marginBottom: '1rem',
+      textShadow: '3px 3px 6px rgba(0, 0, 0, 0.7)',
+      lineHeight: '1.2'
+    },
+    heroSubtitle: {
+      fontSize: '1.25rem',
+      marginBottom: '2rem',
+      opacity: 0.95,
+      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)'
+    },
+    breadcrumb: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: '10px',
+      marginTop: '1rem',
+      fontSize: '1.1rem',
+      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)'
+    },
+    breadcrumbLink: {
+      color: 'rgba(255, 255, 255, 0.8)',
+      textDecoration: 'none',
+      transition: 'color 0.3s ease'
+    },
+    breadcrumbCurrent: {
+      color: '#6B8E23',
+      fontWeight: '600'
+    },
+    loadingPlaceholder: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
+      color: 'white',
+      backgroundColor: '#1a1a1a'
+    },
+    fallbackImage: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
+      backgroundColor: '#2a2a2a',
+      color: 'white'
+    }
+  };
+
   const breadcrumbs = [
     { label: "Home", link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
     { label: "Service Details", link: null },
   ];
+
   return (
     <>
-      <PageHeader
-        title="Service Details"
-        breadcrumbs={breadcrumbs}
-      ></PageHeader>
+      {/* Hero Video Section - Full Height like Home Page */}
+      <section ref={heroRef} style={heroStyles.videoHeroBanner}>
+        <div style={heroStyles.videoContainer}>
+          {videoLoaded && videoUrl ? (
+            <video
+              ref={videoRef}
+              style={heroStyles.heroVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              controls={false}
+              onLoadStart={() => console.log('Service Details video loading started')}
+              onCanPlayThrough={() => console.log('Service Details video can play through')}
+              onError={(e) => {
+                console.error('Service Details video playback error:', e);
+                setVideoError(true);
+              }}
+            >
+              <source src={videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ) : videoError ? (
+            <div style={heroStyles.fallbackImage}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
+                <div>Service Details</div>
+              </div>
+            </div>
+          ) : (
+            <div style={heroStyles.loadingPlaceholder}>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                border: '3px solid #6B7A47',
+                borderTop: '3px solid transparent',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite',
+                margin: '0 auto 20px'
+              }} />
+              <div style={{ fontSize: '18px', marginBottom: '10px' }}>
+                {localStorage.getItem('service_details_hero_video_url') ? 'Loading from cache...' : 'Loading...'}
+              </div>
+              <div style={{ fontSize: '14px', opacity: 0.8 }}>Preparing your experience</div>
+            </div>
+          )}
+          
+          {/* Video Overlay */}
+          <div style={heroStyles.videoOverlay}></div>
+          
+          {/* Hero Content */}
+          <div style={heroStyles.heroContent}>
+            <h1 style={heroStyles.heroTitle}>Service Details</h1>
+            <p style={heroStyles.heroSubtitle}>
+              Discover our comprehensive range of film and video production services
+            </p>
+            <div style={heroStyles.breadcrumb}>
+              {breadcrumbs.map((item, index) => (
+                <span key={index}>
+                  {item.link ? (
+                    <Link 
+                      to={item.link} 
+                      style={heroStyles.breadcrumbLink}
+                      onMouseOver={(e) => e.target.style.color = 'white'}
+                      onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.8)'}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : index === breadcrumbs.length - 1 ? (
+                    <span style={heroStyles.breadcrumbCurrent}>{item.label}</span>
+                  ) : (
+                    <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>{item.label}</span>
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="service_details">
         <div className="container">
           <div className="row">
@@ -40,7 +618,73 @@ const ServiceDetailsPage = () => {
                 </h2>
               </div>
               <div className="service_details_thumb">
-                <img src={mainImage} alt="Digital Transformation" />
+                {/* Replace mainImage with main video */}
+                {mainVideoLoaded && mainVideoUrl ? (
+                  <video
+                    ref={mainVideoRef}
+                    style={{
+                      width: '100%',
+                      height: '450px',
+                      objectFit: 'cover',
+                      borderRadius: '8px'
+                    }}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    controls={false}
+                    onLoadStart={() => console.log('Main video loading started')}
+                    onCanPlayThrough={() => console.log('Main video can play through')}
+                    onError={(e) => {
+                      console.error('Main video playback error:', e);
+                      setMainVideoError(true);
+                    }}
+                  >
+                    <source src={mainVideoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : mainVideoError ? (
+                  <div style={{
+                    width: '100%',
+                    height: '450px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#f0f0f0',
+                    borderRadius: '8px',
+                    color: '#666'
+                  }}>
+                    <div style={{ textAlign: 'center' }}>
+                      <div style={{ fontSize: '3rem', marginBottom: '15px' }}>🎬</div>
+                      <div style={{ fontSize: '18px' }}>Video unavailable</div>
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{
+                    width: '100%',
+                    height: '450px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#f8f8f8',
+                    borderRadius: '8px',
+                    color: '#666'
+                  }}>
+                    <div style={{ textAlign: 'center' }}>
+                      <div style={{
+                        width: '40px',
+                        height: '40px',
+                        border: '3px solid #6B7A47',
+                        borderTop: '3px solid transparent',
+                        borderRadius: '50%',
+                        animation: 'spin 1s linear infinite',
+                        margin: '0 auto 15px'
+                      }} />
+                      <div style={{ fontSize: '16px' }}>Loading video...</div>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="service_details_txt">
                 <p className="text_lg">
@@ -48,7 +692,6 @@ const ServiceDetailsPage = () => {
 
                 </p>
               </div>
-
               <div className="row">
                 <div className="col-lg-4">
                   <div className="service_details_item">
@@ -452,17 +1095,213 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                 <div className="col-lg-6 col-md-6">
                   <div className="s_thumb_main">
                     <div className="s_thumb">
-                      <img src={s3Image} alt="Service thumbnail 3" />
+                      {/* Replace s3Image with s3 video */}
+                      {s3VideoLoaded && s3VideoUrl ? (
+                        <video
+                          ref={s3VideoRef}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            borderRadius: '8px'
+                          }}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                          controls={false}
+                          onLoadStart={() => console.log('S3 video loading started')}
+                          onCanPlayThrough={() => console.log('S3 video can play through')}
+                          onError={(e) => {
+                            console.error('S3 video playback error:', e);
+                            setS3VideoError(true);
+                          }}
+                        >
+                          <source src={s3VideoUrl} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : s3VideoError ? (
+                        <div style={{
+                          width: '100%',
+                          height: '300px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: '#f0f0f0',
+                          borderRadius: '8px',
+                          color: '#666'
+                        }}>
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
+                            <div>Video unavailable</div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div style={{
+                          width: '100%',
+                          height: '300px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: '#f8f8f8',
+                          borderRadius: '8px',
+                          color: '#666'
+                        }}>
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{
+                              width: '30px',
+                              height: '30px',
+                              border: '3px solid #6B7A47',
+                              borderTop: '3px solid transparent',
+                              borderRadius: '50%',
+                              animation: 'spin 1s linear infinite',
+                              margin: '0 auto 10px'
+                            }} />
+                            <div style={{ fontSize: '14px' }}>Loading video...</div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-6">
                   <div className="s_thumb_main">
                     <div className="s-thumb-two">
-                      <img src={s2Image} alt="Service thumbnail 2" />
+                      {heistVideoLoaded && heistVideoUrl ? (
+                        <video
+                          ref={heistVideoRef}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            borderRadius: '8px'
+                          }}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                          controls={false}
+                          onLoadStart={() => console.log('Heist video loading started')}
+                          onCanPlayThrough={() => console.log('Heist video can play through')}
+                          onError={(e) => {
+                            console.error('Heist video playback error:', e);
+                            setHeistVideoError(true);
+                          }}
+                        >
+                          <source src={heistVideoUrl} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : heistVideoError ? (
+                        <div style={{
+                          width: '100%',
+                          height: '200px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: '#f0f0f0',
+                          borderRadius: '8px',
+                          color: '#666'
+                        }}>
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
+                            <div>Video unavailable</div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div style={{
+                          width: '100%',
+                          height: '200px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: '#f8f8f8',
+                          borderRadius: '8px',
+                          color: '#666'
+                        }}>
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{
+                              width: '30px',
+                              height: '30px',
+                              border: '3px solid #6B7A47',
+                              borderTop: '3px solid transparent',
+                              borderRadius: '50%',
+                              animation: 'spin 1s linear infinite',
+                              margin: '0 auto 10px'
+                            }} />
+                            <div style={{ fontSize: '14px' }}>Loading video...</div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                     <div className="s-thumb-two three">
-                      <img src={s1Image} alt="Service thumbnail 1" />
+                      {heist2VideoLoaded && heist2VideoUrl ? (
+                        <video
+                          ref={heist2VideoRef}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            borderRadius: '8px'
+                          }}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                          controls={false}
+                          onLoadStart={() => console.log('Heist2 video loading started')}
+                          onCanPlayThrough={() => console.log('Heist2 video can play through')}
+                          onError={(e) => {
+                            console.error('Heist2 video playback error:', e);
+                            setHeist2VideoError(true);
+                          }}
+                        >
+                          <source src={heist2VideoUrl} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : heist2VideoError ? (
+                        <div style={{
+                          width: '100%',
+                          height: '200px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: '#f0f0f0',
+                          borderRadius: '8px',
+                          color: '#666'
+                        }}>
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
+                            <div>Video unavailable</div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div style={{
+                          width: '100%',
+                          height: '200px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: '#f8f8f8',
+                          borderRadius: '8px',
+                          color: '#666'
+                        }}>
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{
+                              width: '30px',
+                              height: '30px',
+                              border: '3px solid #6B7A47',
+                              borderTop: '3px solid transparent',
+                              borderRadius: '50%',
+                              animation: 'spin 1s linear infinite',
+                              margin: '0 auto 10px'
+                            }} />
+                            <div style={{ fontSize: '14px' }}>Loading video...</div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
