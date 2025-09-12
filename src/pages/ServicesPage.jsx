@@ -165,8 +165,8 @@ const ServicesPage = () => {
   const heroStyles = {
     videoHeroBanner: {
       position: 'relative',
-      height: '100vh',
-      minHeight: '100vh',
+      height: '60vh', // Changed from '100vh' to match ServiceDetailsPage
+      minHeight: '400px', // Changed from '100vh' to match ServiceDetailsPage
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',

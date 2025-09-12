@@ -8,6 +8,7 @@ import thumbPos2 from "../assets/images/hero_two_pos-1.svg";
 import thumbPos3 from "../assets/images/testimonails-card.svg";
 import icon from "../assets/images/testimonails-slick-icon.svg";
 import profileImg from "../assets/images/t-prof-1.svg";
+import elioImg from "../assets/imgoftestimonial/elio.jpg"; // Add Elio's image import
 
 const Testimonials = ({ addClass }) => {
   const [videoUrl, setVideoUrl] = useState('');
@@ -123,11 +124,13 @@ const Testimonials = ({ addClass }) => {
       text: `I walk at the edge where vision becomes form — carrying a spark through shadow and noise until it breathes as light, sound, and movement. My task is to guard the fragile essence of a story, shaping it with patience and fire, guiding every gesture toward a single pulse. Each work becomes more than a film: it is a dream distilled, an echo that lingers long after the screen goes dark.`,
       name: "Elio Zeaiter",
       role: "Producer",
+      profileImage: elioImg // Add profile image for Elio
     },
     {
       text: `I carry the voice of our work into the world. My role is to shape how projects are seen, remembered, and desired — building strategies that connect vision to audience with clarity and force. I study markets, craft campaigns, oversee branding, and design the pathways that bring our films from set to screen to conversation. Every poster, release, and message is a frame in the larger story: ensuring our company is not just seen, but recognized and remembered.`,
       name: "Sara",
       role: "Marketing Manager",
+      profileImage: profileImg // Use existing profile image for Sara
     }
   ];
 
@@ -298,9 +301,13 @@ const Testimonials = ({ addClass }) => {
                   </div>
                   <div className="testimonails_slick_prof_item">
                     <img
-                      src={profileImg}
+                      src={item.profileImage} // Use the specific profile image for each person
                       alt="profile"
                       className="testimonails_slick_prof_thumb"
+                      style={item.name === "Elio Zeaiter" ? {
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      } : {}}
                     />
                     <div className="testimonails_slick_prof_txt">
                       <a href="#" className="text_2xl">
