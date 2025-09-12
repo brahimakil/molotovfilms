@@ -151,7 +151,7 @@ const InnerServices = () => {
                 </p>
 
                 <Link
-                  to="/services-detais"
+                  to="/features-films"
                   className="services_item_btm text_lg"
                 >
                   Read More
@@ -225,7 +225,7 @@ const InnerServices = () => {
                 </p>
 
                 <Link
-                  to="/services-detais"
+                  to="/features-films"
                   className="services_item_btm text_lg"
                 >
                   Read More
@@ -307,7 +307,7 @@ const InnerServices = () => {
                 </p>
 
                 <Link
-                  to="/services-detais"
+                  to="/features-films"
                   className="services_item_btm text_lg"
                 >
                   Read More
@@ -385,7 +385,7 @@ const InnerServices = () => {
                 </p>
 
                 <Link
-                  to="/services-detais"
+                  to="/features-films"
                   className="services_item_btm text_lg"
                 >
                   Read More
@@ -469,7 +469,7 @@ const InnerServices = () => {
                 </p>
 
                 <Link
-                  to="/services-detais"
+                  to="/features-films"
                   className="services_item_btm text_lg"
                 >
                   Read More
