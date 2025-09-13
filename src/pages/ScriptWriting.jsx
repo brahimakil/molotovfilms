@@ -10,34 +10,6 @@ const ScriptWriting = () => {
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const heroRef = useRef(null);
 
-  // Creative process steps
-  const creativeSteps = [
-    {
-      number: "01",
-      title: "Idea Spark",
-      description: "Raw concepts transformed into compelling narratives",
-      icon: "💡"
-    },
-    {
-      number: "02", 
-      title: "Story Architecture",
-      description: "Building the foundation with three-act structure and character arcs",
-      icon: "🏗️"
-    },
-    {
-      number: "03",
-      title: "Script Craft",
-      description: "Dialogue that breathes life into characters and drives emotion",
-      icon: "✍️"
-    },
-    {
-      number: "04",
-      title: "Visual Blueprint",
-      description: "Storyboards that translate words into cinematic vision",
-      icon: "🎬"
-    }
-  ];
-
   // Load video from Firebase
   useEffect(() => {
     const loadVideo = async () => {
@@ -81,10 +53,10 @@ const ScriptWriting = () => {
   const heroStyles = {
     scriptHeroBanner: {
       position: 'relative',
-      height: '70vh',
-      minHeight: '500px',
+      height: '60vh',
+      minHeight: '400px',
       overflow: 'hidden',
-      background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+      background: 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -96,23 +68,20 @@ const ScriptWriting = () => {
       textAlign: 'center',
       padding: '0 20px',
       width: '100%',
-      maxWidth: '900px'
+      maxWidth: '800px'
     },
     heroTitle: {
-      fontSize: '4rem',
+      fontSize: '3.5rem',
       fontWeight: 700,
       marginBottom: '1.5rem',
-      background: 'linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1)',
-      backgroundClip: 'text',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
+      color: 'white',
       lineHeight: '1.2'
     },
     heroSubtitle: {
-      fontSize: '1.4rem',
+      fontSize: '1.3rem',
       marginBottom: '2rem',
       opacity: 0.9,
-      color: '#e0e0e0'
+      color: '#ecf0f1'
     },
     breadcrumb: {
       display: 'flex',
@@ -128,17 +97,8 @@ const ScriptWriting = () => {
       transition: 'color 0.3s ease'
     },
     breadcrumbCurrent: {
-      color: '#4ecdc4',
+      color: '#3498db',
       fontWeight: '600'
-    },
-    decorativeElements: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      pointerEvents: 'none',
-      zIndex: 5
     }
   };
 
@@ -153,48 +113,14 @@ const ScriptWriting = () => {
 
   return (
     <div style={{ margin: 0, padding: 0, minHeight: '100vh' }}>
-      {/* Hero Section with Animated Background */}
+      {/* Hero Section */}
       <section ref={heroRef} style={heroStyles.scriptHeroBanner}>
-        {/* Animated Background Elements */}
-        <div style={heroStyles.decorativeElements}>
-          <div style={{
-            position: 'absolute',
-            top: '20%',
-            left: '10%',
-            width: '2px',
-            height: '100px',
-            background: 'linear-gradient(to bottom, transparent, #ff6b6b, transparent)',
-            opacity: 0.6,
-            animation: 'float 3s ease-in-out infinite'
-          }} />
-          <div style={{
-            position: 'absolute',
-            top: '60%',
-            right: '15%',
-            width: '2px',
-            height: '80px',
-            background: 'linear-gradient(to bottom, transparent, #4ecdc4, transparent)',
-            opacity: 0.6,
-            animation: 'float 4s ease-in-out infinite reverse'
-          }} />
-          <div style={{
-            position: 'absolute',
-            bottom: '30%',
-            left: '20%',
-            width: '1px',
-            height: '60px',
-            background: 'linear-gradient(to bottom, transparent, #45b7d1, transparent)',
-            opacity: 0.4,
-            animation: 'float 5s ease-in-out infinite'
-          }} />
-        </div>
-
         <div style={heroStyles.heroContent}>
           <h1 style={heroStyles.heroTitle}>
-            Script & Concept Creation
+            Professional Scriptwriting
           </h1>
           <p style={heroStyles.heroSubtitle}>
-            Where ideas transform into cinematic reality through the power of words and vision
+            Crafting compelling narratives that bring your vision to life
           </p>
           
           <div style={heroStyles.breadcrumb}>
@@ -214,232 +140,148 @@ const ScriptWriting = () => {
       </section>
 
       {/* Main Content */}
-      <section className="service_details" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+      <section style={{ paddingTop: '80px', paddingBottom: '80px', background: '#f8f9fa' }}>
         <div className="container">
           <div className="row">
-            <div className="col-xxl-8 col-lg-7">
-              <div className="service_details_head">
-                <h2 className="text_5xl" style={{ marginBottom: '30px' }}>
-                  <span style={{
-                    background: 'linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%)',
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    fontWeight: '700'
-                  }}>
-                    WRITE. VISUALIZE. CREATE.
-                  </span>
-                  <br />
-                  Stories that captivate before the camera rolls.
-                </h2>
-              </div>
-
-              {/* Creative Process Steps */}
-              <div style={{ marginBottom: '50px' }}>
-                <h3 style={{ 
-                  fontSize: '2rem', 
-                  marginBottom: '30px',
-                  color: '#333',
-                  fontWeight: '600'
+            {/* Main Content */}
+            <div className="col-lg-8">
+              {/* Intro Section */}
+              <div style={{ 
+                background: 'white',
+                borderRadius: '15px',
+                padding: '40px',
+                marginBottom: '40px',
+                boxShadow: '0 5px 20px rgba(0,0,0,0.1)'
+              }}>
+                <h2 style={{
+                  fontSize: '2.5rem',
+                  marginBottom: '25px',
+                  color: '#2c3e50',
+                  fontWeight: '700'
                 }}>
-                  Our Creative Process
-                </h3>
-                
-                <div className="row g-4">
-                  {creativeSteps.map((step, index) => (
-                    <div key={index} className="col-lg-6">
-                      <div style={{
-                        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
-                        borderRadius: '20px',
-                        padding: '30px',
-                        border: '1px solid rgba(0,0,0,0.1)',
-                        transition: 'all 0.3s ease',
-                        cursor: 'pointer',
-                        position: 'relative',
-                        overflow: 'hidden'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-5px)';
-                        e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = 'none';
-                      }}>
-                        {/* Step Number */}
-                        <div style={{
-                          position: 'absolute',
-                          top: '-10px',
-                          right: '-10px',
-                          width: '60px',
-                          height: '60px',
-                          background: 'linear-gradient(135deg, #ff6b6b, #4ecdc4)',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: 'white',
-                          fontSize: '1.2rem',
-                          fontWeight: 'bold',
-                          opacity: 0.9
-                        }}>
-                          {step.number}
-                        </div>
-                        
-                        <div style={{ fontSize: '2.5rem', marginBottom: '15px' }}>
-                          {step.icon}
-                        </div>
-                        
-                        <h4 style={{ 
-                          fontSize: '1.5rem', 
-                          marginBottom: '15px',
-                          color: '#333',
-                          fontWeight: '600'
-                        }}>
-                          {step.title}
-                        </h4>
-                        
-                        <p style={{ 
-                          color: '#666', 
-                          lineHeight: '1.6',
-                          fontSize: '1rem'
-                        }}>
-                          {step.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Main Description */}
-              <div style={{ marginBottom: '40px' }}>
+                  From Concept to Screen
+                </h2>
                 <p style={{ 
                   fontSize: '1.2rem', 
                   lineHeight: '1.8', 
                   color: '#555',
                   marginBottom: '25px'
                 }}>
-                  A strong video begins with a strong idea. We develop creative concepts, write scripts, and design storyboards that ensure your campaign has clarity, originality, and purpose. Our process helps transform raw ideas into compelling narratives that speak directly to your audience.
+                  Every great film starts with a great script. Our scriptwriting team specializes in creating compelling narratives that capture your audience's attention from the first page to the final scene.
                 </p>
-
                 <p style={{ 
                   fontSize: '1.1rem', 
                   lineHeight: '1.7', 
-                  color: '#666',
-                  marginBottom: '30px'
+                  color: '#666'
                 }}>
-                  Every great film starts with words on a page. Our scriptwriting team crafts dialogue that feels authentic, creates characters that resonate, and builds stories that engage from the first frame to the last. We don't just write scripts—we architect experiences that move audiences and drive results.
+                  We work closely with you to develop characters, plot structures, and dialogue that not only tell your story but create an emotional connection with your viewers.
                 </p>
               </div>
 
-              {/* Services List */}
-              <div style={{ marginBottom: '40px' }}>
-                <h3 style={{ 
-                  fontSize: '2rem', 
-                  marginBottom: '25px',
-                  color: '#333',
-                  fontWeight: '600'
-                }}>
-                  What We Deliver
-                </h3>
-                
-                <div className="row">
-                  <div className="col-lg-6">
-                    <ul style={{ listStyle: 'none', padding: 0 }}>
-                      <li style={{ 
-                        marginBottom: '15px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        fontSize: '1.1rem'
-                      }}>
-                        <span style={{
-                          width: '8px',
-                          height: '8px',
-                          background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
-                          borderRadius: '50%',
-                          marginRight: '15px'
-                        }} />
-                        Original Concept Development
-                      </li>
-                      <li style={{ 
-                        marginBottom: '15px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        fontSize: '1.1rem'
-                      }}>
-                        <span style={{
-                          width: '8px',
-                          height: '8px',
-                          background: 'linear-gradient(45deg, #4ecdc4, #45b7d1)',
-                          borderRadius: '50%',
-                          marginRight: '15px'
-                        }} />
-                        Professional Scriptwriting
-                      </li>
-                      <li style={{ 
-                        marginBottom: '15px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        fontSize: '1.1rem'
-                      }}>
-                        <span style={{
-                          width: '8px',
-                          height: '8px',
-                          background: 'linear-gradient(45deg, #45b7d1, #ff6b6b)',
-                          borderRadius: '50%',
-                          marginRight: '15px'
-                        }} />
-                        Detailed Storyboards
-                      </li>
-                    </ul>
+              {/* Video Section - Flipped and Expanded */}
+              <div style={{ 
+                background: 'white',
+                borderRadius: '15px',
+                padding: '40px',
+                marginBottom: '40px',
+                boxShadow: '0 5px 20px rgba(0,0,0,0.1)'
+              }}>
+                <div className="row align-items-center">
+                  {/* Video/Image First - Expanded */}
+                  <div className="col-lg-7">
+                    <div style={{
+                      height: '400px', // Increased from 300px
+                      background: 'linear-gradient(135deg, #34495e, #2c3e50)',
+                      borderRadius: '12px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'white',
+                      fontSize: '1.2rem',
+                      fontWeight: '600',
+                      textAlign: 'center',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      marginBottom: '20px'
+                    }}>
+                      {videoLoaded && videoUrl ? (
+                        <video
+                          src={videoUrl}
+                          controls
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            borderRadius: '12px'
+                          }}
+                        />
+                      ) : (
+                        <div>
+                          <div style={{ fontSize: '4rem', marginBottom: '15px' }}>▶️</div>
+                          <div style={{ fontSize: '1.4rem', fontWeight: '700' }}>
+                            Scriptwriting Process
+                          </div>
+                          <div style={{ fontSize: '1rem', opacity: '0.8', marginTop: '10px' }}>
+                            Watch Our Creative Journey
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <div className="col-lg-6">
-                    <ul style={{ listStyle: 'none', padding: 0 }}>
-                      <li style={{ 
-                        marginBottom: '15px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        fontSize: '1.1rem'
-                      }}>
+                  
+                  {/* Content Second - Compact but Complete */}
+                  <div className="col-lg-5">
+                    <h3 style={{
+                      fontSize: '2rem',
+                      marginBottom: '20px',
+                      color: '#2c3e50',
+                      fontWeight: '600'
+                    }}>
+                      See Our Process in Action
+                    </h3>
+                    <p style={{ 
+                      fontSize: '1.1rem', 
+                      lineHeight: '1.7', 
+                      color: '#555',
+                      marginBottom: '20px'
+                    }}>
+                      Watch how we transform a simple idea into a compelling script that's ready for production. Our collaborative approach ensures your vision is perfectly captured.
+                    </p>
+                    <ul style={{ 
+                      listStyle: 'none', 
+                      padding: 0,
+                      fontSize: '1rem',
+                      color: '#666'
+                    }}>
+                      <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
                         <span style={{
-                          width: '8px',
-                          height: '8px',
-                          background: 'linear-gradient(45deg, #ff6b6b, #45b7d1)',
+                          width: '6px',
+                          height: '6px',
+                          background: '#3498db',
                           borderRadius: '50%',
-                          marginRight: '15px'
+                          marginRight: '12px'
                         }} />
-                        Character Development
+                        Story structure and pacing
                       </li>
-                      <li style={{ 
-                        marginBottom: '15px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        fontSize: '1.1rem'
-                      }}>
+                      <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
                         <span style={{
-                          width: '8px',
-                          height: '8px',
-                          background: 'linear-gradient(45deg, #4ecdc4, #ff6b6b)',
+                          width: '6px',
+                          height: '6px',
+                          background: '#e74c3c',
                           borderRadius: '50%',
-                          marginRight: '15px'
+                          marginRight: '12px'
                         }} />
-                        Narrative Structure Design
+                        Authentic dialogue creation
                       </li>
-                      <li style={{ 
-                        marginBottom: '15px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        fontSize: '1.1rem'
-                      }}>
+                      <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
                         <span style={{
-                          width: '8px',
-                          height: '8px',
-                          background: 'linear-gradient(45deg, #45b7d1, #4ecdc4)',
+                          width: '6px',
+                          height: '6px',
+                          background: '#27ae60',
                           borderRadius: '50%',
-                          marginRight: '15px'
+                          marginRight: '12px'
                         }} />
-                        Creative Direction
+                        Visual storytelling elements
                       </li>
                     </ul>
                   </div>
@@ -448,74 +290,33 @@ const ScriptWriting = () => {
             </div>
 
             {/* Sidebar */}
-            <div className="col-xxl-4 col-lg-5 res_mt">
-              {/* Quote Card */}
+            <div className="col-lg-4">
+              {/* Services Card */}
               <div style={{
-                background: 'linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%)',
-                borderRadius: '25px',
-                padding: '40px 30px',
-                marginBottom: '30px',
-                color: 'white',
-                textAlign: 'center',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                <div style={{
-                  position: 'absolute',
-                  top: '-50px',
-                  right: '-50px',
-                  width: '100px',
-                  height: '100px',
-                  background: 'rgba(255,255,255,0.1)',
-                  borderRadius: '50%'
-                }} />
-                
-                <div style={{ fontSize: '3rem', marginBottom: '20px', opacity: 0.9 }}>
-                  "
-                </div>
-                <p style={{ 
-                  fontSize: '1.2rem', 
-                  fontStyle: 'italic',
-                  lineHeight: '1.6',
-                  marginBottom: '20px',
-                  position: 'relative',
-                  zIndex: 2
-                }}>
-                  The script is the foundation upon which all great films are built. Every word matters, every scene counts.
-                </p>
-                <div style={{ 
-                  fontSize: '1rem',
-                  opacity: 0.9,
-                  fontWeight: '600'
-                }}>
-                  — Our Creative Philosophy
-                </div>
-              </div>
-
-              {/* Categories */}
-              <div className="card_item" style={{
-                background: '#f8f9fa',
-                borderRadius: '20px',
+                background: 'white',
+                borderRadius: '15px',
                 padding: '30px',
-                border: '1px solid rgba(0,0,0,0.1)'
+                marginBottom: '30px',
+                boxShadow: '0 5px 20px rgba(0,0,0,0.1)'
               }}>
                 <h3 style={{ 
                   fontSize: '1.5rem',
                   marginBottom: '25px',
-                  color: '#333'
+                  color: '#2c3e50',
+                  fontWeight: '600'
                 }}>
-                  🎭 Script Categories
+                  📝 Our Services
                 </h3>
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                   {[
-                    "Commercial Scripts → Brand Stories",
-                    "Documentary Scripts → Real Narratives", 
-                    "Short Film Scripts → Compact Stories",
-                    "Social Media Scripts → Quick Impact",
-                    "Corporate Scripts → Business Stories",
-                    "Educational Scripts → Learning Content",
-                    "Promotional Scripts → Marketing Messages",
-                    "Event Scripts → Occasion Content"
+                    "Feature Film Scripts",
+                    "Short Film Scripts", 
+                    "Commercial Scripts",
+                    "Documentary Scripts",
+                    "Web Series Scripts",
+                    "Corporate Videos",
+                    "Educational Content",
+                    "Social Media Scripts"
                   ].map((item, index) => (
                     <li key={index} style={{
                       padding: '12px 0',
@@ -525,26 +326,195 @@ const ScriptWriting = () => {
                       transition: 'color 0.3s ease',
                       cursor: 'pointer'
                     }}
-                    onMouseEnter={(e) => e.target.style.color = '#ff6b6b'}
+                    onMouseEnter={(e) => e.target.style.color = '#3498db'}
                     onMouseLeave={(e) => e.target.style.color = '#555'}>
                       {item}
                     </li>
                   ))}
                 </ul>
               </div>
+
+              {/* Contact Card */}
+              <div style={{
+                background: 'linear-gradient(135deg, #3498db, #2980b9)',
+                borderRadius: '15px',
+                padding: '30px',
+                color: 'white',
+                textAlign: 'center'
+              }}>
+                <h3 style={{ 
+                  fontSize: '1.5rem',
+                  marginBottom: '15px',
+                  color: 'white'
+                }}>
+                  Ready to Start?
+                </h3>
+                <p style={{ 
+                  fontSize: '1rem',
+                  marginBottom: '20px',
+                  opacity: 0.9
+                }}>
+                  Let's discuss your project and bring your story to life.
+                </p>
+                <Link 
+                  to="/contact-us" 
+                  style={{
+                    background: 'white',
+                    color: '#3498db',
+                    padding: '12px 25px',
+                    borderRadius: '25px',
+                    textDecoration: 'none',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    display: 'inline-block',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = 'translateY(-2px)';
+                    e.target.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = 'none';
+                  }}
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* BREAK OUT THE SCRIPTWRITING PROCESS SECTION - PROPERLY CENTERED */}
+        <div style={{ 
+          background: 'white',
+          borderRadius: '15px',
+          padding: '60px 40px',
+          margin: '40px auto', // Use auto for proper centering!
+          boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
+          width: 'calc(100vw - 40px)', // Width with side margins
+          maxWidth: '1600px' // Max width limit
+        }}>
+          <div className="container-fluid" style={{ maxWidth: '1400px', margin: '0 auto' }}>
+            <h3 style={{
+              fontSize: '2.5rem',
+              marginBottom: '50px',
+              color: '#2c3e50',
+              fontWeight: '600',
+              textAlign: 'center'
+            }}>
+              Our Scriptwriting Process
+            </h3>
+            
+            <div className="row g-5 justify-content-center">
+              {/* Image Placeholder 1 - NOW ACTUALLY WIDER */}
+              <div className="col-xl-3 col-lg-4 col-md-6">
+                <div style={{
+                  height: '400px',
+                  background: 'linear-gradient(135deg, #3498db, #2980b9)',
+                  borderRadius: '15px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '1.3rem',
+                  fontWeight: '600',
+                  textAlign: 'center',
+                  marginBottom: '25px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 30px rgba(52, 152, 219, 0.3)'
+                }}>
+                  <div style={{ fontSize: '5rem', marginBottom: '20px' }}>💡</div>
+                  <div style={{ fontSize: '1.6rem', fontWeight: '700' }}>
+                    Script Development
+                  </div>
+                  <div style={{ fontSize: '1.1rem', opacity: '0.9', marginTop: '10px' }}>
+                    Concept to Story
+                  </div>
+                </div>
+                <h4 style={{ fontSize: '1.6rem', color: '#2c3e50', marginBottom: '15px', fontWeight: '600' }}>
+                  Initial Concept
+                </h4>
+                <p style={{ color: '#666', fontSize: '1.1rem', lineHeight: '1.7' }}>
+                  We start by understanding your vision and developing the core concept that will drive your narrative forward with compelling storytelling elements.
+                </p>
+              </div>
+
+              {/* Image Placeholder 2 - NOW ACTUALLY WIDER */}
+              <div className="col-xl-3 col-lg-4 col-md-6">
+                <div style={{
+                  height: '400px',
+                  background: 'linear-gradient(135deg, #e74c3c, #c0392b)',
+                  borderRadius: '15px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '1.3rem',
+                  fontWeight: '600',
+                  textAlign: 'center',
+                  marginBottom: '25px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 30px rgba(231, 76, 60, 0.3)'
+                }}>
+                  <div style={{ fontSize: '5rem', marginBottom: '20px' }}>👥</div>
+                  <div style={{ fontSize: '1.6rem', fontWeight: '700' }}>
+                    Character Building
+                  </div>
+                  <div style={{ fontSize: '1.1rem', opacity: '0.9', marginTop: '10px' }}>
+                    Bringing Life to Stories
+                  </div>
+                </div>
+                <h4 style={{ fontSize: '1.6rem', color: '#2c3e50', marginBottom: '15px', fontWeight: '600' }}>
+                  Character Development
+                </h4>
+                <p style={{ color: '#666', fontSize: '1.1rem', lineHeight: '1.7' }}>
+                  Creating authentic, relatable characters that audiences connect with and remember long after the credits roll.
+                </p>
+              </div>
+
+              {/* Image Placeholder 3 - NOW ACTUALLY WIDER */}
+              <div className="col-xl-3 col-lg-4 col-md-6">
+                <div style={{
+                  height: '400px',
+                  background: 'linear-gradient(135deg, #27ae60, #229954)',
+                  borderRadius: '15px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '1.3rem',
+                  fontWeight: '600',
+                  textAlign: 'center',
+                  marginBottom: '25px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 30px rgba(39, 174, 96, 0.3)'
+                }}>
+                  <div style={{ fontSize: '5rem', marginBottom: '20px' }}>📝</div>
+                  <div style={{ fontSize: '1.6rem', fontWeight: '700' }}>
+                    Final Script
+                  </div>
+                  <div style={{ fontSize: '1.1rem', opacity: '0.9', marginTop: '10px' }}>
+                    Production Ready
+                  </div>
+                </div>
+                <h4 style={{ fontSize: '1.6rem', color: '#2c3e50', marginBottom: '15px', fontWeight: '600' }}>
+                  Script Finalization
+                </h4>
+                <p style={{ color: '#666', fontSize: '1.1rem', lineHeight: '1.7' }}>
+                  Polishing dialogue, refining scenes, and delivering a production-ready script that exceeds expectations.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-
-      {/* Add floating animation keyframes */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-      `}</style>
     </div>
   );
 };
