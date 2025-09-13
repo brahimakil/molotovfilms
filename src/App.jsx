@@ -15,7 +15,8 @@ import ContactUsPage from "./pages/ContactUsPage";
 import FAQPage from "./pages/FAQPage";
 import PricingPage from "./pages/PricingPage";
 import ServiceDetailsPage from "./pages/ServiceDetailsPage";
-import FeaturesPage from "./pages/FeaturesPage"; // Add this import
+import FeaturesPage from "./pages/FeaturesPage";
+import ScriptWriting from "./pages/ScriptWriting"; // Add this import
 import SingleMemberPage from "./pages/SingleMemberPage";
 import TeamMemberPage from "./pages/TeamMemberPage";
 import TestimonialPage from "./pages/TestimonialPage";
@@ -32,7 +33,8 @@ function App() {
           <Route index element={<AboutPage />} />
           <Route path="services" element={<ServicesPage />} />
           <Route path="services-details" element={<ServiceDetailsPage />} />
-          <Route path="features" element={<FeaturesPage />} /> {/* Add this route */}
+          <Route path="features" element={<FeaturesPage />} />
+          <Route path="scriptwriting" element={<ScriptWriting />} /> {/* Add this route */}
         </Route> 
 
       

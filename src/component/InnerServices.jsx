@@ -182,7 +182,7 @@ const InnerServices = () => {
 
           {/* Service 3: Scriptwriting & Creative Concepts */}
           <div className="col-sm-6 col-lg-4 col-xxl-4">
-            <Link to="/services-details" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to="/scriptwriting" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="services_item" style={{ cursor: 'pointer' }}>
               <span className="services_item_icon">
                 <svg
@@ -230,7 +230,7 @@ const InnerServices = () => {
                 </p>
 
                 <Link
-                  to="/features-films"
+                  to="/scriptwriting"
                   className="services_item_btm text_lg"
                 >
                   Read More
