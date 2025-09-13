@@ -3,12 +3,25 @@ import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 
-const FeaturesPage = () => {
-  const [videoUrl, setVideoUrl] = useState('');
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const [videoError, setVideoError] = useState(false);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+// Import movie images
+import movie1 from "../assets/movies/56262.jpg";
+import movie2 from "../assets/movies/FS2.jpg";
+import movie3 from "../assets/movies/FS3.jpg";
+import movie4 from "../assets/movies/neww.jpg";
+import movie5 from "../assets/movies/1.png";
+import movie6 from "../assets/movies/Paris film festival.jpg";
+import movie7 from "../assets/movies/POSTER.jpg";
+import movie8 from "../assets/movies/4.png";
+import movie9 from "../assets/movies/FB_IMG_1757690698527.jpg";
+import movie10 from "../assets/movies/2.png";
+import movie11 from "../assets/movies/3.jpeg";
+import movie12 from "../assets/movies/POSTER..jpg";
+import movie13 from "../assets/movies/Poster lbh.jpg";
 
+const FeaturesPage = () => {
+  // Movie carousel state
+  const [selectedMovieIndex, setSelectedMovieIndex] = useState(0);
+  
   // Add state for multiple videos
   const [showcaseVideoUrl, setShowcaseVideoUrl] = useState('');
   const [showcaseVideoLoaded, setShowcaseVideoLoaded] = useState(false);
@@ -20,70 +33,38 @@ const FeaturesPage = () => {
   const [portfolioVideoError, setPortfolioVideoError] = useState(false);
   const [shouldLoadPortfolioVideo, setShouldLoadPortfolioVideo] = useState(false);
 
-  const videoRef = useRef(null);
+  const movies = [
+    { id: 1, image: movie1, title: "Film Festival Selection", description: "Award-winning narrative" },
+    { id: 2, image: movie2, title: "FS2 Production", description: "Independent feature film" },
+    { id: 3, image: movie3, title: "FS3 Project", description: "Documentary series" },
+    { id: 4, image: movie4, title: "New Vision", description: "Brand documentary" },
+    { id: 5, image: movie5, title: "Corporate Story", description: "Brand narrative film" },
+    { id: 6, image: movie6, title: "Paris Film Festival", description: "Festival premiere" },
+    { id: 7, image: movie7, title: "Feature Poster", description: "Theatrical release" },
+    { id: 8, image: movie8, title: "Production Four", description: "Commercial series" },
+    { id: 9, image: movie9, title: "Social Media Film", description: "Viral content piece" },
+    { id: 10, image: movie10, title: "Brand Campaign", description: "Multi-platform story" },
+    { id: 11, image: movie11, title: "Documentary Short", description: "Real story impact" },
+    { id: 12, image: movie12, title: "Poster Campaign", description: "Marketing visuals" },
+    { id: 13, image: movie13, title: "LBH Poster", description: "Creative campaign" }
+  ];
+
   const heroRef = useRef(null);
   const showcaseVideoRef = useRef(null);
   const portfolioVideoRef = useRef(null);
 
-  // Hero video loading (same as before)
-  useEffect(() => {
-    const cacheKey = 'features_hero_video_url';
-    const cacheTimeKey = 'features_hero_video_timestamp';
-    const cacheExpiration = 24 * 60 * 60 * 1000;
-    
-    const cachedUrl = localStorage.getItem(cacheKey);
-    const cachedTime = localStorage.getItem(cacheTimeKey);
-    const now = Date.now();
-    
-    if (cachedUrl && cachedTime && (now - parseInt(cachedTime)) < cacheExpiration) {
-      console.log('Features hero video loaded instantly from cache');
-      setVideoUrl(cachedUrl);
-      setVideoLoaded(true);
-    } else {
-      setShouldLoadVideo(true);
-    }
-  }, []);
+  // Navigation functions
+  const nextMovie = () => {
+    setSelectedMovieIndex((prev) => (prev + 1) % movies.length);
+  };
 
-  useEffect(() => {
-    if (!shouldLoadVideo || videoLoaded) return;
+  const prevMovie = () => {
+    setSelectedMovieIndex((prev) => (prev - 1 + movies.length) % movies.length);
+  };
 
-    const loadVideo = async () => {
-      const cacheKey = 'features_hero_video_url';
-      const cacheTimeKey = 'features_hero_video_timestamp';
-      
-      try {
-        console.log('Fetching Features hero video from Firebase Storage');
-        let videoPath = 'servicedetails(reels..)/reels section-optimized.mp4';
-        const videoRefFirebase = ref(storage, videoPath);
-        
-        try {
-          const url = await getDownloadURL(videoRefFirebase);
-          localStorage.setItem(cacheKey, url);
-          localStorage.setItem(cacheTimeKey, Date.now().toString());
-          setVideoUrl(url);
-          setVideoLoaded(true);
-          console.log('Features hero video loaded and cached successfully');
-        } catch (optimizedError) {
-          console.log('Optimized version not found, falling back to original');
-          const fallbackRef = ref(storage, 'servicedetails(reels..)/reels section.mp4');
-          const fallbackUrl = await getDownloadURL(fallbackRef);
-          localStorage.setItem(cacheKey, fallbackUrl);
-          localStorage.setItem(cacheTimeKey, Date.now().toString());
-          setVideoUrl(fallbackUrl);
-          setVideoLoaded(true);
-          console.log('Features hero video (fallback) loaded and cached successfully');
-        }
-      } catch (error) {
-        console.error('Error loading Features hero video:', error);
-        setVideoError(true);
-        setVideoLoaded(false);
-        localStorage.removeItem(cacheKey);
-        localStorage.removeItem(cacheTimeKey);
-      }
-    };
-
-    loadVideo();
-  }, [shouldLoadVideo, videoLoaded]);
+  const selectMovie = (index) => {
+    setSelectedMovieIndex(index);
+  };
 
   // Showcase video loading
   useEffect(() => {
@@ -133,102 +114,6 @@ const FeaturesPage = () => {
     loadPortfolioVideo();
   }, [shouldLoadPortfolioVideo, portfolioVideoLoaded]);
 
-  const heroStyles = {
-    videoHeroBanner: {
-      position: 'relative',
-      height: '60vh',
-      minHeight: '400px',
-      overflow: 'hidden',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#000',
-    },
-    videoContainer: {
-      position: 'relative',
-      width: '100%',
-      height: '100%'
-    },
-    heroVideo: {
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      zIndex: 1
-    },
-    videoOverlay: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      background: 'rgba(0, 0, 0, 0.6)',
-      zIndex: 2
-    },
-    heroContent: {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      zIndex: 10,
-      color: 'white',
-      textAlign: 'center',
-      padding: '0 20px',
-      width: '100%',
-      maxWidth: '700px'
-    },
-    heroTitle: {
-      fontSize: '2.8rem',
-      fontWeight: 700,
-      marginBottom: '0.8rem',
-      textShadow: '3px 3px 6px rgba(0, 0, 0, 0.7)',
-      lineHeight: '1.2'
-    },
-    heroSubtitle: {
-      fontSize: '1.1rem',
-      marginBottom: '1.5rem',
-      opacity: 0.95,
-      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)'
-    },
-    breadcrumb: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '10px',
-      marginTop: '1rem',
-      fontSize: '1rem',
-      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)'
-    },
-    breadcrumbLink: {
-      color: 'rgba(255, 255, 255, 0.8)',
-      textDecoration: 'none',
-      transition: 'color 0.3s ease'
-    },
-    breadcrumbCurrent: {
-      color: '#6B8E23',
-      fontWeight: '600'
-    },
-    loadingPlaceholder: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      color: 'white',
-      backgroundColor: '#1a1a1a'
-    },
-    fallbackImage: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      backgroundColor: '#2a2a2a',
-      color: 'white'
-    }
-  };
-
   const breadcrumbs = [
     { label: "Home", link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
@@ -237,77 +122,168 @@ const FeaturesPage = () => {
 
   return (
     <>
-      {/* Hero Video Section */}
-      <section ref={heroRef} style={heroStyles.videoHeroBanner}>
-        <div style={heroStyles.videoContainer}>
-          {videoLoaded && videoUrl ? (
-            <video
-              ref={videoRef}
-              style={heroStyles.heroVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              controls={false}
-            >
-              <source src={videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : videoError ? (
-            <div style={heroStyles.fallbackImage}>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
-                <div>Features & Films</div>
-              </div>
-            </div>
-          ) : (
-            <div style={heroStyles.loadingPlaceholder}>
-              <div style={{
-                width: '40px',
+      {/* Movie Carousel Hero Banner - Bigger with Book-style Images */}
+      <section 
+        ref={heroRef} 
+        style={{
+          position: 'relative',
+          height: '80vh', // Made bigger from 60vh
+          minHeight: '600px', // Increased from 400px
+          backgroundColor: '#0a0a0a',
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        {/* Movie Image - Book Style (Portrait) */}
+        <div style={{
+          position: 'relative',
+          width: '420px',   // was 280px
+          height: '600px',  // was 400px
+          borderRadius: '15px',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8)',
+          zIndex: 5,
+          border: '3px solid rgba(107, 142, 35, 0.3)',
+          backgroundColor: '#1a1a1a'
+        }}>
+          <img
+            src={movies[selectedMovieIndex].image}
+            alt="Selected movie"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              display: 'block'
+            }}
+          />
+        </div>
+
+        {/* Movie Navigation Arrows */}
+        <button
+          onClick={prevMovie}
+          style={{
+            position: 'absolute',
+            left: '50px', // Moved further from the book
+            top: '50%',
+            transform: 'translateY(-50%)',
+            background: 'rgba(107, 142, 35, 0.8)',
+            border: 'none',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            color: 'white',
+            fontSize: '24px',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            zIndex: 10,
+            boxShadow: '0 0 20px rgba(107, 142, 35, 0.5)'
+          }}
+          onMouseOver={(e) => {
+            e.target.style.background = 'rgba(107, 142, 35, 1)';
+            e.target.style.transform = 'translateY(-50%) scale(1.1)';
+            e.target.style.boxShadow = '0 0 30px rgba(107, 142, 35, 0.8)';
+          }}
+          onMouseOut={(e) => {
+            e.target.style.background = 'rgba(107, 142, 35, 0.8)';
+            e.target.style.transform = 'translateY(-50%) scale(1)';
+            e.target.style.boxShadow = '0 0 20px rgba(107, 142, 35, 0.5)';
+          }}
+        >
+          ‹
+        </button>
+
+        <button
+          onClick={nextMovie}
+          style={{
+            position: 'absolute',
+            right: '50px', // Moved further from the book
+            top: '50%',
+            transform: 'translateY(-50%)',
+            background: 'rgba(107, 142, 35, 0.8)',
+            border: 'none',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            color: 'white',
+            fontSize: '24px',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            zIndex: 10,
+            boxShadow: '0 0 20px rgba(107, 142, 35, 0.5)'
+          }}
+          onMouseOver={(e) => {
+            e.target.style.background = 'rgba(107, 142, 35, 1)';
+            e.target.style.transform = 'translateY(-50%) scale(1.1)';
+            e.target.style.boxShadow = '0 0 30px rgba(107, 142, 35, 0.8)';
+          }}
+          onMouseOut={(e) => {
+            e.target.style.background = 'rgba(107, 142, 35, 0.8)';
+            e.target.style.transform = 'translateY(-50%) scale(1)';
+            e.target.style.boxShadow = '0 0 20px rgba(107, 142, 35, 0.5)';
+          }}
+        >
+          ›
+        </button>
+
+        {/* Movie Thumbnails at Bottom */}
+        <div style={{
+          position: 'absolute',
+          bottom: '30px', // Moved up a bit for bigger banner
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          gap: '10px',
+          zIndex: 10,
+          padding: '15px',
+          background: 'rgba(0, 0, 0, 0.5)',
+          borderRadius: '15px',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(107, 142, 35, 0.3)',
+          maxWidth: '90%',
+          overflowX: 'auto'
+        }}>
+          {movies.map((movie, index) => (
+            <div
+              key={movie.id}
+              onClick={() => selectMovie(index)}
+              style={{
+                minWidth: '60px',
                 height: '40px',
-                border: '3px solid #6B7A47',
-                borderTop: '3px solid transparent',
-                borderRadius: '50%',
-                animation: 'spin 1s linear infinite',
-                margin: '0 auto 20px'
-              }} />
-              <div style={{ fontSize: '18px', marginBottom: '10px' }}>Loading...</div>
-            </div>
-          )}
-          
-          <div style={heroStyles.videoOverlay}></div>
-          
-          <div style={heroStyles.heroContent}>
-            <h1 style={heroStyles.heroTitle}>Features & Films</h1>
-            <p style={heroStyles.heroSubtitle}>
-              From 15-second ads to full-length films - cinematic storytelling that delivers results
-            </p>
-            <div style={heroStyles.breadcrumb}>
-              {breadcrumbs.map((item, index) => (
-                <span key={index}>
-                  {item.link ? (
-                    <Link 
-                      to={item.link} 
-                      style={heroStyles.breadcrumbLink}
-                      onMouseOver={(e) => e.target.style.color = 'white'}
-                      onMouseOut={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.8)'}
-                    >
-                      {item.label}
-                    </Link>
-                  ) : index === breadcrumbs.length - 1 ? (
-                    <span style={heroStyles.breadcrumbCurrent}>{item.label}</span>
-                  ) : (
-                    <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>{item.label}</span>
-                  )}
-                </span>
-              ))}
-            </div>
-          </div>
+                borderRadius: '6px',
+                overflow: 'hidden',
+                cursor: 'pointer',
+                border: selectedMovieIndex === index ? '2px solid #6b8e23' : '1px solid rgba(255, 255, 255, 0.3)',
+                background: `url(${movie.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                transition: 'all 0.3s ease',
+                boxShadow: selectedMovieIndex === index 
+                  ? '0 0 15px rgba(107, 142, 35, 0.8)' 
+                  : '0 2px 8px rgba(0,0,0,0.3)',
+                transform: selectedMovieIndex === index ? 'scale(1.2)' : 'scale(1)',
+                filter: selectedMovieIndex === index ? 'brightness(1.2)' : 'brightness(0.8)'
+              }}
+              onMouseOver={(e) => {
+                if (selectedMovieIndex !== index) {
+                  e.target.style.transform = 'scale(1.1)';
+                  e.target.style.filter = 'brightness(1)';
+                  e.target.style.boxShadow = '0 4px 12px rgba(107, 142, 35, 0.4)';
+                }
+              }}
+              onMouseOut={(e) => {
+                if (selectedMovieIndex !== index) {
+                  e.target.style.transform = 'scale(1)';
+                  e.target.style.filter = 'brightness(0.8)';
+                  e.target.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+                }
+              }}
+            />
+          ))}
         </div>
       </section>
 
-      {/* Main Content - Different Structure */}
+      {/* Main Content - Normal White Background */}
       <section className="features_content" style={{ padding: '80px 0' }}>
         <div className="container">
           
@@ -323,11 +299,10 @@ const FeaturesPage = () => {
                 WebkitTextFillColor: 'transparent',
                 marginBottom: '30px'
               }}>
-                CINEMA THAT CUTS DEEP
+              CINEMA THAT SPARKS, THEN STINGS
               </h2>
               <p style={{ fontSize: '1.2rem', color: '#666', lineHeight: '1.8' }}>
-                We don't just make films — we craft experiences that linger. From intimate brand stories 
-                to sweeping documentaries, every project gets the full cinematic treatment.
+                We build images that jab your memory and refuse to apologize. Not pretty noise — precise disturbances: short, loud, slow-burning. From micro social hymns to full-length curios, we make work that keeps working.
               </p>
             </div>
           </div>
@@ -375,22 +350,21 @@ const FeaturesPage = () => {
                 color: '#333',
                 marginBottom: '20px'
               }}>
-                Brand Stories That Stick
-              </h3>
+BRAND STORIES THAT BITE
+</h3>
               <p style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.7', marginBottom: '25px' }}>
-                Every brand has a pulse. We find it, amplify it, and turn it into cinema that 
-                refuses to be ignored. Whether it's a 15-second social spot or a 5-minute brand film, 
-                we bring the same intensity to every frame.
+              Brands have secret rhythms. We listen with weird equipment, then translate them into films that keep echoing. Tiny spots or five-minute pulses — every edit is deliberate, every cut a tiny act of insistence.
+
               </p>
               <ul style={{ listStyle: 'none', padding: 0 }}>
                 <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>15s-5min Brand Films</strong> — Maximum impact, any length
+                  ✓ <strong>15s-5min Brand Films</strong> — compact detonations with cinematic skin
                 </li>
                 <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>Commercial Spots</strong> — TV & Digital ready
+                  ✓ <strong>Commercial Spots</strong> — broadcast-calibrated, attention-locked
                 </li>
                 <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>Product Launches</strong> — Cinematic reveals that wow
+                  ✓ <strong>Product Launches</strong> — staged reveals that feel inevitable
                 </li>
               </ul>
             </div>
@@ -427,8 +401,7 @@ const FeaturesPage = () => {
                   Brand Films
                 </h4>
                 <p style={{ fontSize: '1rem', opacity: 0.9 }}>
-                  Corporate stories, culture films, and brand documentaries that build connection and trust.
-                </p>
+                human catalysts that don’t sell so much as insist.                </p>
               </div>
             </div>
 
@@ -446,8 +419,7 @@ const FeaturesPage = () => {
                   Documentaries
                 </h4>
                 <p style={{ fontSize: '1rem', opacity: 0.9 }}>
-                  Real stories told with cinematic power. From 10-minute shorts to feature-length deep dives.
-                </p>
+                true curiosities, interrogative and cinematic.                </p>
               </div>
             </div>
 
@@ -465,8 +437,7 @@ const FeaturesPage = () => {
                   Feature Films
                 </h4>
                 <p style={{ fontSize: '1rem', opacity: 0.9 }}>
-                  Full-length narratives, web series, and cinematic experiences built for theaters and streaming.
-                </p>
+                narrative machines tuned for festival life and late-night sharing.                </p>
               </div>
             </div>
           </div>
@@ -484,25 +455,24 @@ const FeaturesPage = () => {
               </h3>
               <div style={{ marginBottom: '30px' }}>
                 <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '10px' }}>
-                  🔥 Find the Fire
+                Find the Spark
                 </h5>
                 <p style={{ color: '#666', marginBottom: '20px' }}>
-                  Every story has a heartbeat. We dig until we find it — the emotion, the conflict, the hook.
+                We hunt the single friction point — the tiny truth that makes people look twice.
                 </p>
                 
                 <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '10px' }}>
-                  ⚡ Shape the Vision
+                Sharpen the Pulse
                 </h5>
                 <p style={{ color: '#666', marginBottom: '20px' }}>
-                  Concepts become scripts. Scripts become storyboards. Every element serves the story.
+                Ideas get disciplined into story-architecture: shots, sound, tempo — everything tuned to that spark.
                 </p>
                 
                 <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '10px' }}>
-                  🎯 Execute with Precision
+                Set It Free
                 </h5>
                 <p style={{ color: '#666' }}>
-                  Production, post, delivery. Fast when needed, timeless when it counts.
-                </p>
+                We shoot with care, edit like an argument, and finish the master so it travels — to screens, feeds, festivals.                </p>
               </div>
             </div>
             <div className="col-lg-7">
@@ -543,8 +513,6 @@ const FeaturesPage = () => {
 
         </div>
       </section>
-
-  
 
       <style jsx>{`
         @keyframes spin {

@@ -31,8 +31,8 @@ function App() {
         <Route path="/" element={<HomeOneLayout />}> 
           <Route index element={<AboutPage />} />
           <Route path="services" element={<ServicesPage />} />
-          <Route path="services-detais" element={<ServiceDetailsPage />} />
-          <Route path="features-films" element={<FeaturesPage />} /> {/* Add this route */}
+          <Route path="services-details" element={<ServiceDetailsPage />} />
+          <Route path="features" element={<FeaturesPage />} /> {/* Add this route */}
         </Route> 
 
       

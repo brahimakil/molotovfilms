@@ -31,7 +31,8 @@ const InnerServices = () => {
         <div className="row g-4 mg_top_10px">
           {/* Service 1: Reels & Short-Form Video */}
           <div className="col-sm-6 col-lg-4 col-xxl-4">
-            <div className="services_item">
+            <Link to="/services-details" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="services_item" style={{ cursor: 'pointer' }}>
               <span className="services_item_icon">
                 <svg
                   width="60"
@@ -89,11 +90,13 @@ const InnerServices = () => {
                 </Link>
               </div>
             </div>
+          </Link>
           </div>
 
           {/* Service 2: Features & Brand & Documentary Films */}
           <div className="col-sm-6 col-lg-4 col-xxl-4">
-            <div className="services_item">
+            <Link to="/features" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="services_item" style={{ cursor: 'pointer' }}>
               <span className="services_item_icon">
                 <svg
                   width="60"
@@ -174,11 +177,13 @@ const InnerServices = () => {
                 </Link>
               </div>
             </div>
+          </Link>
           </div>
 
           {/* Service 3: Scriptwriting & Creative Concepts */}
           <div className="col-sm-6 col-lg-4 col-xxl-4">
-            <div className="services_item">
+            <Link to="/services-details" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="services_item" style={{ cursor: 'pointer' }}>
               <span className="services_item_icon">
                 <svg
                   width="60"
@@ -248,11 +253,13 @@ const InnerServices = () => {
                 </Link>
               </div>
             </div>
+          </Link>
           </div>
 
           {/* Service 4: Social Media Strategy & Management */}
           <div className="col-sm-6 col-lg-4 col-xxl-4">
-            <div className="services_item">
+            <Link to="/services-details" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="services_item" style={{ cursor: 'pointer' }}>
               <span className="services_item_icon">
                 <svg
                   width="60"
@@ -330,11 +337,13 @@ const InnerServices = () => {
                 </Link>
               </div>
             </div>
+          </Link>
           </div>
 
           {/* Service 5: Performance Video Ads & A/B Testing */}
           <div className="col-sm-6 col-lg-4 col-xxl-4">
-            <div className="services_item">
+            <Link to="/services-details" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="services_item" style={{ cursor: 'pointer' }}>
               <span className="services_item_icon">
                 <svg
                   width="60"
@@ -408,11 +417,13 @@ const InnerServices = () => {
                 </Link>
               </div>
             </div>
+          </Link>
           </div>
 
           {/* Service 6: Post-Production & Content Repurposing */}
           <div className="col-sm-6 col-lg-4 col-xxl-4">
-            <div className="services_item">
+            <Link to="/services-details" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="services_item" style={{ cursor: 'pointer' }}>
               <span className="services_item_icon">
                 <svg
                   width="60"
@@ -492,6 +503,7 @@ const InnerServices = () => {
                 </Link>
               </div>
             </div>
+          </Link>
           </div>
         </div>
       </div>

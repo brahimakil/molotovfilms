@@ -611,7 +611,7 @@ const ServiceDetailsPage = () => {
                     WebkitTextFillColor: 'transparent',
                     fontWeight: '700'
                   }}>
-                    POP. CUT. ROLL. REPEAT.
+                POP. CUT. ROLL. REPEAT.
                   </span>
                   <br />
                   Big ideas. Brighter execution. Films that shout.
@@ -921,7 +921,7 @@ const ServiceDetailsPage = () => {
                           </svg>
                         </span>
                         Craft cinema that refuses to be scrolled past.
-                        </li>
+                      </li>
                       <li>
                         <span>
                           <svg
@@ -953,7 +953,7 @@ const ServiceDetailsPage = () => {
                           </svg>
                         </span>
                         Turn ideas into weapons — precise, bold, unforgettable.
-                        </li>
+                      </li>
                       <li>
                         <span>
                           <svg
@@ -985,7 +985,7 @@ const ServiceDetailsPage = () => {
                           </svg>
                         </span>
                         Stay raw, stay cinematic, stay dangerous.
-                        </li>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -1333,21 +1333,21 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                           </svg>
                         </span>
                          Find the Spark
-                        </li>
+                      </li>
                         <span style={{ marginLeft: '40px', display: 'block', fontSize: '16px', color: '#666', marginBottom: '15px' }}>
                         Every story has a pulse. We dig until we catch it — the problem, the vibe, the hook.
                         </span>
 
-                        <li>
-                          <span>
-                            <svg
-                              width="16"
+                      <li>
+                        <span>
+                          <svg
+                            width="16"
                               height="16"
                               viewBox="0 0 16 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
                                 d="M8 1L10.5 6H15L11.5 9.5L13 15L8 12L3 15L4.5 9.5L1 6H5.5L8 1Z"
                                 fill="url(#paint0_linear_vision)"
                                 stroke="url(#paint1_linear_vision)"
@@ -1377,30 +1377,30 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                                   <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                                 </linearGradient>
                               </defs>
-                            </svg>
-                          </span>
+                          </svg>
+                        </span>
                            Shape the Vision
-                        </li>
+                      </li>
                         <span style={{ marginLeft: '40px', display: 'block', fontSize: '16px', color: '#666', marginBottom: '15px' }}>
                         Research, remix, and sharpen. Pop culture, history, street noise — it all feeds the frame.
                         </span>
 
-                        <li>
-                          <span>
-                            <svg
-                              width="16"
+                      <li>
+                        <span>
+                          <svg
+                            width="16"
                               height="16"
                               viewBox="0 0 16 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
                               <circle cx="8" cy="8" r="6" fill="none" stroke="url(#paint0_linear_fuse)" strokeWidth="1.5"/>
-                              <path
+                            <path
                                 d="M8 4V8L11 11"
                                 stroke="url(#paint1_linear_fuse)"
                                 strokeWidth="1.5"
-                                strokeLinecap="round"
-                              />
+                              strokeLinecap="round"
+                            />
                               <circle cx="8" cy="8" r="1" fill="url(#paint2_linear_fuse)"/>
                               <path
                                 d="M8 2L7 1M8 2L9 1M14 8L15 7M14 8L15 9M8 14L9 15M8 14L7 15M2 8L1 9M2 8L1 7"
@@ -1454,13 +1454,13 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                                   <stop offset="1" stopColor="#6b8e23" /> {/* Changed from #7D51ED */}
                                 </linearGradient>
                               </defs>
-                            </svg>
-                          </span>
+                          </svg>
+                        </span>
                          Light the Fuse
-                          </li>
+                      </li>
                         <span style={{ marginLeft: '40px', display: 'block', fontSize: '16px', color: '#666', marginBottom: '15px' }}>
                         Plan it, shoot it, cut it. Fast when needed, timeless when it counts.                        </span>
-                      </ul>
+                    </ul>
                     <p className="text_lg">
                       One touch of a red-hot stove is usually all we need to
                       avoid that kind of discomfort in quis future. The same
@@ -1520,7 +1520,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                   </li>
                   <li className="text_2xl">
                     Sound Rush <span style={{ color: '#daa520' }}>→ Design & Score</span>
-                  </li>
+                  </li>  
                   <li className="text_2xl">
                     Hype Drop <span style={{ color: '#daa520' }}>→ Marketing & Release</span>
                   </li>
