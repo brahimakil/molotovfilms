@@ -23,6 +23,8 @@ import TestimonialPage from "./pages/TestimonialPage";
 import Error404 from "./pages/Error404";
 import ScrollToTop from "./component/ScrollToTop";
 import SocialMediaPage from "./pages/SocialMediaPage"; // Add this import
+import PerformanceAdsPage from "./pages/PerformanceAdsPage";
+import PostProductionPage from "./pages/PostProductionPage"; // Add this import
 
 function App() {
   return (
@@ -35,6 +37,9 @@ function App() {
           <Route path="services" element={<ServicesPage />} />
           <Route path="services-details" element={<ServiceDetailsPage />} />
           <Route path="social-media-strategy" element={<SocialMediaPage />} /> {/* Add this route */}
+          <Route path="/performance-ads" element={<PerformanceAdsPage />} />
+          <Route path="/post-production" element={<PostProductionPage />} /> {/* Move this route here */}
+          <Route path="post-production" element={<PostProductionPage />} /> {/* Add this new route */}
           <Route path="features" element={<FeaturesPage />} />
           <Route path="scriptwriting" element={<ScriptWriting />} />
         </Route> 
@@ -52,6 +57,7 @@ function App() {
           <Route path="single-member" element={<SingleMemberPage />} />
           <Route path="team" element={<TeamMemberPage />} />
           <Route path="testimonial" element={<TestimonialPage />} />
+
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>

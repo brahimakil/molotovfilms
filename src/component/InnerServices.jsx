@@ -342,7 +342,7 @@ const InnerServices = () => {
 
           {/* Service 5: Performance Video Ads & A/B Testing */}
           <div className="col-sm-6 col-lg-4 col-xxl-4">
-            <Link to="/services-details" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to="/performance-ads" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="services_item" style={{ cursor: 'pointer' }}>
               <span className="services_item_icon">
                 <svg
@@ -394,7 +394,93 @@ const InnerServices = () => {
                 </p>
 
                 <Link
-                  to="/features-films"
+                  to="/performance-ads"
+                  className="services_item_btm text_lg"
+                >
+                  Read More
+                  <span>
+                    <svg
+                      width="14"
+                      height="10"
+                      viewBox="0 0 14 10"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 9L13 5M13 5L9 1M13 5L1 5"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </Link>
+          </div>
+
+          {/* Service 6: Post-Production & Content Repurposing */}
+          <div className="col-sm-6 col-lg-4 col-xxl-4">
+            <Link to="/post-production" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div className="services_item" style={{ cursor: 'pointer' }}>
+              <span className="services_item_icon">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 60 60"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <linearGradient id="postproductionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#8B5CF6" />
+                      <stop offset="100%" stopColor="#3B82F6" />
+                    </linearGradient>
+                  </defs>
+                  
+                  {/* Main editing timeline */}
+                  <rect x="6" y="20" width="48" height="20" rx="4" fill="url(#postproductionGrad)" fillOpacity="0.1" stroke="url(#postproductionGrad)" strokeWidth="2"/>
+                  
+                  {/* Timeline segments */}
+                  <rect x="10" y="24" width="8" height="12" fill="#8B5CF6" rx="2"/>
+                  <rect x="20" y="24" width="6" height="12" fill="#3B82F6" rx="2"/>
+                  <rect x="28" y="24" width="10" height="12" fill="#8B5CF6" rx="2"/>
+                  <rect x="40" y="24" width="8" height="12" fill="#3B82F6" rx="2"/>
+                  
+                  {/* Color grading wheel */}
+                  <circle cx="15" cy="10" r="6" fill="none" stroke="#8B5CF6" strokeWidth="2"/>
+                  <path d="M9 10A6 6 0 0 1 15 4A6 6 0 0 1 21 10" fill="#FF6B6B" fillOpacity="0.7"/>
+                  <path d="M21 10A6 6 0 0 1 15 16A6 6 0 0 1 9 10" fill="#4ECDC4" fillOpacity="0.7"/>
+                  
+                  {/* Sound waves */}
+                  <path d="M25 8C27 6 29 6 31 8M25 12C27 10 29 10 31 12" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round"/>
+                  
+                  {/* Motion graphics elements */}
+                  <path d="M40 8L45 5L50 8L45 11Z" fill="#8B5CF6"/>
+                  <circle cx="45" cy="8" r="2" fill="white"/>
+                  
+                  {/* Content repurposing arrows */}
+                  <path d="M30 45L35 42L30 39V41H25V43H30V45Z" fill="#3B82F6"/>
+                  <path d="M30 52L25 49L30 46V48H35V50H30V52Z" fill="#8B5CF6"/>
+                  
+                  {/* Multiple format outputs */}
+                  <rect x="45" y="42" width="8" height="6" rx="1" fill="#3B82F6" fillOpacity="0.7"/>
+                  <rect x="47" y="50" width="6" height="4" rx="1" fill="#8B5CF6" fillOpacity="0.7"/>
+                  <circle cx="52" cy="48" r="2" fill="#3B82F6" fillOpacity="0.7"/>
+                </svg>
+              </span>
+              <div className="services_item_txt">
+                <h3 className="text_2xl">
+                  <a href="#">Post-Production & Content Repurposing</a>
+                </h3>
+
+                <p className="text_lg">
+                  Our post-production team elevates your footage with advanced editing, sound design, color grading, and motion graphics. We also repurpose your content into multiple formats for maximum reach.
+                </p>
+
+                <Link
+                  to="/post-production"
                   className="services_item_btm text_lg"
                 >
                   Read More
