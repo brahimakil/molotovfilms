@@ -25,30 +25,30 @@ const SocialMediaPage = () => {
     {
       id: 1,
       title: "Content Strategy",
-      description: "Data-driven content planning that resonates with your audience",
+      description: "We build the roadmap",
       icon: "📊",
-      features: ["Audience Analysis", "Content Calendar", "Performance Metrics"]
+      features: ["Audience Intelligence", "Content Calendars That Convert", "Performance Benchmarking"]
     },
     {
       id: 2,
       title: "Creative Production",
-      description: "Engaging visuals and copy that stop the scroll",
+      description: "Scroll-stopping is the bare minimum.",
       icon: "🎨",
-      features: ["Visual Design", "Copywriting", "Video Content"]
+      features: ["Disruptive Visual Design", "High-Impact Copywriting", "Viral-Ready Video Content"]
     },
     {
       id: 3,
       title: "Community Management",
-      description: "Building authentic relationships with your audience",
+      description: "This is where brands are truly built. ",
       icon: "💬",
-      features: ["Real-time Engagement", "Crisis Management", "Community Building"]
+      features: ["Proactive Real-Time Engagement", "Crisis & Reputation Management", "Tribe & Community Building"]
     },
     {
       id: 4,
       title: "Analytics & Optimization",
-      description: "Continuous improvement through data insights",
+      description: "Data is our command center.",
       icon: "📈",
-      features: ["Performance Tracking", "A/B Testing", "ROI Analysis"]
+      features: ["Advanced Performance Tracking", "Aggressive A/B Testing", "Crystal-Clear ROI Analysis"]
     }
   ];
 
@@ -154,8 +154,8 @@ const SocialMediaPage = () => {
                 marginBottom: '30px',
                 textShadow: '0 0 30px rgba(255,255,255,0.3)'
               }}>
-                SOCIAL MEDIA STRATEGY & MANAGEMENT
-              </h1>
+SOCIAL, SUPERCHARGED.
+</h1>
               
               <p style={{
                 fontSize: '1.3rem',
@@ -163,61 +163,9 @@ const SocialMediaPage = () => {
                 opacity: 0.9,
                 lineHeight: '1.6'
               }}>
-                We don't just create content—we orchestrate digital ecosystems. From strategic planning to real-time engagement, we ensure your brand thrives across every platform.
-              </p>
+Stop posting into the void. We don't just manage social media; we weaponize it for growth. We architect digital strategies that capture attention, build cult followings, and drive real-world revenue.              </p>
               
-              <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <Link 
-                  to="/contact-us" 
-                  style={{
-                    background: 'linear-gradient(135deg, #38BDF8, #6427FF)',
-                    color: 'white',
-                    padding: '15px 30px',
-                    borderRadius: '50px',
-                    textDecoration: 'none',
-                    fontWeight: 'bold',
-                    fontSize: '1.1rem',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onMouseOver={(e) => {
-                    e.target.style.transform = 'translateY(-3px)';
-                    e.target.style.boxShadow = '0 15px 40px rgba(0,0,0,0.4)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
-                  }}
-                >
-                  Get Started
-                </Link>
-                
-                <Link 
-                  to="/portfolio" 
-                  style={{
-                    background: 'rgba(255,255,255,0.2)',
-                    color: 'white',
-                    padding: '15px 30px',
-                    borderRadius: '50px',
-                    textDecoration: 'none',
-                    fontWeight: 'bold',
-                    fontSize: '1.1rem',
-                    border: '2px solid rgba(255,255,255,0.3)',
-                    backdropFilter: 'blur(10px)',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onMouseOver={(e) => {
-                    e.target.style.background = 'rgba(255,255,255,0.3)';
-                    e.target.style.transform = 'translateY(-3px)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.style.background = 'rgba(255,255,255,0.2)';
-                    e.target.style.transform = 'translateY(0)';
-                  }}
-                >
-                  View Our Work
-                </Link>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -239,11 +187,10 @@ const SocialMediaPage = () => {
                 WebkitTextFillColor: 'transparent',
                 marginBottom: '30px'
               }}>
-                DIGITAL PRESENCE THAT CONVERTS
-              </h2>
+FROM SCROLLERS TO CUSTOMERS.
+</h2>
               <p style={{ fontSize: '1.2rem', color: '#666', lineHeight: '1.8' }}>
-                In the attention economy, every post is a battle. We craft social strategies that don't just get noticed—they get remembered, shared, and acted upon.
-              </p>
+              The internet is loud. We’re louder. In a world of infinite scroll, attention is the only currency that matters. We don't just make content that gets noticed—we create magnetic experiences that get remembered, shared, and converted into loyal customers.              </p>
             </div>
           </div>
 
@@ -290,20 +237,20 @@ const SocialMediaPage = () => {
                 color: '#333',
                 marginBottom: '20px'
               }}>
-                CONTENT THAT COMMANDS ATTENTION
-              </h3>
+WE SPEAK FLUENT INTERNET.
+</h3>
               <p style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.7', marginBottom: '25px' }}>
-                Every platform has its own language. We speak them all fluently—from Instagram's visual poetry to LinkedIn's professional discourse, TikTok's viral rhythms to Twitter's real-time conversations.
+              TikTok isn't LinkedIn. Instagram isn't X. We know. As native speakers on every platform, we craft content that feels right because it is right. We translate your brand's core message into the viral language of today's culture, ensuring you're not just on the platform, but leading the conversation.
               </p>
               <ul style={{ listStyle: 'none', padding: 0 }}>
                 <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>Platform-Native Content</strong> — tailored for each social ecosystem
+                  ✓ <strong>Platform-Native Mastery:</strong> Content meticulously engineered to win on each social ecosystem.
                 </li>
                 <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>Real-Time Engagement</strong> — responsive community management
+                  ✓ <strong>Real-Time Velocity:</strong>We move at the speed of culture, not corporate calendars.
                 </li>
                 <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>Data-Driven Strategy</strong> — insights that inform every decision
+                  ✓ <strong>Intelligence-Driven Strategy:</strong>Every single move is backed by data, not guesswork.
                 </li>
               </ul>
             </div>
@@ -319,8 +266,8 @@ const SocialMediaPage = () => {
                 color: '#333',
                 marginBottom: '50px'
               }}>
-                Our Social Media Services
-              </h3>
+Your Arsenal for Digital Dominance
+</h3>
             </div>
           </div>
 
@@ -376,29 +323,27 @@ const SocialMediaPage = () => {
                 color: '#333',
                 marginBottom: '20px'
               }}>
-                Our Process
-              </h3>
+The Blueprint for Victory
+</h3>
               <div style={{ marginBottom: '30px' }}>
                 <h5 style={{ color: '#38BDF8', fontWeight: 'bold', marginBottom: '10px' }}>
                   🎯 Strategic Discovery
                 </h5>
                 <p style={{ color: '#666', marginBottom: '20px' }}>
-                  We dive deep into your brand, audience, and competitive landscape to craft a winning strategy.
-                </p>
+                We don't just learn your brand; we decode its DNA. We immerse ourselves in your world, your audience, and the competitive landscape to unearth your unique winning advantage.                </p>
                 
                 <h5 style={{ color: '#6427FF', fontWeight: 'bold', marginBottom: '10px' }}>
-                  🎨 Creative Development
+                  🎨 Creative Ignition
                 </h5>
                 <p style={{ color: '#666', marginBottom: '20px' }}>
-                  Our creative team produces thumb-stopping content that aligns with your brand voice and goals.
+                This is where strategy becomes magic. Our creative team ignites the big ideas, producing thumb-stopping content that’s perfectly aligned with your brand voice and strategic goals.
                 </p>
                 
                 <h5 style={{ color: '#38BDF8', fontWeight: 'bold', marginBottom: '10px' }}>
-                  📊 Execute & Optimize
+                📈 Execute & Amplify
                 </h5>
                 <p style={{ color: '#666' }}>
-                  We launch, monitor, engage, and continuously optimize based on real-time data and community feedback.
-                </p>
+                We launch, listen, and learn—fast. We monitor performance in real-time, engage with your community, and continuously optimize based on hard data to turn good results into unbeatable ones.                </p>
               </div>
             </div>
             <div className="col-lg-7">
