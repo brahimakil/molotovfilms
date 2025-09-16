@@ -157,16 +157,15 @@ const PerformanceAdsPage = () => {
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent'
                 }}>
-                  Performance Video Ads & A/B Testing
-                </h1>
+Performance is Not an Opinion.
+</h1>
                 <p style={{
                   fontSize: '1.3rem',
                   marginBottom: '40px',
                   color: '#CBD5E1',
                   lineHeight: '1.6'
                 }}>
-                  Data-driven video advertising that maximizes ROI through systematic testing and optimization. We create multiple ad variations and let the numbers tell the story.
-                </p>
+Stop gambling with your ad spend. We engineer high-performance video campaigns by transforming creative variables into mathematical certainties. We let the data declare the winner, maximizing your ROI with ruthless efficiency.                </p>
                 
                 {/* Real-time Metrics Dashboard */}
                 <div style={{
@@ -294,11 +293,9 @@ const PerformanceAdsPage = () => {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
-                A/B Testing That Drives Results
-              </h2>
+Creative Darwinism: <br></br> Only the Strongest Ad Survives.              </h2>
               <p style={{ fontSize: '1.2rem', color: '#64748b', lineHeight: '1.8' }}>
-                We don't guess—we test. Every element of your video ads is systematically optimized through rigorous A/B testing to maximize performance.
-              </p>
+              We don't guess—we prove. In the battle for attention, every single element matters. The first three seconds, the call-to-action, the music, the message—each is a weapon in your arsenal. We systematically test every variable against the others to forge the most powerful, highest-converting version of your ad. The weak are discarded; the champion scales.              </p>
             </div>
           </div>
 
@@ -414,8 +411,8 @@ const PerformanceAdsPage = () => {
                 marginBottom: '50px',
                 color: 'white'
               }}>
-                Our Testing Process
-              </h2>
+The Intelligence Cycle
+</h2>
             </div>
           </div>
 
@@ -423,32 +420,32 @@ const PerformanceAdsPage = () => {
             {[
               {
                 step: '01',
-                title: 'Hypothesis Formation',
-                description: 'We analyze your current performance and identify optimization opportunities based on data insights.',
+                title: 'Identify the Battlefield',
+                description: 'We start with reconnaissance. By analyzing existing performance data and market intelligence, we form a strategic hypothesis, identifying the key creative variables that hold the most potential for a decisive victory.',
                 icon: '🔬'
               },
               {
-                step: '02', 
-                title: 'Variant Creation',
-                description: 'Multiple video variations are created, testing different hooks, visuals, CTAs, and messaging approaches.',
+                step: '02',
+                title: 'Assemble the Contenders',
+                description: 'Here, creative becomes a science. We produce a slate of compelling ad variations, each meticulously engineered to test a specific element of our hypothesis—different hooks, visuals, copy, and calls-to-action.',
                 icon: '🎬'
               },
               {
-                step: '03',
-                title: 'Statistical Testing',
-                description: 'Rigorous A/B testing with proper sample sizes and statistical significance to ensure reliable results.',
+                step: '03', 
+                title: '3. The Live-Fire Test',
+                description: "The contenders are deployed. We launch the A/B test in a controlled environment, gathering clean, statistically significant data to ensure the results aren't just a fluke—they are undeniable fact.",
                 icon: '📊'
               },
               {
                 step: '04',
-                title: 'Performance Analysis',
-                description: 'Deep dive into metrics, user behavior, and conversion data to understand what drives results.',
+                title: 'Decode the Results',
+                description: "The data comes in, and we translate it into actionable intelligence. We go beyond surface metrics to understand why the winner won, uncovering deep insights into your audience's behavior that will inform every future campaign.",
                 icon: '📈'
               },
               {
                 step: '05',
-                title: 'Optimization & Scale',
-                description: 'Implement winning variations and continuously iterate to maximize ROI and campaign performance.',
+                title: '5. Deploy the Champion',
+                description: 'The win',
                 icon: '🚀'
               }
             ].map((item, index) => (

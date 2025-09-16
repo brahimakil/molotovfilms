@@ -51,19 +51,22 @@ const PostProductionPage = () => {
   const repurposingProjects = [
     {
       original: 'Long-form Documentary',
-      outputs: ['Social Media Clips', 'Trailer', 'Behind-the-Scenes', 'Podcast Audio'],
+      creativeTitle: 'The 8x Narrative Engine',
+      outputs: ['Official Trailer', 'Social Media Cuts', 'Quote Graphics', 'Podcast Audio Rip'],
       multiplier: '8x',
       description: 'One documentary becomes 8 pieces of content'
     },
     {
       original: 'Product Launch Video',
-      outputs: ['Instagram Stories', 'YouTube Shorts', 'LinkedIn Posts', 'Email Campaigns'],
+      creativeTitle: 'The 12x Omnichannel Blitz',
+      outputs: ['Instagram Stories Teasers', 'Hypnotic YouTube Shorts', 'LinkedIn Thought-Leadership Clips', 'High-Impact Email Campaign GIFs', 'Behind-the-Scenes Reels'],
       multiplier: '12x',
       description: 'Maximum reach across all platforms'
     },
     {
       original: 'Interview Session',
-      outputs: ['Highlight Reels', 'Quote Graphics', 'Audio Podcast', 'Blog Content'],
+      creativeTitle: 'The 6x Authority Builder',
+      outputs: ['Highlight Reels', '"Mic Drop" Quote Cards', 'Full Audio Podcast Episode', 'Blog Content'],
       multiplier: '6x',
       description: 'Every conversation becomes multiple touchpoints'
     }
@@ -134,14 +137,14 @@ const PostProductionPage = () => {
 
                 
                 <h1 style={{
-                  fontSize: '4rem',
+                  fontSize: '3rem',
                   fontWeight: '900',
                   marginBottom: '30px',
                   color: 'white',
                   lineHeight: '1.1'
                 }}>
-                  Elevate Your Content with
-                  <span style={{
+MAKE EVERY FRAME COUNT.
+<span style={{
                     background: 'linear-gradient(135deg, #8B5CF6, #F59E0B, #3B82F6)',
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
@@ -153,14 +156,13 @@ const PostProductionPage = () => {
                 </h1>
                 
                 <p style={{
-                  fontSize: '1.4rem',
+                  fontSize: '1.2rem',
                   color: '#CBD5E1',
                   marginBottom: '50px',
                   lineHeight: '1.7',
                   maxWidth: '600px'
                 }}>
-                  Transform raw footage into compelling stories through expert editing, color grading, sound design, and motion graphics. Then multiply your content's reach with strategic repurposing.
-                </p>
+Your raw footage is potential. We're the alchemists who turn it into cinematic gold. Through razor-sharp editing, breathtaking color, immersive sound, and hypnotic motion graphics, we don't just finish your video—we ignite it.                </p>
 
                 {/* Service Selector */}
                 <div style={{
@@ -305,10 +307,10 @@ const PostProductionPage = () => {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
-                Content Repurposing That Multiplies Your Reach
-              </h2>
+ONE SHOOT. AN ENTIRE CAMPAIGN.
+</h2>
               <p style={{ fontSize: '1.3rem', color: '#64748b', lineHeight: '1.8', maxWidth: '800px', margin: '0 auto' }}>
-                Don't let great content live in just one place. We transform your videos into multiple formats, maximizing your investment and expanding your audience across all platforms.
+              Stop the content treadmill. The most successful brands don't create more; they create smarter. We strategically dissect your hero content—transforming one long-form video into a full arsenal of platform-native assets. Get more reach, more engagement, and a bigger ROI from a single investment.
               </p>
             </div>
           </div>
@@ -353,6 +355,22 @@ const PostProductionPage = () => {
                     }}>
                       {project.original}
                     </h4>
+                    <div style={{
+                      fontSize: '1rem',
+                      color: '#8B5CF6',
+                      fontWeight: '600',
+                      marginBottom: '5px'
+                    }}>
+                      ⬇️
+                    </div>
+                    <div style={{
+                      fontSize: '1.1rem',
+                      color: '#3B82F6',
+                      fontWeight: 'bold',
+                      fontStyle: 'italic'
+                    }}>
+                      {project.creativeTitle}
+                    </div>
                   </div>
 
                   {/* Arrow */}
@@ -360,10 +378,7 @@ const PostProductionPage = () => {
                     textAlign: 'center',
                     marginBottom: '30px'
                   }}>
-                    <div style={{
-                      fontSize: '2rem',
-                      color: '#8B5CF6'
-                    }}>⬇️</div>
+            
                     <div style={{
                       background: 'linear-gradient(135deg, #8B5CF6, #3B82F6)',
                       color: 'white',
@@ -421,8 +436,8 @@ const PostProductionPage = () => {
                 marginBottom: '60px',
                 color: 'white'
               }}>
-                Our Post-Production Workflow
-              </h2>
+Our Strategic Protocol
+</h2>
             </div>
           </div>
 
@@ -430,31 +445,31 @@ const PostProductionPage = () => {
             {[
               {
                 phase: 'INTAKE',
-                title: 'Project Analysis',
-                description: 'We review your raw footage, understand your vision, and create a detailed post-production roadmap.',
+                title: 'The Mission Blueprint',
+                description: 'Every successful project begins with intelligence. We perform a deep analysis of your raw footage, aligning with your strategic objectives to architect a precise post-production blueprint. This is the master plan for achieving maximum impact..',
                 icon: '🔍',
                 color: '#8B5CF6'
               },
               {
                 phase: 'EDIT',
-                title: 'Story Assembly',
-                description: 'Expert editors craft your narrative flow, ensuring every cut serves the story and engages your audience.',
+                title: 'Tactical Assembly',
+                description: 'Execution begins. Our editors assemble the narrative with tactical precision. Every cut, transition, and sequence is purposefully crafted to engage the audience, drive the story forward, and achieve the core mission objective. There is no wasted motion.',
                 icon: '✂️',
                 color: '#3B82F6'
               },
               {
-                phase: 'ENHANCE',
+                phase: 'The Force Multiplier',
                 title: 'Visual & Audio Polish',
-                description: 'Color grading, sound design, and motion graphics elevate your content to professional standards.',
+                description: 'This is where we apply the force multiplier. We add a layer of advanced polish that dramatically elevates the final product. Through cinematic color grading, immersive sound design, and sharp motion graphics, we transform a great video into an undeniable asset with commanding presence.',
                 icon: '🎨',
                 color: '#F59E0B'
               },
               {
                 phase: 'REPURPOSE',
-                title: 'Multi-Format Creation',
-                description: 'We adapt your content for different platforms and audiences, maximizing reach and engagement.',
-                icon: '📱',
-                color: '#10B981'
+                title: 'Strategic Deployment',
+                description: 'The primary asset is complete. Now, we deploy the campaign. We strategically repurpose the core content',
+                color: '#10B981',
+                icon: '📱'
               }
             ].map((step, index) => (
               <div key={index} className="col-lg-6">
@@ -516,57 +531,15 @@ const PostProductionPage = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section style={{ padding: '100px 0', background: '#f8fafc' }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-8 mx-auto text-center">
-              <h2 style={{
-                fontSize: '3rem',
-                fontWeight: '900',
-                marginBottom: '30px',
-                color: '#1e293b'
-              }}>
-                Ready to Transform Your Content?
-              </h2>
-              <p style={{
-                fontSize: '1.2rem',
-                color: '#64748b',
-                marginBottom: '40px',
-                lineHeight: '1.7'
-              }}>
-                Let's discuss how our post-production expertise can elevate your content and multiply your reach across all platforms.
-              </p>
-              <Link
-                to="/contact"
-                style={{
-                  background: 'linear-gradient(135deg, #8B5CF6, #3B82F6)',
-                  color: 'white',
-                  padding: '18px 40px',
-                  borderRadius: '30px',
-                  textDecoration: 'none',
-                  fontSize: '1.1rem',
-                  fontWeight: 'bold',
-                  display: 'inline-block',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)'
-                }}
-                onMouseOver={(e) => {
-                  e.target.style.transform = 'translateY(-3px)';
-                  e.target.style.boxShadow = '0 15px 40px rgba(139, 92, 246, 0.4)';
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 10px 30px rgba(139, 92, 246, 0.3)';
-                }}
-              >
-                Start Your Project 🚀
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+<br>
+</br>
+<br>
+</br><br>
+</br><br>
+</br><br>
+</br><br>
+</br><br>
+</br>
     </>
   );
 };
