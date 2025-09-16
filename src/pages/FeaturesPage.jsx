@@ -50,20 +50,45 @@ const FeaturesPage = () => {
   ];
 
   const heroRef = useRef(null);
+  const carouselRef = useRef(null);
   const showcaseVideoRef = useRef(null);
   const portfolioVideoRef = useRef(null);
 
-  // Navigation functions
-  const nextMovie = () => {
-    setSelectedMovieIndex((prev) => (prev + 1) % movies.length);
+  // Touch/swipe support
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const prevMovie = () => {
-    setSelectedMovieIndex((prev) => (prev - 1 + movies.length) % movies.length);
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
   };
 
-  const selectMovie = (index) => {
-    setSelectedMovieIndex(index);
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && selectedMovieIndex < movies.length - 1) {
+      setSelectedMovieIndex(prev => prev + 1);
+    }
+    if (isRightSwipe && selectedMovieIndex > 0) {
+      setSelectedMovieIndex(prev => prev - 1);
+    }
+  };
+
+  // Wheel scroll support
+  const handleWheel = (e) => {
+    if (e.deltaX > 0 && selectedMovieIndex < movies.length - 1) {
+      setSelectedMovieIndex(prev => prev + 1);
+    } else if (e.deltaX < 0 && selectedMovieIndex > 0) {
+      setSelectedMovieIndex(prev => prev - 1);
+    }
   };
 
   // Showcase video loading
@@ -122,161 +147,177 @@ const FeaturesPage = () => {
 
   return (
     <>
-      {/* Movie Carousel Hero Banner - Bigger with Book-style Images */}
+      {/* Movie Carousel Hero Banner - Horizontal Scroll with Side Images */}
       <section 
         ref={heroRef} 
         style={{
           position: 'relative',
-          height: '80vh', // Made bigger from 60vh
-          minHeight: '600px', // Increased from 400px
+          height: '80vh',
+          minHeight: '600px',
           backgroundColor: '#0a0a0a',
           overflow: 'hidden',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
         }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onWheel={handleWheel}
       >
-        {/* Movie Image - Book Style (Portrait) */}
+        {/* Horizontal Carousel Container */}
         <div style={{
-          position: 'relative',
-          width: '420px',   // was 280px
-          height: '600px',  // was 400px
-          borderRadius: '15px',
-          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8)',
-          zIndex: 5,
-          border: '3px solid rgba(107, 142, 35, 0.3)',
-          backgroundColor: '#1a1a1a'
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100vw',
+          height: '100%',
+          position: 'relative'
         }}>
-          <img
-            src={movies[selectedMovieIndex].image}
-            alt="Selected movie"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-              display: 'block'
-            }}
-          />
+          {/* Movie Images - Show current + 1 left + 1 right */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '60px',
+            width: '100%'
+          }}>
+            {/* Previous Image (Left) */}
+            {selectedMovieIndex > 0 && (
+              <div
+                onClick={() => setSelectedMovieIndex(selectedMovieIndex - 1)}
+                style={{
+                  position: 'relative',
+                  width: '300px',
+                  height: '450px',
+                  borderRadius: '15px',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  opacity: 0.6,
+                  transform: 'scale(0.8)',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+                  border: '1px solid rgba(107, 142, 35, 0.2)',
+                  backgroundColor: '#1a1a1a',
+                  flexShrink: 0
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.opacity = '0.8';
+                  e.currentTarget.style.transform = 'scale(0.85)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.opacity = '0.6';
+                  e.currentTarget.style.transform = 'scale(0.8)';
+                }}
+              >
+                <img
+                  src={movies[selectedMovieIndex - 1].image}
+                  alt={movies[selectedMovieIndex - 1].title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    display: 'block'
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Current Image (Center) */}
+            <div
+              style={{
+                position: 'relative',
+                width: '420px',
+                height: '600px',
+                borderRadius: '15px',
+                overflow: 'hidden',
+                transition: 'all 0.5s ease',
+                zIndex: 10,
+                boxShadow: '0 20px 60px rgba(107, 142, 35, 0.4)',
+                border: '3px solid rgba(107, 142, 35, 0.8)',
+                backgroundColor: '#1a1a1a',
+                flexShrink: 0
+              }}
+            >
+              <img
+                src={movies[selectedMovieIndex].image}
+                alt={movies[selectedMovieIndex].title}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  display: 'block'
+                }}
+              />
+          
+            </div>
+
+            {/* Next Image (Right) */}
+            {selectedMovieIndex < movies.length - 1 && (
+              <div
+                onClick={() => setSelectedMovieIndex(selectedMovieIndex + 1)}
+                style={{
+                  position: 'relative',
+                  width: '300px',
+                  height: '450px',
+                  borderRadius: '15px',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  opacity: 0.6,
+                  transform: 'scale(0.8)',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+                  border: '1px solid rgba(107, 142, 35, 0.2)',
+                  backgroundColor: '#1a1a1a',
+                  flexShrink: 0
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.opacity = '0.8';
+                  e.currentTarget.style.transform = 'scale(0.85)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.opacity = '0.6';
+                  e.currentTarget.style.transform = 'scale(0.8)';
+                }}
+              >
+                <img
+                  src={movies[selectedMovieIndex + 1].image}
+                  alt={movies[selectedMovieIndex + 1].title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    display: 'block'
+                  }}
+                />
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Movie Navigation Arrows */}
-        <button
-          onClick={prevMovie}
-          style={{
-            position: 'absolute',
-            left: '50px', // Moved further from the book
-            top: '50%',
-            transform: 'translateY(-50%)',
-            background: 'rgba(107, 142, 35, 0.8)',
-            border: 'none',
-            borderRadius: '50%',
-            width: '60px',
-            height: '60px',
-            color: 'white',
-            fontSize: '24px',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            zIndex: 10,
-            boxShadow: '0 0 20px rgba(107, 142, 35, 0.5)'
-          }}
-          onMouseOver={(e) => {
-            e.target.style.background = 'rgba(107, 142, 35, 1)';
-            e.target.style.transform = 'translateY(-50%) scale(1.1)';
-            e.target.style.boxShadow = '0 0 30px rgba(107, 142, 35, 0.8)';
-          }}
-          onMouseOut={(e) => {
-            e.target.style.background = 'rgba(107, 142, 35, 0.8)';
-            e.target.style.transform = 'translateY(-50%) scale(1)';
-            e.target.style.boxShadow = '0 0 20px rgba(107, 142, 35, 0.5)';
-          }}
-        >
-          ‹
-        </button>
-
-        <button
-          onClick={nextMovie}
-          style={{
-            position: 'absolute',
-            right: '50px', // Moved further from the book
-            top: '50%',
-            transform: 'translateY(-50%)',
-            background: 'rgba(107, 142, 35, 0.8)',
-            border: 'none',
-            borderRadius: '50%',
-            width: '60px',
-            height: '60px',
-            color: 'white',
-            fontSize: '24px',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            zIndex: 10,
-            boxShadow: '0 0 20px rgba(107, 142, 35, 0.5)'
-          }}
-          onMouseOver={(e) => {
-            e.target.style.background = 'rgba(107, 142, 35, 1)';
-            e.target.style.transform = 'translateY(-50%) scale(1.1)';
-            e.target.style.boxShadow = '0 0 30px rgba(107, 142, 35, 0.8)';
-          }}
-          onMouseOut={(e) => {
-            e.target.style.background = 'rgba(107, 142, 35, 0.8)';
-            e.target.style.transform = 'translateY(-50%) scale(1)';
-            e.target.style.boxShadow = '0 0 20px rgba(107, 142, 35, 0.5)';
-          }}
-        >
-          ›
-        </button>
-
-        {/* Movie Thumbnails at Bottom */}
+        {/* Navigation Dots */}
         <div style={{
           position: 'absolute',
-          bottom: '30px', // Moved up a bit for bigger banner
+          bottom: '30px',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
           gap: '10px',
-          zIndex: 10,
-          padding: '15px',
-          background: 'rgba(0, 0, 0, 0.5)',
-          borderRadius: '15px',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(107, 142, 35, 0.3)',
-          maxWidth: '90%',
-          overflowX: 'auto'
+          zIndex: 15
         }}>
-          {movies.map((movie, index) => (
+          {movies.map((_, index) => (
             <div
-              key={movie.id}
-              onClick={() => selectMovie(index)}
+              key={index}
+              onClick={() => setSelectedMovieIndex(index)}
               style={{
-                minWidth: '60px',
-                height: '40px',
-                borderRadius: '6px',
-                overflow: 'hidden',
+                width: selectedMovieIndex === index ? '30px' : '10px',
+                height: '10px',
+                borderRadius: '5px',
+                background: selectedMovieIndex === index 
+                  ? 'rgba(107, 142, 35, 1)' 
+                  : 'rgba(255, 255, 255, 0.4)',
                 cursor: 'pointer',
-                border: selectedMovieIndex === index ? '2px solid #6b8e23' : '1px solid rgba(255, 255, 255, 0.3)',
-                background: `url(${movie.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                transition: 'all 0.3s ease',
-                boxShadow: selectedMovieIndex === index 
-                  ? '0 0 15px rgba(107, 142, 35, 0.8)' 
-                  : '0 2px 8px rgba(0,0,0,0.3)',
-                transform: selectedMovieIndex === index ? 'scale(1.2)' : 'scale(1)',
-                filter: selectedMovieIndex === index ? 'brightness(1.2)' : 'brightness(0.8)'
-              }}
-              onMouseOver={(e) => {
-                if (selectedMovieIndex !== index) {
-                  e.target.style.transform = 'scale(1.1)';
-                  e.target.style.filter = 'brightness(1)';
-                  e.target.style.boxShadow = '0 4px 12px rgba(107, 142, 35, 0.4)';
-                }
-              }}
-              onMouseOut={(e) => {
-                if (selectedMovieIndex !== index) {
-                  e.target.style.transform = 'scale(1)';
-                  e.target.style.filter = 'brightness(0.8)';
-                  e.target.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
-                }
+                transition: 'all 0.3s ease'
               }}
             />
           ))}
