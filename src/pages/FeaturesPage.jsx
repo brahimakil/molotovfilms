@@ -21,6 +21,7 @@ import movie13 from "../assets/movies/Poster lbh.jpg";
 const FeaturesPage = () => {
   // Movie carousel state
   const [selectedMovieIndex, setSelectedMovieIndex] = useState(0);
+  const [isOverCarousel, setIsOverCarousel] = useState(false); // Add this state declaration
   
   // Add state for multiple videos
   const [showcaseVideoUrl, setShowcaseVideoUrl] = useState('');
@@ -82,11 +83,64 @@ const FeaturesPage = () => {
     }
   };
 
-  // Wheel scroll support
+  // Prevent page scroll only when over carousel AND not at boundaries
+  useEffect(() => {
+    const preventPageScroll = (e) => {
+      if (isOverCarousel) {
+        const scrollDirection = e.deltaY;
+        const isAtFirstImage = selectedMovieIndex === 0;
+        const isAtLastImage = selectedMovieIndex === movies.length - 1;
+        
+        // Allow page scroll if:
+        // - Scrolling up at first image
+        // - Scrolling down at last image
+        if ((scrollDirection < 0 && isAtFirstImage) || (scrollDirection > 0 && isAtLastImage)) {
+          // Don't prevent - allow page scroll
+          return;
+        }
+        
+        // Otherwise prevent page scroll and let carousel handle it
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    // Add listener when hovering over carousel
+    if (isOverCarousel) {
+      window.addEventListener('wheel', preventPageScroll, { passive: false });
+    }
+
+    return () => {
+      window.removeEventListener('wheel', preventPageScroll);
+    };
+  }, [isOverCarousel, selectedMovieIndex]);
+
+  // Enhanced wheel scroll support
   const handleWheel = (e) => {
-    if (e.deltaX > 0 && selectedMovieIndex < movies.length - 1) {
+    const scrollDirection = e.deltaY;
+    
+    // Check boundaries
+    const isAtFirstImage = selectedMovieIndex === 0;
+    const isAtLastImage = selectedMovieIndex === movies.length - 1;
+    
+    // If scrolling down at last image, allow page scroll
+    if (scrollDirection > 0 && isAtLastImage) {
+      // Don't prevent, let the page scroll
+      return;
+    }
+    
+    // If scrolling up at first image, allow page scroll
+    if (scrollDirection < 0 && isAtFirstImage) {
+      // Don't prevent, let the page scroll
+      return;
+    }
+    
+    // Otherwise, handle carousel navigation
+    e.preventDefault();
+    
+    if (scrollDirection > 0 && selectedMovieIndex < movies.length - 1) {
       setSelectedMovieIndex(prev => prev + 1);
-    } else if (e.deltaX < 0 && selectedMovieIndex > 0) {
+    } else if (scrollDirection < 0 && selectedMovieIndex > 0) {
       setSelectedMovieIndex(prev => prev - 1);
     }
   };
@@ -158,13 +212,13 @@ const FeaturesPage = () => {
           100% { left: 100%; }
         }
       `}</style>
-      {/* Professional Film Carousel - Horizontal Sliding */}
+      {/* Professional Film Carousel - Smart Scroll Boundary */}
       <section 
         ref={heroRef} 
         style={{
           position: 'relative',
-          height: window.innerWidth <= 768 ? '70vh' : '100vh',
-          minHeight: window.innerWidth <= 768 ? '400px' : '600px',
+          height: window.innerWidth <= 768 ? '50vh' : '70vh',
+          minHeight: window.innerWidth <= 768 ? '350px' : '500px',
           backgroundColor: '#0a0a0a',
           overflow: 'hidden',
           display: 'flex',
@@ -172,6 +226,8 @@ const FeaturesPage = () => {
           justifyContent: 'center',
           perspective: '1000px'
         }}
+        onMouseEnter={() => setIsOverCarousel(true)}
+        onMouseLeave={() => setIsOverCarousel(false)}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -191,8 +247,8 @@ const FeaturesPage = () => {
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: window.innerWidth <= 768 ? '40px' : '80px',
-            transform: `translateX(calc(50vw - ${selectedMovieIndex * (window.innerWidth <= 768 ? 280 : 530) + (window.innerWidth <= 768 ? 140 : 265)}px))`,
+            gap: window.innerWidth <= 768 ? '30px' : '60px', // Reduced gap
+            transform: `translateX(calc(50vw - ${selectedMovieIndex * (window.innerWidth <= 768 ? 200 : 380) + (window.innerWidth <= 768 ? 100 : 190)}px))`, // Adjusted for smaller books
             transition: 'transform 500ms cubic-bezier(0.25, 0.8, 0.25, 1)',
             willChange: 'transform'
           }}>
@@ -207,8 +263,8 @@ const FeaturesPage = () => {
                   onClick={() => setSelectedMovieIndex(index)}
                   style={{
                     position: 'relative',
-                    width: isMobile ? '240px' : '450px',
-                    height: isMobile ? '360px' : '650px',
+                    width: isMobile ? '170px' : '320px', // Reduced from 240px/450px
+                    height: isMobile ? '255px' : '480px', // Reduced from 360px/650px
                     borderRadius: '15px',
                     overflow: 'hidden',
                     cursor: 'pointer',
@@ -232,8 +288,8 @@ const FeaturesPage = () => {
                       : '1px solid rgba(107, 142, 35, 0.2)',
                     boxShadow: isActive 
                       ? isMobile 
-                        ? '0 15px 40px rgba(107, 142, 35, 0.3)'
-                        : '0 25px 80px rgba(107, 142, 35, 0.3)'
+                        ? '0 10px 30px rgba(107, 142, 35, 0.3)'
+                        : '0 20px 60px rgba(107, 142, 35, 0.3)'
                       : '0 5px 15px rgba(0, 0, 0, 0.3)',
                   }}
                 >
@@ -251,15 +307,15 @@ const FeaturesPage = () => {
                   {/* Item Number Indicator */}
                   <div style={{
                     position: 'absolute',
-                    top: isMobile ? '10px' : '20px',
-                    left: isMobile ? '10px' : '20px',
+                    top: isMobile ? '8px' : '15px',
+                    left: isMobile ? '8px' : '15px',
                     background: isActive 
                       ? 'rgba(107, 142, 35, 0.9)' 
                       : 'rgba(0, 0, 0, 0.6)',
                     color: 'white',
-                    padding: isMobile ? '6px 10px' : '8px 12px',
-                    borderRadius: '20px',
-                    fontSize: isMobile ? '0.8rem' : '0.9rem',
+                    padding: isMobile ? '4px 8px' : '6px 10px',
+                    borderRadius: '15px',
+                    fontSize: isMobile ? '0.7rem' : '0.8rem',
                     fontWeight: 'bold',
                     backdropFilter: 'blur(10px)',
                     transition: 'all 500ms cubic-bezier(0.25, 0.8, 0.25, 1)'
@@ -272,18 +328,18 @@ const FeaturesPage = () => {
           </div>
         </div>
 
-        {/* Navigation Dots */}
+        {/* Navigation Dots - Adjusted for smaller banner */}
         <div style={{
           position: 'absolute',
-          bottom: window.innerWidth <= 768 ? '20px' : '40px',
+          bottom: window.innerWidth <= 768 ? '15px' : '30px',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
-          gap: window.innerWidth <= 768 ? '8px' : '12px',
+          gap: window.innerWidth <= 768 ? '6px' : '10px',
           zIndex: 15,
           background: 'rgba(0, 0, 0, 0.3)',
-          padding: window.innerWidth <= 768 ? '10px 20px' : '15px 25px',
-          borderRadius: '30px',
+          padding: window.innerWidth <= 768 ? '8px 16px' : '12px 20px',
+          borderRadius: '25px',
           backdropFilter: 'blur(15px)',
           border: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
@@ -293,10 +349,10 @@ const FeaturesPage = () => {
               onClick={() => setSelectedMovieIndex(index)}
               style={{
                 width: selectedMovieIndex === index 
-                  ? (window.innerWidth <= 768 ? '30px' : '40px')
-                  : (window.innerWidth <= 768 ? '8px' : '12px'),
-                height: window.innerWidth <= 768 ? '8px' : '12px',
-                borderRadius: window.innerWidth <= 768 ? '4px' : '6px',
+                  ? (window.innerWidth <= 768 ? '25px' : '35px')
+                  : (window.innerWidth <= 768 ? '6px' : '10px'),
+                height: window.innerWidth <= 768 ? '6px' : '10px',
+                borderRadius: window.innerWidth <= 768 ? '3px' : '5px',
                 background: selectedMovieIndex === index 
                   ? 'linear-gradient(90deg, rgba(107, 142, 35, 1), rgba(107, 142, 35, 0.7))' 
                   : 'rgba(255, 255, 255, 0.3)',
@@ -307,22 +363,22 @@ const FeaturesPage = () => {
           ))}
         </div>
 
-        {/* Progress Bar */}
+        {/* Progress Bar - Adjusted for smaller banner */}
         <div style={{
           position: 'absolute',
-          top: window.innerWidth <= 768 ? '20px' : '30px',
+          top: window.innerWidth <= 768 ? '15px' : '25px',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
           alignItems: 'center',
-          gap: window.innerWidth <= 768 ? '10px' : '15px',
+          gap: window.innerWidth <= 768 ? '8px' : '12px',
           color: 'rgba(255, 255, 255, 0.7)',
-          fontSize: window.innerWidth <= 768 ? '0.8rem' : '0.9rem',
+          fontSize: window.innerWidth <= 768 ? '0.7rem' : '0.8rem',
           fontWeight: '500'
         }}>
           <span>{String(selectedMovieIndex + 1).padStart(2, '0')}</span>
           <div style={{
-            width: window.innerWidth <= 768 ? '40px' : '60px',
+            width: window.innerWidth <= 768 ? '35px' : '50px',
             height: '2px',
             background: 'rgba(255, 255, 255, 0.2)',
             borderRadius: '1px',
