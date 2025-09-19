@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
+import FooterOne from "../component/FooterOne"; // Import the footer
 
 // Import movie images
 import movie1 from "../assets/movies/56262.jpg";
@@ -19,20 +20,59 @@ import movie12 from "../assets/movies/POSTER..jpg";
 import movie13 from "../assets/movies/Poster lbh.jpg";
 
 const FeaturesPage = () => {
+  // Responsive state management
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Movie carousel state
   const [selectedMovieIndex, setSelectedMovieIndex] = useState(0);
-  const [isOverCarousel, setIsOverCarousel] = useState(false); // Add this state declaration
+  const [isOverCarousel, setIsOverCarousel] = useState(false);
   
-  // Add state for multiple videos
-  const [showcaseVideoUrl, setShowcaseVideoUrl] = useState('');
-  const [showcaseVideoLoaded, setShowcaseVideoLoaded] = useState(false);
-  const [showcaseVideoError, setShowcaseVideoError] = useState(false);
-  const [shouldLoadShowcaseVideo, setShouldLoadShowcaseVideo] = useState(false);
-
-  const [portfolioVideoUrl, setPortfolioVideoUrl] = useState('');
-  const [portfolioVideoLoaded, setPortfolioVideoLoaded] = useState(false);
-  const [portfolioVideoError, setPortfolioVideoError] = useState(false);
-  const [shouldLoadPortfolioVideo, setShouldLoadPortfolioVideo] = useState(false);
+  // Interactive showcase state with error handling
+  const [activeShowcaseIndex, setActiveShowcaseIndex] = useState(0);
+  const [showcaseItems, setShowcaseItems] = useState([
+    {
+      id: 1,
+      title: "The Original Error",
+      description: "A poetic documentary that takes viewers on a transformative journey to Nepal, delving into profound themes of life and death through captivating visuals.",
+      category: "Documentary",
+      image: null,
+      videoUrl: null,
+      videoLoaded: false,
+      imageLoaded: false,
+      imageError: false,
+      videoError: false
+    },
+    {
+      id: 2,
+      title: "Tili Tili BOOM",
+      description: "An explosive narrative piece that challenges conventional storytelling with its bold visual approach and compelling character development.",
+      category: "Narrative",
+      image: null,
+      videoUrl: null,
+      videoLoaded: false,
+      imageLoaded: false,
+      imageError: false,
+      videoError: false
+    },
+    {
+      id: 3,
+      title: "Low Budget Heist",
+      description: "A masterclass in creative filmmaking, proving that compelling stories don't require massive budgets, just innovative vision and precise execution.",
+      category: "Short Film",
+      image: null,
+      videoUrl: null,
+      videoLoaded: false,
+      imageLoaded: false,
+      imageError: false,
+      videoError: false
+    }
+  ]);
 
   const movies = [
     { id: 1, image: movie1, title: "Film Festival Selection", description: "Award-winning narrative" },
@@ -51,11 +91,29 @@ const FeaturesPage = () => {
   ];
 
   const heroRef = useRef(null);
-  const carouselRef = useRef(null);
-  const showcaseVideoRef = useRef(null);
-  const portfolioVideoRef = useRef(null);
+  const immersiveVideoRef = useRef(null);
+  const carouselTrackRef = useRef(null);
+  const cardRefs = useRef([]);
 
-  // Touch/swipe support
+  // Dynamic carousel calculations
+  const [carouselConfig, setCarouselConfig] = useState({
+    cardWidth: isMobile ? 200 : 380,
+    cardGap: isMobile ? 30 : 60,
+    offset: isMobile ? 100 : 190
+  });
+
+  useEffect(() => {
+    // Calculate dynamic card dimensions
+    if (cardRefs.current[0]) {
+      const cardWidth = cardRefs.current[0].offsetWidth;
+      const cardGap = isMobile ? 30 : 60;
+      const offset = cardWidth / 2;
+      
+      setCarouselConfig({ cardWidth, cardGap, offset });
+    }
+  }, [isMobile]);
+
+  // Touch/swipe support for banner
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 
@@ -91,21 +149,15 @@ const FeaturesPage = () => {
         const isAtFirstImage = selectedMovieIndex === 0;
         const isAtLastImage = selectedMovieIndex === movies.length - 1;
         
-        // Allow page scroll if:
-        // - Scrolling up at first image
-        // - Scrolling down at last image
         if ((scrollDirection < 0 && isAtFirstImage) || (scrollDirection > 0 && isAtLastImage)) {
-          // Don't prevent - allow page scroll
           return;
         }
         
-        // Otherwise prevent page scroll and let carousel handle it
         e.preventDefault();
         e.stopPropagation();
       }
     };
 
-    // Add listener when hovering over carousel
     if (isOverCarousel) {
       window.addEventListener('wheel', preventPageScroll, { passive: false });
     }
@@ -119,23 +171,17 @@ const FeaturesPage = () => {
   const handleWheel = (e) => {
     const scrollDirection = e.deltaY;
     
-    // Check boundaries
     const isAtFirstImage = selectedMovieIndex === 0;
     const isAtLastImage = selectedMovieIndex === movies.length - 1;
     
-    // If scrolling down at last image, allow page scroll
     if (scrollDirection > 0 && isAtLastImage) {
-      // Don't prevent, let the page scroll
       return;
     }
     
-    // If scrolling up at first image, allow page scroll
     if (scrollDirection < 0 && isAtFirstImage) {
-      // Don't prevent, let the page scroll
       return;
     }
     
-    // Otherwise, handle carousel navigation
     e.preventDefault();
     
     if (scrollDirection > 0 && selectedMovieIndex < movies.length - 1) {
@@ -145,53 +191,109 @@ const FeaturesPage = () => {
     }
   };
 
-  // Showcase video loading
+  // Improved Firebase loading with Promise.all - FIXED ORDER
   useEffect(() => {
-    setShouldLoadShowcaseVideo(true);
-  }, []);
-
-  useEffect(() => {
-    if (!shouldLoadShowcaseVideo || showcaseVideoLoaded) return;
-
-    const loadShowcaseVideo = async () => {
+    const loadShowcaseContent = async () => {
       try {
-        const videoPath = 'servicedetails(reels..)/videoinplaceofimage-optimized.mp4';
-        const videoRefFirebase = ref(storage, videoPath);
-        const url = await getDownloadURL(videoRefFirebase);
-        setShowcaseVideoUrl(url);
-        setShowcaseVideoLoaded(true);
+        // CORRECTED IMAGE ORDER to match your files
+        const imageRefs = [
+          'servicesfeaturespage/originalerror.jpg',    // First image - The Original Error
+          'servicesfeaturespage/tilitiliboom.jpg',     // Second image - Tili Tili BOOM  
+          'servicesfeaturespage/filmtejere.jpg'        // Third image - Low Budget Heist
+        ];
+        
+        const videoRefs = [
+          'servicesfeaturespage/The Original Error.- traile - webmp4.mp4',
+          'servicesfeaturespage/Tili Tili BOOM.mp4',
+          'servicesfeaturespage/Trailer 1.20sLow Budget Hiest.mp4'
+        ];
+
+        // Load all images concurrently
+        const imagePromises = imageRefs.map(async (imagePath, index) => {
+          try {
+            console.log(`Loading image ${index}: ${imagePath}`); // Debug log
+            const imageRef = ref(storage, imagePath);
+            const imageUrl = await getDownloadURL(imageRef);
+            console.log(`✅ Successfully loaded image ${index}: ${imagePath}`); // Success log
+            return { index, imageUrl, success: true };
+          } catch (error) {
+            console.error(`❌ Error loading image ${index} (${imagePath}):`, error);
+            return { index, error, success: false };
+          }
+        });
+
+        // Load all videos concurrently
+        const videoPromises = videoRefs.map(async (videoPath, index) => {
+          try {
+            console.log(`Loading video ${index}: ${videoPath}`); // Debug log
+            const videoRef = ref(storage, videoPath);
+            const videoUrl = await getDownloadURL(videoRef);
+            console.log(`✅ Successfully loaded video ${index}: ${videoPath}`); // Success log
+            return { index, videoUrl, success: true };
+          } catch (error) {
+            console.error(`❌ Error loading video ${index} (${videoPath}):`, error);
+            return { index, error, success: false };
+          }
+        });
+
+        // Wait for all to complete
+        const [imageResults, videoResults] = await Promise.all([
+          Promise.all(imagePromises),
+          Promise.all(videoPromises)
+        ]);
+
+        // Update state safely
+        setShowcaseItems(prevItems => {
+          const updatedItems = [...prevItems];
+          
+          imageResults.forEach(result => {
+            if (result.success) {
+              updatedItems[result.index].image = result.imageUrl;
+              updatedItems[result.index].imageLoaded = true;
+              updatedItems[result.index].imageError = false;
+              console.log(`✅ Updated item ${result.index} with image`); // Debug log
+            } else {
+              updatedItems[result.index].imageError = true;
+              updatedItems[result.index].imageLoaded = false;
+              console.log(`❌ Failed to load image for item ${result.index}`); // Debug log
+            }
+          });
+
+          videoResults.forEach(result => {
+            if (result.success) {
+              updatedItems[result.index].videoUrl = result.videoUrl;
+              updatedItems[result.index].videoLoaded = true;
+              updatedItems[result.index].videoError = false;
+              console.log(`✅ Updated item ${result.index} with video`); // Debug log
+            } else {
+              updatedItems[result.index].videoError = true;
+              updatedItems[result.index].videoLoaded = false;
+              console.log(`❌ Failed to load video for item ${result.index}`); // Debug log
+            }
+          });
+
+          return updatedItems;
+        });
+
       } catch (error) {
-        console.error('Error loading showcase video:', error);
-        setShowcaseVideoError(true);
+        console.error('❌ Error loading showcase content:', error);
       }
     };
 
-    loadShowcaseVideo();
-  }, [shouldLoadShowcaseVideo, showcaseVideoLoaded]);
-
-  // Portfolio video loading
-  useEffect(() => {
-    setShouldLoadPortfolioVideo(true);
+    loadShowcaseContent();
   }, []);
 
-  useEffect(() => {
-    if (!shouldLoadPortfolioVideo || portfolioVideoLoaded) return;
+  // Function to handle active showcase selection
+  const setActiveIndex = (index) => {
+    setActiveShowcaseIndex(index);
+  };
 
-    const loadPortfolioVideo = async () => {
-      try {
-        const videoPath = 'servicedetails(reels..)/Low Budget Heist website 1-optimized.mp4';
-        const videoRefFirebase = ref(storage, videoPath);
-        const url = await getDownloadURL(videoRefFirebase);
-        setPortfolioVideoUrl(url);
-        setPortfolioVideoLoaded(true);
-      } catch (error) {
-        console.error('Error loading portfolio video:', error);
-        setPortfolioVideoError(true);
-      }
-    };
-
-    loadPortfolioVideo();
-  }, [shouldLoadPortfolioVideo, portfolioVideoLoaded]);
+  // Calculate carousel transform
+  const getCarouselTransform = () => {
+    const { cardWidth, cardGap, offset } = carouselConfig;
+    const translateX = `calc(50vw - ${selectedMovieIndex * (cardWidth + cardGap) + offset}px)`;
+    return `translateX(${translateX})`;
+  };
 
   const breadcrumbs = [
     { label: "Home", link: "/" },
@@ -202,23 +304,104 @@ const FeaturesPage = () => {
   return (
     <>
       <style>{`
-        @keyframes pulse {
-          0% { opacity: 0.1; }
-          100% { opacity: 0.3; }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes spotlightEffect {
+          0% {
+            box-shadow: 0 0 0 rgba(107, 142, 35, 0);
+          }
+          50% {
+            box-shadow: 0 0 30px rgba(107, 142, 35, 0.6);
+          }
+          100% {
+            box-shadow: 0 0 20px rgba(107, 142, 35, 0.4);
+          }
+        }
+
+        .immersive-showcase {
+          animation: fadeInUp 0.8s ease-out;
+          overflow: hidden;
+        }
+
+        .video-transition {
+          transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .book-card {
+          transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+          will-change: transform, opacity;
+        }
+
+        .book-card:hover {
+          transform: translateY(-10px) scale(1.05);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .book-card.active {
+          animation: spotlightEffect 1s ease-out;
+        }
+
+        .sidebar-panel {
+          animation: slideInRight 1s ease-out;
+          backdrop-filter: blur(15px);
+          -webkit-backdrop-filter: blur(15px);
+          will-change: transform;
+        }
+
+        .bottom-anchor-bar {
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+        }
+
+        .carousel-container {
+          overflow: hidden;
+        }
+
+        .mobile-carousel {
+          display: flex;
+          gap: 15px;
+          overflow-x: auto;
+          padding: 20px;
+          scroll-snap-type: x mandatory;
         }
         
-        @keyframes shimmer {
-          0% { left: -100%; }
-          100% { left: 100%; }
+        .mobile-carousel::-webkit-scrollbar {
+          display: none;
+        }
+        
+        .mobile-card {
+          scroll-snap-align: center;
+          flex-shrink: 0;
         }
       `}</style>
-      {/* Professional Film Carousel - Smart Scroll Boundary */}
+
+      {/* Professional Film Carousel Banner */}
       <section 
         ref={heroRef} 
         style={{
           position: 'relative',
-          height: window.innerWidth <= 768 ? '50vh' : '70vh',
-          minHeight: window.innerWidth <= 768 ? '350px' : '500px',
+          height: isMobile ? '50vh' : '70vh',
+          minHeight: isMobile ? '350px' : '500px',
           backgroundColor: '#0a0a0a',
           overflow: 'hidden',
           display: 'flex',
@@ -234,44 +417,44 @@ const FeaturesPage = () => {
         onWheel={handleWheel}
       >
         {/* Carousel Container */}
-        <div style={{
+        <div className="carousel-container" style={{
           display: 'flex',
           alignItems: 'center',
-          overflow: 'hidden',
           perspective: '1000px',
           width: '100%',
           height: '100%',
           position: 'relative'
         }}>
-          {/* Sliding Track */}
-          <div style={{
+          {/* Sliding Track with Dynamic Transform */}
+          <div 
+            ref={carouselTrackRef}
+            style={{
             display: 'flex',
             alignItems: 'center',
-            gap: window.innerWidth <= 768 ? '30px' : '60px', // Reduced gap
-            transform: `translateX(calc(50vw - ${selectedMovieIndex * (window.innerWidth <= 768 ? 200 : 380) + (window.innerWidth <= 768 ? 100 : 190)}px))`, // Adjusted for smaller books
+              gap: `${carouselConfig.cardGap}px`,
+              transform: getCarouselTransform(),
             transition: 'transform 500ms cubic-bezier(0.25, 0.8, 0.25, 1)',
             willChange: 'transform'
-          }}>
+            }}
+          >
             {movies.map((movie, index) => {
               const isActive = index === selectedMovieIndex;
-              const distance = Math.abs(index - selectedMovieIndex);
-              const isMobile = window.innerWidth <= 768;
               
               return (
                 <div
                   key={movie.id}
+                  ref={el => cardRefs.current[index] = el}
                   onClick={() => setSelectedMovieIndex(index)}
                   style={{
                     position: 'relative',
-                    width: isMobile ? '170px' : '320px', // Reduced from 240px/450px
-                    height: isMobile ? '255px' : '480px', // Reduced from 360px/650px
+                    width: isMobile ? '170px' : '320px',
+                    height: isMobile ? '255px' : '480px',
                     borderRadius: '15px',
                     overflow: 'hidden',
                     cursor: 'pointer',
                     flexShrink: 0,
                     backgroundColor: '#1a1a1a',
                     
-                    // Active/Inactive states as per specification
                     transform: isActive 
                       ? 'translateX(0) scale(1)' 
                       : 'scale(0.75)',
@@ -279,10 +462,8 @@ const FeaturesPage = () => {
                     filter: isActive ? 'blur(0px)' : 'blur(3px)',
                     zIndex: isActive ? 10 : 1,
                     
-                    // Animation properties as per specification
                     transition: 'transform 500ms cubic-bezier(0.25, 0.8, 0.25, 1), opacity 500ms cubic-bezier(0.25, 0.8, 0.25, 1), filter 500ms cubic-bezier(0.25, 0.8, 0.25, 1)',
                     
-                    // Visual styling
                     border: isActive 
                       ? '3px solid rgba(107, 142, 35, 0.8)' 
                       : '1px solid rgba(107, 142, 35, 0.2)',
@@ -304,7 +485,6 @@ const FeaturesPage = () => {
                     }}
                   />
                   
-                  {/* Item Number Indicator */}
                   <div style={{
                     position: 'absolute',
                     top: isMobile ? '8px' : '15px',
@@ -328,17 +508,17 @@ const FeaturesPage = () => {
           </div>
         </div>
 
-        {/* Navigation Dots - Adjusted for smaller banner */}
+        {/* Navigation Dots */}
         <div style={{
           position: 'absolute',
-          bottom: window.innerWidth <= 768 ? '15px' : '30px',
+          bottom: isMobile ? '15px' : '30px',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
-          gap: window.innerWidth <= 768 ? '6px' : '10px',
+          gap: isMobile ? '6px' : '10px',
           zIndex: 15,
           background: 'rgba(0, 0, 0, 0.3)',
-          padding: window.innerWidth <= 768 ? '8px 16px' : '12px 20px',
+          padding: isMobile ? '8px 16px' : '12px 20px',
           borderRadius: '25px',
           backdropFilter: 'blur(15px)',
           border: '1px solid rgba(255, 255, 255, 0.1)'
@@ -349,10 +529,10 @@ const FeaturesPage = () => {
               onClick={() => setSelectedMovieIndex(index)}
               style={{
                 width: selectedMovieIndex === index 
-                  ? (window.innerWidth <= 768 ? '25px' : '35px')
-                  : (window.innerWidth <= 768 ? '6px' : '10px'),
-                height: window.innerWidth <= 768 ? '6px' : '10px',
-                borderRadius: window.innerWidth <= 768 ? '3px' : '5px',
+                  ? (isMobile ? '25px' : '35px')
+                  : (isMobile ? '6px' : '10px'),
+                height: isMobile ? '6px' : '10px',
+                borderRadius: isMobile ? '3px' : '5px',
                 background: selectedMovieIndex === index 
                   ? 'linear-gradient(90deg, rgba(107, 142, 35, 1), rgba(107, 142, 35, 0.7))' 
                   : 'rgba(255, 255, 255, 0.3)',
@@ -363,22 +543,22 @@ const FeaturesPage = () => {
           ))}
         </div>
 
-        {/* Progress Bar - Adjusted for smaller banner */}
+        {/* Progress Bar */}
         <div style={{
           position: 'absolute',
-          top: window.innerWidth <= 768 ? '15px' : '25px',
+          top: isMobile ? '15px' : '25px',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
           alignItems: 'center',
-          gap: window.innerWidth <= 768 ? '8px' : '12px',
+          gap: isMobile ? '8px' : '12px',
           color: 'rgba(255, 255, 255, 0.7)',
-          fontSize: window.innerWidth <= 768 ? '0.7rem' : '0.8rem',
+          fontSize: isMobile ? '0.7rem' : '0.8rem',
           fontWeight: '500'
         }}>
           <span>{String(selectedMovieIndex + 1).padStart(2, '0')}</span>
           <div style={{
-            width: window.innerWidth <= 768 ? '35px' : '50px',
+            width: isMobile ? '35px' : '50px',
             height: '2px',
             background: 'rgba(255, 255, 255, 0.2)',
             borderRadius: '1px',
@@ -395,236 +575,448 @@ const FeaturesPage = () => {
         </div>
       </section>
 
-      {/* Main Content - Normal White Background */}
-      <section className="features_content" style={{ padding: '80px 0' }}>
-        <div className="container">
+      {/* ENHANCED PROFESSIONAL IMMERSIVE VIDEO SHOWCASE - STRAIGHT EDGES */}
+      <section 
+        className="immersive-showcase"
+        style={{
+          position: 'relative',
+          width: '100vw',
+          height: '80vh',
+          minHeight: '600px',
+          marginTop: '0',
+          marginBottom: '40px', // Add small spacing before footer
+          zIndex: 5,
+          background: '#000'
+        }}
+      >
+        {/* REMOVED - Angled Section Framing - Top */}
+        {/* <div className="angled-divider-top" /> */}
+
+        {/* Parallax Video Background with Enhanced Masking */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 1
+        }}>
+          {showcaseItems[activeShowcaseIndex]?.videoLoaded && showcaseItems[activeShowcaseIndex]?.videoUrl ? (
+                  <video
+              key={activeShowcaseIndex}
+              ref={immersiveVideoRef}
+              className="video-transition"
+                    style={{
+                width: '110%',
+                height: '110%',
+                objectFit: 'cover',
+                transform: 'translate(-5%, -5%)', // Parallax effect
+                filter: 'brightness(0.7) contrast(1.1) saturate(1.1)'
+                    }}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    controls={false}
+                  >
+              <source src={showcaseItems[activeShowcaseIndex].videoUrl} type="video/mp4" />
+                  </video>
+                ) : (
+                  <div style={{
+                    width: '100%',
+              height: '100%',
+              background: 'linear-gradient(135deg, #0a0a0a, #1a1a1a)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+              color: '#666',
+              fontSize: '1.5rem'
+                  }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '4rem', marginBottom: '20px', color: 'rgba(107, 142, 35, 0.6)' }}>🎬</div>
+                <div>Loading cinematic experience...</div>
+              </div>
+                  </div>
+                )}
+              </div>
+
+        {/* Enhanced Layered Gradient Overlay */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: `
+            linear-gradient(
+              180deg,
+              rgba(0, 0, 0, 0.2) 0%,
+              rgba(107, 142, 35, 0.05) 30%,
+              rgba(0, 0, 0, 0.1) 60%,
+              rgba(0, 0, 0, 0.8) 95%,
+              rgba(0, 0, 0, 0.95) 100%
+            )
+          `,
+          backdropFilter: 'blur(1px)',
+          WebkitBackdropFilter: 'blur(1px)',
+          zIndex: 2
+        }} />
+
+        {/* ENHANCED PROFESSIONAL TEXT OVERLAY - MIDDLE LEFT */}
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50px',
+          transform: 'translateY(-50%)', // Centers it vertically
+          color: 'white',
+          maxWidth: '45%',
+          pointerEvents: 'none',
+          zIndex: 15
+        }}>
+          {/* Enhanced Category Badge */}
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(107, 142, 35, 0.8), rgba(107, 142, 35, 0.6))',
+            padding: '8px 20px',
+            borderRadius: '25px',
+            fontSize: '0.8rem',
+            fontWeight: '600',
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+            marginBottom: '20px',
+            display: 'inline-block',
+            backdropFilter: 'blur(15px)',
+            WebkitBackdropFilter: 'blur(15px)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            boxShadow: '0 8px 32px rgba(107, 142, 35, 0.3)'
+          }}>
+            {showcaseItems[activeShowcaseIndex]?.category || 'Loading...'}
+            </div>
+
+          {/* Enhanced Film Title */}
+          <h1 style={{ 
+            fontWeight: '700',
+            margin: '0 0 15px 0',
+            fontSize: '2.5rem',
+            lineHeight: '1.1',
+            background: 'linear-gradient(135deg, #ffffff, #e0e0e0)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            textShadow: '0 2px 20px rgba(0, 0, 0, 0.8)',
+            letterSpacing: '-0.5px'
+          }}>
+            {showcaseItems[activeShowcaseIndex]?.title || 'Loading Film...'}
+          </h1>
           
-          {/* Introduction Section */}
-          <div className="row mb-5">
-            <div className="col-lg-8 mx-auto text-center">
-              <h2 style={{
-                fontSize: '3rem',
-                fontWeight: 'bold',
-                background: 'linear-gradient(135deg, #556b2f, #6b8e23)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                marginBottom: '30px'
-              }}>
-              CINEMA THAT SPARKS, THEN STINGS
-              </h2>
-              <p style={{ fontSize: '1.2rem', color: '#666', lineHeight: '1.8' }}>
-                We build images that jab your memory and refuse to apologize. Not pretty noise — precise disturbances: short, loud, slow-burning. From micro social hymns to full-length curios, we make work that keeps working.
-              </p>
+          {/* Enhanced Description with Glass Effect */}
+          <div style={{
+            background: 'rgba(0, 0, 0, 0.4)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            padding: '20px 25px',
+            borderRadius: '16px',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+          }}>
+            <p style={{ 
+              fontWeight: '400',
+              margin: 0,
+              fontSize: '1.1rem',
+              lineHeight: '1.6',
+              color: 'rgba(255, 255, 255, 0.9)'
+            }}>
+              {showcaseItems[activeShowcaseIndex]?.description || 'Preparing cinematic experience...'}
+            </p>
             </div>
           </div>
 
-          {/* Video Showcase Section - Side by Side */}
-          <div className="row align-items-center mb-5">
-            <div className="col-lg-6">
-              <div style={{ position: 'relative', borderRadius: '15px', overflow: 'hidden', marginBottom: '30px' }}>
-                {showcaseVideoLoaded && showcaseVideoUrl ? (
-                  <video
-                    ref={showcaseVideoRef}
-                    style={{
-                      width: '100%',
-                      height: '350px',
-                      objectFit: 'cover'
-                    }}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    controls={false}
-                  >
-                    <source src={showcaseVideoUrl} type="video/mp4" />
-                  </video>
-                ) : (
-                  <div style={{
-                    width: '100%',
-                    height: '350px',
-                    backgroundColor: '#f0f0f0',
+        {/* Desktop: Enhanced Frosted Glass Sidebar */}
+        {!isMobile ? (
+          <div 
+            className="sidebar-panel"
+            style={{
+              position: 'absolute',
+              right: '40px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'rgba(10, 10, 10, 0.8)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              borderRadius: '20px',
+              padding: '30px 25px',
+              zIndex: 15,
+              boxShadow: '0 25px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+            }}
+          >
+            {/* Sidebar Header */}
+            <div style={{
+                textAlign: 'center',
+              marginBottom: '25px',
+              color: 'white'
+            }}>
+              <h3 style={{ 
+                fontSize: '0.9rem',
+                fontWeight: 'bold',
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                opacity: 0.9,
+                marginBottom: '8px',
+                margin: 0
+              }}>
+                Showcase Films
+              </h3>
+              <div style={{
+                width: '60px',
+                height: '2px',
+                background: 'linear-gradient(90deg, rgba(107, 142, 35, 1), transparent)',
+                margin: '8px auto 0'
+              }} />
+          </div>
+
+            {/* Enhanced Book Cards with Better Error Handling */}
+              <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '20px',
+              maxHeight: '400px',
+              overflowY: 'visible'
+            }}>
+              {showcaseItems.map((item, index) => (
+                <div
+                  key={item.id}
+                  onClick={() => setActiveIndex(index)}
+                  className={`book-card ${activeShowcaseIndex === index ? 'active' : ''}`}
+                  style={{
+                    width: '120px', // Slightly smaller width
+                    height: '180px', // Taller to match book proportions
+                    borderRadius: '12px',
+                    overflow: 'visible', // Changed from 'hidden' to show full image
+                    cursor: 'pointer',
+                    border: activeShowcaseIndex === index 
+                      ? '3px solid rgba(107, 142, 35, 1)' 
+                      : '2px solid rgba(255, 255, 255, 0.2)',
+                    boxShadow: activeShowcaseIndex === index 
+                      ? '0 25px 50px rgba(107, 142, 35, 0.5)' 
+                      : '0 15px 35px rgba(0, 0, 0, 0.6)',
+                    transform: activeShowcaseIndex === index ? 'scale(1.08)' : 'scale(1)',
+                    background: 'rgba(20, 20, 20, 0.9)',
+                    position: 'relative',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderRadius: '15px'
-                  }}>
-                    <div>🎬 Loading showcase...</div>
-                  </div>
-                )}
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <h3 style={{ 
-                fontSize: '2.2rem', 
-                fontWeight: 'bold', 
-                color: '#333',
-                marginBottom: '20px'
-              }}>
-BRAND STORIES THAT BITE
-</h3>
-              <p style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.7', marginBottom: '25px' }}>
-              Brands have secret rhythms. We listen with weird equipment, then translate them into films that keep echoing. Tiny spots or five-minute pulses — every edit is deliberate, every cut a tiny act of insistence.
-
-              </p>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
-                <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>15s-5min Brand Films</strong> — compact detonations with cinematic skin
-                </li>
-                <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>Commercial Spots</strong> — broadcast-calibrated, attention-locked
-                </li>
-                <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>Product Launches</strong> — staged reveals that feel inevitable
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Categories Grid - Different Layout */}
-          <div className="row mb-5">
-            <div className="col-12">
-              <h3 style={{ 
-                fontSize: '2.5rem', 
-                textAlign: 'center',
-                fontWeight: 'bold',
-                color: '#333',
-                marginBottom: '50px'
-              }}>
-                What We Create
-              </h3>
-            </div>
-          </div>
-
-          <div className="row g-4 mb-5">
-            {/* Category Cards in Grid */}
-            <div className="col-md-4">
+                    padding: '10px' // Add padding inside container
+                  }}
+                >
+                  {/* Cinematic Numbering */}
               <div style={{
-                background: 'linear-gradient(135deg, #556b2f, #6b8e23)',
-                borderRadius: '20px',
-                padding: '40px 30px',
+                    position: 'absolute',
+                    top: '8px',
+                    left: '8px',
+                    background: activeShowcaseIndex === index 
+                      ? 'rgba(107, 142, 35, 0.95)' 
+                      : 'rgba(0, 0, 0, 0.8)',
                 color: 'white',
-                textAlign: 'center',
-                height: '100%'
-              }}>
-                <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🎬</div>
-                <h4 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '15px' }}>
-                  Brand Films
-                </h4>
-                <p style={{ fontSize: '1rem', opacity: 0.9 }}>
-                human catalysts that don’t sell so much as insist.                </p>
-              </div>
-            </div>
-
-            <div className="col-md-4">
-              <div style={{
-                background: 'linear-gradient(135deg, #8B4513, #D2691E)',
-                borderRadius: '20px',
-                padding: '40px 30px',
-                color: 'white',
-                textAlign: 'center',
-                height: '100%'
-              }}>
-                <div style={{ fontSize: '3rem', marginBottom: '20px' }}>📽️</div>
-                <h4 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '15px' }}>
-                  Documentaries
-                </h4>
-                <p style={{ fontSize: '1rem', opacity: 0.9 }}>
-                true curiosities, interrogative and cinematic.                </p>
-              </div>
-            </div>
-
-            <div className="col-md-4">
-              <div style={{
-                background: 'linear-gradient(135deg, #2F4F4F, #708090)',
-                borderRadius: '20px',
-                padding: '40px 30px',
-                color: 'white',
-                textAlign: 'center',
-                height: '100%'
-              }}>
-                <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🎭</div>
-                <h4 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '15px' }}>
-                  Feature Films
-                </h4>
-                <p style={{ fontSize: '1rem', opacity: 0.9 }}>
-                narrative machines tuned for festival life and late-night sharing.                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Portfolio Video Section - Different Placement */}
-          <div className="row align-items-center">
-            <div className="col-lg-5">
-              <h3 style={{ 
-                fontSize: '2.2rem', 
-                fontWeight: 'bold', 
-                color: '#333',
-                marginBottom: '20px'
-              }}>
-                Our Process
-              </h3>
-              <div style={{ marginBottom: '30px' }}>
-                <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '10px' }}>
-                Find the Spark
-                </h5>
-                <p style={{ color: '#666', marginBottom: '20px' }}>
-                We hunt the single friction point — the tiny truth that makes people look twice.
-                </p>
-                
-                <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '10px' }}>
-                Sharpen the Pulse
-                </h5>
-                <p style={{ color: '#666', marginBottom: '20px' }}>
-                Ideas get disciplined into story-architecture: shots, sound, tempo — everything tuned to that spark.
-                </p>
-                
-                <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '10px' }}>
-                Set It Free
-                </h5>
-                <p style={{ color: '#666' }}>
-                We shoot with care, edit like an argument, and finish the master so it travels — to screens, feeds, festivals.                </p>
-              </div>
-            </div>
-            <div className="col-lg-7">
-              <div style={{ position: 'relative', borderRadius: '15px', overflow: 'hidden' }}>
-                {portfolioVideoLoaded && portfolioVideoUrl ? (
-                  <video
-                    ref={portfolioVideoRef}
-                    style={{
-                      width: '100%',
-                      height: '400px',
-                      objectFit: 'cover'
-                    }}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    controls={false}
-                  >
-                    <source src={portfolioVideoUrl} type="video/mp4" />
-                  </video>
-                ) : (
-                  <div style={{
-                    width: '100%',
-                    height: '400px',
-                    backgroundColor: '#f0f0f0',
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderRadius: '15px'
+                    fontSize: '0.7rem',
+                    fontWeight: 'bold',
+                    zIndex: 5,
+                    backdropFilter: 'blur(10px)'
                   }}>
-                    <div>🎬 Loading portfolio...</div>
+                    {String(index + 1).padStart(2, '0')}
+            </div>
+
+                  {/* Image that shows full proportions */}
+                  {item.imageLoaded && item.image && !item.imageError ? (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      style={{
+                        maxWidth: '100%', // Fits within container width
+                        maxHeight: '100%', // Fits within container height
+                        width: 'auto', // Maintains aspect ratio
+                        height: 'auto', // Maintains aspect ratio
+                        objectFit: 'contain', // Shows full image without cropping
+                        display: 'block',
+                        borderRadius: '8px',
+                        filter: activeShowcaseIndex === index 
+                          ? 'brightness(1.1) contrast(1.1) saturate(1.1)' 
+                          : 'brightness(0.85) contrast(1) saturate(0.9)'
+                      }}
+                      onError={() => {
+                        setShowcaseItems(prev => {
+                          const updated = [...prev];
+                          updated[index].imageError = true;
+                          return updated;
+                        });
+                      }}
+                    />
+                  ) : (
+                    /* Fallback placeholder */
+                    <div style={{
+                      width: '80%',
+                      height: '80%',
+                      background: 'linear-gradient(135deg, #2a2a2a, #1a1a1a)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'rgba(107, 142, 35, 0.6)',
+                      fontSize: '2rem',
+                      borderRadius: '8px'
+                    }}>
+                      {item.imageError ? '❌' : '🎭'}
+                    </div>
+                  )}
+
+                  {/* Enhanced Active Indicator */}
+                  {activeShowcaseIndex === index && (
+              <div style={{
+                      position: 'absolute',
+                      bottom: '8px',
+                      right: '8px',
+                      width: '28px',
+                      height: '28px',
+                      borderRadius: '50%',
+                      background: 'rgba(107, 142, 35, 0.95)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                color: 'white',
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      backdropFilter: 'blur(10px)',
+                      border: '2px solid rgba(255, 255, 255, 0.2)'
+                    }}>
+                      ▶
+              </div>
+                  )}
+
+                  {/* Enhanced Film Strip Effect */}
+                  <div style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    width: '6px',
+                    height: '100%',
+                    background: activeShowcaseIndex === index 
+                      ? 'linear-gradient(180deg, #ffd700, #ffed4e, #e6c200)'
+                      : 'linear-gradient(180deg, #666, #444, #333)',
+                    borderRadius: '0 4px 4px 0',
+                    boxShadow: 'inset 1px 0 0 rgba(255, 255, 255, 0.1)'
+                  }} />
+
+                  {/* Category Badge */}
+              <div style={{
+                    position: 'absolute',
+                    bottom: '8px',
+                    left: '12px',
+                    background: activeShowcaseIndex === index 
+                      ? 'rgba(107, 142, 35, 0.9)' 
+                      : 'rgba(0, 0, 0, 0.8)',
+                color: 'white',
+                    padding: '3px 8px',
+                    borderRadius: '10px',
+                    fontSize: '0.6rem',
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    maxWidth: '80px',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}>
+                    {item.category}
+              </div>
+            </div>
+              ))}
+              </div>
+            </div>
+        ) : (
+          /* Mobile: Horizontal Swipeable Carousel - Fixed */
+          <div style={{
+            position: 'absolute',
+            bottom: '160px',
+            left: '0',
+            right: '0',
+            zIndex: 10
+          }}>
+            <div className="mobile-carousel">
+              {showcaseItems.map((item, index) => (
+                <div
+                  key={item.id}
+                  onClick={() => setActiveIndex(index)}
+                  className="mobile-card"
+                    style={{
+                    width: '90px',
+                    height: '135px',
+                    borderRadius: '10px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    border: activeShowcaseIndex === index 
+                      ? '3px solid rgba(107, 142, 35, 1)' 
+                      : '2px solid rgba(255, 255, 255, 0.3)',
+                    boxShadow: activeShowcaseIndex === index 
+                      ? '0 15px 30px rgba(107, 142, 35, 0.6)' 
+                      : '0 8px 20px rgba(0, 0, 0, 0.5)',
+                    transform: activeShowcaseIndex === index ? 'scale(1.1)' : 'scale(1)',
+                    transition: 'all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)',
+                    background: '#1a1a1a',
+                    position: 'relative'
+                  }}
+                >
+                  {item.imageLoaded && item.image && !item.imageError ? (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                    style={{
+                      width: '100%',
+                        height: '100%',
+                        objectFit: 'contain', // Changed from 'cover' to 'contain'
+                        objectPosition: 'center',
+                        display: 'block'
+                      }}
+                      onError={() => {
+                        setShowcaseItems(prev => {
+                          const updated = [...prev];
+                          updated[index].imageError = true;
+                          return updated;
+                        });
+                      }}
+                    />
+                ) : (
+                  <div style={{
+                    width: '100%',
+                      height: '100%',
+                      background: 'linear-gradient(135deg, #2a2a2a, #1a1a1a)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                      color: '#666',
+                      fontSize: '1.8rem'
+                  }}>
+                      {item.imageError ? '❌' : '📖'}
                   </div>
                 )}
               </div>
+              ))}
             </div>
           </div>
+        )}
 
-        </div>
+        {/* REMOVED - No more navigation arrows at the bottom */}
+
+        {/* REMOVED - Angled Section Framing - Bottom */}
+        {/* <div className="angled-divider-bottom" /> */}
       </section>
+
+      {/* FOOTER WITH SPACING */}
+      <FooterOne />
     </>
   );
 };
