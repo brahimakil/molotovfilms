@@ -10,7 +10,7 @@ const HomeOneLayout = () => {
     <>
       <NavbarOne /> 
       <main style={{
-        backgroundColor: isFeaturePage ? '#000' : 'transparent' // Black background for features page
+        backgroundColor: isFeaturePage ? '#000' : 'transparent'
       }}>
         <Outlet />
       </main>

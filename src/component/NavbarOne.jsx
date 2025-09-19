@@ -64,106 +64,13 @@ const NavbarOne = () => {
                         About Us
                       </Link>
                     </li>
+                 
                     <li>
-                      <Link to="#" className="text_base">
-                        Pages
-                        <span>
-                          <svg
-                            width="12"
-                            height="6"
-                            viewBox="0 0 12 6"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M1.00391 1L6.00391 5L11.0039 1"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </span>
+                      <Link to="/contuct-us" className="text_base">
+                        Contact Us
+                  
                       </Link>
-                      <ul>
-                        <li>
-                          <Link to="/services" className="text_base">
-                            Services
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/services-detais" className="text_base">
-                            Services Details
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/team" className="text_base">
-                            Team
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/single-member" className="text_base">
-                            Team Details
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/pricing" className="text_base">
-                            Pricing
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/faq" className="text_base">
-                            FAQ
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/testimonial" className="text_base">
-                            Testimonial
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/contuct-us" className="text_base">
-                            Contact Us
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <Link to="#" className="text_base">
-                        Blog
-                        <span>
-                          <svg
-                            width="12"
-                            height="6"
-                            viewBox="0 0 12 6"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M1.00391 1L6.00391 5L11.0039 1"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </span>
-                      </Link>
-                      <ul>
-                        <li>
-                          <Link to="/blog-grid" className="text_base">
-                            Blog Grid
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/blog-list-view" className="text_base">
-                            Blog List View
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/blog-details" className="text_base">
-                            Blog Details
-                          </Link>
-                        </li>
-                      </ul>
+                    
                     </li>
                   </ul>
                 </div>

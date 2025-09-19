@@ -14,12 +14,8 @@ const HomeOne = () => {
       <Hero></Hero>
       <Customers></Customers>
       <Services></Services>
-      <AboutUs></AboutUs>
       <Chose></Chose>
-      <Working></Working>
       <Client></Client>
-      <Pricing></Pricing>
-      <BlogOne></BlogOne>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import NavbarOne from "./NavbarOne";
-import InnerFooter from "./InnerFooter";
+import FooterOne from "./FooterOne";
 
 const InnerPageLayout = () => {
   return (
@@ -9,7 +9,7 @@ const InnerPageLayout = () => {
       <main>
         <Outlet />
       </main>
-      <InnerFooter />
+      <FooterOne />
     </>
   );
 };
