@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import workingThumb from "../assets/images/working_thumb.webp";
 import workingPos1 from "../assets/images/working-pos-one.svg";
 import workingPos2 from "../assets/images/working_pos_thumb-two.svg";
@@ -11,6 +12,7 @@ import arrowLine from "../assets/images/arrow-line.svg";
 import { FaLightbulb, FaVideo, FaShare } from 'react-icons/fa';
 
 const Working = () => {
+  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -99,80 +101,19 @@ const Working = () => {
     setSelectedDate(null);
   };
 
+  // UPDATED: Redirect to contact page with selected date
   const handleDateSelect = (day) => {
     if (day.isAvailable) {
-      setSelectedDate(day);
-      setSubmitMessage('');
-    }
-  };
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!selectedDate) {
-      setSubmitMessage('❌ Please select a date first');
-      return;
-    }
-    
-    if (!formData.email || !formData.subject) {
-      setSubmitMessage('❌ Email and subject are required');
-      return;
-    }
-
-    setIsSubmitting(true);
-    
-    try {
-      const formattedDate = selectedDate.fullDate.toLocaleDateString('en-US', {
+      const formattedDate = day.fullDate.toLocaleDateString('en-US', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric'
       });
-
-      const response = await fetch('https://molotov-backend.vercel.app/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          selectedDate: formattedDate,
-          email: formData.email,
-          subject: formData.subject,
-          name: formData.name,
-          phone: formData.phone,
-          description: formData.description
-        })
-      });
-
-      const result = await response.json();
       
-      if (result.success) {
-        setSubmitMessage('✅ Booking request sent successfully! We\'ll contact you soon.');
-        setFormData({
-          email: '',
-          subject: '',
-          description: '',
-          phone: '',
-          name: ''
-        });
-        // Close popup after 2 seconds to show success message
-        setTimeout(() => setSelectedDate(null), 2000);
-      }else {
-        setSubmitMessage('❌ Failed to send booking request. Please try again.');
-        setTimeout(() => setSelectedDate(null), 3000);
-      }
-      
-    } catch (error) {
-      setSubmitMessage('❌ Connection error. Please check your internet and try again.');
-      setTimeout(() => setSelectedDate(null), 3000);
+      // Redirect to contact page with selected date as URL parameter
+      navigate(`/contuct-us?selectedDate=${encodeURIComponent(formattedDate)}`);
     }
-    
-    setIsSubmitting(false);
   };
 
   return (
@@ -631,8 +572,8 @@ const Working = () => {
               </div>
             </div>
 
-            {/* POPUP BOOKING FORM - Shows when date is selected */}
-            {selectedDate && (
+            {/* POPUP BOOKING FORM - HIDDEN */}
+            {false && selectedDate && (
               <>
                 {/* Backdrop */}
                 <div 

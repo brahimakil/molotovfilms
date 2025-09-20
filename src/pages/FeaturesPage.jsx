@@ -616,8 +616,8 @@ const FeaturesPage = () => {
                 color: '#333',
                 marginBottom: '20px'
               }}>
-              BRAND STORIES THAT BITE
-              </h3>
+BRAND STORIES THAT BITE
+</h3>
               <p style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.7', marginBottom: '25px' }}>
               Brands have secret rhythms. We listen with weird equipment, then translate them into films that keep echoing. Tiny spots or five-minute pulses — every edit is deliberate, every cut a tiny act of insistence.
 
@@ -714,16 +714,16 @@ const FeaturesPage = () => {
             <div className="col-lg-8">
               {/* Dynamic Our Process Text */}
               <div style={{ marginBottom: '40px' }}>
-                <h3 style={{ 
-                  fontSize: '2.2rem', 
-                  fontWeight: 'bold', 
-                  color: '#333',
-                  marginBottom: '20px'
-                }}>
+              <h3 style={{ 
+                fontSize: '2.2rem', 
+                fontWeight: 'bold', 
+                color: '#333',
+                marginBottom: '20px'
+              }}>
                   {showcaseData[activeBookIndex]?.processText?.title || "Our Process"}
-                </h3>
+              </h3>
                 
-                <div style={{ marginBottom: '30px' }}>
+              <div style={{ marginBottom: '30px' }}>
                   {showcaseData[activeBookIndex]?.processText?.steps?.map((step, index) => (
                     <div key={index} style={{ marginBottom: '25px' }}>
                       <h5 style={{ 
@@ -733,7 +733,7 @@ const FeaturesPage = () => {
                         fontSize: '1.1rem'
                       }}>
                         {step.title}
-                      </h5>
+                </h5>
                       <p style={{ 
                         color: '#666', 
                         marginBottom: '0',
@@ -748,8 +748,8 @@ const FeaturesPage = () => {
                       Select a film to see our specialized process for that project.
                     </p>
                   )}
-                </div>
               </div>
+            </div>
 
               {/* Dynamic Video Player */}
               <div style={{ 
@@ -761,23 +761,23 @@ const FeaturesPage = () => {
               }}>
                 {showcaseData[activeBookIndex]?.videoLoaded && showcaseData[activeBookIndex]?.videoUrl ? (
                   <>
-                    <video
+                  <video
                       ref={activeBookVideoRef}
                       key={showcaseData[activeBookIndex].id}
-                      style={{
-                        width: '100%',
-                        height: '400px',
-                        objectFit: 'cover'
-                      }}
-                      autoPlay
+                    style={{
+                      width: '100%',
+                      height: '400px',
+                      objectFit: 'cover'
+                    }}
+                    autoPlay
                       muted={isMuted}
-                      loop
-                      playsInline
-                      preload="metadata"
-                      controls={false}
-                    >
+                    loop
+                    playsInline
+                    preload="metadata"
+                    controls={false}
+                  >
                       <source src={showcaseData[activeBookIndex].videoUrl} type="video/mp4" />
-                    </video>
+                  </video>
 
                     {/* Video Controls Overlay */}
                     <div style={{
@@ -964,7 +964,7 @@ const FeaturesPage = () => {
                         padding: '15px'
                       }}>
                         {book.imageError ? '❌ Image Error' : '⏳ Loading...'}
-                      </div>
+          </div>
                     )}
 
                     {/* Book Number */}
