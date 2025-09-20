@@ -43,7 +43,24 @@ const FeaturesPage = () => {
       imageLoaded: false,
       videoLoaded: false,
       imageError: false,
-      videoError: false
+      videoError: false,
+      processText: {
+        title: "Documentary Mastery",
+        steps: [
+          {
+            title: "Find the Human Truth",
+            description: "We discover the authentic emotional core that connects universal experiences with personal stories."
+          },
+          {
+            title: "Capture Raw Moments", 
+            description: "Every frame is composed to reveal intimate details that speak louder than words."
+          },
+          {
+            title: "Craft Poetic Narrative",
+            description: "We weave contemplative storytelling that transforms observation into profound cinema."
+          }
+        ]
+      }
     },
     {
       id: 2,
@@ -54,7 +71,24 @@ const FeaturesPage = () => {
       imageLoaded: false,
       videoLoaded: false,
       imageError: false,
-      videoError: false
+      videoError: false,
+      processText: {
+        title: "Narrative Excellence",
+        steps: [
+          {
+            title: "Build Character Tension",
+            description: "We construct layered personalities that create authentic conflict and emotional investment."
+          },
+          {
+            title: "Design Visual Impact",
+            description: "Every shot serves the story with cinematic precision that amplifies dramatic moments."
+          },
+          {
+            title: "Perfect Emotional Timing",
+            description: "We edit with surgical precision to maximize the impact of every emotional beat."
+          }
+        ]
+      }
     },
     {
       id: 3,
@@ -65,7 +99,24 @@ const FeaturesPage = () => {
       imageLoaded: false,
       videoLoaded: false,
       imageError: false,
-      videoError: false
+      videoError: false,
+      processText: {
+        title: "Creative Innovation",
+        steps: [
+          {
+            title: "Maximize Limited Resources",
+            description: "We turn constraints into creative catalysts, finding ingenious solutions that enhance the story."
+          },
+          {
+            title: "Innovative Cinematography",
+            description: "Smart camera work and lighting techniques create high-production value on any budget."
+          },
+          {
+            title: "Strategic Storytelling",
+            description: "We craft tight narratives where every element serves multiple purposes with maximum efficiency."
+          }
+        ]
+      }
     }
   ]);
 
@@ -657,130 +708,65 @@ const FeaturesPage = () => {
             </div>
           </div>
 
-          {/* INTERACTIVE BOOKS SHOWCASE - REPLACES "OUR PROCESS" */}
-          <div className="row align-items-center">
-            <div className="col-lg-4">
-              <h3 style={{ 
-                fontSize: '2.2rem', 
-                fontWeight: 'bold', 
-                color: '#333',
-                marginBottom: '30px',
-                textAlign: 'center'
-              }}>
-                Featured Films
-              </h3>
-              
-              {/* Vertical Book Stack */}
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '15px', // Reduced from 20px
-                alignItems: 'center'
-              }}>
-                {showcaseData.map((book, index) => (
-                  <div
-                    key={book.id}
-                    onClick={() => setActiveBookIndex(index)}
-                    className={`book-card ${activeBookIndex === index ? 'active' : ''}`}
-                    style={{
-                      width: '140px', // Reduced from 180px
-                      height: '210px', // Reduced from 270px
-                      borderRadius: '12px', // Slightly smaller radius
-                      overflow: 'hidden',
-                      position: 'relative',
-                      backgroundColor: '#f5f5f5',
-                      border: activeBookIndex === index ? '2px solid rgba(107, 142, 35, 0.8)' : '1px solid rgba(0,0,0,0.1)' // Thinner borders
-                    }}
-                  >
-                    {book.imageLoaded && book.image && !book.imageError ? (
-                      <img
-                        src={book.image}
-                        alt={book.title}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'contain',
-                          objectPosition: 'center'
-                        }}
-                        onError={(e) => {
-                          console.error(`Failed to load image for ${book.title}`);
-                          e.target.style.display = 'none';
-                          if (e.target.nextSibling) {
-                            e.target.nextSibling.style.display = 'flex';
-                          }
-                        }}
-                      />
-                    ) : (
-                      <div style={{
-                        width: '100%',
-                        height: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: 'linear-gradient(135deg, #f0f0f0, #e0e0e0)',
-                        color: '#666',
-                        fontSize: '0.8rem', // Smaller text
-                        textAlign: 'center',
-                        padding: '15px' // Reduced padding
-                      }}>
-                        {book.imageError ? '❌ Image Error' : '⏳ Loading...'}
-                      </div>
-                    )}
-
-                    {/* Book Number */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '8px', // Reduced from 10px
-                      right: '8px', // Reduced from 10px
-                      background: 'rgba(0,0,0,0.7)',
-                      color: 'white',
-                      padding: '3px 6px', // Reduced from 4px 8px
-                      borderRadius: '8px', // Reduced from 10px
-                      fontSize: '0.7rem', // Reduced from 0.8rem
-                      fontWeight: 'bold'
-                    }}>
-                      {String(index + 1).padStart(2, '0')}
-                    </div>
-
-                    {/* Active Indicator */}
-                    {activeBookIndex === index && (
-                      <div style={{
-                        position: 'absolute',
-                        bottom: '8px', // Reduced from 10px
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        background: 'rgba(107, 142, 35, 0.9)',
-                        color: 'white',
-                        padding: '3px 10px', // Reduced from 4px 12px
-                        borderRadius: '12px', // Reduced from 15px
-                        fontSize: '0.65rem', // Reduced from 0.7rem
-                        fontWeight: 'bold'
-                      }}>
-                        NOW PLAYING
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
+          {/* INTERACTIVE BOOKS SHOWCASE - SWITCHED LAYOUT */}
+          <div className="row align-items-start">
+            {/* LEFT SIDE: Our Process Text + Video */}
             <div className="col-lg-8">
+              {/* Dynamic Our Process Text */}
+              <div style={{ marginBottom: '40px' }}>
+                <h3 style={{ 
+                  fontSize: '2.2rem', 
+                  fontWeight: 'bold', 
+                  color: '#333',
+                  marginBottom: '20px'
+                }}>
+                  {showcaseData[activeBookIndex]?.processText?.title || "Our Process"}
+                </h3>
+                
+                <div style={{ marginBottom: '30px' }}>
+                  {showcaseData[activeBookIndex]?.processText?.steps?.map((step, index) => (
+                    <div key={index} style={{ marginBottom: '25px' }}>
+                      <h5 style={{ 
+                        color: '#556b2f', 
+                        fontWeight: 'bold', 
+                        marginBottom: '10px',
+                        fontSize: '1.1rem'
+                      }}>
+                        {step.title}
+                      </h5>
+                      <p style={{ 
+                        color: '#666', 
+                        marginBottom: '0',
+                        lineHeight: '1.6',
+                        fontSize: '1rem'
+                      }}>
+                        {step.description}
+                      </p>
+                    </div>
+                  )) || (
+                    <p style={{ color: '#666', fontStyle: 'italic' }}>
+                      Select a film to see our specialized process for that project.
+                    </p>
+                  )}
+                </div>
+              </div>
+
               {/* Dynamic Video Player */}
               <div style={{ 
                 position: 'relative', 
                 borderRadius: '20px', 
                 overflow: 'hidden',
                 background: '#000',
-                minHeight: '500px'
+                minHeight: '400px'
               }}>
                 {showcaseData[activeBookIndex]?.videoLoaded && showcaseData[activeBookIndex]?.videoUrl ? (
                   <>
                     <video
                       ref={activeBookVideoRef}
-                      key={showcaseData[activeBookIndex].id} // Force re-render when video changes
+                      key={showcaseData[activeBookIndex].id}
                       style={{
                         width: '100%',
-                        height: '500px',
+                        height: '400px',
                         objectFit: 'cover'
                       }}
                       autoPlay
@@ -870,18 +856,18 @@ const FeaturesPage = () => {
                       textAlign: 'left'
                     }}>
                       <h4 style={{
-                        fontSize: '1.8rem',
+                        fontSize: '1.5rem',
                         fontWeight: 'bold',
-                        marginBottom: '10px',
+                        marginBottom: '8px',
                         textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
                       }}>
                         {showcaseData[activeBookIndex].title}
                       </h4>
                       <p style={{
-                        fontSize: '1rem',
+                        fontSize: '0.9rem',
                         opacity: 0.9,
-                        lineHeight: '1.5',
-                        maxWidth: '80%',
+                        lineHeight: '1.4',
+                        maxWidth: '90%',
                         textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
                       }}>
                         {showcaseData[activeBookIndex].description}
@@ -891,7 +877,7 @@ const FeaturesPage = () => {
                 ) : (
                   <div style={{
                     width: '100%',
-                    height: '500px',
+                    height: '400px',
                     backgroundColor: '#f0f0f0',
                     display: 'flex',
                     flexDirection: 'column',
@@ -911,12 +897,191 @@ const FeaturesPage = () => {
                 )}
               </div>
             </div>
+
+            {/* RIGHT SIDE: Books Selection */}
+            <div className="col-lg-4">
+              <h3 style={{ 
+                fontSize: '2rem', 
+                fontWeight: 'bold', 
+                color: '#333',
+                marginBottom: '30px',
+                textAlign: 'center'
+              }}>
+                Featured Films
+              </h3>
+              
+              {/* Vertical Book Stack - Now on Right */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '15px',
+                alignItems: 'center'
+              }}>
+                {showcaseData.map((book, index) => (
+                  <div
+                    key={book.id}
+                    onClick={() => setActiveBookIndex(index)}
+                    className={`book-card ${activeBookIndex === index ? 'active' : ''}`}
+                    style={{
+                      width: '140px',
+                      height: '210px',
+                      borderRadius: '12px',
+                      overflow: 'hidden',
+                      position: 'relative',
+                      backgroundColor: '#f5f5f5',
+                      border: activeBookIndex === index ? '2px solid rgba(107, 142, 35, 0.8)' : '1px solid rgba(0,0,0,0.1)'
+                    }}
+                  >
+                    {book.imageLoaded && book.image && !book.imageError ? (
+                      <img
+                        src={book.image}
+                        alt={book.title}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          objectPosition: 'center'
+                        }}
+                        onError={(e) => {
+                          console.error(`Failed to load image for ${book.title}`);
+                          e.target.style.display = 'none';
+                          if (e.target.nextSibling) {
+                            e.target.nextSibling.style.display = 'flex';
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #f0f0f0, #e0e0e0)',
+                        color: '#666',
+                        fontSize: '0.8rem',
+                        textAlign: 'center',
+                        padding: '15px'
+                      }}>
+                        {book.imageError ? '❌ Image Error' : '⏳ Loading...'}
+                      </div>
+                    )}
+
+                    {/* Book Number */}
+                    <div style={{
+                      position: 'absolute',
+                      top: '8px',
+                      right: '8px',
+                      background: 'rgba(0,0,0,0.7)',
+                      color: 'white',
+                      padding: '3px 6px',
+                      borderRadius: '8px',
+                      fontSize: '0.7rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+
+                    {/* Active Indicator */}
+                    {activeBookIndex === index && (
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '8px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        background: 'rgba(107, 142, 35, 0.9)',
+                        color: 'white',
+                        padding: '3px 10px',
+                        borderRadius: '12px',
+                        fontSize: '0.65rem',
+                        fontWeight: 'bold'
+                      }}>
+                        NOW PLAYING
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
+          {/* ADDITIONAL TEXT SECTION BELOW */}
+          <div className="row mt-5">
+            <div className="col-12">
+              <div style={{
+                background: 'linear-gradient(135deg, #f8f9fa, #e9ecef)',
+                borderRadius: '20px',
+                padding: '50px 40px',
+                textAlign: 'center',
+                border: '1px solid rgba(0,0,0,0.1)'
+              }}>
+                <h3 style={{
+                  fontSize: '2.5rem',
+                  fontWeight: 'bold',
+                  color: '#333',
+                  marginBottom: '30px'
+                }}>
+                  Why Choose Our Cinematic Approach
+                </h3>
+                
+                <div className="row">
+                  <div className="col-md-4 mb-4">
+                    <div style={{
+                      background: 'rgba(107, 142, 35, 0.1)',
+                      borderRadius: '15px',
+                      padding: '30px 20px',
+                      height: '100%'
+                    }}>
+                      <div style={{ fontSize: '2.5rem', marginBottom: '20px' }}>🎯</div>
+                      <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '15px' }}>
+                        Precision Storytelling
+                      </h5>
+                      <p style={{ color: '#666', lineHeight: '1.6' }}>
+                        Every frame is deliberate. Every cut has purpose. We don't just capture moments—we architect experiences that resonate long after the credits roll.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="col-md-4 mb-4">
+                    <div style={{
+                      background: 'rgba(139, 69, 19, 0.1)',
+                      borderRadius: '15px',
+                      padding: '30px 20px',
+                      height: '100%'
+                    }}>
+                      <div style={{ fontSize: '2.5rem', marginBottom: '20px' }}>⚡</div>
+                      <h5 style={{ color: '#8B4513', fontWeight: 'bold', marginBottom: '15px' }}>
+                        Creative Efficiency
+                      </h5>
+                      <p style={{ color: '#666', lineHeight: '1.6' }}>
+                        Budget constraints become creative catalysts. We prove that limitations inspire innovation, delivering cinematic excellence regardless of scale.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="col-md-4 mb-4">
+                    <div style={{
+                      background: 'rgba(47, 79, 79, 0.1)',
+                      borderRadius: '15px',
+                      padding: '30px 20px',
+                      height: '100%'
+                    }}>
+                      <div style={{ fontSize: '2.5rem', marginBottom: '20px' }}>🌟</div>
+                      <h5 style={{ color: '#2F4F4F', fontWeight: 'bold', marginBottom: '15px' }}>
+                        Authentic Impact
+                      </h5>
+                      <p style={{ color: '#666', lineHeight: '1.6' }}>
+                        We find the emotional truth in every story. Whether documentary or narrative, our films connect with audiences on a visceral, authentic level.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* FOOTER ADDED */}
       <FooterOne />
     </>
   );
