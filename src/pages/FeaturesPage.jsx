@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
+import FooterOne from "../component/FooterOne"; // Import FooterOne
 
 // Import movie images
 import movie1 from "../assets/movies/56262.jpg";
@@ -21,7 +22,7 @@ import movie13 from "../assets/movies/Poster lbh.jpg";
 const FeaturesPage = () => {
   // Movie carousel state
   const [selectedMovieIndex, setSelectedMovieIndex] = useState(0);
-  const [isOverCarousel, setIsOverCarousel] = useState(false); // Add this state declaration
+  const [isOverCarousel, setIsOverCarousel] = useState(false);
   
   // Add state for multiple videos
   const [showcaseVideoUrl, setShowcaseVideoUrl] = useState('');
@@ -29,10 +30,44 @@ const FeaturesPage = () => {
   const [showcaseVideoError, setShowcaseVideoError] = useState(false);
   const [shouldLoadShowcaseVideo, setShouldLoadShowcaseVideo] = useState(false);
 
-  const [portfolioVideoUrl, setPortfolioVideoUrl] = useState('');
-  const [portfolioVideoLoaded, setPortfolioVideoLoaded] = useState(false);
-  const [portfolioVideoError, setPortfolioVideoError] = useState(false);
-  const [shouldLoadPortfolioVideo, setShouldLoadPortfolioVideo] = useState(false);
+  // Interactive Books Showcase State
+  const [activeBookIndex, setActiveBookIndex] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
+  const [showcaseData, setShowcaseData] = useState([
+    {
+      id: 1,
+      title: "The Original Error",
+      description: "A poetic documentary that takes viewers on a transformative journey to Nepal, delving into profound themes of life and death through captivating visuals.",
+      image: '',
+      videoUrl: '',
+      imageLoaded: false,
+      videoLoaded: false,
+      imageError: false,
+      videoError: false
+    },
+    {
+      id: 2,
+      title: "Tili Tili BOOM",
+      description: "An explosive narrative that explores the intricate dynamics of human relationships through stunning cinematography and compelling storytelling.",
+      image: '',
+      videoUrl: '',
+      imageLoaded: false,
+      videoLoaded: false,
+      imageError: false,
+      videoError: false
+    },
+    {
+      id: 3,
+      title: "Low Budget Heist",
+      description: "A thrilling short film that proves creativity knows no budget constraints, delivering edge-of-your-seat entertainment with innovative filmmaking techniques.",
+      image: '',
+      videoUrl: '',
+      imageLoaded: false,
+      videoLoaded: false,
+      imageError: false,
+      videoError: false
+    }
+  ]);
 
   const movies = [
     { id: 1, image: movie1, title: "Film Festival Selection", description: "Award-winning narrative" },
@@ -53,11 +88,76 @@ const FeaturesPage = () => {
   const heroRef = useRef(null);
   const carouselRef = useRef(null);
   const showcaseVideoRef = useRef(null);
-  const portfolioVideoRef = useRef(null);
+  const activeBookVideoRef = useRef(null);
 
   // Touch/swipe support
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+
+  // Load Interactive Books Content from Firebase
+  useEffect(() => {
+    const loadInteractiveBooksContent = async () => {
+      try {
+        // Image and video file mappings
+        const imageRefs = [
+          'servicesfeaturespage/originalerror.jpg',
+          'servicesfeaturespage/tilitiliboom.jpg', 
+          'servicesfeaturespage/filmtejere.jpg'
+        ];
+        
+        const videoRefs = [
+          'servicesfeaturespage/The Original Error.- traile - webmp4.mp4',
+          'servicesfeaturespage/Tili Tili BOOM.mp4',
+          'servicesfeaturespage/Trailer 1.20sLow Budget Hiest.mp4'
+        ];
+
+        // Load images
+        const imagePromises = imageRefs.map(async (imagePath) => {
+          try {
+            const imageRef = ref(storage, imagePath);
+            return await getDownloadURL(imageRef);
+          } catch (error) {
+            console.error(`Error loading image ${imagePath}:`, error);
+            return null;
+          }
+        });
+
+        // Load videos
+        const videoPromises = videoRefs.map(async (videoPath) => {
+          try {
+            const videoRef = ref(storage, videoPath);
+            return await getDownloadURL(videoRef);
+          } catch (error) {
+            console.error(`Error loading video ${videoPath}:`, error);
+            return null;
+          }
+        });
+
+        const [imageUrls, videoUrls] = await Promise.all([
+          Promise.all(imagePromises),
+          Promise.all(videoPromises)
+        ]);
+
+        // Update showcase data
+        setShowcaseData(prevData => 
+          prevData.map((item, index) => ({
+            ...item,
+            image: imageUrls[index] || '',
+            videoUrl: videoUrls[index] || '',
+            imageLoaded: !!imageUrls[index],
+            videoLoaded: !!videoUrls[index],
+            imageError: !imageUrls[index],
+            videoError: !videoUrls[index]
+          }))
+        );
+
+      } catch (error) {
+        console.error('Error loading interactive books content:', error);
+      }
+    };
+
+    loadInteractiveBooksContent();
+  }, []);
 
   const handleTouchStart = (e) => {
     setTouchEnd(null);
@@ -169,29 +269,23 @@ const FeaturesPage = () => {
     loadShowcaseVideo();
   }, [shouldLoadShowcaseVideo, showcaseVideoLoaded]);
 
-  // Portfolio video loading
-  useEffect(() => {
-    setShouldLoadPortfolioVideo(true);
-  }, []);
+  // Handle mute/unmute
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+    if (activeBookVideoRef.current) {
+      activeBookVideoRef.current.muted = !isMuted;
+    }
+  };
 
+  // Set page zoom to 75% on component mount
   useEffect(() => {
-    if (!shouldLoadPortfolioVideo || portfolioVideoLoaded) return;
-
-    const loadPortfolioVideo = async () => {
-      try {
-        const videoPath = 'servicedetails(reels..)/Low Budget Heist website 1-optimized.mp4';
-        const videoRefFirebase = ref(storage, videoPath);
-        const url = await getDownloadURL(videoRefFirebase);
-        setPortfolioVideoUrl(url);
-        setPortfolioVideoLoaded(true);
-      } catch (error) {
-        console.error('Error loading portfolio video:', error);
-        setPortfolioVideoError(true);
-      }
+    document.body.style.zoom = "100%";
+    
+    // Cleanup: Reset zoom when component unmounts
+    return () => {
+      document.body.style.zoom = "80%";
     };
-
-    loadPortfolioVideo();
-  }, [shouldLoadPortfolioVideo, portfolioVideoLoaded]);
+  }, []);
 
   const breadcrumbs = [
     { label: "Home", link: "/" },
@@ -211,7 +305,24 @@ const FeaturesPage = () => {
           0% { left: -100%; }
           100% { left: 100%; }
         }
+
+        .book-card {
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+
+        .book-card:hover {
+          transform: scale(1.05);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .book-card.active {
+          transform: scale(1.1);
+          box-shadow: 0 15px 40px rgba(107, 142, 35, 0.4);
+          border: 3px solid rgba(107, 142, 35, 0.8);
+        }
       `}</style>
+
       {/* Professional Film Carousel - Smart Scroll Boundary */}
       <section 
         ref={heroRef} 
@@ -462,8 +573,8 @@ const FeaturesPage = () => {
                 color: '#333',
                 marginBottom: '20px'
               }}>
-BRAND STORIES THAT BITE
-</h3>
+              BRAND STORIES THAT BITE
+              </h3>
               <p style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.7', marginBottom: '25px' }}>
               Brands have secret rhythms. We listen with weird equipment, then translate them into films that keep echoing. Tiny spots or five-minute pulses — every edit is deliberate, every cut a tiny act of insistence.
 
@@ -554,69 +665,256 @@ BRAND STORIES THAT BITE
             </div>
           </div>
 
-          {/* Portfolio Video Section - Different Placement */}
+          {/* INTERACTIVE BOOKS SHOWCASE - REPLACES "OUR PROCESS" */}
           <div className="row align-items-center">
-            <div className="col-lg-5">
+            <div className="col-lg-4">
               <h3 style={{ 
                 fontSize: '2.2rem', 
                 fontWeight: 'bold', 
                 color: '#333',
-                marginBottom: '20px'
+                marginBottom: '30px',
+                textAlign: 'center'
               }}>
-                Our Process
+                Featured Films
               </h3>
-              <div style={{ marginBottom: '30px' }}>
-                <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '10px' }}>
-                Find the Spark
-                </h5>
-                <p style={{ color: '#666', marginBottom: '20px' }}>
-                We hunt the single friction point — the tiny truth that makes people look twice.
-                </p>
-                
-                <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '10px' }}>
-                Sharpen the Pulse
-                </h5>
-                <p style={{ color: '#666', marginBottom: '20px' }}>
-                Ideas get disciplined into story-architecture: shots, sound, tempo — everything tuned to that spark.
-                </p>
-                
-                <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '10px' }}>
-                Set It Free
-                </h5>
-                <p style={{ color: '#666' }}>
-                We shoot with care, edit like an argument, and finish the master so it travels — to screens, feeds, festivals.                </p>
+              
+              {/* Vertical Book Stack */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                alignItems: 'center'
+              }}>
+                {showcaseData.map((book, index) => (
+                  <div
+                    key={book.id}
+                    onClick={() => setActiveBookIndex(index)}
+                    className={`book-card ${activeBookIndex === index ? 'active' : ''}`}
+                    style={{
+                      width: '180px',
+                      height: '270px',
+                      borderRadius: '15px',
+                      overflow: 'hidden',
+                      position: 'relative',
+                      backgroundColor: '#f5f5f5',
+                      border: activeBookIndex === index ? '3px solid rgba(107, 142, 35, 0.8)' : '2px solid rgba(0,0,0,0.1)'
+                    }}
+                  >
+                    {book.imageLoaded && book.image && !book.imageError ? (
+                      <img
+                        src={book.image}
+                        alt={book.title}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          objectPosition: 'center'
+                        }}
+                        onError={(e) => {
+                          console.error(`Failed to load image for ${book.title}`);
+                          e.target.style.display = 'none';
+                          if (e.target.nextSibling) {
+                            e.target.nextSibling.style.display = 'flex';
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'linear-gradient(135deg, #f0f0f0, #e0e0e0)',
+                        color: '#666',
+                        fontSize: '0.9rem',
+                        textAlign: 'center',
+                        padding: '20px'
+                      }}>
+                        {book.imageError ? '❌ Image Error' : '⏳ Loading...'}
+                      </div>
+                    )}
+
+                    {/* Book Number */}
+                    <div style={{
+                      position: 'absolute',
+                      top: '10px',
+                      right: '10px',
+                      background: 'rgba(0,0,0,0.7)',
+                      color: 'white',
+                      padding: '4px 8px',
+                      borderRadius: '10px',
+                      fontSize: '0.8rem',
+                      fontWeight: 'bold'
+                    }}>
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+
+                    {/* Active Indicator */}
+                    {activeBookIndex === index && (
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '10px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        background: 'rgba(107, 142, 35, 0.9)',
+                        color: 'white',
+                        padding: '4px 12px',
+                        borderRadius: '15px',
+                        fontSize: '0.7rem',
+                        fontWeight: 'bold'
+                      }}>
+                        NOW PLAYING
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="col-lg-7">
-              <div style={{ position: 'relative', borderRadius: '15px', overflow: 'hidden' }}>
-                {portfolioVideoLoaded && portfolioVideoUrl ? (
-                  <video
-                    ref={portfolioVideoRef}
-                    style={{
-                      width: '100%',
-                      height: '400px',
-                      objectFit: 'cover'
-                    }}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    controls={false}
-                  >
-                    <source src={portfolioVideoUrl} type="video/mp4" />
-                  </video>
+
+            <div className="col-lg-8">
+              {/* Dynamic Video Player */}
+              <div style={{ 
+                position: 'relative', 
+                borderRadius: '20px', 
+                overflow: 'hidden',
+                background: '#000',
+                minHeight: '500px'
+              }}>
+                {showcaseData[activeBookIndex]?.videoLoaded && showcaseData[activeBookIndex]?.videoUrl ? (
+                  <>
+                    <video
+                      ref={activeBookVideoRef}
+                      key={showcaseData[activeBookIndex].id} // Force re-render when video changes
+                      style={{
+                        width: '100%',
+                        height: '500px',
+                        objectFit: 'cover'
+                      }}
+                      autoPlay
+                      muted={isMuted}
+                      loop
+                      playsInline
+                      preload="metadata"
+                      controls={false}
+                    >
+                      <source src={showcaseData[activeBookIndex].videoUrl} type="video/mp4" />
+                    </video>
+
+                    {/* Video Controls Overlay */}
+                    <div style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      display: 'flex',
+                      gap: '10px'
+                    }}>
+                      {/* Fullscreen Button */}
+                      <button
+                        onClick={() => {
+                          if (activeBookVideoRef.current) {
+                            if (activeBookVideoRef.current.requestFullscreen) {
+                              activeBookVideoRef.current.requestFullscreen();
+                            } else if (activeBookVideoRef.current.webkitRequestFullscreen) {
+                              activeBookVideoRef.current.webkitRequestFullscreen();
+                            } else if (activeBookVideoRef.current.msRequestFullscreen) {
+                              activeBookVideoRef.current.msRequestFullscreen();
+                            }
+                          }
+                        }}
+                        style={{
+                          background: 'rgba(0,0,0,0.7)',
+                          border: 'none',
+                          borderRadius: '50%',
+                          width: '50px',
+                          height: '50px',
+                          color: 'white',
+                          fontSize: '1.2rem',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          transition: 'all 0.3s ease'
+                        }}
+                        onMouseOver={(e) => e.target.style.background = 'rgba(107, 142, 35, 0.8)'}
+                        onMouseOut={(e) => e.target.style.background = 'rgba(0,0,0,0.7)'}
+                      >
+                        ⛶
+                      </button>
+
+                      {/* Mute/Unmute Button */}
+                      <button
+                        onClick={toggleMute}
+                        style={{
+                          background: 'rgba(0,0,0,0.7)',
+                          border: 'none',
+                          borderRadius: '50%',
+                          width: '50px',
+                          height: '50px',
+                          color: 'white',
+                          fontSize: '1.2rem',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          transition: 'all 0.3s ease'
+                        }}
+                        onMouseOver={(e) => e.target.style.background = 'rgba(107, 142, 35, 0.8)'}
+                        onMouseOut={(e) => e.target.style.background = 'rgba(0,0,0,0.7)'}
+                      >
+                        {isMuted ? '🔇' : '🔊'}
+                      </button>
+                    </div>
+
+                    {/* Video Info Overlay */}
+                    <div style={{
+                      position: 'absolute',
+                      bottom: '0',
+                      left: '0',
+                      right: '0',
+                      background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
+                      color: 'white',
+                      padding: '40px 30px 30px',
+                      textAlign: 'left'
+                    }}>
+                      <h4 style={{
+                        fontSize: '1.8rem',
+                        fontWeight: 'bold',
+                        marginBottom: '10px',
+                        textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+                      }}>
+                        {showcaseData[activeBookIndex].title}
+                      </h4>
+                      <p style={{
+                        fontSize: '1rem',
+                        opacity: 0.9,
+                        lineHeight: '1.5',
+                        maxWidth: '80%',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+                      }}>
+                        {showcaseData[activeBookIndex].description}
+                      </p>
+                    </div>
+                  </>
                 ) : (
                   <div style={{
                     width: '100%',
-                    height: '400px',
+                    height: '500px',
                     backgroundColor: '#f0f0f0',
                     display: 'flex',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderRadius: '15px'
+                    color: '#666',
+                    borderRadius: '20px'
                   }}>
-                    <div>🎬 Loading portfolio...</div>
+                    <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🎬</div>
+                    <div style={{ fontSize: '1.2rem', marginBottom: '10px' }}>
+                      {showcaseData[activeBookIndex]?.videoError ? 'Video Load Error' : 'Loading Video...'}
+                    </div>
+                    <div style={{ fontSize: '1rem', opacity: 0.7 }}>
+                      {showcaseData[activeBookIndex]?.title || 'Select a film to preview'}
+                    </div>
                   </div>
                 )}
               </div>
@@ -625,6 +923,9 @@ BRAND STORIES THAT BITE
 
         </div>
       </section>
+      
+      {/* FOOTER ADDED */}
+      <FooterOne />
     </>
   );
 };
