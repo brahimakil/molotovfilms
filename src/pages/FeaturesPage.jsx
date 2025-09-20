@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
-import FooterOne from "../component/FooterOne"; // Import FooterOne
+import FooterOne from "../component/FooterOne";
 
 // Import movie images
 import movie1 from "../assets/movies/56262.jpg";
@@ -277,21 +277,13 @@ const FeaturesPage = () => {
     }
   };
 
-  // Set page zoom to 75% on component mount
-  useEffect(() => {
-    document.body.style.zoom = "100%";
-    
-    // Cleanup: Reset zoom when component unmounts
-    return () => {
-      document.body.style.zoom = "80%";
-    };
-  }, []);
-
   const breadcrumbs = [
     { label: "Home", link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
     { label: "Features & Films", link: null },
   ];
+
+
 
   return (
     <>
@@ -682,7 +674,7 @@ const FeaturesPage = () => {
               <div style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '20px',
+                gap: '15px', // Reduced from 20px
                 alignItems: 'center'
               }}>
                 {showcaseData.map((book, index) => (
@@ -691,13 +683,13 @@ const FeaturesPage = () => {
                     onClick={() => setActiveBookIndex(index)}
                     className={`book-card ${activeBookIndex === index ? 'active' : ''}`}
                     style={{
-                      width: '180px',
-                      height: '270px',
-                      borderRadius: '15px',
+                      width: '140px', // Reduced from 180px
+                      height: '210px', // Reduced from 270px
+                      borderRadius: '12px', // Slightly smaller radius
                       overflow: 'hidden',
                       position: 'relative',
                       backgroundColor: '#f5f5f5',
-                      border: activeBookIndex === index ? '3px solid rgba(107, 142, 35, 0.8)' : '2px solid rgba(0,0,0,0.1)'
+                      border: activeBookIndex === index ? '2px solid rgba(107, 142, 35, 0.8)' : '1px solid rgba(0,0,0,0.1)' // Thinner borders
                     }}
                   >
                     {book.imageLoaded && book.image && !book.imageError ? (
@@ -727,9 +719,9 @@ const FeaturesPage = () => {
                         justifyContent: 'center',
                         background: 'linear-gradient(135deg, #f0f0f0, #e0e0e0)',
                         color: '#666',
-                        fontSize: '0.9rem',
+                        fontSize: '0.8rem', // Smaller text
                         textAlign: 'center',
-                        padding: '20px'
+                        padding: '15px' // Reduced padding
                       }}>
                         {book.imageError ? '❌ Image Error' : '⏳ Loading...'}
                       </div>
@@ -738,13 +730,13 @@ const FeaturesPage = () => {
                     {/* Book Number */}
                     <div style={{
                       position: 'absolute',
-                      top: '10px',
-                      right: '10px',
+                      top: '8px', // Reduced from 10px
+                      right: '8px', // Reduced from 10px
                       background: 'rgba(0,0,0,0.7)',
                       color: 'white',
-                      padding: '4px 8px',
-                      borderRadius: '10px',
-                      fontSize: '0.8rem',
+                      padding: '3px 6px', // Reduced from 4px 8px
+                      borderRadius: '8px', // Reduced from 10px
+                      fontSize: '0.7rem', // Reduced from 0.8rem
                       fontWeight: 'bold'
                     }}>
                       {String(index + 1).padStart(2, '0')}
@@ -754,14 +746,14 @@ const FeaturesPage = () => {
                     {activeBookIndex === index && (
                       <div style={{
                         position: 'absolute',
-                        bottom: '10px',
+                        bottom: '8px', // Reduced from 10px
                         left: '50%',
                         transform: 'translateX(-50%)',
                         background: 'rgba(107, 142, 35, 0.9)',
                         color: 'white',
-                        padding: '4px 12px',
-                        borderRadius: '15px',
-                        fontSize: '0.7rem',
+                        padding: '3px 10px', // Reduced from 4px 12px
+                        borderRadius: '12px', // Reduced from 15px
+                        fontSize: '0.65rem', // Reduced from 0.7rem
                         fontWeight: 'bold'
                       }}>
                         NOW PLAYING
@@ -923,7 +915,7 @@ const FeaturesPage = () => {
 
         </div>
       </section>
-      
+
       {/* FOOTER ADDED */}
       <FooterOne />
     </>
