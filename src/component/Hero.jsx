@@ -25,12 +25,11 @@ const Hero = () => {
 
             <div className="hero_txt">
               <h1>
-                Transform Your <br />
-                <span>Grow Business</span> with Strategic IT Solutions
+               WE MAKE FILMS PEOPLE REMEMBER.
+
               </h1>
               <p className="text_lg">
-                Leverage cutting-edge IT solutions tailored to your business
-                needs. Embrace a future where technology fuels your success.
+               Studio-grade scale. Art-house nerve. Stories that refuse to vanish.
               </p>
             </div>
 
@@ -38,7 +37,7 @@ const Hero = () => {
               <Link to="/contuct-us" className="sara-btn">
                 Get in Touch
               </Link>
-              <Link to="/about" className="sara-btn__border">
+              <Link to="/" className="sara-btn__border">
                 Learn more
               </Link>
             </div>

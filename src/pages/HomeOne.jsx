@@ -12,7 +12,6 @@ const HomeOne = () => {
   return (
     <>
       <Hero></Hero>
-      <Customers></Customers>
       <Services></Services>
       <Chose></Chose>
       <Client></Client>

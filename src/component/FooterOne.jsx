@@ -28,8 +28,8 @@ const FooterOne = () => {
                   <div className="contact-info inline">
                     <a href="tel:+17866736887">+1 786 6736887</a>
                     <a href="tel:+96176504207">+961 76 504207</a>
-                    <p>Michel Zakkour St. Beirut, Lebanon</p>
                     <p>Shelton St. London, England</p>
+                    <p>Coupure Rechts 88a, 9000 Gent</p>
                     <a href="mailto:info@molotovfilms.com">info@molotovfilms.com</a>
                   </div>
                 </div>

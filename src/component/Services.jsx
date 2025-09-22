@@ -8,16 +8,15 @@ const Services = () => {
         <div className="row">
           <div className="col-lg-12 col-xxl-5">
             <h2 className="main_titel">
-              Services We Provide with <span>Get Benefited.</span>
+MANIFESTO
             </h2>
           </div>
 
           <div className="col-xxl-6 offset-xxl-1">
             <div className="services_txt">
               <p className="text_lg">
-                This list encompasses a broad range of services that can help
-                businesses manage and optimize their IT infrastructure, enhance
-                their security posture, support their digital transformation.
+                We’re not an agency that does film. We’re a small, hungry studio that crafts unforgettable work — cinema with appetite, ads with soul, shorts that spread like rumor. We treat every project as a public act: precise, fierce, and a little dangerous. If it doesn’t haunt you tomorrow, we haven’t done our job.
+
               </p>
             </div>
           </div>

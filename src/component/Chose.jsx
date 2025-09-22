@@ -14,13 +14,13 @@ const Chose = () => {
           <div className="col-lg-6">
             <div className="about_head">
               <h2 className="main_titel">
-                Target Audience for your <span> Business Solution</span>
+                OUR PROMISE
+
               </h2>
 
               <p className="text_lg">
-                This list encompasses a broad range of services that can help
-                businesses manage and optimize their IT infrastructure, enhance
-                their security posture, support their digital transformation.
+               We find the single image that holds the whole story.
+
               </p>
             </div>
 
@@ -29,20 +29,19 @@ const Chose = () => {
                 <span>
                   <img src={checkIcon} alt="icon" />
                 </span>
-                Various analysis options.
+We finish like filmmakers — not suppliers.
               </li>
               <li>
                 <span>
                   <img src={checkIcon} alt="icon" />
                 </span>
-                Page Load (time, size, number of requests).
+We launch like strategists — not hobbyists.
               </li>
               <li>
                 <span>
                   <img src={checkIcon} alt="icon" />
                 </span>
-                Big data analysis.
-              </li>
+We repurpose like magicians — one shoot, many lives.              </li>
             </ul>
 
             <div className="about_us_btn">

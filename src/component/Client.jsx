@@ -79,7 +79,7 @@ const Client = () => {
       <div className="container">
         <div className="row">
           <div className="col-9 col-xxl-4">
-            <h2 className="main_titel">Don’t Trust Us, Trust our clients</h2>
+            <h2 className="main_titel">WHY WE’RE DIFFERENT :</h2>
           </div>
         </div>
 
