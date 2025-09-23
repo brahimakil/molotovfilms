@@ -136,9 +136,28 @@ const Testimonials = ({ addClass }) => {
 
   return (
     <section ref={sectionRef} className={`testimonails ${addClass || ""}`}>
+      {/* Removed <br /><br /> */}
+      
       <div className="container">
+           <div className="row">
+          <div className="col-lg-12 col-xxl-5">
+            <h2 className="main_titel">
+            Crafted for Every Screen
+            </h2>
+          </div>
+
+          <div className="col-xxl-6 offset-xxl-1">
+            <div className="services_txt">
+              <p className="text_lg">
+              We build work that cuts through the noise , snackable social content, cinematic shorts, and full-length documentaries. End-to-end production, expert cinematography, precision editing and distribution plans engineered to grow your audience and impact.              </p>
+            </div>
+          </div>
+        </div>
+  <br /><br /><br />        
         <div className="row align-items-center">
+          
           <div className="col-xxl-6">
+            
           <div className="testimonails_thumb_main" style={{ maxWidth: '450px', margin: '0 auto' }}>
               {videoLoaded && videoUrl ? (
                 <video
@@ -240,6 +259,7 @@ const Testimonials = ({ addClass }) => {
                 </div>
               )}
               
+              
               <img
                 src={thumbPos}
                 alt="pos"
@@ -257,6 +277,7 @@ const Testimonials = ({ addClass }) => {
               />
             </div>
           </div>
+          
 
           <div className="col-xxl-6 testimonails_pl">
             <div className="testimonails_head">

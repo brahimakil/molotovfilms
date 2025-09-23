@@ -16,15 +16,14 @@ import FAQPage from "./pages/FAQPage";
 import PricingPage from "./pages/PricingPage";
 import ServiceDetailsPage from "./pages/ServiceDetailsPage";
 import FeaturesPage from "./pages/FeaturesPage";
-import ScriptWriting from "./pages/ScriptWriting"; // Add this import
+import ScriptWriting from "./pages/ScriptWriting";
 import SingleMemberPage from "./pages/SingleMemberPage";
 import TeamMemberPage from "./pages/TeamMemberPage";
 import TestimonialPage from "./pages/TestimonialPage";
 import Error404 from "./pages/Error404";
 import ScrollToTop from "./component/ScrollToTop";
-import SocialMediaPage from "./pages/SocialMediaPage"; // Add this import
-import PerformanceAdsPage from "./pages/PerformanceAdsPage";
-import PostProductionPage from "./pages/PostProductionPage"; // Add this import
+import SocialMediaPerformancePage from "./pages/SocialMediaPerformancePage"; // New combined page
+import PostProductionPage from "./pages/PostProductionPage";
 
 function App() {
   return (
@@ -36,10 +35,8 @@ function App() {
           <Route index element={<AboutPage />} />
           <Route path="services" element={<ServicesPage />} />
           <Route path="services-details" element={<ServiceDetailsPage />} />
-          <Route path="social-media-strategy" element={<SocialMediaPage />} /> {/* Add this route */}
-          <Route path="/performance-ads" element={<PerformanceAdsPage />} />
-          <Route path="/post-production" element={<PostProductionPage />} /> {/* Move this route here */}
-          <Route path="post-production" element={<PostProductionPage />} /> {/* Add this new route */}
+          <Route path="social-media-performance" element={<SocialMediaPerformancePage />} /> {/* New combined route */}
+          <Route path="post-production" element={<PostProductionPage />} />
           <Route path="features" element={<FeaturesPage />} />
           <Route path="scriptwriting" element={<ScriptWriting />} />
         </Route> 

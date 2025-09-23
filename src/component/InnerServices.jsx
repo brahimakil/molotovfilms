@@ -5,20 +5,7 @@ const InnerServices = () => {
   return (
     <section className="services inner_services">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-12 col-xxl-5">
-            <h2 className="main_titel">
-            Crafted for Every Screen
-            </h2>
-          </div>
-
-          <div className="col-xxl-6 offset-xxl-1">
-            <div className="services_txt">
-              <p className="text_lg">
-              We build work that cuts through the noise , snackable social content, cinematic shorts, and full-length documentaries. End-to-end production, expert cinematography, precision editing and distribution plans engineered to grow your audience and impact.              </p>
-            </div>
-          </div>
-        </div>
+     
         <div className="row">
           <div className="col-xxl-12">
             <div className="ball_main">
@@ -256,9 +243,10 @@ const InnerServices = () => {
           </Link>
           </div>
 
-          {/* Service 4: Social Media Strategy & Management */}
+
+          {/* Service 6: Social Media & Performance Marketing */}
           <div className="col-sm-6 col-lg-4 col-xxl-4">
-            <Link to="/social-media-strategy" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to="/social-media-performance" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="services_item" style={{ cursor: 'pointer' }}>
               <span className="services_item_icon">
                 <svg
@@ -269,20 +257,23 @@ const InnerServices = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <defs>
-                    <linearGradient id="socialGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="socialPerformanceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#38BDF8" />
-                      <stop offset="100%" stopColor="#6427FF" />
+                      <stop offset="50%" stopColor="#6427FF" />
+                      <stop offset="100%" stopColor="#3B82F6" />
                     </linearGradient>
                   </defs>
                   
-                  {/* Central hub/network */}
-                  <circle cx="30" cy="30" r="8" fill="url(#socialGrad)"/>
+                  {/* Central hub/network with performance metrics */}
+                  <circle cx="30" cy="30" r="8" fill="url(#socialPerformanceGrad)"/>
                   
-                  {/* Connected nodes */}
+                  {/* Connected social nodes */}
                   <circle cx="14" cy="16" r="5" fill="#38BDF8"/>
                   <circle cx="46" cy="16" r="5" fill="#38BDF8"/>
                   <circle cx="14" cy="44" r="5" fill="#38BDF8"/>
                   <circle cx="46" cy="44" r="5" fill="#38BDF8"/>
+                  
+                  {/* Performance tracking nodes */}
                   <circle cx="30" cy="8" r="4" fill="#6427FF"/>
                   <circle cx="30" cy="52" r="4" fill="#6427FF"/>
                   <circle cx="8" cy="30" r="4" fill="#6427FF"/>
@@ -298,103 +289,28 @@ const InnerServices = () => {
                   <line x1="22" y1="30" x2="12" y2="30" stroke="#38BDF8" strokeWidth="2" strokeOpacity="0.6"/>
                   <line x1="38" y1="30" x2="48" y2="30" stroke="#38BDF8" strokeWidth="2" strokeOpacity="0.6"/>
                   
-                  {/* Social media icons in nodes */}
-                  <path d="M12 14H16V18H12V14Z" fill="white" rx="1"/>
-                  <path d="M44 14H48V18H44V14Z" fill="white" rx="1"/>
-                  <path d="M28 6H32V10H28V6Z" fill="white" rx="1"/>
-                </svg>
-              </span>
-              <div className="services_item_txt">
-                <h3 className="text_2xl">
-                  <a href="#">Social Media Strategy & Management</a>
-                </h3>
-
-                <p className="text_lg">
-                  We don't just create content—we manage the entire ecosystem. From content calendars and scheduling to publishing and engagement, we ensure your brand has a consistent presence across all platforms.
-                </p>
-
-                <Link
-                  to="/features-films"
-                  className="services_item_btm text_lg"
-                >
-                  Read More
-                  <span>
-                    <svg
-                      width="14"
-                      height="10"
-                      viewBox="0 0 14 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9 9L13 5M13 5L9 1M13 5L1 5"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </Link>
-          </div>
-
-          {/* Service 5: Performance Video Ads & A/B Testing */}
-          <div className="col-sm-6 col-lg-4 col-xxl-4">
-            <Link to="/performance-ads" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div className="services_item" style={{ cursor: 'pointer' }}>
-              <span className="services_item_icon">
-                <svg
-                  width="60"
-                  height="60"
-                  viewBox="0 0 60 60"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <linearGradient id="performanceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#38BDF8" />
-                      <stop offset="100%" stopColor="#6427FF" />
-                    </linearGradient>
-                  </defs>
-                  
-                  {/* Analytics chart background */}
-                  <rect x="8" y="12" width="44" height="36" rx="4" fill="url(#performanceGrad)" fillOpacity="0.1" stroke="url(#performanceGrad)" strokeWidth="2"/>
-                  
-                  {/* Chart bars */}
-                  <rect x="14" y="32" width="4" height="12" fill="#38BDF8" rx="2"/>
-                  <rect x="22" y="28" width="4" height="16" fill="#6427FF" rx="2"/>
-                  <rect x="30" y="24" width="4" height="20" fill="#38BDF8" rx="2"/>
-                  <rect x="38" y="20" width="4" height="24" fill="#6427FF" rx="2"/>
-                  <rect x="46" y="16" width="4" height="28" fill="#38BDF8" rx="2"/>
+                  {/* Analytics chart overlay */}
+                  <rect x="24" y="26" width="12" height="8" rx="2" fill="white" fillOpacity="0.9"/>
+                  <rect x="26" y="30" width="2" height="3" fill="#3B82F6"/>
+                  <rect x="29" y="28" width="2" height="5" fill="#6427FF"/>
+                  <rect x="32" y="27" width="2" height="6" fill="#38BDF8"/>
                   
                   {/* A/B Testing symbols */}
-                  <circle cx="16" cy="8" r="6" fill="none" stroke="#6427FF" strokeWidth="2"/>
-                  <text x="16" y="12" textAnchor="middle" fill="#6427FF" fontSize="8" fontWeight="bold">A</text>
-                  
-                  <circle cx="44" cy="8" r="6" fill="none" stroke="#38BDF8" strokeWidth="2"/>
-                  <text x="44" y="12" textAnchor="middle" fill="#38BDF8" fontSize="8" fontWeight="bold">B</text>
-                  
-                  {/* Performance arrow */}
-                  <path d="M30 52L36 48L30 44V47H24V49H30V52Z" fill="#6427FF"/>
-                  
-                  {/* Target/Goal icon */}
-                  <circle cx="52" cy="20" r="4" fill="none" stroke="#38BDF8" strokeWidth="1.5"/>
-                  <circle cx="52" cy="20" r="2" fill="#6427FF"/>
+                  <text x="12" y="18" textAnchor="middle" fill="white" fontSize="6" fontWeight="bold">A</text>
+                  <text x="48" y="18" textAnchor="middle" fill="white" fontSize="6" fontWeight="bold">B</text>
                 </svg>
               </span>
               <div className="services_item_txt">
                 <h3 className="text_2xl">
-                  <a href="#">Performance Video Ads & A/B Testing</a>
+                  <a href="#">Social Media & Performance Marketing</a>
                 </h3>
 
                 <p className="text_lg">
-                  We create multiple variations of your video ads to test which visuals, hooks, and calls-to-action deliver the best results. By analyzing performance data, we continuously refine your campaigns to maximize ROI.
+                  We weaponize social media for growth through data-driven strategies, A/B tested content, and performance optimization. From viral content creation to conversion tracking, we turn followers into customers.
                 </p>
 
                 <Link
-                  to="/performance-ads"
+                  to="/social-media-performance"
                   className="services_item_btm text_lg"
                 >
                   Read More
@@ -420,7 +336,7 @@ const InnerServices = () => {
           </Link>
           </div>
 
-          {/* Service 6: Post-Production & Content Repurposing */}
+          {/* Service 5: Post-Production & Content Repurposing */}
           <div className="col-sm-6 col-lg-4 col-xxl-4">
             <Link to="/post-production" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="services_item" style={{ cursor: 'pointer' }}>

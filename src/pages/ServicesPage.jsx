@@ -370,29 +370,16 @@ const ServicesPage = () => {
             <h1 style={heroStyles.heroTitle}>
               All <span style={{color: '#6B8E23'}}>Media.</span> All <span style={{color: '#6B8E23'}}> Stories.</span> One <span style={{color: '#6B8E23'}}> Production </span> House.
             </h1>
+            <br /> <br />
             <p style={heroStyles.heroSubtitle}>
             We create it all — films, videos, and everything media. A film house built to turn vision into unforgettable stories.
             </p>
-            <div style={heroStyles.heroButtons}>
-              <a 
-                href="#services" 
-                style={{...heroStyles.btn, ...heroStyles.btnPrimary}}
-              >
-                 View Services 
-              </a>
-            </div>
+       
           </div>
         </div>
       </section>
 
-      {/* InnerServices Section - Loads Second */}
-      <div ref={innerServicesRef}>
-        {loadInnerServices ? (
-          <InnerServices />
-        ) : (
-          <SectionPlaceholder height="600px" message="Loading Services section..." />
-        )}
-      </div>
+   
 
       {/* Testimonials Section - Loads Third */}
       <div ref={testimonialsRef}>
@@ -403,8 +390,18 @@ const ServicesPage = () => {
         )}
       </div>
 
+      
+         {/* InnerServices Section - Loads Second */}
+      <div ref={innerServicesRef} style={{ margin: 0, padding: 0 }}>
+        {loadInnerServices ? (
+          <InnerServices />
+        ) : (
+          <SectionPlaceholder height="600px" message="Loading Services section..." />
+        )}
+      </div>
+
       {/* Blog Section - Loads Last */}
-      <div ref={blogRef}>
+      <div ref={blogRef} style={{ margin: 0, padding: 0 }}>
         {loadBlog ? (
           <Blog />
         ) : (
