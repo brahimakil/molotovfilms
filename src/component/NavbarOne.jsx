@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import MobileMenu from "./MobileMenu";
 
-const NavbarOne = () => {
+function NavbarOne() {
   const [isServiceHovered, setIsServiceHovered] = useState(false);
 
   useEffect(() => {
@@ -244,6 +244,34 @@ const NavbarOne = () => {
                                     e.target.style.transform = 'translateY(0)';
                                   }}>
                                     Post-Production
+                                  </Link>
+                                </li>
+                                <li style={{ margin: '0', padding: '0' }}>
+                                  <Link to="/web-development" style={{
+                                    color: '#ffffff',
+                                    fontWeight: '500',
+                                    transition: 'all 0.3s ease',
+                                    lineHeight: '1.4',
+                                    padding: '12px 16px',
+                                    borderRadius: '6px',
+                                    display: 'block',
+                                    textAlign: 'left',
+                                    fontSize: '14px',
+                                    textDecoration: 'none',
+                                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                                    background: 'rgba(255, 255, 255, 0.05)'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+                                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                                    e.target.style.transform = 'translateY(-2px)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+                                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                                    e.target.style.transform = 'translateY(0)';
+                                  }}>
+                                    Web Development
                                   </Link>
                                 </li>
                               </ul>

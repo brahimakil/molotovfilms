@@ -24,6 +24,7 @@ import Error404 from "./pages/Error404";
 import ScrollToTop from "./component/ScrollToTop";
 import SocialMediaPerformancePage from "./pages/SocialMediaPerformancePage"; // New combined page
 import PostProductionPage from "./pages/PostProductionPage";
+import WebDevelopmentPage from "./pages/WebDevelopmentPage";
 
 function App() {
   return (
@@ -35,10 +36,11 @@ function App() {
           <Route index element={<AboutPage />} />
           <Route path="services" element={<ServicesPage />} />
           <Route path="services-details" element={<ServiceDetailsPage />} />
-          <Route path="social-media-performance" element={<SocialMediaPerformancePage />} /> {/* New combined route */}
+          <Route path="social-media-performance" element={<SocialMediaPerformancePage />} />
           <Route path="post-production" element={<PostProductionPage />} />
           <Route path="features" element={<FeaturesPage />} />
           <Route path="scriptwriting" element={<ScriptWriting />} />
+          <Route path="web-development" element={<WebDevelopmentPage />} />
         </Route> 
 
       
