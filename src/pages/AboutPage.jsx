@@ -356,7 +356,7 @@ const AboutPage = () => {
 
             <h1 style={heroStyles.heroTitle}>
               <img 
-                src="/src/assets/main logo/Molotov Logo PNG.png" 
+                src="/Molotov Logo PNG.png" 
                 alt="Molotov Logo" 
                 style={{
                   height: '110px',
