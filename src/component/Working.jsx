@@ -10,6 +10,7 @@ import graphIcon from "../assets/images/graph.svg";
 import paperIcon from "../assets/images/paper.svg";
 import arrowLine from "../assets/images/arrow-line.svg";
 import { FaLightbulb, FaVideo, FaShare } from 'react-icons/fa';
+import { FaBrain, FaCogs, FaRocket } from 'react-icons/fa';
 
 const Working = () => {
   const navigate = useNavigate();
@@ -849,7 +850,7 @@ const Working = () => {
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      <FaLightbulb size={32} color="white" />
+                      <FaBrain size={40} color="white" />
                       <span className="num" style={{ 
                         background: 'rgba(255, 255, 255, 0.2)',
                         color: 'white'
@@ -874,7 +875,7 @@ const Working = () => {
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      <FaVideo size={32} color="white" />
+                      <FaCogs size={40} color="white" />
                       <span className="num" style={{ 
                         background: 'rgba(255, 255, 255, 0.2)',
                         color: 'white'
@@ -899,7 +900,7 @@ const Working = () => {
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      <FaShare size={32} color="white" />
+                      <FaRocket size={40} color="white" />
                       <span className="num" style={{ 
                         background: 'rgba(255, 255, 255, 0.2)',
                         color: 'white'

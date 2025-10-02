@@ -353,18 +353,29 @@ const AboutPage = () => {
           
           {/* Hero Content */}
           <div style={heroStyles.heroContent}>
+
             <h1 style={heroStyles.heroTitle}>
-               We Create Films, <span style={{color: '#6B8E23'}}>Ads & Social Content</span> That Drive Impact
+              <img 
+                src="/src/assets/main logo/Molotov Logo PNG.png" 
+                alt="Molotov Logo" 
+                style={{
+                  height: '110px',
+                  width: 'auto',
+                  marginBottom: '15px',
+                  display: 'block',
+                  margin: '0 auto 15px auto'
+                }}
+              />
+              We Create Films, <span style={{color: '#6B8E23'}}>Ads & Social Content</span> That Drive Impact
             </h1>
-            <p style={heroStyles.heroSubtitle}>From cinematic commercials to viral Reels, we craft stories that capture attention and grow your brand across every platform.</p>
-            <div style={heroStyles.heroButtons}>
+            {/* <div style={heroStyles.heroButtons}>
               <a 
                 href="#services" 
                 style={{...heroStyles.btn, ...heroStyles.btnPrimary}}
               >
                  Let's Work 
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
