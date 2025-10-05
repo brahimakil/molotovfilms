@@ -5,14 +5,8 @@ export default defineConfig({
   plugins: [react()],
   base: "/",
   build: {
-    // Enable minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console.logs in production
-        drop_debugger: true
-      }
-    },
+    // Use esbuild instead of terser (faster and built-in)
+    minify: 'esbuild',
     // Optimize chunk splitting
     rollupOptions: {
       output: {
@@ -25,8 +19,6 @@ export default defineConfig({
       }
     },
     chunkSizeWarningLimit: 1000,
-    // Enable source maps for debugging but keep them separate
-    sourcemap: false,
     // Optimize CSS
     cssCodeSplit: true,
     // Target modern browsers for smaller bundles
