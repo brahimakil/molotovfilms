@@ -1586,33 +1586,33 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
               <div className="card_item mg_top_30px">
                 <h3>Tags</h3>
                 <div className="tag_item">
-                  <Link to="#" className="tag_btn">
-                    Service System
-                  </Link>
-                  <Link to="#" className="tag_btn">
-                    Digital
-                  </Link>
-                  <Link to="#" className="tag_btn">
-                    Marketing
-                  </Link>
-                  <Link to="#" className="tag_btn">
-                    SEO Ranking
-                  </Link>
-                  <Link to="#" className="tag_btn">
-                    Service Tools
-                  </Link>
-                  <Link to="#" className="tag_btn">
-                    SEO
-                  </Link>
-                  <Link to="#" className="tag_btn">
-                    Service System
-                  </Link>
-                  <Link to="#" className="tag_btn">
-                    Digital
-                  </Link>
-                  <Link to="#" className="tag_btn">
-                    Marketing
-                  </Link>
+                   <Link to="#" className="tag_btn">
+                      Cinema 
+                    </Link>
+                    <Link to="#" className="tag_btn">
+                      Film 
+                    </Link>
+                    <Link to="#" className="tag_btn">
+                      Production 
+                    </Link>
+                    <Link to="#" className="tag_btn">
+                      Script 
+                    </Link>
+                    <Link to="#" className="tag_btn">
+                      Marketing 
+                    </Link>
+                    <Link to="#" className="tag_btn">
+                      Reels 
+                    </Link>
+                    <Link to="#" className="tag_btn">
+                      Social media 
+                    </Link>
+                    <Link to="#" className="tag_btn">
+                      Movies 
+                    </Link>
+                    <Link to="#" className="tag_btn">
+                      Ads
+                    </Link>
                 </div>
               </div>
             </div>
