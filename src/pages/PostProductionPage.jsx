@@ -342,10 +342,38 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      margin: '0 auto 20px',
-                      fontSize: '2rem'
+                      margin: '0 auto 20px'
                     }}>
-                      🎬
+                      {index === 0 && (
+                        // Documentary Film Icon
+                        <svg width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="4" y="8" width="32" height="24" rx="3" fill="white" stroke="white" strokeWidth="2"/>
+                          <rect x="6" y="10" width="28" height="20" rx="2" fill="none" stroke="#6366F1" strokeWidth="1.5"/>
+                          <rect x="2" y="6" width="4" height="4" rx="1" fill="white"/>
+                          <rect x="34" y="6" width="4" height="4" rx="1" fill="white"/>
+                          <rect x="2" y="30" width="4" height="4" rx="1" fill="white"/>
+                          <rect x="34" y="30" width="4" height="4" rx="1" fill="white"/>
+                        </svg>
+                      )}
+                      {index === 1 && (
+                        // Product Launch Rocket Icon
+                        <svg width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 4 L24 12 L32 8 L28 16 L36 20 L28 24 L32 32 L24 28 L20 36 L16 28 L8 32 L12 24 L4 20 L12 16 L8 8 L16 12 Z" fill="white" stroke="white" strokeWidth="1"/>
+                          <circle cx="20" cy="20" r="6" fill="none" stroke="#6366F1" strokeWidth="2"/>
+                          <circle cx="20" cy="20" r="3" fill="#8B5CF6"/>
+                        </svg>
+                      )}
+                      {index === 2 && (
+                        // Interview/Microphone Icon
+                        <svg width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="16" y="6" width="8" height="16" rx="4" fill="white" stroke="white" strokeWidth="2"/>
+                          <rect x="17" y="7" width="6" height="14" rx="3" fill="none" stroke="#6366F1" strokeWidth="1.5"/>
+                          <path d="M12 18 C12 22.4 15.6 26 20 26 C24.4 26 28 22.4 28 18" stroke="white" strokeWidth="2" fill="none"/>
+                          <line x1="20" y1="26" x2="20" y2="32" stroke="white" strokeWidth="2"/>
+                          <line x1="16" y1="32" x2="24" y2="32" stroke="white" strokeWidth="2"/>
+                          <circle cx="20" cy="14" r="1.5" fill="#8B5CF6"/>
+                        </svg>
+                      )}
                     </div>
                     <h4 style={{
                       fontSize: '1.3rem',
@@ -470,7 +498,7 @@ Our Strategic Protocol
                 description: 'The primary asset is complete. Now, we deploy the campaign. We strategically repurpose the core content',
                 color: '#10B981',
                 icon: '📱'
-              }
+              } 
             ].map((step, index) => (
               <div key={index} className="col-lg-6">
                 <div style={{
@@ -494,10 +522,58 @@ Our Strategic Protocol
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '1.8rem',
                       marginRight: '20px'
                     }}>
-                      {step.icon}
+                      {index === 0 && (
+                        // INTAKE - Mission Blueprint (Magnifying Glass/Analysis)
+                        <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="16" cy="16" r="10" fill="none" stroke="white" strokeWidth="3"/>
+                          <circle cx="16" cy="16" r="6" fill="none" stroke="white" strokeWidth="2" opacity="0.7"/>
+                          <line x1="24" y1="24" x2="35" y2="35" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+                          <circle cx="16" cy="16" r="3" fill="white" opacity="0.8"/>
+                          <path d="M12 12 L20 20" stroke="white" strokeWidth="1.5" opacity="0.6"/>
+                          <circle cx="30" cy="30" r="2" fill="white" opacity="0.9"/>
+                        </svg>
+                      )}
+                      {index === 1 && (
+                        // EDIT - Tactical Assembly (Scissors/Cutting)
+                        <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="4" fill="white"/>
+                          <circle cx="12" cy="28" r="4" fill="white"/>
+                          <path d="M16 12 L30 20 L16 28" stroke="white" strokeWidth="2.5" fill="none"/>
+                          <line x1="30" y1="20" x2="35" y2="20" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                          <path d="M12 16 L25 22" stroke="white" strokeWidth="1.5" strokeDasharray="2,2"/>
+                          <path d="M12 24 L25 18" stroke="white" strokeWidth="1.5" strokeDasharray="2,2"/>
+                          <circle cx="30" cy="20" r="1.5" fill="white"/>
+                        </svg>
+                      )}
+                      {index === 2 && (
+                        // POLISH - Visual & Audio Polish (Palette/Brush)
+                        <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="20" cy="25" rx="15" ry="10" fill="white" opacity="0.9"/>
+                          <circle cx="12" cy="22" r="2" fill="#8B5CF6"/>
+                          <circle cx="20" cy="20" r="2" fill="#3B82F6"/>
+                          <circle cx="28" cy="22" r="2" fill="#F59E0B"/>
+                          <circle cx="16" cy="28" r="1.5" fill="#10B981"/>
+                          <circle cx="24" cy="28" r="1.5" fill="#EF4444"/>
+                          <path d="M25 8 L30 15 L22 18 Z" fill="white"/>
+                          <line x1="25" y1="8" x2="22" y2="18" stroke="white" strokeWidth="2"/>
+                        </svg>
+                      )}
+                      {index === 3 && (
+                        // REPURPOSE - Strategic Deployment (Mobile/Multi-platform)
+                        <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="15" y="6" width="10" height="16" rx="2" fill="white"/>
+                          <rect x="16" y="7" width="8" height="12" rx="1" fill="none" stroke="#10B981" strokeWidth="1.5"/>
+                          <circle cx="20" cy="20.5" r="0.5" fill="#10B981"/>
+                          <rect x="8" y="12" width="6" height="8" rx="1" fill="white" opacity="0.8"/>
+                          <rect x="26" y="12" width="6" height="8" rx="1" fill="white" opacity="0.8"/>
+                          <circle cx="11" cy="16" r="1" fill="#10B981"/>
+                          <circle cx="29" cy="16" r="1" fill="#10B981"/>
+                          <path d="M20 25 L15 30 L20 35 L25 30 Z" fill="white" opacity="0.7"/>
+                          <circle cx="20" cy="30" r="1" fill="#10B981"/>
+                        </svg>
+                      )}
                     </div>
                     <div>
                       <div style={{

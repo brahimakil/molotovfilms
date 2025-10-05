@@ -771,31 +771,31 @@ const BlogDetailsPage = () => {
                   <h3>Tags</h3>
                   <div className="tag_item">
                     <Link to="#" className="tag_btn">
-                      Service System
+                      Cinema 
                     </Link>
                     <Link to="#" className="tag_btn">
-                      Digital
+                      Film 
                     </Link>
                     <Link to="#" className="tag_btn">
-                      Marketing
+                      Production 
                     </Link>
                     <Link to="#" className="tag_btn">
-                      SEO Ranking
+                      Script 
                     </Link>
                     <Link to="#" className="tag_btn">
-                      Service Tools
+                      Marketing 
                     </Link>
                     <Link to="#" className="tag_btn">
-                      SEO
+                      Reels 
                     </Link>
                     <Link to="#" className="tag_btn">
-                      Service System
+                      Social media 
                     </Link>
                     <Link to="#" className="tag_btn">
-                      Digital
+                      Movies 
                     </Link>
                     <Link to="#" className="tag_btn">
-                      Marketing
+                      Ads
                     </Link>
                   </div>
                 </div>

@@ -211,13 +211,14 @@ const SocialMediaPerformancePage = () => {
             <div className="col-lg-6">
               <div style={{ color: 'white', zIndex: 10, position: 'relative' }}>
                 <h1 style={{
-                  fontSize: '3.5rem',
+                  fontSize: '2.3rem',
                   fontWeight: 'bold',
                   marginBottom: '30px',
-                  background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)',
+                  background: 'linear-gradient(135deg,rgb(16, 17, 113),rgb(54, 13, 151))',
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
+                  WebkitTextFillColor: 'transparent',
+                  whiteSpace: 'nowrap'
                 }}>
                   SOCIAL MEDIA, SUPERCHARGED.
                 </h1>

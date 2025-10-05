@@ -45,7 +45,7 @@ const FeaturesPage = () => {
       imageError: false,
       videoError: false,
       processText: {
-        title: "Documentary Mastery",
+        title: "Film Mastery",
         steps: [
           {
             title: "Find the Human Truth",
