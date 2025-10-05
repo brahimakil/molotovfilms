@@ -123,8 +123,8 @@ const ContactUsPage = () => {
                   📅 Selected Date: {selectedDate}
                 </div>
               )}
-            </div>
-          </div>
+                </div>
+              </div>
           
           {/* MAIN CONTENT - FORM LEFT, MAP RIGHT */}
           <div className="row">
@@ -156,7 +156,7 @@ const ContactUsPage = () => {
                     border: `1px solid ${submitMessage.includes('✅') ? "#c3e6cb" : "#f5c6cb"}`
                   }}>
                     {submitMessage}
-                  </div>
+            </div>
                 )}
                 
                 <form onSubmit={handleSubmit}>
@@ -174,7 +174,7 @@ const ContactUsPage = () => {
                           className="form-control" 
                           placeholder="Your Full Name"
                           required
-                          style={{
+                      style={{
                             height: "55px",
                             fontSize: "16px",
                             border: "2px solid #e9ecef",
@@ -205,10 +205,10 @@ const ContactUsPage = () => {
                             padding: "0 20px"
                           }}
                         />
-                      </div>
-                    </div>
-                  </div>
-                  
+                </div>
+              </div>
+            </div>
+
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="form-group mb-4">
@@ -230,19 +230,19 @@ const ContactUsPage = () => {
                             padding: "0 20px"
                           }}
                         />
-                      </div>
-                    </div>
+                </div>
+              </div>
                     <div className="col-lg-6">
                       <div className="form-group mb-4">
                         <label style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "10px", display: "block" }}>
                           Subject *
-                        </label>
-                        <input 
-                          type="text" 
+                      </label>
+                      <input
+                        type="text"
                           name="subject"
                           value={formData.subject}
                           onChange={handleInputChange}
-                          className="form-control" 
+                        className="form-control"
                           placeholder="Project inquiry, consultation, etc."
                           required
                           style={{
@@ -252,20 +252,20 @@ const ContactUsPage = () => {
                             borderRadius: "8px",
                             padding: "0 20px"
                           }}
-                        />
-                      </div>
+                      />
                     </div>
-                  </div>
+                    </div>
+                    </div>
                   
                   <div className="form-group mb-4">
                     <label style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "10px", display: "block" }}>
                       Tell us about your project *
-                    </label>
-                    <textarea 
+                      </label>
+                      <textarea
                       name="description"
                       value={formData.description}
                       onChange={handleInputChange}
-                      className="form-control" 
+                        className="form-control"
                       rows="6" 
                       placeholder="Tell us about your project, budget, timeline, and any specific requirements..."
                       required
@@ -276,9 +276,9 @@ const ContactUsPage = () => {
                         padding: "20px",
                         resize: "vertical"
                       }}
-                    ></textarea>
-                  </div>
-                  
+                      ></textarea>
+                    </div>
+
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
@@ -296,9 +296,9 @@ const ContactUsPage = () => {
                     }}
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
-                  </button>
-                </form>
-              </div>
+                    </button>
+                  </form>
+                </div>
             </div>
             
             {/* RIGHT SIDE - MAP & CONTACT INFO */}
