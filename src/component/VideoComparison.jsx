@@ -307,9 +307,9 @@ const VideoComparison = () => {
   const containerStyle = {
     position: 'relative',
     width: '100%',
-    height: window.innerWidth <= 768 ? '50vh' : '70vh',
-    maxHeight: window.innerWidth <= 768 ? '400px' : '600px',
-    minHeight: window.innerWidth <= 768 ? '250px' : '400px',
+    height: window.innerWidth <= 768 ? '60vh' : '70vh', // Increased from 50vh to 60vh on mobile
+    maxHeight: window.innerWidth <= 768 ? '500px' : '600px', // Increased from 400px to 500px
+    minHeight: window.innerWidth <= 768 ? '350px' : '400px', // Increased from 250px to 350px
     overflow: 'hidden',
     borderRadius: '15px',
     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
@@ -322,7 +322,7 @@ const VideoComparison = () => {
     left: 0,
     width: '100%',
     height: '100%',
-    objectFit: window.innerWidth <= 768 ? 'contain' : 'cover'
+    objectFit: window.innerWidth <= 768 ? 'cover' : 'cover' // Changed contain to cover on mobile
   };
 
   const beforeVideoStyle = {
@@ -488,61 +488,71 @@ const VideoComparison = () => {
             ) : currentVideo ? (
               <>
                 {/* Video Comparison Container with Side Elements */}
-                <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <div style={{ 
+                  position: 'relative', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: window.innerWidth <= 768 ? '10px' : '20px',
+                  flexDirection: window.innerWidth <= 768 ? 'column' : 'row' // Stack vertically on mobile
+                }}>
                   {/* Left Side - COLORING Number Tabs */}
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    minWidth: '60px'
-                  }}>
-                    {videoCategories.COLORING.map((_, index) => (
-                      <div
-                        key={`coloring-${index}`}
-                        style={currentCategory === 'COLORING' && currentVideoIndex === index ? activeNumberTabStyle : numberTabStyle}
-                        onClick={() => {
-                          setCurrentCategory('COLORING');
-                          setCurrentVideoIndex(index);
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!(currentCategory === 'COLORING' && currentVideoIndex === index)) {
-                            e.target.style.background = '#f0f0f0';
-                            e.target.style.transform = 'scale(1.05)';
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!(currentCategory === 'COLORING' && currentVideoIndex === index)) {
-                            e.target.style.background = 'rgba(255, 255, 255, 0.9)';
-                            e.target.style.transform = 'scale(1)';
-                          }
-                        }}
-                      >
-                        {index + 1}
-                      </div>
-                    ))}
-                  </div>
+                  {window.innerWidth > 768 && (
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      minWidth: '60px'
+                    }}>
+                      {videoCategories.COLORING.map((_, index) => (
+                        <div
+                          key={`coloring-${index}`}
+                          style={currentCategory === 'COLORING' && currentVideoIndex === index ? activeNumberTabStyle : numberTabStyle}
+                          onClick={() => {
+                            setCurrentCategory('COLORING');
+                            setCurrentVideoIndex(index);
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!(currentCategory === 'COLORING' && currentVideoIndex === index)) {
+                              e.target.style.background = '#f0f0f0';
+                              e.target.style.transform = 'scale(1.05)';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!(currentCategory === 'COLORING' && currentVideoIndex === index)) {
+                              e.target.style.background = 'rgba(255, 255, 255, 0.9)';
+                              e.target.style.transform = 'scale(1)';
+                            }
+                          }}
+                        >
+                          {index + 1}
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-                  {/* Category Text */}
-                  <div style={{
-                    fontSize: window.innerWidth <= 768 ? '18px' : '24px',
-                    fontWeight: 'bold',
-                    letterSpacing: '8px',
-                    writingMode: 'vertical-rl',
-                    textOrientation: 'mixed',
-                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
-                    userSelect: 'none',
-                    color: '#333',
-                    minWidth: '40px'
-                  }}>
-                    COLORING
-                  </div>
+                  {/* Category Text - Hide on mobile */}
+                  {window.innerWidth > 768 && (
+                    <div style={{
+                      fontSize: '24px',
+                      fontWeight: 'bold',
+                      letterSpacing: '8px',
+                      writingMode: 'vertical-rl',
+                      textOrientation: 'mixed',
+                      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+                      userSelect: 'none',
+                      color: '#333',
+                      minWidth: '40px'
+                    }}>
+                      COLORING
+                    </div>
+                  )}
 
                   {/* Video Container */}
                   <div
                     ref={containerRef}
                     style={{
                       ...containerStyle,
-                      maxWidth: window.innerWidth <= 768 ? '100%' : '85%', // Changed from 70% to 85%
+                      maxWidth: window.innerWidth <= 768 ? '100%' : '85%', // Full width on mobile
                       margin: '0 auto',
                       flex: 1
                     }}
@@ -601,53 +611,104 @@ const VideoComparison = () => {
                     </div>
                   </div>
 
-                  {/* Right Side Text */}
-                  <div style={{
-                    fontSize: window.innerWidth <= 768 ? '18px' : '24px',
-                    fontWeight: 'bold',
-                    letterSpacing: '8px',
-                    writingMode: 'vertical-rl',
-                    textOrientation: 'mixed',
-                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
-                    userSelect: 'none',
-                    color: '#333',
-                    minWidth: '40px'
-                  }}>
-                    VFX
-                  </div>
+                  {/* Right Side Text - Hide on mobile */}
+                  {window.innerWidth > 768 && (
+                    <div style={{
+                      fontSize: '24px',
+                      fontWeight: 'bold',
+                      letterSpacing: '8px',
+                      writingMode: 'vertical-rl',
+                      textOrientation: 'mixed',
+                      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
+                      userSelect: 'none',
+                      color: '#333',
+                      minWidth: '40px'
+                    }}>
+                      VFX
+                    </div>
+                  )}
 
-                  {/* Right Side - VFX Number Tabs */}
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    minWidth: '60px'
-                  }}>
-                    {videoCategories.VFX.map((_, index) => (
-                      <div
-                        key={`vfx-${index}`}
-                        style={currentCategory === 'VFX' && currentVideoIndex === index ? activeNumberTabStyle : numberTabStyle}
-                        onClick={() => {
-                          setCurrentCategory('VFX');
-                          setCurrentVideoIndex(index);
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!(currentCategory === 'VFX' && currentVideoIndex === index)) {
-                            e.target.style.background = '#f0f0f0';
-                            e.target.style.transform = 'scale(1.05)';
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!(currentCategory === 'VFX' && currentVideoIndex === index)) {
-                            e.target.style.background = 'rgba(255, 255, 255, 0.9)';
-                            e.target.style.transform = 'scale(1)';
-                          }
-                        }}
-                      >
-                        {index + 1}
+                  {/* Right Side - VFX Number Tabs - Hide on mobile */}
+                  {window.innerWidth > 768 && (
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      minWidth: '60px'
+                    }}>
+                      {videoCategories.VFX.map((_, index) => (
+                        <div
+                          key={`vfx-${index}`}
+                          style={currentCategory === 'VFX' && currentVideoIndex === index ? activeNumberTabStyle : numberTabStyle}
+                          onClick={() => {
+                            setCurrentCategory('VFX');
+                            setCurrentVideoIndex(index);
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!(currentCategory === 'VFX' && currentVideoIndex === index)) {
+                              e.target.style.background = '#f0f0f0';
+                              e.target.style.transform = 'scale(1.05)';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!(currentCategory === 'VFX' && currentVideoIndex === index)) {
+                              e.target.style.background = 'rgba(255, 255, 255, 0.9)';
+                              e.target.style.transform = 'scale(1)';
+                            }
+                          }}
+                        >
+                          {index + 1}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  
+                  {/* Mobile: Show tabs horizontally below video */}
+                  {window.innerWidth <= 768 && (
+                    <div style={{
+                      display: 'flex',
+                      gap: '10px',
+                      justifyContent: 'center',
+                      marginTop: '20px',
+                      width: '100%'
+                    }}>
+                      <div style={{ textAlign: 'center' }}>
+                        <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '10px', color: '#333' }}>COLORING</div>
+                        <div style={{ display: 'flex', gap: '10px' }}>
+                          {videoCategories.COLORING.map((_, index) => (
+                            <div
+                              key={`coloring-${index}`}
+                              style={currentCategory === 'COLORING' && currentVideoIndex === index ? activeNumberTabStyle : numberTabStyle}
+                              onClick={() => {
+                                setCurrentCategory('COLORING');
+                                setCurrentVideoIndex(index);
+                              }}
+                            >
+                              {index + 1}
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    ))}
-                  </div>
+                      
+                      <div style={{ textAlign: 'center' }}>
+                        <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '10px', color: '#333' }}>VFX</div>
+                        <div style={{ display: 'flex', gap: '10px' }}>
+                          {videoCategories.VFX.map((_, index) => (
+                            <div
+                              key={`vfx-${index}`}
+                              style={currentCategory === 'VFX' && currentVideoIndex === index ? activeNumberTabStyle : numberTabStyle}
+                              onClick={() => {
+                                setCurrentCategory('VFX');
+                                setCurrentVideoIndex(index);
+                              }}
+                            >
+                              {index + 1}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </>
             ) : (

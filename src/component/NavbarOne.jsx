@@ -54,60 +54,57 @@ function NavbarOne() {
                         
                         </span>
                       </Link>
-
                     </li>
                 
-                        <li>
-                          <li>
-                            <li 
-                              onMouseEnter={() => setIsServiceHovered(true)}
-                              onMouseLeave={() => setIsServiceHovered(false)}
-                              style={{ position: 'relative' }}
-                            >
-                              <Link to="/services" className="text_base">
-                                Service
-                                <span>
-                                  <svg
-                                    width="14"
-                                    height="8"
-                                    viewBox="0 0 14 8"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M1 1L7 7L13 1"
-                                      stroke="currentColor"
-                                      strokeWidth="1.5"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                    />
-                                  </svg>
-                                </span>
-                              </Link>
-                              <ul style={{
-                                position: 'absolute',
-                                top: isServiceHovered ? '100%' : 'calc(100% + 20px)',
-                                left: '0',
-                                width: '500px',
-                                background: 'rgba(0, 0, 0, 0.3)',
-                                backdropFilter: 'blur(10px)',
-                                padding: '20px',
-                                borderRadius: '8px',
-                                border: '1px solid rgba(255, 255, 255, 0.1)',
-                                transition: 'all 0.3s ease',
-                                opacity: isServiceHovered ? '1' : '0',
-                                visibility: isServiceHovered ? 'visible' : 'hidden',
-                                display: 'grid',
-                                gridTemplateColumns: '1fr 1fr',
-                                gridTemplateRows: 'repeat(3, 1fr)',
-                                gap: '15px',
-                                zIndex: '1000',
-                                listStyle: 'none',
-                                margin: '0',
-                                transform: isServiceHovered ? 'translateY(0)' : 'translateY(-10px)'
-                              }}>
-                                <li style={{ margin: '0', padding: '0' }}>
-                                  <Link to="/services-details" style={{
+                    <li 
+                      onMouseEnter={() => setIsServiceHovered(true)}
+                      onMouseLeave={() => setIsServiceHovered(false)}
+                      style={{ position: 'relative' }}
+                    >
+                      <Link to="/services" className="text_base">
+                        Service
+                        <span>
+                          <svg
+                            width="14"
+                            height="8"
+                            viewBox="0 0 14 8"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M1 1L7 7L13 1"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </span>
+                      </Link>
+                      <ul style={{
+                        position: 'absolute',
+                        top: isServiceHovered ? '100%' : 'calc(100% + 20px)',
+                        left: '0',
+                        width: '500px',
+                        background: 'rgba(0, 0, 0, 0.3)',
+                        backdropFilter: 'blur(10px)',
+                        padding: '20px',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        transition: 'all 0.3s ease',
+                        opacity: isServiceHovered ? '1' : '0',
+                        visibility: isServiceHovered ? 'visible' : 'hidden',
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gridTemplateRows: 'repeat(3, 1fr)',
+                        gap: '15px',
+                        zIndex: '1000',
+                        listStyle: 'none',
+                        margin: '0',
+                        transform: isServiceHovered ? 'translateY(0)' : 'translateY(-10px)'
+                      }}>
+                        <li style={{ margin: '0', padding: '0' }}>
+                          <Link to="/services-details" style={{
                                     color: '#ffffff',
                                     fontWeight: '500',
                                     transition: 'all 0.3s ease',
@@ -277,8 +274,7 @@ function NavbarOne() {
                                 </li>
                               </ul>
                             </li>
-                          </li>
-                        </li>
+
                     <li>
                       <Link to="/about" className="text_base">
                         About Us
