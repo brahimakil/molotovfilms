@@ -145,10 +145,12 @@ const FeaturesPage = () => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 
-  // Load Interactive Books Content from Firebase
+  // Load Interactive Books Content from Firebase WITH TIMEOUT
   useEffect(() => {
     const loadInteractiveBooksContent = async () => {
       try {
+        const TIMEOUT = 5000; // 5 second timeout per request
+        
         // Image and video file mappings
         const imageRefs = [
           'servicesfeaturespage/originalerror.jpg',
@@ -162,28 +164,39 @@ const FeaturesPage = () => {
           'servicesfeaturespage/Trailer 1.20sLow Budget Hiest.mp4'
         ];
 
-        // Load images
+        // Helper to add timeout
+        const withTimeout = (promise, ms) => {
+          return Promise.race([
+            promise,
+            new Promise((_, reject) => 
+              setTimeout(() => reject(new Error('Timeout')), ms)
+            )
+          ]);
+        };
+
+        // Load images with timeout
         const imagePromises = imageRefs.map(async (imagePath) => {
           try {
             const imageRef = ref(storage, imagePath);
-            return await getDownloadURL(imageRef);
+            return await withTimeout(getDownloadURL(imageRef), TIMEOUT);
           } catch (error) {
-            console.error(`Error loading image ${imagePath}:`, error);
+            console.error(`Failed to load image ${imagePath}:`, error.message);
             return null;
           }
         });
 
-        // Load videos
+        // Load videos with timeout
         const videoPromises = videoRefs.map(async (videoPath) => {
           try {
             const videoRef = ref(storage, videoPath);
-            return await getDownloadURL(videoRef);
+            return await withTimeout(getDownloadURL(videoRef), TIMEOUT);
           } catch (error) {
-            console.error(`Error loading video ${videoPath}:`, error);
+            console.error(`Failed to load video ${videoPath}:`, error.message);
             return null;
           }
         });
 
+        // Wait for all to complete (or timeout)
         const [imageUrls, videoUrls] = await Promise.all([
           Promise.all(imagePromises),
           Promise.all(videoPromises)
@@ -204,6 +217,16 @@ const FeaturesPage = () => {
 
       } catch (error) {
         console.error('Error loading interactive books content:', error);
+        // Set all items as having errors so page still renders
+        setShowcaseData(prevData => 
+          prevData.map(item => ({
+            ...item,
+            imageError: true,
+            videoError: true,
+            imageLoaded: true, // Mark as "loaded" so UI doesn't hang
+            videoLoaded: true
+          }))
+        );
       }
     };
 

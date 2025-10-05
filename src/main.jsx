@@ -1,35 +1,32 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./assets/webfont/css/all.min.css";
-import ".//css/slick.css";
-import "./sass/style.scss";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./css/bootstrap.min.css";
+import "./css/slick.css";
+import "./css/nice-select.css";
+import "./css/style.css";
 import "./css/responsive.css";
 import "./css/custom-colors.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
-import App from "./App.jsx";
-
-// Add this at the top, before ReactDOM.render
-// Clear old Firebase URL cache on app load (one-time fix)
-const CACHE_VERSION = 'v2'; // Increment this to force cache clear
+// AGGRESSIVE CACHE CLEAR - Clear ALL localStorage on version mismatch
+const CACHE_VERSION = 'v3'; // Increment this whenever you deploy
 const currentVersion = localStorage.getItem('cache_version');
 
 if (currentVersion !== CACHE_VERSION) {
-  // Clear all Firebase video caches
-  const firebaseKeys = Object.keys(localStorage).filter(key => 
-    key.includes('video_url') || key.includes('video_timestamp')
-  );
-  
-  firebaseKeys.forEach(key => localStorage.removeItem(key));
+  console.log('Clearing all localStorage cache...');
+  localStorage.clear(); // Clear EVERYTHING
   localStorage.setItem('cache_version', CACHE_VERSION);
-  console.log('Cache cleared and updated to', CACHE_VERSION);
+  console.log('Cache cleared successfully');
 }
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
+// Add global error handler for unhandled promise rejections
+window.addEventListener('unhandledrejection', (event) => {
+  console.error('Unhandled promise rejection:', event.reason);
+  event.preventDefault(); // Prevent page from hanging
+});
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
     <App />
-  </StrictMode>
+  </React.StrictMode>
 );
