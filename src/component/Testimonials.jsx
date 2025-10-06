@@ -4,11 +4,12 @@ import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 
 import thumbPos from "../assets/images/testimonails-thumb-pos.svg";
-import thumbPos2 from "../assets/images/hero_two_pos-1.svg";
+import thumbPos2 from "../../public/Molotov Logo PNG.png";
 import thumbPos3 from "../assets/images/testimonails-card.svg";
 import icon from "../assets/images/testimonails-slick-icon.svg";
 import profileImg from "../assets/images/t-prof-1.svg";
 import elioImg from "../assets/imgoftestimonial/elio.jpg"; // Add Elio's image import
+import mahdiImg from "../../public/mahdi2.jpg"; // Add Mahdi's image import
 
 const Testimonials = ({ addClass }) => {
   const [videoUrl, setVideoUrl] = useState('');
@@ -127,11 +128,12 @@ const Testimonials = ({ addClass }) => {
       profileImage: elioImg // Add profile image for Elio
     },
     {
-      text: `I carry the voice of our work into the world. My role is to shape how projects are seen, remembered, and desired — building strategies that connect vision to audience with clarity and force. I study markets, craft campaigns, oversee branding, and design the pathways that bring our films from set to screen to conversation. Every poster, release, and message is a frame in the larger story: ensuring our company is not just seen, but recognized and remembered.`,
-      name: "Sara",
-      role: "Marketing Manager",
-      profileImage: profileImg // Use existing profile image for Sara
-    }
+      text: `I am the architect of visual storytelling, transforming raw footage into compelling narratives that captivate and inspire. My craft lies in the delicate balance of pacing, emotion, and technical precision — weaving together moments that create a seamless journey from beginning to end. Each cut, transition, and effect serves the greater story, ensuring that every frame contributes to a powerful and unforgettable experience.`,
+      name: "Mahdi Kandyl",
+      role: "Artist",
+      profileImage: mahdiImg // Add profile image for Mahdi
+    },
+ 
   ];
 
   return (
@@ -325,8 +327,8 @@ const Testimonials = ({ addClass }) => {
                       src={item.profileImage} // Use the specific profile image for each person
                       alt="profile"
                       className="testimonails_slick_prof_thumb"
-                      style={item.name === "Elio Zeaiter" ? {
-                        borderRadius: '50%',
+                      style={item.name === "Elio Zeaiter" || item.name === "Mahdi Kandyl" ? {
+                        borderRadius: '30%',
                         objectFit: 'cover'
                       } : {}}
                     />

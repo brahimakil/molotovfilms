@@ -19,9 +19,9 @@ const FooterOne = () => {
               <div className="contact-column">
                   <div className="contact-label">General</div>
                   <div className="contact-info inline">
-                    <a href="tel:+17866736887">+1 786 6736887</a>
+                    <p>Coupure 88a, 9000 Gent</p>
                     <p>Shelton St. London, England</p>
-                    <p>Coupure Rechts 88a, 9000 Gent</p>
+                    <a href="tel:+17866736887">tel: +1 786 6736887</a>
                     <a href="mailto:info@molotovfilms.com">info@molotovfilms.com</a>
                   </div>
                 </div>
