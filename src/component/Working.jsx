@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import workingThumb from "../assets/images/working_thumb.webp";
 import workingPos1 from "../assets/images/working-pos-one.svg";
+import workingThumb from "../assets/images/working_thumb.webp";
 import workingPos2 from "../assets/images/working_pos_thumb-two.svg";
 import heroUnion from "../assets/images/hero-union.png";
 import molotovLogo from "../assets/main logo/Molotov Logo PNG.png";
@@ -147,7 +147,7 @@ const Working = () => {
             <div className="col-xxl-6">
               <div className="working_thumb_main">
                 <div className="working_thumb">
-                  <img src={workingThumb} alt="thumb" />
+                  <img src="/IMG-20251003-WA0088.jpg" alt="thumb" />
                 </div>
                 <div className="working_pos_thumb">
                   <img src={workingPos1} alt="thumb" />
@@ -566,7 +566,7 @@ const Working = () => {
                       </div>
                       <div>
                         <span style={{ color: '#6B7A47' }}>✅</span> Green dates available
-                      </div>
+                          </div>
                     </div>
                   </div>
                 </div>
