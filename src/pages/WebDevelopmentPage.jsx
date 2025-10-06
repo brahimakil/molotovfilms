@@ -161,15 +161,15 @@ const WebDevelopmentPage = () => {
 
   return (
     <>
-      {/* Animated Background */}
+      {/* Dark Animated Background */}
       <div style={{
         position: 'fixed',
         top: 0,
         left: 0,
         width: '100%',
         height: '100%',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        opacity: 0.03,
+        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+        opacity: 0.95,
         zIndex: -2
       }} />
 
@@ -189,7 +189,7 @@ const WebDevelopmentPage = () => {
         zIndex: -1
       }} />
 
-      <style jsx>{`
+           <style jsx>{`
         @keyframes gridMove {
           0% { transform: translate(0, 0); }
           100% { transform: translate(50px, 50px); }
@@ -202,118 +202,304 @@ const WebDevelopmentPage = () => {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.5; }
         }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
         .floating-element {
           animation: float 6s ease-in-out infinite;
         }
         .pulse-element {
           animation: pulse 2s ease-in-out infinite;
         }
+        .fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .scale-in {
+          animation: scaleIn 0.6s ease-out forwards;
+        }
+        
+        /* Enhanced Mobile Responsive Styles */
+        .hero-container {
+          padding: 80px 0 60px;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+        }
+        
+        .hero-content {
+          text-align: center;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+        
+        .hero-badge {
+          display: inline-block;
+          padding: 12px 24px;
+          background: linear-gradient(45deg, #3B82F6, #8B5CF6);
+          color: white;
+          border-radius: 50px;
+          font-size: 14px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 30px;
+          box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+          transition: all 0.3s ease;
+        }
+        
+        .hero-badge:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+        }
+        
+        .hero-title {
+          font-weight: 900;
+          font-size: clamp(2.5rem, 8vw, 4.5rem);
+          background: linear-gradient(45deg, #ffffff, #e2e8f0, #cbd5e1);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 30px;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+        }
+        
+        .hero-description {
+          font-size: clamp(1rem, 2.5vw, 1.3rem);
+          line-height: 1.7;
+          color: #cbd5e1;
+          max-width: 700px;
+          margin: 0 auto 50px;
+          font-weight: 400;
+        }
+        
+        .metrics-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 20px;
+          margin-top: 60px;
+          max-width: 900px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        
+        .metric-card {
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 20px;
+          padding: 30px 20px;
+          text-align: center;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .metric-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: var(--metric-color);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+        
+        .metric-card:hover {
+          transform: translateY(-5px);
+          background: rgba(255, 255, 255, 0.12);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .metric-card:hover::before {
+          opacity: 1;
+        }
+        
+        .metric-value {
+          font-size: clamp(1.8rem, 4vw, 2.8rem);
+          font-weight: 800;
+          color: var(--metric-color);
+          margin-bottom: 8px;
+          display: block;
+        }
+        
+        .metric-label {
+          font-size: 0.95rem;
+          color: #e2e8f0;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+          .hero-container {
+            padding: 60px 0 40px;
+            min-height: 90vh;
+          }
+          
+          .hero-content {
+            padding: 0 15px;
+          }
+          
+          .hero-badge {
+            padding: 10px 20px;
+            font-size: 12px;
+            margin-bottom: 25px;
+          }
+          
+          .hero-description {
+            margin-bottom: 40px;
+          }
+          
+          .metrics-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+          }
+          
+          .metric-card {
+            padding: 20px 15px;
+          }
+          
+          .floating-element {
+            display: none;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .hero-container {
+            padding: 40px 0 30px;
+          }
+          
+          .metrics-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+          
+          .metric-card {
+            padding: 18px 12px;
+          }
+        }
+        
+        /* Desktop Enhancements */
+        @media (min-width: 1200px) {
+          .hero-container {
+            padding: 100px 0 80px;
+          }
+          
+          .metrics-grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
       `}</style>
 
       {/* Hero Section */}
       <section className="page_header" ref={heroRef} style={{
-        background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%)',
+        background: 'linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 50%, rgba(15, 52, 96, 0.95) 100%)',
         position: 'relative',
-        overflow: 'hidden',
-        paddingTop: '120px'
+        overflow: 'hidden'
       }}>
-        {/* Floating Elements */}
+        {/* Enhanced Floating Elements */}
         <div className="floating-element" style={{
           position: 'absolute',
-          top: '20%',
-          right: '10%',
-          width: '100px',
-          height: '100px',
+          top: '15%',
+          right: '8%',
+          width: '120px',
+          height: '120px',
           background: 'linear-gradient(45deg, #3B82F6, #8B5CF6)',
           borderRadius: '50%',
-          opacity: 0.1,
-          zIndex: 1
+          opacity: 0.15,
+          zIndex: 1,
+          filter: 'blur(1px)'
         }} />
         <div className="floating-element" style={{
           position: 'absolute',
-          bottom: '20%',
+          bottom: '25%',
           left: '5%',
-          width: '150px',
-          height: '150px',
+          width: '180px',
+          height: '180px',
           background: 'linear-gradient(45deg, #10B981, #F59E0B)',
           borderRadius: '30%',
+          opacity: 0.12,
+          zIndex: 1,
+          animationDelay: '2s',
+          filter: 'blur(1px)'
+        }} />
+        <div className="floating-element" style={{
+          position: 'absolute',
+          top: '60%',
+          right: '25%',
+          width: '80px',
+          height: '80px',
+          background: 'linear-gradient(45deg, #F59E0B, #EF4444)',
+          borderRadius: '50%',
           opacity: 0.1,
           zIndex: 1,
-          animationDelay: '2s'
+          animationDelay: '4s'
         }} />
 
-        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="container">
           <div className="row">
-            <div className="col-xxl-12">
-              <div className="page_header_content mg_top_60px mg_bottom_60px" style={{ textAlign: 'center' }}>
-                <div style={{ marginBottom: '20px' }}>
-                  <span style={{
-                    display: 'inline-block',
-                    padding: '8px 20px',
-                    background: 'linear-gradient(45deg, #3B82F6, #8B5CF6)',
-                    color: 'white',
-                    borderRadius: '25px',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px'
-                  }}>
-                    Web Development Excellence
-                  </span>
-                </div>
-                <h1 className="main_titel" style={{ 
-                  fontWeight: 800, 
-                  fontSize: '3.5rem',
-                  background: 'linear-gradient(45deg, #3B82F6, #8B5CF6)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  marginBottom: '25px'
-                }}>
-                  Web Development
-                </h1>
-                <p className="text_xl" style={{ 
-                  maxWidth: '800px', 
-                  margin: '0 auto', 
-                  lineHeight: '1.8',
-                  color: '#64748B',
-                  fontSize: '1.25rem'
-                }}>
-                  We architect, design, and build robust web applications—fast, secure, and scalable.
-                  From eye-catching frontends to bulletproof backends, we deliver products that convert, retain, and grow.
-                </p>
+            <div className="col-12">
+              <div className="hero-container">
+                <div className="hero-content">
+                  <div className="fade-in-up" style={{ animationDelay: '0.2s' }}>
+                    <span className="hero-badge">
+                      🚀 Web Development Excellence
+                    </span>
+                  </div>
+                  
+                  <h1 className="hero-title fade-in-up" style={{ animationDelay: '0.4s' }}>
+                    Web Development
+                  </h1>
+                  
+                  <p className="hero-description fade-in-up" style={{ animationDelay: '0.6s' }}>
+                    We architect, design, and build robust web applications—fast, secure, and scalable.
+                    From eye-catching frontends to bulletproof backends, we deliver products that convert, retain, and grow.
+                  </p>
 
-                {/* Performance Metrics */}
-                <div className="row mg_top_50px">
-                  {Object.entries(metrics).map(([key, metric]) => (
-                    <div key={key} className="col-md-3 col-sm-6 mg_bottom_20px">
-                      <div style={{
-                        background: 'rgba(255, 255, 255, 0.9)',
-                        padding: '25px',
-                        borderRadius: '15px',
-                        textAlign: 'center',
-                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        backdropFilter: 'blur(10px)',
-                        marginBottom: '20px'
-                      }}>
-                        <div style={{
-                          fontSize: '2.5rem',
-                          fontWeight: '800',
-                          color: metric.color,
-                          marginBottom: '5px'
-                        }}>
+                  {/* Enhanced Performance Metrics */}
+                  <div className="metrics-grid">
+                    {Object.entries(metrics).map(([key, metric], index) => (
+                      <div 
+                        key={key} 
+                        className="metric-card scale-in"
+                        style={{ 
+                          '--metric-color': metric.color,
+                          animationDelay: `${0.8 + index * 0.1}s`
+                        }}
+                      >
+                        <span className="metric-value">
                           {animatedValues[key]}{metric.unit}
-                        </div>
-                        <div style={{
-                          fontSize: '0.9rem',
-                          color: '#64748B',
-                          fontWeight: '600'
-                        }}>
+                        </span>
+                        <div className="metric-label">
                           {metric.label}
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -326,10 +512,12 @@ const WebDevelopmentPage = () => {
         <div className="container">
           <div className="row mg_bottom_40px">
             <div className="col-xxl-12 text-center">
+              <br />
               <h2 className="main_titel" style={{ marginBottom: '13px' , marginTop:'4px' }}>Our Development Services</h2>
               <p className="text_lg" style={{ color: '#64748B', maxWidth: '600px', margin: '0 auto' }}>
                 Full-spectrum web development solutions tailored to your business needs
               </p>
+              <br />
             </div>
           </div>
 
@@ -341,6 +529,7 @@ const WebDevelopmentPage = () => {
                   <button
                     key={key}
                     onClick={() => setActiveService(key)}
+                    className="service-tab"
                     style={{
                       padding: '12px 24px',
                       border: 'none',
@@ -363,11 +552,12 @@ const WebDevelopmentPage = () => {
               </div>
             </div>
           </div>
+          <br /><br />
 
           {/* Active Service Details */}
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <div style={{
+              <div className="service-details" style={{
                 background: 'rgba(255, 255, 255, 0.9)',
                 padding: '40px',
                 borderRadius: '20px',
@@ -448,6 +638,7 @@ const WebDevelopmentPage = () => {
             </div>
           </div>
 
+<br />
           <div className="row">
             {[
               { step: '1', title: 'Discovery & Planning', desc: 'Define goals, constraints, and success measures. We analyze your requirements and create a detailed roadmap.' },
@@ -456,7 +647,7 @@ const WebDevelopmentPage = () => {
               { step: '4', title: 'Launch & Optimization', desc: 'Deploy, monitor, optimize, and iterate. We ensure smooth launch and ongoing performance optimization.' }
             ].map((process, idx) => (
               <div key={idx} className="col-md-6 col-lg-3 mg_bottom_30px">
-                <div style={{
+                <div className="process-card" style={{
                   background: 'rgba(255, 255, 255, 0.9)',
                   padding: '30px 20px',
                   borderRadius: '15px',
@@ -528,7 +719,7 @@ const WebDevelopmentPage = () => {
                 borderRadius: '25px',
                 display: 'inline-block'
               }}>
-                🔐 Admin dashboards include login credentials below
+                ⚠️ Note: Admin dashboards require login credentials provided below each project
               </p>
             </div>
           </div>
@@ -540,8 +731,8 @@ const WebDevelopmentPage = () => {
                   <div style={{
                     background: 'rgba(255, 255, 255, 0.9)',
                     borderRadius: '20px',
-                    overflow: 'hidden',
-                    boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)',
+                    padding: '40px',
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
                     border: '1px solid rgba(255, 255, 255, 0.2)',
                     height: '100%',
                     display: 'flex',

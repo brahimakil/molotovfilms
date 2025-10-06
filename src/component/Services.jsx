@@ -11,12 +11,19 @@ const Services = () => {
               className="main_titel"
               style={{
                 fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                fontWeight: "900",
-                letterSpacing: "0.1em",
+                fontWeight: "700",
+                letterSpacing: "0.05em",
                 textTransform: "uppercase",
                 marginBottom: "0",
                 lineHeight: "1.1",
                 textAlign: "center",
+                background: "linear-gradient(135deg,rgb(255, 208, 53),rgb(240, 247, 30), #ffeb3b)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                position: "relative",
+                textShadow: "none",
+                filter: "drop-shadow(2px 2px 4px rgba(0,0,0,0.1))"
               }}
             >
               MANIFESTO

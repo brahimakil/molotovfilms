@@ -41,7 +41,19 @@ const FooterOne = () => {
                
                 
                 
-              <Link to="/contact" className="contact-btn">Contact us</Link>
+              <div style={{ display: 'flex', gap: '20px', marginTop: '10px' }}>
+                <Link to="/contact" className="contact-btn">Contact us</Link>
+                
+                {/* Meet the Artist Button */}
+                <a 
+                  href="https://mahdicv.vercel.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="contact-btn"
+                >
+                  Meet the Artist
+                </a>
+              </div>
             </div>
           </div>
   

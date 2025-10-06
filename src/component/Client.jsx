@@ -82,7 +82,7 @@ const Client = () => {
             <div className="d-flex flex-wrap align-items-start">
               <h2 className="main_titel me-3 mb-0" style={{whiteSpace: 'nowrap'}}>WHY WE'RE DIFFERENT :</h2>
               <p className="main_titel mb-0 flex-1" style={{lineHeight: '1.2', fontSize: '22px', fontWeight: 'inherit'}}>
-                We're not safer, louder, or prettier, we're truer. We fuse high-studio craft with oddball taste. The result: work that critics talk about and audiences pass around like contraband.
+                We're not safer, louder, or prettier, we're truer. We fuse high-studio craft with oddball taste. The result:<br />work that critics talk about and audiences pass around like contraband.
               </p>
             </div>
           </div>

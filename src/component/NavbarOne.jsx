@@ -297,14 +297,7 @@ function NavbarOne() {
               </div>
               <div className="col-lg-2 col-xl-2 col-xxl-2">
                 <div className="menu_bg_right">
-                  <a 
-                    href="https://mahdicv.vercel.app/" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="sara-btn"
-                  >
-                    Meet the Artist
-                  </a>
+                  {/* Meet the Artist button removed - moved to footer */}
                 </div>
               </div>
             </div>

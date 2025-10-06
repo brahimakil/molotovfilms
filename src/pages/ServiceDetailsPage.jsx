@@ -614,7 +614,13 @@ const ServiceDetailsPage = () => {
                 POP. CUT. ROLL. REPEAT.
                   </span>
                   <br />
-                  Big ideas. Brighter execution. Films that shout.
+                  <span style={{
+                    fontStyle: 'italic',
+                    fontWeight: '500',
+                    color: '#555'
+                  }}>
+                    Big ideas. Brighter execution. Films that shout.
+                  </span>
                 </h2>
               </div>
               <div className="service_details_thumb">
