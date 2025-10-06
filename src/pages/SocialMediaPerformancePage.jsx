@@ -183,11 +183,13 @@ const SocialMediaPerformancePage = () => {
         ref={heroRef}
         style={{
           position: 'relative',
-          height: '100vh',
+          minHeight: '100vh',
+          height: 'auto',
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #1e293b 100%)',
           overflow: 'hidden',
           display: 'flex',
-          alignItems: 'center'
+          alignItems: 'center',
+          padding: '80px 0'
         }}
       >
         {/* Animated Background Grid */}
@@ -208,22 +210,22 @@ const SocialMediaPerformancePage = () => {
         <div className="container">
           <div className="row align-items-center">
             {/* Left Content */}
-            <div className="col-lg-6">
+            <div className="col-lg-6 mb-5 mb-lg-0">
               <div style={{ color: 'white', zIndex: 10, position: 'relative' }}>
                 <h1 style={{
-                  fontSize: '2.3rem',
+                  fontSize: 'clamp(1.8rem, 4vw, 2.3rem)',
                   fontWeight: 'bold',
                   marginBottom: '30px',
                   background: 'linear-gradient(135deg,rgb(16, 17, 113),rgb(54, 13, 151))',
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  whiteSpace: 'nowrap'
+                  lineHeight: '1.2'
                 }}>
                   SOCIAL MEDIA, SUPERCHARGED.
                 </h1>
                 <p style={{
-                  fontSize: '1.3rem',
+                  fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
                   marginBottom: '40px',
                   color: '#CBD5E1',
                   lineHeight: '1.6'
@@ -235,17 +237,22 @@ const SocialMediaPerformancePage = () => {
                 <div style={{
                   background: 'rgba(255, 255, 255, 0.1)',
                   borderRadius: '20px',
-                  padding: '30px',
+                  padding: 'clamp(20px, 4vw, 30px)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.2)'
                 }}>
-                  <h3 style={{ color: 'white', marginBottom: '20px', fontSize: '1.2rem' }}>Live Performance Metrics</h3>
-                  <div className="row g-3">
+                  <h3 style={{ 
+                    color: 'white', 
+                    marginBottom: '20px', 
+                    fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
+                    textAlign: 'center'
+                  }}>Live Performance Metrics</h3>
+                  <div className="row g-2 g-md-3">
                     {Object.entries(metricsData).map(([key, data]) => (
-                      <div key={key} className="col-6">
+                      <div key={key} className="col-6 col-md-6">
                         <div style={{
                           textAlign: 'center',
-                          padding: '15px',
+                          padding: 'clamp(10px, 2vw, 15px)',
                           background: selectedMetric === key ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.05)',
                           borderRadius: '12px',
                           cursor: 'pointer',
@@ -264,14 +271,18 @@ const SocialMediaPerformancePage = () => {
                           }
                         }}>
                           <div style={{
-                            fontSize: '2rem',
+                            fontSize: 'clamp(1.2rem, 3vw, 2rem)',
                             fontWeight: 'bold',
                             color: data.color,
                             marginBottom: '5px'
                           }}>
                             {animatedValues[key].toFixed(1)}{data.unit}
                           </div>
-                          <div style={{ color: '#CBD5E1', fontSize: '0.9rem' }}>
+                          <div style={{ 
+                            color: '#CBD5E1', 
+                            fontSize: 'clamp(0.7rem, 1.5vw, 0.9rem)',
+                            lineHeight: '1.2'
+                          }}>
                             {data.label}
                           </div>
                         </div>
@@ -288,14 +299,15 @@ const SocialMediaPerformancePage = () => {
                 position: 'relative',
                 borderRadius: '20px',
                 overflow: 'hidden',
-                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)'
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)',
+                maxWidth: '100%'
               }}>
                 {heroVideoLoaded && heroVideoUrl ? (
                   <video
                     ref={videoRef}
                     style={{
                       width: '100%',
-                      height: '400px',
+                      height: 'clamp(250px, 50vw, 400px)',
                       objectFit: 'cover'
                     }}
                     autoPlay
@@ -310,13 +322,15 @@ const SocialMediaPerformancePage = () => {
                 ) : (
                   <div style={{
                     width: '100%',
-                    height: '400px',
+                    height: 'clamp(250px, 50vw, 400px)',
                     background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'white',
-                    fontSize: '1.2rem'
+                    fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
+                    textAlign: 'center',
+                    padding: '20px'
                   }}>
                     🌐 Loading Social Performance Data...
                   </div>
@@ -329,9 +343,9 @@ const SocialMediaPerformancePage = () => {
                   right: '20px',
                   background: 'rgba(16, 185, 129, 0.9)',
                   color: 'white',
-                  padding: '10px 15px',
+                  padding: 'clamp(8px, 2vw, 10px) clamp(12px, 3vw, 15px)',
                   borderRadius: '25px',
-                  fontSize: '0.9rem',
+                  fontSize: 'clamp(0.8rem, 1.5vw, 0.9rem)',
                   fontWeight: 'bold',
                   backdropFilter: 'blur(10px)'
                 }}>

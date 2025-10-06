@@ -1528,60 +1528,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                     Fest Pack <span style={{ color: '#daa520' }}>→ DCPs & Distribution</span>
                   </li>
                 </ul>
-              </div>
-
-              <div className="card_item mg_top_30px">
-                <h3>Contact Us</h3>
-                <p className="text_lg">
-                  Collaboratively engineer prospective imperatives with
-                  transparent technology.
-                </p>
-
-                <form className="card_form">
-                  <div className="card_form_item">
-                    <label htmlFor="cardFormName" className="sr-only">
-                      Enter Name
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="cardFormName"
-                      name="cardFormName"
-                      placeholder="Enter Name"
-                      autoComplete="name"
-                    />
-                  </div>
-                  <div className="card_form_item">
-                    <label htmlFor="cardFormEmail" className="sr-only">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="cardFormEmail"
-                      name="cardFormEmail"
-                      placeholder="Email"
-                      autoComplete="email"
-                    />
-                  </div>
-                  <div className="card_form_item">
-                    <label htmlFor="cardFormMessage" className="sr-only">
-                      Write Message
-                    </label>
-                    <textarea
-                      className="form-control"
-                      id="cardFormMessage"
-                      name="cardFormMessage"
-                      rows="5"
-                      placeholder="Write Message"
-                    ></textarea>
-                  </div>
-
-                  <button type="submit" className="sara-btn">
-                    Contact Now
-                  </button>
-                </form>
-              </div>
+              </div><br /><br /><br />
 
               <div className="card_item mg_top_30px">
                 <h3>Tags</h3>

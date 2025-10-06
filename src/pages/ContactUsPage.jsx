@@ -98,15 +98,15 @@ const ContactUsPage = () => {
       </section>
 
       {/* PROFESSIONAL CONTACT SECTION */}
-      <section className="contact_us" style={{ padding: "80px 0", backgroundColor: "#f8f9fa" }}>
+      <section className="contact_us" style={{ padding: "80px 0", backgroundColor: "#000000" }}>
         <div className="container">
           {/* SECTION HEADER */}
-          <div className="row">
+          <div className="row justify-content-center">
             <div className="col-lg-12 text-center mb-5">
-              <h1 style={{ fontSize: "48px", fontWeight: "700", color: "#333", marginBottom: "20px" }}>
+              <h1 style={{ fontSize: "48px", fontWeight: "700", color: "#ffffff", marginBottom: "20px" }}>
                 Contact Us
               </h1>
-              <p style={{ fontSize: "18px", color: "#666", maxWidth: "600px", margin: "0 auto" }}>
+              <p style={{ fontSize: "18px", color: "#cccccc", maxWidth: "600px", margin: "0 auto" }}>
                 Get in touch with our team for any inquiries about our film production services.
               </p>
               {selectedDate && (
@@ -126,15 +126,16 @@ const ContactUsPage = () => {
                 </div>
               </div>
           
-          {/* MAIN CONTENT - FORM LEFT, MAP RIGHT */}
-          <div className="row">
-            {/* LEFT SIDE - CONTACT FORM */}
-            <div className="col-lg-8">
+          {/* MAIN CONTENT - CENTERED FORM */}
+          <div className="row justify-content-center">
+            {/* CENTERED CONTACT FORM */}
+            <div className="col-lg-10 col-xl-8">
               <div className="contact_form" style={{
                 backgroundColor: "#fff",
                 padding: "50px",
                 borderRadius: "15px",
-                boxShadow: "0 15px 40px rgba(0,0,0,0.1)"
+                boxShadow: "0 15px 40px rgba(255,255,255,0.1)",
+                margin: "0 auto"
               }}>
                 <h3 style={{ 
                   fontSize: "32px", 
@@ -300,151 +301,7 @@ const ContactUsPage = () => {
                   </form>
                 </div>
             </div>
-            
-            {/* RIGHT SIDE - MAP & CONTACT INFO */}
-            <div className="col-lg-4">
-              {/* CONTACT INFO */}
-              <div className="contact_info" style={{
-                backgroundColor: "#fff",
-                padding: "40px",
-                borderRadius: "15px",
-                boxShadow: "0 15px 40px rgba(0,0,0,0.1)",
-                marginBottom: "30px"
-              }}>
-                <h4 style={{ 
-                  fontSize: "24px", 
-                  fontWeight: "700", 
-                  color: "#333", 
-                  marginBottom: "25px" 
-                }}>
-                  Get In Touch
-                </h4>
-                
-                <div className="info_item" style={{ marginBottom: "20px", display: "flex", alignItems: "flex-start" }}>
-                  <div style={{ 
-                    backgroundColor: "#6b8e23", 
-                    color: "#fff", 
-                    width: "45px", 
-                    height: "45px", 
-                    borderRadius: "50%", 
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "center", 
-                    marginRight: "15px",
-                    flexShrink: "0"
-                  }}>
-                    <i className="fas fa-map-marker-alt"></i>
-                  </div>
-                  <div>
-                    <h6 style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "5px" }}>
-                      Address
-                    </h6>
-                    <p style={{ fontSize: "14px", color: "#666", margin: "0" }}>
-                      123 Film Studio Lane<br />
-                      Los Angeles, CA 90210<br />
-                      United States
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="info_item" style={{ marginBottom: "20px", display: "flex", alignItems: "flex-start" }}>
-                  <div style={{ 
-                    backgroundColor: "#6b8e23", 
-                    color: "#fff", 
-                    width: "45px", 
-                    height: "45px", 
-                    borderRadius: "50%", 
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "center", 
-                    marginRight: "15px",
-                    flexShrink: "0"
-                  }}>
-                    <i className="fas fa-phone"></i>
-                  </div>
-                  <div>
-                    <h6 style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "5px" }}>
-                      Phone
-                    </h6>
-                    <p style={{ fontSize: "14px", color: "#666", margin: "0" }}>
-                      +1 (555) 123-4567<br />
-                      +1 (555) 987-6543
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="info_item" style={{ marginBottom: "20px", display: "flex", alignItems: "flex-start" }}>
-                  <div style={{ 
-                    backgroundColor: "#6b8e23", 
-                    color: "#fff", 
-                    width: "45px", 
-                    height: "45px", 
-                    borderRadius: "50%", 
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "center", 
-                    marginRight: "15px",
-                    flexShrink: "0"
-                  }}>
-                    <i className="fas fa-envelope"></i>
-                  </div>
-                  <div>
-                    <h6 style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "5px" }}>
-                      Email
-                    </h6>
-                    <p style={{ fontSize: "14px", color: "#666", margin: "0" }}>
-                      info@molotovfilms.com<br />
-                      projects@molotovfilms.com
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="info_item" style={{ display: "flex", alignItems: "flex-start" }}>
-                  <div style={{ 
-                    backgroundColor: "#6b8e23", 
-                    color: "#fff", 
-                    width: "45px", 
-                    height: "45px", 
-                    borderRadius: "50%", 
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "center", 
-                    marginRight: "15px",
-                    flexShrink: "0"
-                  }}>
-                    <i className="fas fa-clock"></i>
-                  </div>
-                  <div>
-                    <h6 style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "5px" }}>
-                      Business Hours
-                    </h6>
-                    <p style={{ fontSize: "14px", color: "#666", margin: "0" }}>
-                      Mon - Fri: 9:00 AM - 6:00 PM<br />
-                      Sat: 10:00 AM - 4:00 PM<br />
-                      Sun: Closed
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* MAP SECTION */}
-              <div className="map_section" style={{
-                backgroundColor: "#fff",
-                borderRadius: "15px",
-                overflow: "hidden",
-                boxShadow: "0 15px 40px rgba(0,0,0,0.1)"
-              }}>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.398!2d-118.2437!3d34.0522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA!5e0!3m2!1sen!2sus!4v1648484721123!5m2!1sen!2sus"
-                  width="100%"
-                  height="300"
-                  style={{ border: "0" }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
-            </div>
+     
           </div>
         </div>
       </section>
