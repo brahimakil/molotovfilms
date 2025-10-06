@@ -7,16 +7,12 @@ const Services = () => {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-12 col-lg-5 col-xxl-5 mb-4 mb-lg-0">
-            <h2 
+                      <h2 
               className="main_titel"
               style={{
                 fontSize: "clamp(2.5rem, 5vw, 4rem)",
                 fontWeight: "900",
                 letterSpacing: "0.1em",
-                background: "linear-gradient(45deg, #ff6b35, #f7931e)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
                 textTransform: "uppercase",
                 marginBottom: "0",
                 lineHeight: "1.1",
@@ -49,7 +45,7 @@ const Services = () => {
                   float: "left", 
                   marginRight: "8px", 
                   marginTop: "4px",
-                  color: "#ff6b35",
+                  color: "#ffeb3b",
                   fontWeight: "bold"
                 }}>
                   "
@@ -58,7 +54,7 @@ const Services = () => {
                 <span style={{ 
                   fontSize: "3em", 
                   lineHeight: "1", 
-                  color: "#ff6b35",
+                  color: "#ffeb3b",
                   fontWeight: "bold",
                   position: "relative",
                   top: "10px"
@@ -87,7 +83,7 @@ const Services = () => {
                 style={{
                   width: "clamp(60px, 8vw, 100px)",
                   height: "clamp(60px, 8vw, 100px)",
-                  background: "linear-gradient(45deg, #ff6b35, #f7931e)",
+                  background: "linear-gradient(45deg, #ffeb3b, #ffc107)",
                   borderRadius: "50%",
                   animation: "pulse 2s infinite"
                 }}
@@ -97,7 +93,7 @@ const Services = () => {
                 style={{
                   width: "clamp(40px, 6vw, 70px)",
                   height: "clamp(40px, 6vw, 70px)",
-                  background: "linear-gradient(45deg, #f7931e, #ffcc02)",
+                  background: "linear-gradient(45deg, #ffc107, #ffeb3b)",
                   borderRadius: "50%",
                   animation: "pulse 2s infinite 0.5s"
                 }}
@@ -107,7 +103,7 @@ const Services = () => {
                 style={{
                   width: "clamp(50px, 7vw, 85px)",
                   height: "clamp(50px, 7vw, 85px)",
-                  background: "linear-gradient(45deg, #ffcc02, #ff6b35)",
+                  background: "linear-gradient(45deg, #ffeb3b, #ffd54f)",
                   borderRadius: "50%",
                   animation: "pulse 2s infinite 1s"
                 }}

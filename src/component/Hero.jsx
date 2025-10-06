@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import molotovLogo from "/Molotov Logo PNG.png";
-import molotovText from "/Molotove text Final (2).png";
 import heroThumbBg from "../assets/images/hero-thumb-bg.png";
 import heroThumb from "../assets/images/hero-thumb.webp";
 import heroUnion from "../assets/images/hero-union.png";
@@ -63,9 +62,7 @@ const Hero = () => {
                   }}
                 />
               </div>
-              <div className="hero_pos_thumb_two">
-                <img src={molotovText} alt="Molotov Text" />
-              </div>
+    
               <div className="hero_pos_thumb_three">
                 <img src={heroVictor} alt="vic" />
               </div>
