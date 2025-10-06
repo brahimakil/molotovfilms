@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 // Image imports
-import aboutPosOne from "../assets/images/about-pos-two.svg";
 import aboutPosTwo from "../assets/images/about-pos-two-2.svg";
 import aboutImg1 from "../assets/images in home(about us)/vlcsnap-2025-08-25-09h47m42s678 (1).png";
 import aboutImg2 from "../assets/images in home(about us)/vlcsnap-2025-08-25-09h48m17s104 (1).png";
@@ -88,7 +87,7 @@ const AbouUsTwo = () => {
           <div className="col-lg-6 col-xxl-6">
             <div className="about_us_two_thumb_main">
               <div className="about_two-pos-one">
-                <img src={aboutPosOne} alt="thumb" />
+                <img src="/Molotov Logo PNG.png" alt="Molotov Logo" />
               </div>
               <div className="about_two-pos-two">
                 <img src={aboutPosTwo} alt="thumb" />

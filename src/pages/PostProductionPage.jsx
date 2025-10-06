@@ -102,12 +102,13 @@ const PostProductionPage = () => {
       <section 
         ref={heroRef}
         style={{
-          minHeight: '100vh',
+          minHeight: window.innerWidth <= 768 ? '100vh' : '100vh',
           background: 'linear-gradient(45deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)',
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
-          overflow: 'hidden'
+          overflow: 'hidden', 
+          padding: window.innerWidth <= 768 ? '60px 0' : '80px 0'
         }}
       >
         {/* Floating Elements Background */}
@@ -126,25 +127,24 @@ const PostProductionPage = () => {
 
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-7">
-              <div style={{ position: 'relative', zIndex: 10 }}>
-        <br></br>
-                <br></br>
-
-        <br></br>
-
-        <br></br>
-
+            <div className="col-lg-7 order-2 order-lg-1">
+              <div style={{ 
+                position: 'relative', 
+                zIndex: 10,
+                padding: window.innerWidth <= 768 ? '20px 0' : '0'
+              }}>
                 
                 <h1 style={{
-                  fontSize: '3rem',
+                  fontSize: window.innerWidth <= 768 ? 'clamp(1.8rem, 6vw, 2.5rem)' : 'clamp(2.5rem, 4vw, 3rem)',
                   fontWeight: '900',
-                  marginBottom: '30px',
+                  marginBottom: window.innerWidth <= 768 ? '20px' : '30px',
                   color: 'white',
-                  lineHeight: '1.1'
+                  lineHeight: '1.1',
+                  textAlign: window.innerWidth <= 768 ? 'center' : 'left'
                 }}>
-MAKE EVERY FRAME COUNT.
-<span style={{
+                  <br /><br />
+                  MAKE EVERY FRAME COUNT.
+                  <span style={{
                     background: 'linear-gradient(135deg, #8B5CF6, #F59E0B, #3B82F6)',
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
@@ -156,20 +156,23 @@ MAKE EVERY FRAME COUNT.
                 </h1>
                 
                 <p style={{
-                  fontSize: '1.2rem',
+                  fontSize: window.innerWidth <= 768 ? 'clamp(1rem, 3vw, 1.1rem)' : 'clamp(1.1rem, 2vw, 1.2rem)',
                   color: '#CBD5E1',
-                  marginBottom: '50px',
+                  marginBottom: window.innerWidth <= 768 ? '30px' : '50px',
                   lineHeight: '1.7',
-                  maxWidth: '600px'
+                  maxWidth: window.innerWidth <= 768 ? '100%' : '600px',
+                  textAlign: window.innerWidth <= 768 ? 'center' : 'left'
                 }}>
-Your raw footage is potential. We're the alchemists who turn it into cinematic gold. Through razor-sharp editing, breathtaking color, immersive sound, and hypnotic motion graphics, we don't just finish your video—we ignite it.                </p>
+                  Your raw footage is potential. We're the alchemists who turn it into cinematic gold. Through razor-sharp editing, breathtaking color, immersive sound, and hypnotic motion graphics, we don't just finish your video—we ignite it.
+                </p>
 
                 {/* Service Selector */}
                 <div style={{
                   display: 'flex',
                   flexWrap: 'wrap',
-                  gap: '15px',
-                  marginBottom: '40px'
+                  gap: window.innerWidth <= 768 ? '10px' : '15px',
+                  marginBottom: window.innerWidth <= 768 ? '30px' : '40px',
+                  justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-start'
                 }}>
                   {Object.entries(services).map(([key, service]) => (
                     <button
@@ -181,16 +184,17 @@ Your raw footage is potential. We're the alchemists who turn it into cinematic g
                           : 'rgba(255, 255, 255, 0.1)',
                         color: 'white',
                         border: activeService === key ? 'none' : '1px solid rgba(255, 255, 255, 0.2)',
-                        padding: '12px 20px',
+                        padding: window.innerWidth <= 768 ? '10px 16px' : '12px 20px',
                         borderRadius: '30px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        fontSize: '0.9rem',
+                        fontSize: window.innerWidth <= 768 ? '0.8rem' : '0.9rem',
                         fontWeight: 'bold',
-                        backdropFilter: 'blur(10px)'
+                        backdropFilter: 'blur(10px)',
+                        whiteSpace: 'nowrap'
                       }}
                     >
-                      {service.icon} {service.title}
+                      {service.icon} {window.innerWidth <= 768 ? service.title.split(' ')[0] : service.title}
                     </button>
                   ))}
                 </div>
@@ -198,34 +202,41 @@ Your raw footage is potential. We're the alchemists who turn it into cinematic g
                 {/* Active Service Details */}
                 <div style={{
                   background: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: '20px',
-                  padding: '30px',
+                  borderRadius: window.innerWidth <= 768 ? '15px' : '20px',
+                  padding: window.innerWidth <= 768 ? '20px' : '30px',
                   backdropFilter: 'blur(15px)',
                   border: `2px solid ${services[activeService].color}33`
                 }}>
                   <h3 style={{
                     color: services[activeService].color,
-                    fontSize: '1.5rem',
+                    fontSize: window.innerWidth <= 768 ? 'clamp(1.2rem, 4vw, 1.3rem)' : 'clamp(1.3rem, 3vw, 1.5rem)',
                     marginBottom: '15px',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    textAlign: window.innerWidth <= 768 ? 'center' : 'left'
                   }}>
                     {services[activeService].title}
                   </h3>
                   <p style={{
                     color: '#E2E8F0',
                     marginBottom: '20px',
-                    fontSize: '1.1rem'
+                    fontSize: window.innerWidth <= 768 ? 'clamp(0.9rem, 3vw, 1rem)' : 'clamp(1rem, 2vw, 1.1rem)',
+                    textAlign: window.innerWidth <= 768 ? 'center' : 'left'
                   }}>
                     {services[activeService].description}
                   </p>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    gap: '10px',
+                    justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-start'
+                  }}>
                     {services[activeService].features.map((feature, index) => (
                       <span key={index} style={{
                         background: `${services[activeService].color}22`,
                         color: services[activeService].color,
-                        padding: '6px 12px',
+                        padding: window.innerWidth <= 768 ? '5px 10px' : '6px 12px',
                         borderRadius: '15px',
-                        fontSize: '0.9rem',
+                        fontSize: window.innerWidth <= 768 ? '0.8rem' : '0.9rem',
                         fontWeight: '500'
                       }}>
                         {feature}
@@ -236,18 +247,20 @@ Your raw footage is potential. We're the alchemists who turn it into cinematic g
               </div>
             </div>
 
-            <div className="col-lg-5">
+            <div className="col-lg-5 order-1 order-lg-2 mb-4 mb-lg-0">
               <div style={{
                 position: 'relative',
-                borderRadius: '25px',
+                borderRadius: window.innerWidth <= 768 ? '15px' : '25px',
                 overflow: 'hidden',
-                boxShadow: '0 30px 60px rgba(0, 0, 0, 0.4)'
+                boxShadow: '0 30px 60px rgba(0, 0, 0, 0.4)',
+                margin: window.innerWidth <= 768 ? '0 auto' : '0',
+                maxWidth: window.innerWidth <= 768 ? '350px' : '100%'
               }}>
                 {videoLoaded && showcaseVideoUrl ? (
                   <video
                     style={{
                       width: '100%',
-                      height: '500px',
+                      height: window.innerWidth <= 768 ? '250px' : '500px',
                       objectFit: 'cover'
                     }}
                     autoPlay
@@ -260,13 +273,13 @@ Your raw footage is potential. We're the alchemists who turn it into cinematic g
                 ) : (
                   <div style={{
                     width: '100%',
-                    height: '500px',
+                    height: window.innerWidth <= 768 ? '250px' : '500px',
                     background: `linear-gradient(135deg, ${services[activeService].color}, #1a1a2e)`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'white',
-                    fontSize: '1.3rem'
+                    fontSize: window.innerWidth <= 768 ? '1rem' : '1.3rem'
                   }}>
                     🎬 Loading Showcase...
                   </div>
@@ -275,13 +288,13 @@ Your raw footage is potential. We're the alchemists who turn it into cinematic g
                 {/* Floating Badge */}
                 <div style={{
                   position: 'absolute',
-                  top: '25px',
-                  left: '25px',
+                  top: window.innerWidth <= 768 ? '15px' : '25px',
+                  left: window.innerWidth <= 768 ? '15px' : '25px',
                   background: 'rgba(139, 92, 246, 0.9)',
                   color: 'white',
-                  padding: '12px 18px',
-                  borderRadius: '20px',
-                  fontSize: '0.9rem',
+                  padding: window.innerWidth <= 768 ? '8px 12px' : '12px 18px',
+                  borderRadius: window.innerWidth <= 768 ? '15px' : '20px',
+                  fontSize: window.innerWidth <= 768 ? '0.8rem' : '0.9rem',
                   fontWeight: 'bold',
                   backdropFilter: 'blur(10px)'
                 }}>

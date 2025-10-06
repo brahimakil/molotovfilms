@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import heroPos1 from "../assets/images/hero-pos-1.png";
-import heroPos2 from "../assets/images/hero-pos-2.png";
+import molotovLogo from "/Molotov Logo PNG.png";
+import molotovText from "/Molotove text Final (2).png";
 import heroThumbBg from "../assets/images/hero-thumb-bg.png";
 import heroThumb from "../assets/images/hero-thumb.webp";
 import heroUnion from "../assets/images/hero-union.png";
@@ -52,10 +52,19 @@ const Hero = () => {
                 <img src={heroThumb} alt="thumb" />
               </div>
               <div className="hero_pos_thumb">
-                <img src={heroPos1} alt="thumb" />
+                <img 
+                  src={molotovLogo} 
+                  alt="Molotov Logo" 
+                  style={{
+                    width: 'auto',
+                    height: '100%',
+                    maxWidth: '100%',
+                    objectFit: 'contain'
+                  }}
+                />
               </div>
               <div className="hero_pos_thumb_two">
-                <img src={heroPos2} alt="thumb" />
+                <img src={molotovText} alt="Molotov Text" />
               </div>
               <div className="hero_pos_thumb_three">
                 <img src={heroVictor} alt="vic" />

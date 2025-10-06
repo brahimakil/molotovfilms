@@ -620,6 +620,13 @@ img[src*="about-pos-6"] {
   filter: hue-rotate(120deg) saturate(1.3) brightness(0.7) !important;
 }
 
+/* OVERRIDE: Remove color filter from Molotov logo specifically */
+.about_two-pos-one img[src*="Molotov Logo PNG.png"],
+.about_two-pos-two img[src*="Molotov Logo PNG.png"],
+img[src*="Molotov Logo PNG.png"] {
+  filter: none !important;
+}
+
 /* WORKING SECTION - CHANGE PURPLE TO OILY GREEN */
 .working_icon img,
 .working_pos_thumb img,

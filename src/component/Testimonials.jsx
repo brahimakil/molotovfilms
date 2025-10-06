@@ -4,12 +4,12 @@ import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 
 import thumbPos from "../assets/images/testimonails-thumb-pos.svg";
-import thumbPos2 from "../../public/Molotov Logo PNG.png";
+import thumbPos2 from "/Molotov Logo PNG.png";
 import thumbPos3 from "../assets/images/testimonails-card.svg";
 import icon from "../assets/images/testimonails-slick-icon.svg";
 import profileImg from "../assets/images/t-prof-1.svg";
 import elioImg from "../assets/imgoftestimonial/elio.jpg"; // Add Elio's image import
-import mahdiImg from "../../public/mahdi2.jpg"; // Add Mahdi's image import
+import mahdiImg from "/mahdi2.jpg"; // Add Mahdi's image import
 
 const Testimonials = ({ addClass }) => {
   const [videoUrl, setVideoUrl] = useState('');
