@@ -10,8 +10,8 @@ const Hero = () => {
   useEffect(() => {
     const loadVideo = async () => {
       try {
-        const cacheKey = 'about_hero_video_url';
-        const cacheTimeKey = 'about_hero_video_timestamp';
+        const cacheKey = 'home_hero_video_url';
+        const cacheTimeKey = 'home_hero_video_timestamp';
         const CACHE_DURATION = 3600000; // 1 hour
 
         // Check cache first
