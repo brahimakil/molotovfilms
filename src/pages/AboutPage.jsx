@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import AbouUsTwo from "../component/AbouUsTwo";
 import ChoseTwo from "../component/ChoseTwo";
 import Working from "../component/Working";
@@ -7,6 +8,7 @@ import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 
 const AboutPage = () => {
+  const location = useLocation();
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -24,6 +26,26 @@ const AboutPage = () => {
   const choseTwoRef = useRef(null);
   const workingRef = useRef(null);
   const videoComparisonRef = useRef(null);
+
+  // Handle scroll to calendar when navigated from contact page
+  useEffect(() => {
+    if (location.state?.scrollToCalendar) {
+      // Force load the Working section first
+      setLoadWorking(true);
+      
+      // Wait a bit for the component to render, then scroll
+      const timer = setTimeout(() => {
+        if (workingRef.current) {
+          workingRef.current.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [location.state]);
 
   // Check cache immediately and load video header first
   useEffect(() => {

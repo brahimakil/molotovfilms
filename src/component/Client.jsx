@@ -79,10 +79,25 @@ const Client = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="d-flex flex-wrap align-items-start">
-              <h2 className="main_titel me-3 mb-0" style={{whiteSpace: 'nowrap'}}>WHY WE'RE DIFFERENT :</h2>
-              <p className="main_titel mb-0 flex-1" style={{lineHeight: '1.2', fontSize: '22px', fontWeight: 'inherit'}}>
-                We're not safer, louder, or prettier, we're truer. We fuse high-studio craft with oddball taste. The result:<br />work that critics talk about and audiences pass around like contraband.
+            <div className="d-flex align-items-center justify-content-start gap-4">
+              <h2 className="main_titel mb-0" style={{
+                whiteSpace: 'nowrap',
+                fontSize: '24px',
+                fontWeight: 'bold',
+                color: '#333',
+                marginRight: '20px'
+              }}>
+                WHY WE'RE DIFFERENT :
+              </h2>
+              <p className="main_titel mb-0" style={{
+                lineHeight: '1.4', 
+                fontSize: '20px', 
+                fontWeight: '400',
+                color: '#555',
+                maxWidth: '70%',
+                margin: '0'
+              }}>
+                We're not safer, louder, or prettier, we're truer. We fuse high-studio craft with oddball taste. The result: work that critics talk about and audiences pass around like contraband.
               </p>
             </div>
           </div>

@@ -122,16 +122,16 @@ const Testimonials = ({ addClass }) => {
 
   const testimonials = [
     {
-      text: `I walk at the edge where vision becomes form — carrying a spark through shadow and noise until it breathes as light, sound, and movement. My task is to guard the fragile essence of a story, shaping it with patience and fire, guiding every gesture toward a single pulse. Each work becomes more than a film: it is a dream distilled, an echo that lingers long after the screen goes dark.`,
-      name: "Elio Zeaiter",
-      role: "Producer",
-      profileImage: elioImg // Add profile image for Elio
-    },
-    {
       text: `I am the architect of visual storytelling, transforming raw footage into compelling narratives that captivate and inspire. My craft lies in the delicate balance of pacing, emotion, and technical precision — weaving together moments that create a seamless journey from beginning to end. Each cut, transition, and effect serves the greater story, ensuring that every frame contributes to a powerful and unforgettable experience.`,
       name: "Mahdi Kandyl",
       role: "Artist",
       profileImage: mahdiImg // Add profile image for Mahdi
+    },
+    {
+      text: `I walk at the edge where vision becomes form — carrying a spark through shadow and noise until it breathes as light, sound, and movement. My task is to guard the fragile essence of a story, shaping it with patience and fire, guiding every gesture toward a single pulse. Each work becomes more than a film: it is a dream distilled, an echo that lingers long after the screen goes dark.`,
+      name: "Elio Zeaiter",
+      role: "Producer",
+      profileImage: elioImg // Add profile image for Elio
     },
  
   ];

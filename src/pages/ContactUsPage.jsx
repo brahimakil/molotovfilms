@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import contactMainImage from "../assets/contactusmainimage/vlcsnap-2025-08-25-09h48m17s104 (1).png";
 
 const ContactUsPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     subject: '',
@@ -29,6 +30,11 @@ const ContactUsPage = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleSelectDate = () => {
+    // Navigate to home page with scroll to calendar instruction
+    navigate('/', { state: { scrollToCalendar: true } });
   };
 
   const handleSubmit = async (e) => {
@@ -109,7 +115,7 @@ const ContactUsPage = () => {
               <p style={{ fontSize: "18px", color: "#cccccc", maxWidth: "600px", margin: "0 auto" }}>
                 Get in touch with our team for any inquiries about our film production services.
               </p>
-              {selectedDate && (
+              {selectedDate ? (
                 <div style={{ 
                   backgroundColor: "#6b8e23", 
                   color: "#fff", 
@@ -121,6 +127,44 @@ const ContactUsPage = () => {
                   fontWeight: "600"
                 }}>
                   📅 Selected Date: {selectedDate}
+                </div>
+              ) : (
+                <div style={{ marginTop: "20px" }}>
+                  <button
+                    onClick={handleSelectDate}
+                    style={{
+                      backgroundColor: "#6b8e23",
+                      color: "#fff",
+                      padding: "15px 30px",
+                      borderRadius: "8px",
+                      border: "none",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = "#556b2f";
+                      e.target.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = "#6b8e23";
+                      e.target.style.transform = "translateY(0)";
+                    }}
+                  >
+                    📅 Select Date
+                  </button>
+                  <p style={{ 
+                    fontSize: "14px", 
+                    color: "#999", 
+                    marginTop: "10px",
+                    fontStyle: "italic"
+                  }}>
+                    Click to choose a preferred meeting date from our calendar
+                  </p>
                 </div>
               )}
                 </div>
@@ -214,7 +258,7 @@ const ContactUsPage = () => {
                     <div className="col-lg-6">
                       <div className="form-group mb-4">
                         <label style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "10px", display: "block" }}>
-                          Phone Number
+                          Phone Number (optional)
                         </label>
                         <input 
                           type="tel" 
