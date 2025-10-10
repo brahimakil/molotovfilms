@@ -15,34 +15,34 @@ const PostProductionPage = () => {
   const [currentProject, setCurrentProject] = useState(0);
   const heroRef = useRef(null);
 
-  // Post-production services data
+  // Post-production services data with new color scheme
   const services = {
     editing: {
       title: 'Advanced Video Editing',
       description: 'Precision cuts, seamless transitions, and storytelling that captivates',
       icon: '✂️',
-      color: '#8B5CF6',
+      color: '#556b2f',
       features: ['Multi-cam editing', 'Advanced transitions', 'Narrative flow', 'Pacing optimization']
     },
     color: {
       title: 'Color Grading & Correction',
       description: 'Cinematic color palettes that enhance mood and visual impact',
       icon: '🎨',
-      color: '#F59E0B',
+      color: '#f4d03f',
       features: ['Color correction', 'Cinematic grading', 'Mood enhancement', 'Brand consistency']
     },
     sound: {
       title: 'Sound Design & Mixing',
       description: 'Immersive audio experiences that complement your visuals',
       icon: '🎵',
-      color: '#10B981',
+      color: '#2d3e2d',
       features: ['Audio cleanup', 'Sound effects', 'Music mixing', 'Voice enhancement']
     },
     motion: {
       title: 'Motion Graphics & VFX',
       description: 'Dynamic animations and visual effects that bring ideas to life',
       icon: '⚡',
-      color: '#3B82F6',
+      color: '#556b2f',
       features: ['2D/3D animation', 'Visual effects', 'Title sequences', 'Brand integration']
     }
   };
@@ -103,7 +103,7 @@ const PostProductionPage = () => {
         ref={heroRef}
         style={{
           minHeight: window.innerWidth <= 768 ? '100vh' : '100vh',
-          background: 'linear-gradient(45deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)',
+          background: 'linear-gradient(45deg, #1a1a1a 0%, #2d3e2d 50%, #556b2f 100%)',
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
@@ -119,9 +119,9 @@ const PostProductionPage = () => {
           right: 0,
           bottom: 0,
           background: `
-            radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%)
+            radial-gradient(circle at 20% 30%, rgba(85, 107, 47, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(244, 208, 63, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%)
           `
         }} />
 
@@ -145,7 +145,7 @@ const PostProductionPage = () => {
                   <br /><br />
                   MAKE EVERY FRAME COUNT.
                   <span style={{
-                    background: 'linear-gradient(135deg, #8B5CF6, #F59E0B, #3B82F6)',
+                    background: 'linear-gradient(135deg, #f4d03f, #556b2f, #ffffff)',
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -157,7 +157,7 @@ const PostProductionPage = () => {
                 
                 <p style={{
                   fontSize: window.innerWidth <= 768 ? 'clamp(1rem, 3vw, 1.1rem)' : 'clamp(1.1rem, 2vw, 1.2rem)',
-                  color: '#CBD5E1',
+                  color: '#e8f5e8',
                   marginBottom: window.innerWidth <= 768 ? '30px' : '50px',
                   lineHeight: '1.7',
                   maxWidth: window.innerWidth <= 768 ? '100%' : '600px',
@@ -217,7 +217,7 @@ const PostProductionPage = () => {
                     {services[activeService].title}
                   </h3>
                   <p style={{
-                    color: '#E2E8F0',
+                    color: '#f0f8f0',
                     marginBottom: '20px',
                     fontSize: window.innerWidth <= 768 ? 'clamp(0.9rem, 3vw, 1rem)' : 'clamp(1rem, 2vw, 1.1rem)',
                     textAlign: window.innerWidth <= 768 ? 'center' : 'left'
@@ -274,7 +274,7 @@ const PostProductionPage = () => {
                   <div style={{
                     width: '100%',
                     height: window.innerWidth <= 768 ? '250px' : '500px',
-                    background: `linear-gradient(135deg, ${services[activeService].color}, #1a1a2e)`,
+                    background: `linear-gradient(135deg, ${services[activeService].color}, #2d3e2d)`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -290,7 +290,7 @@ const PostProductionPage = () => {
                   position: 'absolute',
                   top: window.innerWidth <= 768 ? '15px' : '25px',
                   left: window.innerWidth <= 768 ? '15px' : '25px',
-                  background: 'rgba(139, 92, 246, 0.9)',
+                  background: 'rgba(85, 107, 47, 0.9)',
                   color: 'white',
                   padding: window.innerWidth <= 768 ? '8px 12px' : '12px 18px',
                   borderRadius: window.innerWidth <= 768 ? '15px' : '20px',
@@ -307,7 +307,7 @@ const PostProductionPage = () => {
       </section>
 
       {/* Content Repurposing Section */}
-      <section style={{ padding: '120px 0', background: '#f8fafc' }}>
+      <section style={{ padding: '120px 0', background: '#fafafa' }}>
         <div className="container">
           <div className="row mb-5">
             <div className="col-lg-10 mx-auto text-center">
@@ -315,14 +315,14 @@ const PostProductionPage = () => {
                 fontSize: '3.5rem',
                 fontWeight: '900',
                 marginBottom: '30px',
-                background: 'linear-gradient(135deg, #1e293b, #8B5CF6)',
+                background: 'linear-gradient(135deg, #2d3e2d, #556b2f)',
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
 ONE SHOOT. AN ENTIRE CAMPAIGN.
 </h2>
-              <p style={{ fontSize: '1.3rem', color: '#64748b', lineHeight: '1.8', maxWidth: '800px', margin: '0 auto' }}>
+              <p style={{ fontSize: '1.3rem', color: '#556b2f', lineHeight: '1.8', maxWidth: '800px', margin: '0 auto' }}>
               Stop the content treadmill. The most successful brands don't create more; they create smarter. We strategically dissect your hero content—transforming one long-form video into a full arsenal of platform-native assets. Get more reach, more engagement, and a bigger ROI from a single investment.
               </p>
             </div>
@@ -337,8 +337,8 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                   borderRadius: '25px',
                   padding: '40px',
                   height: '100%',
-                  boxShadow: currentProject === index ? '0 20px 40px rgba(139, 92, 246, 0.2)' : '0 10px 30px rgba(0, 0, 0, 0.1)',
-                  border: currentProject === index ? '3px solid #8B5CF6' : '1px solid #e2e8f0',
+                  boxShadow: currentProject === index ? '0 20px 40px rgba(85, 107, 47, 0.2)' : '0 10px 30px rgba(0, 0, 0, 0.1)',
+                  border: currentProject === index ? '3px solid #556b2f' : '1px solid #e8f5e8',
                   transform: currentProject === index ? 'translateY(-10px)' : 'translateY(0)',
                   transition: 'all 0.5s ease'
                 }}>
@@ -350,7 +350,7 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                     <div style={{
                       width: '80px',
                       height: '80px',
-                      background: 'linear-gradient(135deg, #8B5CF6, #3B82F6)',
+                      background: 'linear-gradient(135deg, #556b2f, #f4d03f)',
                       borderRadius: '20px',
                       display: 'flex',
                       alignItems: 'center',
@@ -361,7 +361,7 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                         // Documentary Film Icon
                         <svg width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <rect x="4" y="8" width="32" height="24" rx="3" fill="white" stroke="white" strokeWidth="2"/>
-                          <rect x="6" y="10" width="28" height="20" rx="2" fill="none" stroke="#6366F1" strokeWidth="1.5"/>
+                          <rect x="6" y="10" width="28" height="20" rx="2" fill="none" stroke="#2d3e2d" strokeWidth="1.5"/>
                           <rect x="2" y="6" width="4" height="4" rx="1" fill="white"/>
                           <rect x="34" y="6" width="4" height="4" rx="1" fill="white"/>
                           <rect x="2" y="30" width="4" height="4" rx="1" fill="white"/>
@@ -372,33 +372,33 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                         // Product Launch Rocket Icon
                         <svg width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M20 4 L24 12 L32 8 L28 16 L36 20 L28 24 L32 32 L24 28 L20 36 L16 28 L8 32 L12 24 L4 20 L12 16 L8 8 L16 12 Z" fill="white" stroke="white" strokeWidth="1"/>
-                          <circle cx="20" cy="20" r="6" fill="none" stroke="#6366F1" strokeWidth="2"/>
-                          <circle cx="20" cy="20" r="3" fill="#8B5CF6"/>
+                          <circle cx="20" cy="20" r="6" fill="none" stroke="#2d3e2d" strokeWidth="2"/>
+                          <circle cx="20" cy="20" r="3" fill="#556b2f"/>
                         </svg>
                       )}
                       {index === 2 && (
                         // Interview/Microphone Icon
                         <svg width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <rect x="16" y="6" width="8" height="16" rx="4" fill="white" stroke="white" strokeWidth="2"/>
-                          <rect x="17" y="7" width="6" height="14" rx="3" fill="none" stroke="#6366F1" strokeWidth="1.5"/>
+                          <rect x="17" y="7" width="6" height="14" rx="3" fill="none" stroke="#2d3e2d" strokeWidth="1.5"/>
                           <path d="M12 18 C12 22.4 15.6 26 20 26 C24.4 26 28 22.4 28 18" stroke="white" strokeWidth="2" fill="none"/>
                           <line x1="20" y1="26" x2="20" y2="32" stroke="white" strokeWidth="2"/>
                           <line x1="16" y1="32" x2="24" y2="32" stroke="white" strokeWidth="2"/>
-                          <circle cx="20" cy="14" r="1.5" fill="#8B5CF6"/>
+                          <circle cx="20" cy="14" r="1.5" fill="#556b2f"/>
                         </svg>
                       )}
                     </div>
                     <h4 style={{
                       fontSize: '1.3rem',
                       fontWeight: 'bold',
-                      color: '#1e293b',
+                      color: '#2d3e2d',
                       marginBottom: '10px'
                     }}>
                       {project.original}
                     </h4>
                     <div style={{
                       fontSize: '1rem',
-                      color: '#8B5CF6',
+                      color: '#556b2f',
                       fontWeight: '600',
                       marginBottom: '5px'
                     }}>
@@ -406,7 +406,7 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                     </div>
                     <div style={{
                       fontSize: '1.1rem',
-                      color: '#3B82F6',
+                      color: '#f4d03f',
                       fontWeight: 'bold',
                       fontStyle: 'italic'
                     }}>
@@ -421,7 +421,7 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                   }}>
             
                     <div style={{
-                      background: 'linear-gradient(135deg, #8B5CF6, #3B82F6)',
+                      background: 'linear-gradient(135deg, #556b2f, #f4d03f)',
                       color: 'white',
                       padding: '8px 16px',
                       borderRadius: '20px',
@@ -438,13 +438,14 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                   <div style={{ marginBottom: '25px' }}>
                     {project.outputs.map((output, idx) => (
                       <div key={idx} style={{
-                        background: '#f1f5f9',
+                        background: '#f8fdf8',
                         padding: '12px 16px',
                         borderRadius: '12px',
                         marginBottom: '8px',
                         fontSize: '0.95rem',
                         fontWeight: '500',
-                        color: '#374151'
+                        color: '#2d3e2d',
+                        border: '1px solid #e8f5e8'
                       }}>
                         📱 {output}
                       </div>
@@ -452,7 +453,7 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                   </div>
 
                   <p style={{
-                    color: '#6b7280',
+                    color: '#556b2f',
                     fontSize: '0.95rem',
                     fontStyle: 'italic',
                     textAlign: 'center'
@@ -467,7 +468,7 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
       </section>
 
       {/* Workflow Process */}
-      <section style={{ padding: '120px 0', background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%)' }}>
+      <section style={{ padding: '120px 0', background: 'linear-gradient(135deg, #1a1a1a 0%, #2d3e2d 100%)' }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-8 mx-auto text-center">
@@ -489,27 +490,27 @@ Our Strategic Protocol
                 title: 'The Mission Blueprint',
                 description: 'Every successful project begins with intelligence. We perform a deep analysis of your raw footage, aligning with your strategic objectives to architect a precise post-production blueprint. This is the master plan for achieving maximum impact..',
                 icon: '🔍',
-                color: '#8B5CF6'
+                color: '#556b2f'
               },
               {
                 phase: 'EDIT',
                 title: 'Tactical Assembly',
                 description: 'Execution begins. Our editors assemble the narrative with tactical precision. Every cut, transition, and sequence is purposefully crafted to engage the audience, drive the story forward, and achieve the core mission objective. There is no wasted motion.',
                 icon: '✂️',
-                color: '#3B82F6'
+                color: '#f4d03f'
               },
               {
                 phase: 'The Force Multiplier',
                 title: 'Visual & Audio Polish',
                 description: 'This is where we apply the force multiplier. We add a layer of advanced polish that dramatically elevates the final product. Through cinematic color grading, immersive sound design, and sharp motion graphics, we transform a great video into an undeniable asset with commanding presence.',
                 icon: '🎨',
-                color: '#F59E0B'
+                color: '#2d3e2d'
               },
               {
                 phase: 'REPURPOSE',
                 title: 'Strategic Deployment',
                 description: 'The primary asset is complete. Now, we deploy the campaign. We strategically repurpose the core content',
-                color: '#10B981',
+                color: '#556b2f',
                 icon: '📱'
               } 
             ].map((step, index) => (
@@ -519,7 +520,7 @@ Our Strategic Protocol
                   borderRadius: '25px',
                   padding: '40px',
                   backdropFilter: 'blur(15px)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  border: '2px solid rgba(85, 107, 47, 0.2)',
                   height: '100%'
                 }}>
                   <div style={{
@@ -564,11 +565,11 @@ Our Strategic Protocol
                         // POLISH - Visual & Audio Polish (Palette/Brush)
                         <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <ellipse cx="20" cy="25" rx="15" ry="10" fill="white" opacity="0.9"/>
-                          <circle cx="12" cy="22" r="2" fill="#8B5CF6"/>
-                          <circle cx="20" cy="20" r="2" fill="#3B82F6"/>
-                          <circle cx="28" cy="22" r="2" fill="#F59E0B"/>
-                          <circle cx="16" cy="28" r="1.5" fill="#10B981"/>
-                          <circle cx="24" cy="28" r="1.5" fill="#EF4444"/>
+                          <circle cx="12" cy="22" r="2" fill="#556b2f"/>
+                          <circle cx="20" cy="20" r="2" fill="#f4d03f"/>
+                          <circle cx="28" cy="22" r="2" fill="#2d3e2d"/>
+                          <circle cx="16" cy="28" r="1.5" fill="#556b2f"/>
+                          <circle cx="24" cy="28" r="1.5" fill="#f4d03f"/>
                           <path d="M25 8 L30 15 L22 18 Z" fill="white"/>
                           <line x1="25" y1="8" x2="22" y2="18" stroke="white" strokeWidth="2"/>
                         </svg>
@@ -577,14 +578,14 @@ Our Strategic Protocol
                         // REPURPOSE - Strategic Deployment (Mobile/Multi-platform)
                         <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <rect x="15" y="6" width="10" height="16" rx="2" fill="white"/>
-                          <rect x="16" y="7" width="8" height="12" rx="1" fill="none" stroke="#10B981" strokeWidth="1.5"/>
-                          <circle cx="20" cy="20.5" r="0.5" fill="#10B981"/>
+                          <rect x="16" y="7" width="8" height="12" rx="1" fill="none" stroke="#556b2f" strokeWidth="1.5"/>
+                          <circle cx="20" cy="20.5" r="0.5" fill="#556b2f"/>
                           <rect x="8" y="12" width="6" height="8" rx="1" fill="white" opacity="0.8"/>
                           <rect x="26" y="12" width="6" height="8" rx="1" fill="white" opacity="0.8"/>
-                          <circle cx="11" cy="16" r="1" fill="#10B981"/>
-                          <circle cx="29" cy="16" r="1" fill="#10B981"/>
+                          <circle cx="11" cy="16" r="1" fill="#556b2f"/>
+                          <circle cx="29" cy="16" r="1" fill="#556b2f"/>
                           <path d="M20 25 L15 30 L20 35 L25 30 Z" fill="white" opacity="0.7"/>
-                          <circle cx="20" cy="30" r="1" fill="#10B981"/>
+                          <circle cx="20" cy="30" r="1" fill="#556b2f"/>
                         </svg>
                       )}
                     </div>
@@ -608,7 +609,7 @@ Our Strategic Protocol
                     </div>
                   </div>
                   <p style={{
-                    color: '#CBD5E1',
+                    color: '#e8f5e8',
                     lineHeight: '1.7',
                     fontSize: '1.05rem'
                   }}>

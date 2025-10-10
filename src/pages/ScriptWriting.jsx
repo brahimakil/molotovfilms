@@ -84,7 +84,7 @@ const ScriptWriting = () => {
       height: '70vh',
       minHeight: '500px',
       overflow: 'hidden',
-      background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+      background: 'linear-gradient(135deg, #2d3e2d 0%, #556b2f 50%, #1a1a1a 100%)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -102,7 +102,7 @@ const ScriptWriting = () => {
       fontSize: '4rem',
       fontWeight: 700,
       marginBottom: '1.5rem',
-      background: 'linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1)',
+      background: 'linear-gradient(135deg, #f4d03f, #556b2f, #ffffff)',
       backgroundClip: 'text',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
@@ -112,7 +112,7 @@ const ScriptWriting = () => {
       fontSize: '1.4rem',
       marginBottom: '2rem',
       opacity: 0.9,
-      color: '#e0e0e0'
+      color: '#e8f5e8'
     },
     breadcrumb: {
       display: 'flex',
@@ -128,7 +128,7 @@ const ScriptWriting = () => {
       transition: 'color 0.3s ease'
     },
     breadcrumbCurrent: {
-      color: '#4ecdc4',
+      color: '#f4d03f',
       fontWeight: '600'
     },
     decorativeElements: {
@@ -163,7 +163,7 @@ const ScriptWriting = () => {
             left: '10%',
             width: '2px',
             height: '100px',
-            background: 'linear-gradient(to bottom, transparent, #ff6b6b, transparent)',
+            background: 'linear-gradient(to bottom, transparent, #f4d03f, transparent)',
             opacity: 0.6,
             animation: 'float 3s ease-in-out infinite'
           }} />
@@ -173,7 +173,7 @@ const ScriptWriting = () => {
             right: '15%',
             width: '2px',
             height: '80px',
-            background: 'linear-gradient(to bottom, transparent, #4ecdc4, transparent)',
+            background: 'linear-gradient(to bottom, transparent, #556b2f, transparent)',
             opacity: 0.6,
             animation: 'float 4s ease-in-out infinite reverse'
           }} />
@@ -183,7 +183,7 @@ const ScriptWriting = () => {
             left: '20%',
             width: '1px',
             height: '60px',
-            background: 'linear-gradient(to bottom, transparent, #45b7d1, transparent)',
+            background: 'linear-gradient(to bottom, transparent, #ffffff, transparent)',
             opacity: 0.4,
             animation: 'float 5s ease-in-out infinite'
           }} />
@@ -194,7 +194,7 @@ const ScriptWriting = () => {
           ONE LOVING LINE
           </h1>
           <p style={heroStyles.heroSubtitle}>
-          We don’t sell stories — we spark tiny obsessions. Films people keep, share, and talk about at 2 AM.          </p>
+          We don't sell stories — we spark tiny obsessions. Films people keep, share, and talk about at 2 AM.          </p>
           
           <div style={heroStyles.breadcrumb}>
             <Link to="/" style={heroStyles.breadcrumbLink}>
@@ -213,14 +213,14 @@ const ScriptWriting = () => {
       </section>
 
       {/* Main Content */}
-      <section className="service_details" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+      <section className="service_details" style={{ paddingTop: '80px', paddingBottom: '80px', backgroundColor: '#fafafa' }}>
         <div className="container">
           <div className="row">
             <div className="col-xxl-8 col-lg-7">
               <div className="service_details_head">
                 <h2 className="text_5xl" style={{ marginBottom: '30px' }}>
                   <span style={{
-                    background: 'linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%)',
+                    background: 'linear-gradient(135deg, #556b2f 0%, #f4d03f 50%, #2d3e2d 100%)',
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -229,7 +229,7 @@ const ScriptWriting = () => {
 WRITE. SING. PUNCH.
 </span>
                   <br />
-                  Stories that flirt with the eye and then refuse to leave.
+                  <span style={{ color: '#2d3e2d' }}>Stories that flirt with the eye and then refuse to leave.</span>
                   </h2>
               </div>
 
@@ -238,7 +238,7 @@ WRITE. SING. PUNCH.
                 <h3 style={{ 
                   fontSize: '2rem', 
                   marginBottom: '30px',
-                  color: '#333',
+                  color: '#2d3e2d',
                   fontWeight: '600'
                 }}>
 THE WEIRDLY LOVABLE PROCESS
@@ -248,10 +248,10 @@ THE WEIRDLY LOVABLE PROCESS
                   {creativeSteps.map((step, index) => (
                     <div key={index} className="col-lg-6">
                       <div style={{
-                        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
+                        background: 'linear-gradient(135deg, #ffffff 0%, #f8fdf8 100%)',
                         borderRadius: '20px',
                         padding: '30px',
-                        border: '1px solid rgba(0,0,0,0.1)',
+                        border: '2px solid #e8f5e8',
                         transition: 'all 0.3s ease',
                         cursor: 'pointer',
                         position: 'relative',
@@ -259,11 +259,13 @@ THE WEIRDLY LOVABLE PROCESS
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform = 'translateY(-5px)';
-                        e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
+                        e.currentTarget.style.boxShadow = '0 20px 40px rgba(85, 107, 47, 0.15)';
+                        e.currentTarget.style.borderColor = '#556b2f';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.transform = 'translateY(0)';
                         e.currentTarget.style.boxShadow = 'none';
+                        e.currentTarget.style.borderColor = '#e8f5e8';
                       }}>
                         {/* Step Number */}
                         <div style={{
@@ -272,7 +274,7 @@ THE WEIRDLY LOVABLE PROCESS
                           right: '-10px',
                           width: '60px',
                           height: '60px',
-                          background: 'linear-gradient(135deg, #ff6b6b, #4ecdc4)',
+                          background: 'linear-gradient(135deg, #556b2f, #f4d03f)',
                           borderRadius: '50%',
                           display: 'flex',
                           alignItems: 'center',
@@ -292,14 +294,14 @@ THE WEIRDLY LOVABLE PROCESS
                         <h4 style={{ 
                           fontSize: '1.5rem', 
                           marginBottom: '15px',
-                          color: '#333',
+                          color: '#2d3e2d',
                           fontWeight: '600'
                         }}>
                           {step.title}
                         </h4>
                         
                         <p style={{ 
-                          color: '#666', 
+                          color: '#556b2f', 
                           lineHeight: '1.6',
                           fontSize: '1rem'
                         }}>
@@ -316,7 +318,7 @@ THE WEIRDLY LOVABLE PROCESS
                 <p style={{ 
                   fontSize: '1.2rem', 
                   lineHeight: '1.8', 
-                  color: '#555',
+                  color: '#2d3e2d',
                   marginBottom: '25px'
                 }}>
                   A strong video begins with a strong idea. We develop creative concepts, write scripts, and design storyboards that ensure your campaign has clarity, originality, and purpose. Our process helps transform raw ideas into compelling narratives that speak directly to your audience.
@@ -325,7 +327,7 @@ THE WEIRDLY LOVABLE PROCESS
                 <p style={{ 
                   fontSize: '1.1rem', 
                   lineHeight: '1.7', 
-                  color: '#666',
+                  color: '#556b2f',
                   marginBottom: '30px'
                 }}>
                   Every great film starts with words on a page. Our scriptwriting team crafts dialogue that feels authentic, creates characters that resonate, and builds stories that engage from the first frame to the last. We don't just write scripts—we architect experiences that move audiences and drive results.
@@ -337,7 +339,7 @@ THE WEIRDLY LOVABLE PROCESS
                 <h3 style={{ 
                   fontSize: '2rem', 
                   marginBottom: '25px',
-                  color: '#333',
+                  color: '#2d3e2d',
                   fontWeight: '600'
                 }}>
 WHAT YOU GET (but warmer)
@@ -350,12 +352,13 @@ WHAT YOU GET (but warmer)
                         marginBottom: '15px',
                         display: 'flex',
                         alignItems: 'center',
-                        fontSize: '1.1rem'
+                        fontSize: '1.1rem',
+                        color: '#2d3e2d'
                       }}>
                         <span style={{
                           width: '8px',
                           height: '8px',
-                          background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
+                          background: 'linear-gradient(45deg, #556b2f, #f4d03f)',
                           borderRadius: '50%',
                           marginRight: '15px'
                         }} />
@@ -365,12 +368,13 @@ Odd, defendable concept development
                         marginBottom: '15px',
                         display: 'flex',
                         alignItems: 'center',
-                        fontSize: '1.1rem'
+                        fontSize: '1.1rem',
+                        color: '#2d3e2d'
                       }}>
                         <span style={{
                           width: '8px',
                           height: '8px',
-                          background: 'linear-gradient(45deg, #4ecdc4, #45b7d1)',
+                          background: 'linear-gradient(45deg, #f4d03f, #556b2f)',
                           borderRadius: '50%',
                           marginRight: '15px'
                         }} />
@@ -380,12 +384,13 @@ Scripts: commercial, branded, short, documentary all with personality
                         marginBottom: '15px',
                         display: 'flex',
                         alignItems: 'center',
-                        fontSize: '1.1rem'
+                        fontSize: '1.1rem',
+                        color: '#2d3e2d'
                       }}>
                         <span style={{
                           width: '8px',
                           height: '8px',
-                          background: 'linear-gradient(45deg, #45b7d1, #ff6b6b)',
+                          background: 'linear-gradient(45deg, #2d3e2d, #f4d03f)',
                           borderRadius: '50%',
                           marginRight: '15px'
                         }} />
@@ -399,12 +404,13 @@ Character arcs that hold secrets and offers of redemption
                         marginBottom: '15px',
                         display: 'flex',
                         alignItems: 'center',
-                        fontSize: '1.1rem'
+                        fontSize: '1.1rem',
+                        color: '#2d3e2d'
                       }}>
                         <span style={{
                           width: '8px',
                           height: '8px',
-                          background: 'linear-gradient(45deg, #ff6b6b, #45b7d1)',
+                          background: 'linear-gradient(45deg, #556b2f, #2d3e2d)',
                           borderRadius: '50%',
                           marginRight: '15px'
                         }} />
@@ -421,7 +427,7 @@ Visual treatments, pacing maps, VO notes, and festival-aware tweaks
             <div className="col-xxl-4 col-lg-5 res_mt">
               {/* Quote Card */}
               <div style={{
-                background: 'linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%)',
+                background: 'linear-gradient(135deg, #556b2f 0%, #2d3e2d 100%)',
                 borderRadius: '25px',
                 padding: '40px 30px',
                 marginBottom: '30px',
@@ -436,11 +442,11 @@ Visual treatments, pacing maps, VO notes, and festival-aware tweaks
                   right: '-50px',
                   width: '100px',
                   height: '100px',
-                  background: 'rgba(255,255,255,0.1)',
+                  background: 'rgba(244, 208, 63, 0.1)',
                   borderRadius: '50%'
                 }} />
                 
-                <div style={{ fontSize: '3rem', marginBottom: '20px', opacity: 0.9 }}>
+                <div style={{ fontSize: '3rem', marginBottom: '20px', opacity: 0.9, color: '#f4d03f' }}>
                   "
                 </div>
                 <p style={{ 
@@ -456,7 +462,8 @@ We sketch dreams on napkins, sharpen them into little devices that sing on scree
                 <div style={{ 
                   fontSize: '1rem',
                   opacity: 0.9,
-                  fontWeight: '600'
+                  fontWeight: '600',
+                  color: '#f4d03f'
                 }}>
                   — Our Creative Philosophy
                 </div>
@@ -464,15 +471,15 @@ We sketch dreams on napkins, sharpen them into little devices that sing on scree
 
               {/* Categories */}
               <div className="card_item" style={{
-                background: '#f8f9fa',
+                background: '#ffffff',
                 borderRadius: '20px',
                 padding: '30px',
-                border: '1px solid rgba(0,0,0,0.1)'
+                border: '2px solid #e8f5e8'
               }}>
                 <h3 style={{ 
                   fontSize: '1.5rem',
                   marginBottom: '25px',
-                  color: '#333'
+                  color: '#2d3e2d'
                 }}>
 SCRIPT FLAVOURS (pick a mood)
 </h3>
@@ -488,14 +495,14 @@ SCRIPT FLAVOURS (pick a mood)
                   ].map((item, index) => (
                     <li key={index} style={{
                       padding: '12px 0',
-                      borderBottom: index < 7 ? '1px solid rgba(0,0,0,0.1)' : 'none',
+                      borderBottom: index < 7 ? '1px solid #e8f5e8' : 'none',
                       fontSize: '1rem',
-                      color: '#555',
+                      color: '#556b2f',
                       transition: 'color 0.3s ease',
                       cursor: 'pointer'
                     }}
-                    onMouseEnter={(e) => e.target.style.color = '#ff6b6b'}
-                    onMouseLeave={(e) => e.target.style.color = '#555'}>
+                    onMouseEnter={(e) => e.target.style.color = '#f4d03f'}
+                    onMouseLeave={(e) => e.target.style.color = '#556b2f'}>
                       {item}
                     </li>
                   ))}

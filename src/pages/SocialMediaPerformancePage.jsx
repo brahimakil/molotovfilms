@@ -33,12 +33,12 @@ const SocialMediaPerformancePage = () => {
   const videoRef = useRef(null);
   const showcaseVideoRef = useRef(null);
 
-  // Performance metrics data
+  // Performance metrics data - Updated with green theme colors
   const metricsData = {
-    ctr: { value: 8.7, label: 'Click-Through Rate', unit: '%', color: '#3B82F6' },
-    conversions: { value: 24.3, label: 'Conversion Rate', unit: '%', color: '#10B981' },
-    roi: { value: 340, label: 'Return on Investment', unit: '%', color: '#F59E0B' },
-    engagement: { value: 92.1, label: 'Engagement Score', unit: '%', color: '#8B5CF6' }
+    ctr: { value: 8.7, label: 'Click-Through Rate', unit: '%', color: '#6b8e23' },
+    conversions: { value: 24.3, label: 'Conversion Rate', unit: '%', color: '#556b2f' },
+    roi: { value: 340, label: 'Return on Investment', unit: '%', color: '#daa520' },
+    engagement: { value: 92.1, label: 'Engagement Score', unit: '%', color: '#6B7A47' }
   };
 
   // Combined service offerings
@@ -185,7 +185,7 @@ const SocialMediaPerformancePage = () => {
           position: 'relative',
           minHeight: '100vh',
           height: 'auto',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #1e293b 100%)',
+          background: 'linear-gradient(135deg, #556b2f 0%, #6b8e23 50%, #2d3d1f 100%)',
           overflow: 'hidden',
           display: 'flex',
           alignItems: 'center',
@@ -200,8 +200,8 @@ const SocialMediaPerformancePage = () => {
           right: 0,
           bottom: 0,
           backgroundImage: `
-            linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+            linear-gradient(rgba(107, 142, 35, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(107, 142, 35, 0.1) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px',
           animation: 'gridMove 20s linear infinite'
@@ -216,7 +216,7 @@ const SocialMediaPerformancePage = () => {
                   fontSize: 'clamp(1.8rem, 4vw, 2.3rem)',
                   fontWeight: 'bold',
                   marginBottom: '30px',
-                  background: 'linear-gradient(135deg,rgb(16, 17, 113),rgb(54, 13, 151))',
+                  background: 'linear-gradient(135deg, #daa520, #ffd700)',
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
@@ -227,7 +227,7 @@ const SocialMediaPerformancePage = () => {
                 <p style={{
                   fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
                   marginBottom: '40px',
-                  color: '#CBD5E1',
+                  color: '#e8f5e8',
                   lineHeight: '1.6'
                 }}>
                   Stop posting into the void. We don't just manage social media; we weaponize it for growth. We architect data-driven strategies that capture attention, build cult followings, and drive real-world revenue through ruthless optimization.
@@ -279,7 +279,7 @@ const SocialMediaPerformancePage = () => {
                             {animatedValues[key].toFixed(1)}{data.unit}
                           </div>
                           <div style={{ 
-                            color: '#CBD5E1', 
+                            color: '#e8f5e8', 
                             fontSize: 'clamp(0.7rem, 1.5vw, 0.9rem)',
                             lineHeight: '1.2'
                           }}>
@@ -323,7 +323,7 @@ const SocialMediaPerformancePage = () => {
                   <div style={{
                     width: '100%',
                     height: 'clamp(250px, 50vw, 400px)',
-                    background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)',
+                    background: 'linear-gradient(135deg, #6b8e23, #556b2f)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -341,7 +341,7 @@ const SocialMediaPerformancePage = () => {
                   position: 'absolute',
                   top: '20px',
                   right: '20px',
-                  background: 'rgba(16, 185, 129, 0.9)',
+                  background: 'linear-gradient(135deg, #6b8e23, #556b2f)',
                   color: 'white',
                   padding: 'clamp(8px, 2vw, 10px) clamp(12px, 3vw, 15px)',
                   borderRadius: '25px',
@@ -358,7 +358,7 @@ const SocialMediaPerformancePage = () => {
       </section>
 
       {/* Services Overview Section */}
-      <section style={{ padding: '100px 0', background: '#f8fafc' }}>
+      <section style={{ padding: '100px 0', background: '#f8faf8' }}>
         <div className="container">
           <div className="row mb-5">
             <div className="col-lg-8 mx-auto text-center">
@@ -366,14 +366,14 @@ const SocialMediaPerformancePage = () => {
                 fontSize: '3rem',
                 fontWeight: 'bold',
                 marginBottom: '30px',
-                background: 'linear-gradient(135deg, #1e293b, #3B82F6)',
+                background: 'linear-gradient(135deg, #556b2f, #6b8e23)',
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
                 FROM SCROLLERS TO CUSTOMERS.
               </h2>
-              <p style={{ fontSize: '1.2rem', color: '#64748b', lineHeight: '1.8' }}>
+              <p style={{ fontSize: '1.2rem', color: '#4a5d4a', lineHeight: '1.8' }}>
                 The internet is loud. We're louder. In a world of infinite scroll, attention is the only currency that matters. We don't just make content that gets noticed—we create magnetic experiences that get remembered, shared, and converted into loyal customers.
               </p>
             </div>
@@ -385,8 +385,8 @@ const SocialMediaPerformancePage = () => {
               <div key={service.id} className="col-md-6 col-lg-3">
                 <div style={{
                   background: index % 2 === 0 
-                    ? 'linear-gradient(135deg, #38BDF8, #6427FF)' 
-                    : 'linear-gradient(135deg, #667eea, #764ba2)',
+                    ? 'linear-gradient(135deg, #6b8e23, #556b2f)' 
+                    : 'linear-gradient(135deg, #daa520, #b8860b)',
                   borderRadius: '20px',
                   padding: '40px 30px',
                   color: 'white',
@@ -397,7 +397,7 @@ const SocialMediaPerformancePage = () => {
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.transform = 'translateY(-10px)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.2)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(85, 107, 47, 0.3)';
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
@@ -434,14 +434,14 @@ const SocialMediaPerformancePage = () => {
                 fontSize: '3rem',
                 fontWeight: 'bold',
                 marginBottom: '30px',
-                background: 'linear-gradient(135deg, #1e293b, #3B82F6)',
+                background: 'linear-gradient(135deg, #556b2f, #6b8e23)',
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
                 Creative Darwinism: Only the Strongest Content Survives.
               </h2>
-              <p style={{ fontSize: '1.2rem', color: '#64748b', lineHeight: '1.8' }}>
+              <p style={{ fontSize: '1.2rem', color: '#4a5d4a', lineHeight: '1.8' }}>
                 We don't guess—we prove. In the battle for attention, every single element matters. The first three seconds, the call-to-action, the music, the message—each is a weapon in your arsenal. We systematically test every variable to forge the most powerful, highest-converting version of your content.
               </p>
             </div>
@@ -455,15 +455,15 @@ const SocialMediaPerformancePage = () => {
                   background: 'white',
                   borderRadius: '20px',
                   padding: '30px',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                  boxShadow: '0 10px 30px rgba(85, 107, 47, 0.1)',
                   height: '100%',
-                  border: '1px solid #e2e8f0'
+                  border: '2px solid #f0f5f0'
                 }}>
                   <h4 style={{
                     fontSize: '1.3rem',
                     fontWeight: 'bold',
                     marginBottom: '25px',
-                    color: '#1e293b'
+                    color: '#2d3d1f'
                   }}>
                     {test.title}
                   </h4>
@@ -476,9 +476,9 @@ const SocialMediaPerformancePage = () => {
                       alignItems: 'center',
                       marginBottom: '15px',
                       padding: '15px',
-                      background: test.winner === 'A' ? '#dcfce7' : '#f1f5f9',
+                      background: test.winner === 'A' ? '#f0f8f0' : '#f8f9fa',
                       borderRadius: '12px',
-                      border: test.winner === 'A' ? '2px solid #10b981' : '1px solid #e2e8f0'
+                      border: test.winner === 'A' ? '2px solid #6b8e23' : '1px solid #e2e8f0'
                     }}>
                       <img 
                         src={test.variantA.image} 
@@ -496,7 +496,7 @@ const SocialMediaPerformancePage = () => {
                         <div style={{ color: '#6b7280', fontSize: '0.9rem' }}>{test.variantA.performance}% Performance</div>
                       </div>
                       {test.winner === 'A' && (
-                        <div style={{ color: '#10b981', fontWeight: 'bold' }}>Winner!</div>
+                        <div style={{ color: '#6b8e23', fontWeight: 'bold' }}>Winner!</div>
                       )}
                     </div>
 
@@ -505,9 +505,9 @@ const SocialMediaPerformancePage = () => {
                       display: 'flex',
                       alignItems: 'center',
                       padding: '15px',
-                      background: test.winner === 'B' ? '#dcfce7' : '#f1f5f9',
+                      background: test.winner === 'B' ? '#f0f8f0' : '#f8f9fa',
                       borderRadius: '12px',
-                      border: test.winner === 'B' ? '2px solid #10b981' : '1px solid #e2e8f0'
+                      border: test.winner === 'B' ? '2px solid #6b8e23' : '1px solid #e2e8f0'
                     }}>
                       <img 
                         src={test.variantB.image} 
@@ -525,14 +525,14 @@ const SocialMediaPerformancePage = () => {
                         <div style={{ color: '#6b7280', fontSize: '0.9rem' }}>{test.variantB.performance}% Performance</div>
                       </div>
                       {test.winner === 'B' && (
-                        <div style={{ color: '#10b981', fontWeight: 'bold' }}>Winner!</div>
+                        <div style={{ color: '#6b8e23', fontWeight: 'bold' }}>Winner!</div>
                       )}
                     </div>
                   </div>
 
                   {/* Result */}
                   <div style={{
-                    background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)',
+                    background: 'linear-gradient(135deg, #6b8e23, #556b2f)',
                     color: 'white',
                     padding: '15px',
                     borderRadius: '12px',
@@ -549,7 +549,7 @@ const SocialMediaPerformancePage = () => {
       </section>
 
       {/* Process Section */}
-      <section style={{ padding: '100px 0', background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)' }}>
+      <section style={{ padding: '100px 0', background: 'linear-gradient(135deg, #2d3d1f 0%, #3d4f2a 100%)' }}>
         <div className="container">
           <div className="row align-items-center mb-5">
             <div className="col-lg-6">
@@ -562,24 +562,24 @@ const SocialMediaPerformancePage = () => {
                 The Intelligence Cycle
               </h2>
               <div style={{ marginBottom: '30px' }}>
-                <h5 style={{ color: '#38BDF8', fontWeight: 'bold', marginBottom: '10px' }}>
+                <h5 style={{ color: '#daa520', fontWeight: 'bold', marginBottom: '10px' }}>
                   🎯 Strategic Discovery
                 </h5>
-                <p style={{ color: '#CBD5E1', marginBottom: '20px' }}>
+                <p style={{ color: '#e8f5e8', marginBottom: '20px' }}>
                   We don't just learn your brand; we decode its DNA. We immerse ourselves in your world, your audience, and the competitive landscape to unearth your unique winning advantage.
                 </p>
                 
-                <h5 style={{ color: '#6427FF', fontWeight: 'bold', marginBottom: '10px' }}>
+                <h5 style={{ color: '#6b8e23', fontWeight: 'bold', marginBottom: '10px' }}>
                   🎨 Creative Ignition & Testing
                 </h5>
-                <p style={{ color: '#CBD5E1', marginBottom: '20px' }}>
+                <p style={{ color: '#e8f5e8', marginBottom: '20px' }}>
                   This is where strategy becomes magic. Our creative team ignites the big ideas, producing multiple variations of thumb-stopping content that's perfectly aligned with your brand voice and strategic goals.
                 </p>
                 
-                <h5 style={{ color: '#38BDF8', fontWeight: 'bold', marginBottom: '10px' }}>
+                <h5 style={{ color: '#daa520', fontWeight: 'bold', marginBottom: '10px' }}>
                   📈 Execute, Measure & Amplify
                 </h5>
-                <p style={{ color: '#CBD5E1' }}>
+                <p style={{ color: '#e8f5e8' }}>
                   We launch, listen, and learn—fast. We monitor performance in real-time, engage with your community, and continuously optimize based on hard data to turn good results into unbeatable ones.
                 </p>
               </div>
@@ -607,7 +607,7 @@ const SocialMediaPerformancePage = () => {
                   <div style={{
                     width: '100%',
                     height: '400px',
-                    background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)',
+                    background: 'linear-gradient(135deg, #6b8e23, #556b2f)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
