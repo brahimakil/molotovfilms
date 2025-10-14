@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import clients1 from "../assets/images/clients-1.png";
 import clients2 from "../assets/images/clients-2.png";
@@ -51,6 +51,18 @@ const clientsData = [
 ];
 
 const Client = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const settings = {
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -79,25 +91,51 @@ const Client = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="d-flex align-items-center justify-content-start gap-4">
+            <div style={{
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : 'row',
+              alignItems: isMobile ? 'flex-start' : 'center',
+              justifyContent: 'flex-start',
+              gap: isMobile ? '20px' : '25px',
+              textAlign: isMobile ? 'left' : 'left',
+              padding: isMobile ? '20px 0' : '30px 0',
+              background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)',
+              borderRadius: '12px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+              marginBottom: '40px'
+            }}>
               <h2 className="main_titel mb-0" style={{
-                whiteSpace: 'nowrap',
-                fontSize: '24px',
-                fontWeight: 'bold',
-                color: '#333',
-                marginRight: '20px'
+                whiteSpace: isMobile ? 'normal' : 'nowrap',
+                fontSize: isMobile ? '22px' : '28px',
+                fontWeight: '700',
+                color: '#1a1a1a',
+                marginRight: isMobile ? '0' : '25px',
+                marginBottom: isMobile ? '15px' : '0',
+                lineHeight: isMobile ? '1.3' : '1.2',
+                fontFamily: '"Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+                letterSpacing: '-0.5px',
+                textTransform: 'uppercase',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                textShadow: 'none'
               }}>
                 WHY WE'RE DIFFERENT :
               </h2>
               <p className="main_titel mb-0" style={{
-                lineHeight: '1.4', 
-                fontSize: '20px', 
+                lineHeight: '1.6', 
+                fontSize: isMobile ? '17px' : '21px', 
                 fontWeight: '400',
-                color: '#555',
-                maxWidth: '70%',
-                margin: '0'
+                color: '#4a5568',
+                maxWidth: isMobile ? '100%' : '75%',
+                margin: '0',
+                textAlign: 'left',
+                fontFamily: '"Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+                letterSpacing: '0.2px',
+                textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
               }}>
-                We're not safer, louder, or prettier, we're truer. We fuse high-studio craft with oddball taste. The result: work that critics talk about and audiences pass around like contraband.
+                We're not safer, louder, or prettier, we're <strong style={{ color: '#2d3748', fontWeight: '600' }}>truer</strong>. We fuse high-studio craft with oddball taste. The result: work that critics talk about and audiences pass around like <em style={{ color: '#667eea', fontStyle: 'normal', fontWeight: '500' }}>contraband</em>.
               </p>
             </div>
           </div>

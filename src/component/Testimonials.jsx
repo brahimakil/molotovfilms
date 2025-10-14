@@ -137,25 +137,37 @@ const Testimonials = ({ addClass }) => {
   ];
 
   return (
-    <section ref={sectionRef} className={`testimonails ${addClass || ""}`}>
-      {/* Removed <br /><br /> */}
-      
+    <section ref={sectionRef} className={`testimonails ${addClass || ""}`} style={{ paddingTop: '80px', paddingBottom: '80px' }}>
       <div className="container">
-           <div className="row">
-          <div className="col-lg-12 col-xxl-5">
-            <h2 className="main_titel">
-            Crafted for Every Screen
+        <div className="row justify-content-center">
+          <div className="col-lg-10 col-xl-8 text-center">
+            <h2 className="main_titel" style={{
+              fontSize: '3.2rem',
+              fontWeight: '700',
+              marginBottom: '1.5rem',
+              color: '#2c3e50',
+              letterSpacing: '-0.02em',
+              lineHeight: '1.2'
+            }}>
+              Crafted for Every Screen
             </h2>
-          </div>
-
-          <div className="col-xxl-6 offset-xxl-1">
             <div className="services_txt">
-              <p className="text_lg">
-              We build work that cuts through the noise , snackable social content, cinematic shorts, and full-length documentaries. End-to-end production, expert cinematography, precision editing and distribution plans engineered to grow your audience and impact.              </p>
+              <p className="text_lg" style={{
+                fontSize: '1.2rem',
+                lineHeight: '1.7',
+                color: '#5a6c7d',
+                maxWidth: '700px',
+                margin: '0 auto',
+                fontWeight: '400'
+              }}>
+                We build work that cuts through the noise, snackable social content, cinematic shorts, and full-length documentaries. End-to-end production, expert cinematography, precision editing and distribution plans engineered to grow your audience and impact.
+              </p>
             </div>
           </div>
         </div>
-  <br /><br /><br />        
+        
+        <div style={{ marginTop: '4rem', marginBottom: '2rem' }} />
+        
         <div className="row align-items-center">
           
           <div className="col-xxl-6">
@@ -350,6 +362,16 @@ const Testimonials = ({ addClass }) => {
         @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+          .main_titel {
+            font-size: 2.2rem !important;
+          }
+          
+          .text_lg {
+            font-size: 1rem !important;
+          }
         }
       `}</style>
     </section>

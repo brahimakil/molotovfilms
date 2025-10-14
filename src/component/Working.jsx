@@ -122,46 +122,105 @@ const Working = () => {
       paddingBottom: isMobile ? '60px' : '200px'
     }}>
       <div className="container">
-        <div className="row">
-          <div className="row">
-            <div className="col-xxl-6">
-              <div className="working_head">
-                <h2 className="main_titel">
-                  Let's create powerful videos that <span>inspire, engage, and convert</span>
-                </h2>
+        {isMobile ? (
+          // Mobile layout - stack everything vertically and center
+          <>
+            <div className="row">
+              <div className="col-12">
+                <div className="working_head" style={{ textAlign: 'center', marginBottom: '30px' }}>
+                  <h2 className="main_titel">
+                    Let's create powerful videos that <span>inspire, engage, and convert</span>
+                  </h2>
 
-                <p>
-                  We align creativity with your marketing goals, delivering cinematic storytelling that inspires, engages, and converts your audience.
-                </p>
+                  <p>
+                    We align creativity with your marketing goals, delivering cinematic storytelling that inspires, engages, and converts your audience.
+                  </p>
 
-                <h6>🚀 Ready to bring your brand story to life?</h6>
-              </div>
+                  <h6>🚀 Ready to bring your brand story to life?</h6>
+                </div>
 
-              <div className="working_btn">
-                <a href="/contuct-us" className="sara-btn">
-                  👉 Start Your Project
-                </a>
+                <div className="working_btn" style={{ textAlign: 'center', marginBottom: '40px' }}>
+                  <a href="/contuct-us" className="sara-btn">
+                    👉 Start Your Project
+                  </a>
+                </div>
               </div>
             </div>
+            
+            <div className="row">
+              <div className="col-12" style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <div className="working_thumb_main" style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%',
+                  textAlign: 'center'
+                }}>
+                  <div className="working_thumb" style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%'
+                  }}>
+                    <img src="/IMG-20251003-WA0088.jpg" alt="thumb" style={{
+                      display: 'block',
+                      margin: '0 auto',
+                      maxWidth: '95%',
+                      width: 'auto',
+                      height: 'auto'
+                    }} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          // Desktop layout - keep original structure
+          <div className="row">
+            <div className="row">
+              <div className="col-xxl-6">
+                <div className="working_head">
+                  <h2 className="main_titel">
+                    Let's create powerful videos that <span>inspire, engage, and convert</span>
+                  </h2>
 
-            <div className="col-xxl-6">
-              <div className="working_thumb_main">
-                <div className="working_thumb">
-                  <img src="/IMG-20251003-WA0088.jpg" alt="thumb" />
+                  <p>
+                    We align creativity with your marketing goals, delivering cinematic storytelling that inspires, engages, and converts your audience.
+                  </p>
+
+                  <h6>🚀 Ready to bring your brand story to life?</h6>
                 </div>
-                <div className="working_pos_thumb">
-                  <img src={workingPos1} alt="thumb" />
+
+                <div className="working_btn">
+                  <a href="/contuct-us" className="sara-btn">
+                    👉 Start Your Project
+                  </a>
                 </div>
-                <div className="working_pos_thumb_two">
-                  <img src={workingPos2} alt="thumb" />
-                </div>
-                <div className="working_pos_thumb_three">
-                  <img src={heroUnion} alt="thumb" />
+              </div>
+
+              <div className="col-xxl-6">
+                <div className="working_thumb_main">
+                  <div className="working_thumb">
+                    <img src="/IMG-20251003-WA0088.jpg" alt="thumb" />
+                  </div>
+                  <div className="working_pos_thumb">
+                    <img src={workingPos1} alt="thumb" />
+                  </div>
+                  <div className="working_pos_thumb_two">
+                    <img src={workingPos2} alt="thumb" />
+                  </div>
+                  <div className="working_pos_thumb_three">
+                    <img src={heroUnion} alt="thumb" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* COMPACT CALENDAR BOOKING SYSTEM */}
         <div className="row working_mt">
@@ -840,75 +899,205 @@ const Working = () => {
             margin: '0 auto',
             padding: '0 40px'
           }}>
-            <div className="working_icon_item_main">
-              <div className="working_icon_item">
-                <div className="working_icon_item_df">
+            <div className="working_icon_item_main" style={{
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: isMobile ? '30px' : '0',
+              flexWrap: 'wrap'
+            }}>
+              <div className="working_icon_item" style={{
+                display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
+                alignItems: 'center',
+                width: isMobile ? '100%' : 'auto',
+                maxWidth: isMobile ? '300px' : 'none',
+                margin: isMobile ? '0 auto' : '0'
+              }}>
+                <div className="working_icon_item_df" style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center'
+                }}>
                   <div className="working_icon_main">
                     <span className="working_icon" style={{
                       background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      width: isMobile ? '80px' : '100px',
+                      height: isMobile ? '80px' : '100px',
+                      borderRadius: '50%',
+                      position: 'relative'
                     }}>
-                      <FaBrain size={40} color="white" />
+                      <FaBrain size={isMobile ? 30 : 40} color="white" />
                       <span className="num" style={{ 
                         background: 'rgba(255, 255, 255, 0.2)',
-                        color: 'white'
+                        color: 'white',
+                        position: 'absolute',
+                        top: '-5px',
+                        right: '-5px',
+                        width: '25px',
+                        height: '25px',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '12px',
+                        fontWeight: 'bold'
                       }}>1</span>
                     </span>
                   </div>
-                  <div className="working_icon_item_txt">
-                    <p className="text_2xl">Concept & Strategy</p>
+                  <div className="working_icon_item_txt" style={{
+                    marginTop: '15px'
+                  }}>
+                    <p className="text_2xl" style={{
+                      fontSize: isMobile ? '18px' : '24px',
+                      fontWeight: '600',
+                      color: 'white',
+                      margin: '0',
+                      lineHeight: '1.3'
+                    }}>Concept & Strategy</p>
                   </div>
                 </div>
-                <div className="arrow_img">
-                  <img src={arrowLine} alt="arrow" />
-                </div>
+                {!isMobile && (
+                  <div className="arrow_img" style={{
+                    margin: '0 20px',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    <img src={arrowLine} alt="arrow" style={{
+                      maxWidth: '60px',
+                      height: 'auto'
+                    }} />
+                  </div>
+                )}
               </div>
 
-              <div className="working_icon_item">
-                <div className="working_icon_item_df">
+              <div className="working_icon_item" style={{
+                display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
+                alignItems: 'center',
+                width: isMobile ? '100%' : 'auto',
+                maxWidth: isMobile ? '300px' : 'none',
+                margin: isMobile ? '0 auto' : '0'
+              }}>
+                <div className="working_icon_item_df" style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center'
+                }}>
                   <div className="working_icon_main">
                     <span className="working_icon" style={{
                       background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      width: isMobile ? '80px' : '100px',
+                      height: isMobile ? '80px' : '100px',
+                      borderRadius: '50%',
+                      position: 'relative'
                     }}>
-                      <FaCogs size={40} color="white" />
+                      <FaCogs size={isMobile ? 30 : 40} color="white" />
                       <span className="num" style={{ 
                         background: 'rgba(255, 255, 255, 0.2)',
-                        color: 'white'
+                        color: 'white',
+                        position: 'absolute',
+                        top: '-5px',
+                        right: '-5px',
+                        width: '25px',
+                        height: '25px',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '12px',
+                        fontWeight: 'bold'
                       }}>2</span>
                     </span>
                   </div>
-                  <div className="working_icon_item_txt">
-                    <p className="text_2xl">Design & Production</p>
+                  <div className="working_icon_item_txt" style={{
+                    marginTop: '15px'
+                  }}>
+                    <p className="text_2xl" style={{
+                      fontSize: isMobile ? '18px' : '24px',
+                      fontWeight: '600',
+                      color: 'white',
+                      margin: '0',
+                      lineHeight: '1.3'
+                    }}>Design & Production</p>
                   </div>
                 </div>
-                <div className="arrow_img">
-                  <img src={arrowLine} alt="arrow" />
-                </div>
+                {!isMobile && (
+                  <div className="arrow_img" style={{
+                    margin: '0 20px',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    <img src={arrowLine} alt="arrow" style={{
+                      maxWidth: '60px',
+                      height: 'auto'
+                    }} />
+                  </div>
+                )}
               </div>
 
-              <div className="working_icon_item">
-                <div className="working_icon_item_df">
+              <div className="working_icon_item" style={{
+                display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
+                alignItems: 'center',
+                width: isMobile ? '100%' : 'auto',
+                maxWidth: isMobile ? '300px' : 'none',
+                margin: isMobile ? '0 auto' : '0'
+              }}>
+                <div className="working_icon_item_df" style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center'
+                }}>
                   <div className="working_icon_main">
                     <span className="working_icon" style={{
                       background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      width: isMobile ? '80px' : '100px',
+                      height: isMobile ? '80px' : '100px',
+                      borderRadius: '50%',
+                      position: 'relative'
                     }}>
-                      <FaRocket size={40} color="white" />
+                      <FaRocket size={isMobile ? 30 : 40} color="white" />
                       <span className="num" style={{ 
                         background: 'rgba(255, 255, 255, 0.2)',
-                        color: 'white'
+                        color: 'white',
+                        position: 'absolute',
+                        top: '-5px',
+                        right: '-5px',
+                        width: '25px',
+                        height: '25px',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '12px',
+                        fontWeight: 'bold'
                       }}>3</span>
                     </span>
                   </div>
-                  <div className="working_icon_item_txt">
-                    <p className="text_2xl">Polished & Publish-Ready</p>
+                  <div className="working_icon_item_txt" style={{
+                    marginTop: '15px'
+                  }}>
+                    <p className="text_2xl" style={{
+                      fontSize: isMobile ? '18px' : '24px',
+                      fontWeight: '600',
+                      color: 'white',
+                      margin: '0',
+                      lineHeight: '1.3'
+                    }}>Polished & Publish-Ready</p>
                   </div>
                 </div>
               </div>
