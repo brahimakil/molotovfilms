@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo2 from "../assets/images/logo-2.svg";
+import logo2 from "../assets/main logo/Molotove text Final (2).png";
 
 const FooterTwo = () => {
   return (
@@ -25,7 +25,7 @@ const FooterTwo = () => {
 
               <ul>
                 <li>
-                  <a href="mailto:hello@infosara.com">hello@infosara.com</a>
+                  <a href="mailto:hello@molotovfilms.com">hello@molotovfilms.com</a>
                 </li>
                 <li>
                   <a href="tel:+17077970462">+1 707 797 0462</a>
@@ -229,7 +229,7 @@ const FooterTwo = () => {
                 <h4 className="text_lg">
                   2024 © All rights reserved by
                   <span>
-                    <Link to="/">Sara.</Link>
+                    <Link to="/">Molotov Films.</Link>
                   </span>
                 </h4>
               </div>

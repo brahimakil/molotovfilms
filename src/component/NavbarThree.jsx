@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import headerLogImg from "../assets/images/logo-3.svg";
+import headerLogImg from "../assets/main logo/Molotove text Final (2).png";
 import Select from "react-select";
 import MobileMenu from "./MobileMenu";
 

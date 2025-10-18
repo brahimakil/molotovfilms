@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import footerLogo from "../assets/images/footer-three-logo.svg";
+import footerLogo from "../assets/main logo/Molotove text Final (2).png";
 
 const FooterThree = () => {
   return (
@@ -9,7 +9,7 @@ const FooterThree = () => {
         <div className="row">
           <div className="col-xxl-4 pd-left">
             <div className="footer_logo">
-              <Link to="/">
+              <Link k to="/">
                 <img src={footerLogo} alt="logo" />
               </Link>
             </div>
@@ -24,7 +24,7 @@ const FooterThree = () => {
               </Link>
               <ul>
                 <li>
-                  <a href="mailto:hello@infosara.com">hello@infosara.com</a>
+                  <a href="mailto:hello@molotovfilms.com">hello@molotovfilms.com</a>
                 </li>
                 <li>
                   <a href="tel:+17077970462">+1 707 797 0462</a>

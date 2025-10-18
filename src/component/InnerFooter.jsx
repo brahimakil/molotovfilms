@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import footerLogo from "../assets/images/footer-logo.svg";
+import footerLogo from "../assets/main logo/Molotove text Final (2).png";
 
 const InnerFooter = () => {
   return (
