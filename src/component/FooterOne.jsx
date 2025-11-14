@@ -55,12 +55,12 @@ const FooterOne = () => {
                       </svg>
                       +1 786 6736887
                     </a>
-                    <a href="mailto:info@molotovfilms.com" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', margin: '8px 0', padding: 0, justifyContent: isMobile ? 'center' : 'flex-start' }}>
+                    <a href="mailto:info@molotovfilms.be" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', margin: '8px 0', padding: 0, justifyContent: isMobile ? 'center' : 'flex-start' }}>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      info@molotovfilms.com
+                      info@molotovfilms.be
                     </a>
                   </div>
                 </div>

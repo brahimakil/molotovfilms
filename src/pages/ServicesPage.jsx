@@ -399,15 +399,15 @@ const ServicesPage = () => {
           <SectionPlaceholder height="600px" message="Loading Services section..." />
         )}
       </div>
-
-      {/* Blog Section - Loads Last */}
+{/* 
+      {}
       <div ref={blogRef} style={{ margin: 0, padding: 0 }}>
         {loadBlog ? (
           <Blog />
         ) : (
           <SectionPlaceholder height="400px" message="Loading Blog section..." />
         )}
-      </div>
+      </div> */}
 
       <style jsx>{`
         @keyframes spin {

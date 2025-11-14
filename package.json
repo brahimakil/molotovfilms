@@ -1,7 +1,10 @@
 {
-  "name": "sara-react-template",
+  "name": "molotovfilms",
+  "description": "Molotov Films - Professional Video Production & Creative Services in Belgium",
+  "version": "1.0.0",
+  "author": "Molotov Films <info@molotovfilms.be>",
+  "homepage": "https://www.molotovfilms.be",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "server": "cd backend && node server.js",

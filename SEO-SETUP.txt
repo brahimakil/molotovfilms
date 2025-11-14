@@ -1,0 +1,101 @@
+# SEO Setup Instructions for Molotov Films
+
+## Google Search Console Setup
+
+1. Go to https://search.google.com/search-console
+2. Add property: www.molotovfilms.be
+3. Verification methods (choose one):
+   - HTML file: Upload the verification file to /public/ folder
+   - HTML tag: Already added in index.html (meta tag)
+   - Google Analytics: If you add GA tracking code
+4. Submit sitemap: https://www.molotovfilms.be/sitemap.xml
+
+## Google Analytics Setup (Optional)
+
+Add to index.html before </head>:
+```html
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+```
+
+## Bing Webmaster Tools
+
+1. Go to https://www.bing.com/webmasters
+2. Add site: www.molotovfilms.be
+3. Submit sitemap: https://www.molotovfilms.be/sitemap.xml
+
+## Social Media Meta Tags
+
+Already configured in index.html:
+- Open Graph (Facebook, LinkedIn)
+- Twitter Cards
+- Structured Data (Schema.org)
+
+## Files Created for SEO:
+
+✅ /public/robots.txt - Search engine instructions
+✅ /public/sitemap.xml - Site structure for search engines
+✅ /public/manifest.json - PWA configuration
+✅ /public/_headers - Vercel headers configuration
+✅ /src/component/SEO.jsx - Dynamic SEO component
+
+## How to Update SEO for Each Page:
+
+Import and use the SEO component:
+```jsx
+import SEO, { seoData } from "../component/SEO";
+
+function YourPage() {
+  return (
+    <>
+      <SEO 
+        title={seoData.pageName.title}
+        description={seoData.pageName.description}
+        keywords={seoData.pageName.keywords}
+      />
+      {/* Your page content */}
+    </>
+  );
+}
+```
+
+## Important Notes:
+
+- Logo used for SEO: /Molotove text Final (2).png
+- Contact email: info@molotovfilms.be
+- Domain: https://www.molotovfilms.be/
+- All pages are indexed and crawlable
+- Mobile-friendly and responsive
+- Fast loading with optimized assets
+- Structured data for rich snippets
+
+## After Deployment Checklist:
+
+1. ✅ Verify site in Google Search Console
+2. ✅ Submit sitemap to Google
+3. ✅ Test mobile-friendliness: https://search.google.com/test/mobile-friendly
+4. ✅ Test page speed: https://pagespeed.web.dev/
+5. ✅ Check structured data: https://search.google.com/test/rich-results
+6. ✅ Verify Open Graph tags: https://www.opengraph.xyz/
+7. ✅ Test robots.txt: https://www.molotovfilms.be/robots.txt
+8. ✅ Verify sitemap: https://www.molotovfilms.be/sitemap.xml
+
+## Performance Optimization:
+
+- Image optimization: Use WebP format when possible
+- Lazy loading: Already implemented for images
+- Code splitting: Configured in vite.config.js
+- Caching: Configured in vercel.json and _headers
+- Compression: Handled by Vercel automatically
+
+## Monitoring:
+
+- Google Search Console: Track search performance
+- Google Analytics: Track user behavior (if implemented)
+- Vercel Analytics: Track Core Web Vitals

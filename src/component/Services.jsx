@@ -17,7 +17,7 @@ const Services = () => {
                 marginBottom: "0",
                 lineHeight: "1.1",
                 textAlign: "center",
-                background: "linear-gradient(135deg,rgb(255, 208, 53),rgb(240, 247, 30), #ffeb3b)",
+                background: "linear-gradient(135deg,rgba(215, 167, 8, 1),rgba(113, 117, 0, 1), #ffeb3b)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",

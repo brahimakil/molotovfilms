@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
+import SEO, { seoData } from "../component/SEO";
 
 // Import placeholder images for post-production showcase
 import editingImg from "../assets/images/s-1.webp";
@@ -76,7 +77,7 @@ const PostProductionPage = () => {
   useEffect(() => {
     const loadVideo = async () => {
       try {
-        const videoPath = 'servicedetails(reels..)/videoinplaceofimage-optimized.mp4';
+        const videoPath = 'servicepostproductionpage/post vedio servecie.mp4';
         const videoRefFirebase = ref(storage, videoPath);
         const url = await getDownloadURL(videoRefFirebase);
         setShowcaseVideoUrl(url);
@@ -98,6 +99,11 @@ const PostProductionPage = () => {
 
   return (
     <>
+      <SEO 
+        title={seoData.postProduction.title}
+        description={seoData.postProduction.description}
+        keywords={seoData.postProduction.keywords}
+      />
       {/* Creative Hero Section */}
       <section 
         ref={heroRef}
