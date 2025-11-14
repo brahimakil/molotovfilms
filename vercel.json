@@ -34,33 +34,6 @@
       ]
     },
     {
-      "source": "/(.*\\.(png|jpg|jpeg|gif|webp|svg|ico))",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/robots.txt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain"
-        }
-      ]
-    },
-    {
-      "source": "/sitemap.xml",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/xml"
-        }
-      ]
-    },
-    {
       "source": "/index.html",
       "headers": [
         {
@@ -83,15 +56,8 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
         }
       ]
     }
-  ],
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite"
+  ]
 }
