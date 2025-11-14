@@ -14,7 +14,7 @@ const BlogItem = ({ blogData, title }) => {
                   <h2 className="main_titel">Related Blog</h2>
                 </div>
               </div>
-            </div>
+            </div> 
           )}
           {blogData.map((blog) => (
             <div key={blog?.id} className="col-md-6 col-lg-4 col-xxl-4">
