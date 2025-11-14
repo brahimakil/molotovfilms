@@ -5,6 +5,7 @@ import Testimonials from "../component/Testimonials";
 import Blog from "../component/BlogOne";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
+import useResponsive from "../utils/useResponsive";
 
 const ServicesPage = () => {
   const [videoUrl, setVideoUrl] = useState('');
@@ -22,6 +23,7 @@ const ServicesPage = () => {
   const innerServicesRef = useRef(null);
   const testimonialsRef = useRef(null);
   const blogRef = useRef(null);
+  const { isMobile } = useResponsive();
 
   // Check cache immediately and load video header first
   useEffect(() => {
@@ -270,7 +272,6 @@ const ServicesPage = () => {
   };
 
   // Mobile responsive styles
-  const isMobile = window.innerWidth <= 768;
   if (isMobile) {
     heroStyles.heroTitle.fontSize = '1.8rem';
     heroStyles.heroSubtitle.fontSize = '0.95rem';

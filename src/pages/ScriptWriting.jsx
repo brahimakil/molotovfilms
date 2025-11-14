@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
+import useResponsive from "../utils/useResponsive";
 
 const ScriptWriting = () => {
   const [videoUrl, setVideoUrl] = useState('');
@@ -9,6 +10,7 @@ const ScriptWriting = () => {
   const [videoError, setVideoError] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const heroRef = useRef(null);
+  const { isMobile } = useResponsive();
 
   // Creative process steps
   const creativeSteps = [
@@ -143,7 +145,6 @@ const ScriptWriting = () => {
   };
 
   // Mobile responsive styles
-  const isMobile = window.innerWidth <= 768;
   if (isMobile) {
     heroStyles.heroTitle.fontSize = '2.5rem';
     heroStyles.heroSubtitle.fontSize = '1.1rem';

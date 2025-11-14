@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 import SEO, { seoData } from "../component/SEO";
+import useResponsive from "../utils/useResponsive";
 
 // Import placeholder images for post-production showcase
 import editingImg from "../assets/images/s-1.webp";
@@ -15,6 +16,7 @@ const PostProductionPage = () => {
   const [activeService, setActiveService] = useState('editing');
   const [currentProject, setCurrentProject] = useState(0);
   const heroRef = useRef(null);
+  const { isMobile } = useResponsive();
 
   // Post-production services data with new color scheme
   const services = {
@@ -108,13 +110,13 @@ const PostProductionPage = () => {
       <section 
         ref={heroRef}
         style={{
-          minHeight: window.innerWidth <= 768 ? '100vh' : '100vh',
+          minHeight: '100vh',
           background: 'linear-gradient(45deg, #1a1a1a 0%, #2d3e2d 50%, #556b2f 100%)',
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden', 
-          padding: window.innerWidth <= 768 ? '60px 0' : '80px 0'
+          padding: isMobile ? '60px 0' : '80px 0'
         }}
       >
         {/* Floating Elements Background */}
@@ -137,16 +139,16 @@ const PostProductionPage = () => {
               <div style={{ 
                 position: 'relative', 
                 zIndex: 10,
-                padding: window.innerWidth <= 768 ? '20px 0' : '0'
+                padding: isMobile ? '20px 0' : '0'
               }}>
                 
                 <h1 style={{
-                  fontSize: window.innerWidth <= 768 ? 'clamp(1.8rem, 6vw, 2.5rem)' : 'clamp(2.5rem, 4vw, 3rem)',
+                  fontSize: isMobile ? 'clamp(1.8rem, 6vw, 2.5rem)' : 'clamp(2.5rem, 4vw, 3rem)',
                   fontWeight: '900',
-                  marginBottom: window.innerWidth <= 768 ? '20px' : '30px',
+                  marginBottom: isMobile ? '20px' : '30px',
                   color: 'white',
                   lineHeight: '1.1',
-                  textAlign: window.innerWidth <= 768 ? 'center' : 'left'
+                  textAlign: isMobile ? 'center' : 'left'
                 }}>
                   <br /><br />
                   MAKE EVERY FRAME COUNT.
@@ -162,12 +164,12 @@ const PostProductionPage = () => {
                 </h1>
                 
                 <p style={{
-                  fontSize: window.innerWidth <= 768 ? 'clamp(1rem, 3vw, 1.1rem)' : 'clamp(1.1rem, 2vw, 1.2rem)',
+                  fontSize: isMobile ? 'clamp(1rem, 3vw, 1.1rem)' : 'clamp(1.1rem, 2vw, 1.2rem)',
                   color: '#e8f5e8',
-                  marginBottom: window.innerWidth <= 768 ? '30px' : '50px',
+                  marginBottom: isMobile ? '30px' : '50px',
                   lineHeight: '1.7',
-                  maxWidth: window.innerWidth <= 768 ? '100%' : '600px',
-                  textAlign: window.innerWidth <= 768 ? 'center' : 'left'
+                  maxWidth: isMobile ? '100%' : '600px',
+                  textAlign: isMobile ? 'center' : 'left'
                 }}>
                   Your raw footage is potential. We're the alchemists who turn it into cinematic gold. Through razor-sharp editing, breathtaking color, immersive sound, and hypnotic motion graphics, we don't just finish your video—we ignite it.
                 </p>
@@ -176,9 +178,9 @@ const PostProductionPage = () => {
                 <div style={{
                   display: 'flex',
                   flexWrap: 'wrap',
-                  gap: window.innerWidth <= 768 ? '10px' : '15px',
-                  marginBottom: window.innerWidth <= 768 ? '30px' : '40px',
-                  justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-start'
+                  gap: isMobile ? '10px' : '15px',
+                  marginBottom: isMobile ? '30px' : '40px',
+                  justifyContent: isMobile ? 'center' : 'flex-start'
                 }}>
                   {Object.entries(services).map(([key, service]) => (
                     <button
@@ -190,17 +192,17 @@ const PostProductionPage = () => {
                           : 'rgba(255, 255, 255, 0.1)',
                         color: 'white',
                         border: activeService === key ? 'none' : '1px solid rgba(255, 255, 255, 0.2)',
-                        padding: window.innerWidth <= 768 ? '10px 16px' : '12px 20px',
+                        padding: isMobile ? '10px 16px' : '12px 20px',
                         borderRadius: '30px',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
-                        fontSize: window.innerWidth <= 768 ? '0.8rem' : '0.9rem',
+                        fontSize: isMobile ? '0.8rem' : '0.9rem',
                         fontWeight: 'bold',
                         backdropFilter: 'blur(10px)',
                         whiteSpace: 'nowrap'
                       }}
                     >
-                      {service.icon} {window.innerWidth <= 768 ? service.title.split(' ')[0] : service.title}
+                      {service.icon} {isMobile ? service.title.split(' ')[0] : service.title}
                     </button>
                   ))}
                 </div>
@@ -208,25 +210,25 @@ const PostProductionPage = () => {
                 {/* Active Service Details */}
                 <div style={{
                   background: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: window.innerWidth <= 768 ? '15px' : '20px',
-                  padding: window.innerWidth <= 768 ? '20px' : '30px',
+                  borderRadius: isMobile ? '15px' : '20px',
+                  padding: isMobile ? '20px' : '30px',
                   backdropFilter: 'blur(15px)',
                   border: `2px solid ${services[activeService].color}33`
                 }}>
                   <h3 style={{
                     color: services[activeService].color,
-                    fontSize: window.innerWidth <= 768 ? 'clamp(1.2rem, 4vw, 1.3rem)' : 'clamp(1.3rem, 3vw, 1.5rem)',
-                    marginBottom: '15px',
+                    fontSize: isMobile ? 'clamp(1.2rem, 4vw, 1.3rem)' : 'clamp(1.3rem, 3vw, 1.5rem)',
                     fontWeight: 'bold',
-                    textAlign: window.innerWidth <= 768 ? 'center' : 'left'
+                    marginBottom: '15px',
+                    textAlign: isMobile ? 'center' : 'left'
                   }}>
                     {services[activeService].title}
                   </h3>
                   <p style={{
                     color: '#f0f8f0',
                     marginBottom: '20px',
-                    fontSize: window.innerWidth <= 768 ? 'clamp(0.9rem, 3vw, 1rem)' : 'clamp(1rem, 2vw, 1.1rem)',
-                    textAlign: window.innerWidth <= 768 ? 'center' : 'left'
+                    fontSize: isMobile ? 'clamp(0.9rem, 3vw, 1rem)' : 'clamp(1rem, 2vw, 1.1rem)',
+                    textAlign: isMobile ? 'center' : 'left'
                   }}>
                     {services[activeService].description}
                   </p>
@@ -234,15 +236,15 @@ const PostProductionPage = () => {
                     display: 'flex', 
                     flexWrap: 'wrap', 
                     gap: '10px',
-                    justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-start'
+                    justifyContent: isMobile ? 'center' : 'flex-start'
                   }}>
                     {services[activeService].features.map((feature, index) => (
                       <span key={index} style={{
                         background: `${services[activeService].color}22`,
                         color: services[activeService].color,
-                        padding: window.innerWidth <= 768 ? '5px 10px' : '6px 12px',
+                        padding: isMobile ? '5px 10px' : '6px 12px',
                         borderRadius: '15px',
-                        fontSize: window.innerWidth <= 768 ? '0.8rem' : '0.9rem',
+                        fontSize: isMobile ? '0.8rem' : '0.9rem',
                         fontWeight: '500'
                       }}>
                         {feature}
@@ -256,17 +258,17 @@ const PostProductionPage = () => {
             <div className="col-lg-5 order-1 order-lg-2 mb-4 mb-lg-0">
               <div style={{
                 position: 'relative',
-                borderRadius: window.innerWidth <= 768 ? '15px' : '25px',
+                borderRadius: isMobile ? '15px' : '25px',
                 overflow: 'hidden',
                 boxShadow: '0 30px 60px rgba(0, 0, 0, 0.4)',
-                margin: window.innerWidth <= 768 ? '0 auto' : '0',
-                maxWidth: window.innerWidth <= 768 ? '350px' : '100%'
+                margin: isMobile ? '0 auto' : '0',
+                maxWidth: isMobile ? '350px' : '100%'
               }}>
                 {videoLoaded && showcaseVideoUrl ? (
                   <video
                     style={{
                       width: '100%',
-                      height: window.innerWidth <= 768 ? '250px' : '500px',
+                      height: isMobile ? '250px' : '500px',
                       objectFit: 'cover'
                     }}
                     autoPlay
@@ -279,13 +281,13 @@ const PostProductionPage = () => {
                 ) : (
                   <div style={{
                     width: '100%',
-                    height: window.innerWidth <= 768 ? '250px' : '500px',
+                    height: isMobile ? '250px' : '500px',
                     background: `linear-gradient(135deg, ${services[activeService].color}, #2d3e2d)`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'white',
-                    fontSize: window.innerWidth <= 768 ? '1rem' : '1.3rem'
+                    fontSize: isMobile ? '1rem' : '1.3rem'
                   }}>
                     🎬 Loading Showcase...
                   </div>
@@ -294,13 +296,13 @@ const PostProductionPage = () => {
                 {/* Floating Badge */}
                 <div style={{
                   position: 'absolute',
-                  top: window.innerWidth <= 768 ? '15px' : '25px',
-                  left: window.innerWidth <= 768 ? '15px' : '25px',
+                  top: isMobile ? '15px' : '25px',
+                  left: isMobile ? '15px' : '25px',
                   background: 'rgba(85, 107, 47, 0.9)',
                   color: 'white',
-                  padding: window.innerWidth <= 768 ? '8px 12px' : '12px 18px',
-                  borderRadius: window.innerWidth <= 768 ? '15px' : '20px',
-                  fontSize: window.innerWidth <= 768 ? '0.8rem' : '0.9rem',
+                  padding: isMobile ? '8px 12px' : '12px 18px',
+                  borderRadius: isMobile ? '15px' : '20px',
+                  fontSize: isMobile ? '0.8rem' : '0.9rem',
                   fontWeight: 'bold',
                   backdropFilter: 'blur(10px)'
                 }}>
