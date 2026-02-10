@@ -115,16 +115,17 @@ const FooterOne = () => {
                 <div className="contact-column">
                   <div className="contact-label">Social Media</div>
                   <div className="social-icons" style={{ justifyContent: isMobile ? 'center' : 'flex-start' }}>
-                    <a href="https://youtube.com/@molotovfilms" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.facebook.com/share/1DHWWWBJda/" target="_blank" rel="noopener noreferrer">
+                      <i className="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://youtube.com/@molotov-films?si=UK8jqPcwQx9nmbNC" target="_blank" rel="noopener noreferrer">
                       <i className="fa-brands fa-youtube"></i>
                     </a>
-                    <a href="https://vimeo.com/molotovfilms" target="_blank" rel="noopener noreferrer">
-                      <i className="fa-brands fa-vimeo-v"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/company/molotov-films/" target="_blank" rel="noopener noreferrer">
+
+                    <a href="https://www.linkedin.com/company/96140376/admin/page-posts/published/" target="_blank" rel="noopener noreferrer">
                       <i className="fa-brands fa-linkedin-in"></i>
                     </a>
-                    <a href="https://www.instagram.com/molotovfilms/" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/molotovfilms.be?igsh=NnpiamRjemRicGNh" target="_blank" rel="noopener noreferrer">
                       <i className="fa-brands fa-instagram"></i>
                     </a>
                   </div>
@@ -136,7 +137,7 @@ const FooterOne = () => {
         </div>
   
         <div className="footer-copyright">
-          <p>© 2025 Molotov Films. Designed by Dprime Solutions.</p>
+          <p>© 2026 Molotov Films. Designed by Dprime Solutions.</p>
         </div>
       </div>
     </footer>

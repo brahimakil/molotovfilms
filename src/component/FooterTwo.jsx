@@ -36,7 +36,7 @@ const FooterTwo = () => {
             <ul className="footer_social_icon">
               <li>
                 <a
-                  href="https://www.facebook.com/"
+                  href="https://www.facebook.com/share/1DHWWWBJda/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -47,7 +47,18 @@ const FooterTwo = () => {
               </li>
               <li>
                 <a
-                  href="https://bd.linkedin.com/"
+                  href="https://youtube.com/@molotov-films?si=UK8jqPcwQx9nmbNC"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>
+                    <i className="fa-brands fa-youtube"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/96140376/admin/page-posts/published/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -69,7 +80,7 @@ const FooterTwo = () => {
               </li>
               <li>
                 <a
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/molotovfilms.be?igsh=NnpiamRjemRicGNh"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
