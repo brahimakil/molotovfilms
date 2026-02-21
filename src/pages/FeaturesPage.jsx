@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 import FooterOne from "../component/FooterOne";
@@ -20,6 +21,7 @@ import movie12 from "../assets/movies/POSTER..jpg";
 import movie13 from "../assets/movies/Poster lbh.jpg";
 
 const FeaturesPage = () => {
+  const { t } = useTranslation();
   // Movie carousel state
   const [selectedMovieIndex, setSelectedMovieIndex] = useState(0);
   const [isOverCarousel, setIsOverCarousel] = useState(false);
@@ -588,7 +590,7 @@ const FeaturesPage = () => {
                 WebkitTextFillColor: 'transparent',
                 marginBottom: '30px'
               }}>
-              CINEMA THAT SPARKS, THEN STINGS
+              {t('featuresPage.cinemaHeading')}
               </h2>
               <p style={{ fontSize: '1.2rem', color: '#666', lineHeight: '1.8' }}>
                 We build images that jab your memory and refuse to apologize. Not pretty noise — precise disturbances: short, loud, slow-burning. From micro social hymns to full-length curios, we make work that keeps working.
@@ -627,7 +629,7 @@ const FeaturesPage = () => {
                     justifyContent: 'center',
                     borderRadius: '15px'
                   }}>
-                    <div>🎬 Loading showcase...</div>
+                    <div>{t('featuresPage.loadingShowcase')}</div>
                   </div>
                 )}
               </div>
@@ -639,7 +641,7 @@ const FeaturesPage = () => {
                 color: '#333',
                 marginBottom: '20px'
               }}>
-BRAND STORIES THAT BITE
+{t('featuresPage.brandStories')}
 </h3>
               <p style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.7', marginBottom: '25px' }}>
               Brands have secret rhythms. We listen with weird equipment, then translate them into films that keep echoing. Tiny spots or five-minute pulses — every edit is deliberate, every cut a tiny act of insistence.
@@ -669,7 +671,7 @@ BRAND STORIES THAT BITE
                 color: '#333',
                 marginBottom: '50px'
               }}>
-                What We Create
+                {t('featuresPage.whatWeCreate')}
               </h3>
             </div>
           </div>
@@ -687,10 +689,10 @@ BRAND STORIES THAT BITE
               }}>
                 <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🎬</div>
                 <h4 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '15px' }}>
-                  Brand Films
+                  {t('featuresPage.categories', { returnObjects: true })[0].title}
                 </h4>
                 <p style={{ fontSize: '1rem', opacity: 0.9 }}>
-                human catalysts that don’t sell so much as insist.                </p>
+                {t('featuresPage.categories', { returnObjects: true })[0].description}                </p>
               </div>
             </div>
 
@@ -705,10 +707,10 @@ BRAND STORIES THAT BITE
               }}>
                 <div style={{ fontSize: '3rem', marginBottom: '20px' }}>📽️</div>
                 <h4 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '15px' }}>
-                  Documentaries
+                  {t('featuresPage.categories', { returnObjects: true })[1].title}
                 </h4>
                 <p style={{ fontSize: '1rem', opacity: 0.9 }}>
-                true curiosities, interrogative and cinematic.                </p>
+                {t('featuresPage.categories', { returnObjects: true })[1].description}                </p>
               </div>
             </div>
 
@@ -723,10 +725,10 @@ BRAND STORIES THAT BITE
               }}>
                 <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🎭</div>
                 <h4 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '15px' }}>
-                  Feature Films
+                  {t('featuresPage.categories', { returnObjects: true })[2].title}
                 </h4>
                 <p style={{ fontSize: '1rem', opacity: 0.9 }}>
-                narrative machines tuned for festival life and late-night sharing.                </p>
+                {t('featuresPage.categories', { returnObjects: true })[2].description}                </p>
               </div>
             </div>
           </div>
@@ -911,10 +913,10 @@ BRAND STORIES THAT BITE
                   }}>
                     <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🎬</div>
                     <div style={{ fontSize: '1.2rem', marginBottom: '10px' }}>
-                      {showcaseData[activeBookIndex]?.videoError ? 'Video Load Error' : 'Loading Video...'}
+                      {showcaseData[activeBookIndex]?.videoError ? t('featuresPage.videoLoadError') : t('featuresPage.loadingVideo')}
                     </div>
                     <div style={{ fontSize: '1rem', opacity: 0.7 }}>
-                      {showcaseData[activeBookIndex]?.title || 'Select a film to preview'}
+                      {showcaseData[activeBookIndex]?.title || t('featuresPage.selectFilm')}
                     </div>
                   </div>
                 )}
@@ -930,7 +932,7 @@ BRAND STORIES THAT BITE
                 marginBottom: '30px',
                 textAlign: 'center'
               }}>
-                Featured Films
+                {t('featuresPage.featuredFilms')}
               </h3>
               
               {/* Vertical Book Stack - Now on Right */}
@@ -986,7 +988,7 @@ BRAND STORIES THAT BITE
                         textAlign: 'center',
                         padding: '15px'
                       }}>
-                        {book.imageError ? '❌ Image Error' : '⏳ Loading...'}
+                        {book.imageError ? t('featuresPage.imageError') : t('featuresPage.loading')}
           </div>
                     )}
 
@@ -1019,7 +1021,7 @@ BRAND STORIES THAT BITE
                         fontSize: '0.65rem',
                         fontWeight: 'bold'
                       }}>
-                        NOW PLAYING
+                        {t('featuresPage.nowPlaying')}
                       </div>
                     )}
                   </div>
@@ -1044,7 +1046,7 @@ BRAND STORIES THAT BITE
                   color: '#333',
                   marginBottom: '30px'
                 }}>
-                  Why Choose Our Cinematic Approach
+                  {t('featuresPage.whyChoose')}
                 </h3>
                 
                 <div className="row">
@@ -1057,10 +1059,10 @@ BRAND STORIES THAT BITE
                     }}>
                       <div style={{ fontSize: '2.5rem', marginBottom: '20px' }}>🎯</div>
                       <h5 style={{ color: '#556b2f', fontWeight: 'bold', marginBottom: '15px' }}>
-                        Precision Storytelling
+                        {t('featuresPage.whyChooseItems', { returnObjects: true })[0].title}
                       </h5>
                       <p style={{ color: '#666', lineHeight: '1.6' }}>
-                        Every frame is deliberate. Every cut has purpose. We don't just capture moments—we architect experiences that resonate long after the credits roll.
+                        {t('featuresPage.whyChooseItems', { returnObjects: true })[0].description}
                       </p>
                     </div>
                   </div>
@@ -1074,10 +1076,10 @@ BRAND STORIES THAT BITE
                     }}>
                       <div style={{ fontSize: '2.5rem', marginBottom: '20px' }}>⚡</div>
                       <h5 style={{ color: '#8B4513', fontWeight: 'bold', marginBottom: '15px' }}>
-                        Creative Efficiency
+                        {t('featuresPage.whyChooseItems', { returnObjects: true })[1].title}
                       </h5>
                       <p style={{ color: '#666', lineHeight: '1.6' }}>
-                        Budget constraints become creative catalysts. We prove that limitations inspire innovation, delivering cinematic excellence regardless of scale.
+                        {t('featuresPage.whyChooseItems', { returnObjects: true })[1].description}
                       </p>
                     </div>
                   </div>
@@ -1091,10 +1093,10 @@ BRAND STORIES THAT BITE
                     }}>
                       <div style={{ fontSize: '2.5rem', marginBottom: '20px' }}>🌟</div>
                       <h5 style={{ color: '#2F4F4F', fontWeight: 'bold', marginBottom: '15px' }}>
-                        Authentic Impact
+                        {t('featuresPage.whyChooseItems', { returnObjects: true })[2].title}
                       </h5>
                       <p style={{ color: '#666', lineHeight: '1.6' }}>
-                        We find the emotional truth in every story. Whether documentary or narrative, our films connect with audiences on a visceral, authentic level.
+                        {t('featuresPage.whyChooseItems', { returnObjects: true })[2].description}
                       </p>
                     </div>
                   </div>

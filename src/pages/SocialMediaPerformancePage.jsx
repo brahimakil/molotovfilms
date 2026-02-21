@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
+import { useTranslation } from 'react-i18next';
 
 // Import placeholder images
 import analyticsImg from "../assets/images/s-1.webp";
@@ -9,6 +10,8 @@ import testingImg from "../assets/images/s-2.webp";
 import optimizationImg from "../assets/images/s-3.webp";
 
 const SocialMediaPerformancePage = () => {
+  const { t } = useTranslation();
+
   // Video loading states
   const [heroVideoUrl, setHeroVideoUrl] = useState('');
   const [heroVideoLoaded, setHeroVideoLoaded] = useState(false);
@@ -35,41 +38,41 @@ const SocialMediaPerformancePage = () => {
 
   // Performance metrics data - Updated with green theme colors
   const metricsData = {
-    ctr: { value: 8.7, label: 'Click-Through Rate', unit: '%', color: '#6b8e23' },
-    conversions: { value: 24.3, label: 'Conversion Rate', unit: '%', color: '#556b2f' },
-    roi: { value: 340, label: 'Return on Investment', unit: '%', color: '#daa520' },
-    engagement: { value: 92.1, label: 'Engagement Score', unit: '%', color: '#6B7A47' }
+    ctr: { value: 8.7, label: t('socialMediaPerformancePage.metrics', { returnObjects: true })[0].label, unit: '%', color: '#6b8e23' },
+    conversions: { value: 24.3, label: t('socialMediaPerformancePage.metrics', { returnObjects: true })[1].label, unit: '%', color: '#556b2f' },
+    roi: { value: 340, label: t('socialMediaPerformancePage.metrics', { returnObjects: true })[2].label, unit: '%', color: '#daa520' },
+    engagement: { value: 92.1, label: t('socialMediaPerformancePage.metrics', { returnObjects: true })[3].label, unit: '%', color: '#6B7A47' }
   };
 
   // Combined service offerings
   const combinedServices = [
     {
       id: 1,
-      title: "Strategic Social Intelligence",
-      description: "We decode your audience and build the roadmap to victory.",
+      title: t('socialMediaPerformancePage.services', { returnObjects: true })[0].title,
+      description: t('socialMediaPerformancePage.services', { returnObjects: true })[0].description,
       icon: "🎯",
-      features: ["Deep Audience Intelligence", "Platform-Native Strategy", "Competitive Analysis & Positioning"]
+      features: t('socialMediaPerformancePage.services', { returnObjects: true })[0].features
     },
     {
       id: 2,
-      title: "High-Performance Content Creation",
-      description: "Scroll-stopping content engineered for conversion.",
+      title: t('socialMediaPerformancePage.services', { returnObjects: true })[1].title,
+      description: t('socialMediaPerformancePage.services', { returnObjects: true })[1].description,
       icon: "🚀",
-      features: ["Viral-Ready Video Content", "A/B Tested Creative Variations", "Data-Driven Design Systems"]
+      features: t('socialMediaPerformancePage.services', { returnObjects: true })[1].features
     },
     {
       id: 3,
-      title: "Performance Analytics & Optimization",
-      description: "Every post, every ad, every interaction is measured and optimized.",
+      title: t('socialMediaPerformancePage.services', { returnObjects: true })[2].title,
+      description: t('socialMediaPerformancePage.services', { returnObjects: true })[2].description,
       icon: "📊",
-      features: ["Real-Time Performance Tracking", "Advanced A/B Testing", "ROI-Focused Campaign Optimization"]
+      features: t('socialMediaPerformancePage.services', { returnObjects: true })[2].features
     },
     {
       id: 4,
-      title: "Community & Conversion Management",
-      description: "We turn followers into customers and customers into advocates.",
+      title: t('socialMediaPerformancePage.services', { returnObjects: true })[3].title,
+      description: t('socialMediaPerformancePage.services', { returnObjects: true })[3].description,
       icon: "💬",
-      features: ["Proactive Community Engagement", "Conversion-Focused Campaigns", "Brand Advocacy Programs"]
+      features: t('socialMediaPerformancePage.services', { returnObjects: true })[3].features
     }
   ];
 
@@ -77,27 +80,27 @@ const SocialMediaPerformancePage = () => {
   const abTestResults = [
     {
       id: 1,
-      title: "Hook Variation Test",
-      variantA: { name: "Question Hook", performance: 6.2, image: analyticsImg },
-      variantB: { name: "Statement Hook", performance: 8.7, image: testingImg },
+      title: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[0].title,
+      variantA: { name: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[0].variantA, performance: 6.2, image: analyticsImg },
+      variantB: { name: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[0].variantB, performance: 8.7, image: testingImg },
       winner: "B",
-      improvement: "40% higher CTR"
+      improvement: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[0].improvement
     },
     {
       id: 2,
-      title: "CTA Button Test",
-      variantA: { name: "Learn More", performance: 4.1, image: testingImg },
-      variantB: { name: "Get Started", performance: 7.3, image: optimizationImg },
+      title: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[1].title,
+      variantA: { name: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[1].variantA, performance: 4.1, image: testingImg },
+      variantB: { name: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[1].variantB, performance: 7.3, image: optimizationImg },
       winner: "B",
-      improvement: "78% more conversions"
+      improvement: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[1].improvement
     },
     {
       id: 3,
-      title: "Content Format Test",
-      variantA: { name: "Static Post", performance: 5.8, image: optimizationImg },
-      variantB: { name: "Video Content", performance: 9.1, image: analyticsImg },
+      title: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[2].title,
+      variantA: { name: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[2].variantA, performance: 5.8, image: optimizationImg },
+      variantB: { name: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[2].variantB, performance: 9.1, image: analyticsImg },
       winner: "B",
-      improvement: "57% better engagement"
+      improvement: t('socialMediaPerformancePage.abTesting.tests', { returnObjects: true })[2].improvement
     }
   ];
 
@@ -222,7 +225,7 @@ const SocialMediaPerformancePage = () => {
                   WebkitTextFillColor: 'transparent',
                   lineHeight: '1.2'
                 }}>
-                  SOCIAL MEDIA, SUPERCHARGED.
+                  {t('socialMediaPerformancePage.heroHeading')}
                 </h1>
                 <p style={{
                   fontSize: 'clamp(1rem, 2.5vw, 1.3rem)',
@@ -230,7 +233,7 @@ const SocialMediaPerformancePage = () => {
                   color: '#e8f5e8',
                   lineHeight: '1.6'
                 }}>
-                  Stop posting into the void. We don't just manage social media; we weaponize it for growth. We architect data-driven strategies that capture attention, build cult followings, and drive real-world revenue through ruthless optimization.
+                  {t('socialMediaPerformancePage.heroDescription')}
                 </p>
                 
                 {/* Real-time Metrics Dashboard */}
@@ -246,7 +249,7 @@ const SocialMediaPerformancePage = () => {
                     marginBottom: '20px', 
                     fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
                     textAlign: 'center'
-                  }}>Live Performance Metrics</h3>
+                  }}>{t('socialMediaPerformancePage.liveMetricsLabel')}</h3>
                   <div className="row g-2 g-md-3">
                     {Object.entries(metricsData).map(([key, data]) => (
                       <div key={key} className="col-6 col-md-6">
@@ -332,7 +335,7 @@ const SocialMediaPerformancePage = () => {
                     textAlign: 'center',
                     padding: '20px'
                   }}>
-                    🌐 Loading Social Performance Data...
+                    {t('socialMediaPerformancePage.loadingData')}
                   </div>
                 )}
                 
@@ -349,7 +352,7 @@ const SocialMediaPerformancePage = () => {
                   fontWeight: 'bold',
                   backdropFilter: 'blur(10px)'
                 }}>
-                  +340% ROI Achieved
+                  {t('socialMediaPerformancePage.roiAchieved')}
                 </div>
               </div>
             </div>
@@ -371,10 +374,10 @@ const SocialMediaPerformancePage = () => {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
-                FROM SCROLLERS TO CUSTOMERS.
+                {t('socialMediaPerformancePage.ctaHeading')}
               </h2>
               <p style={{ fontSize: '1.2rem', color: '#4a5d4a', lineHeight: '1.8' }}>
-                The internet is loud. We're louder. In a world of infinite scroll, attention is the only currency that matters. We don't just make content that gets noticed—we create magnetic experiences that get remembered, shared, and converted into loyal customers.
+                {t('socialMediaPerformancePage.ctaDescription')}
               </p>
             </div>
           </div>
@@ -439,10 +442,10 @@ const SocialMediaPerformancePage = () => {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
-                Creative Darwinism: Only the Strongest Content Survives.
+                {t('socialMediaPerformancePage.abTesting.heading')}
               </h2>
               <p style={{ fontSize: '1.2rem', color: '#4a5d4a', lineHeight: '1.8' }}>
-                We don't guess—we prove. In the battle for attention, every single element matters. The first three seconds, the call-to-action, the music, the message—each is a weapon in your arsenal. We systematically test every variable to forge the most powerful, highest-converting version of your content.
+                {t('socialMediaPerformancePage.abTesting.description')}
               </p>
             </div>
           </div>
@@ -496,7 +499,7 @@ const SocialMediaPerformancePage = () => {
                         <div style={{ color: '#6b7280', fontSize: '0.9rem' }}>{test.variantA.performance}% Performance</div>
                       </div>
                       {test.winner === 'A' && (
-                        <div style={{ color: '#6b8e23', fontWeight: 'bold' }}>Winner!</div>
+                        <div style={{ color: '#6b8e23', fontWeight: 'bold' }}>{t('socialMediaPerformancePage.abTesting.winnerLabel')}</div>
                       )}
                     </div>
 
@@ -525,7 +528,7 @@ const SocialMediaPerformancePage = () => {
                         <div style={{ color: '#6b7280', fontSize: '0.9rem' }}>{test.variantB.performance}% Performance</div>
                       </div>
                       {test.winner === 'B' && (
-                        <div style={{ color: '#6b8e23', fontWeight: 'bold' }}>Winner!</div>
+                        <div style={{ color: '#6b8e23', fontWeight: 'bold' }}>{t('socialMediaPerformancePage.abTesting.winnerLabel')}</div>
                       )}
                     </div>
                   </div>
@@ -559,28 +562,28 @@ const SocialMediaPerformancePage = () => {
                 marginBottom: '30px',
                 color: 'white'
               }}>
-                The Intelligence Cycle
+                {t('socialMediaPerformancePage.processHeading')}
               </h2>
               <div style={{ marginBottom: '30px' }}>
                 <h5 style={{ color: '#daa520', fontWeight: 'bold', marginBottom: '10px' }}>
-                  🎯 Strategic Discovery
+                  {t('socialMediaPerformancePage.processSteps', { returnObjects: true })[0].label}
                 </h5>
                 <p style={{ color: '#e8f5e8', marginBottom: '20px' }}>
-                  We don't just learn your brand; we decode its DNA. We immerse ourselves in your world, your audience, and the competitive landscape to unearth your unique winning advantage.
+                  {t('socialMediaPerformancePage.processSteps', { returnObjects: true })[0].description}
                 </p>
                 
                 <h5 style={{ color: '#6b8e23', fontWeight: 'bold', marginBottom: '10px' }}>
-                  🎨 Creative Ignition & Testing
+                  {t('socialMediaPerformancePage.processSteps', { returnObjects: true })[1].label}
                 </h5>
                 <p style={{ color: '#e8f5e8', marginBottom: '20px' }}>
-                  This is where strategy becomes magic. Our creative team ignites the big ideas, producing multiple variations of thumb-stopping content that's perfectly aligned with your brand voice and strategic goals.
+                  {t('socialMediaPerformancePage.processSteps', { returnObjects: true })[1].description}
                 </p>
                 
                 <h5 style={{ color: '#daa520', fontWeight: 'bold', marginBottom: '10px' }}>
-                  📈 Execute, Measure & Amplify
+                  {t('socialMediaPerformancePage.processSteps', { returnObjects: true })[2].label}
                 </h5>
                 <p style={{ color: '#e8f5e8' }}>
-                  We launch, listen, and learn—fast. We monitor performance in real-time, engage with your community, and continuously optimize based on hard data to turn good results into unbeatable ones.
+                  {t('socialMediaPerformancePage.processSteps', { returnObjects: true })[2].description}
                 </p>
               </div>
             </div>
@@ -614,7 +617,7 @@ const SocialMediaPerformancePage = () => {
                     color: 'white',
                     fontSize: '1.2rem'
                   }}>
-                    📱 Loading showcase...
+                    {t('socialMediaPerformancePage.loadingShowcase')}
                   </div>
                 )}
               </div>

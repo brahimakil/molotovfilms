@@ -1,0 +1,986 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "service": "Service",
+    "services": "Services",
+    "aboutUs": "À propos",
+    "contactUs": "Contactez-nous",
+    "contact": "Contact",
+    "blog": "Blog",
+    "pages": "Pages",
+    "serviceDropdown": {
+      "reels": "Reels & Vidéos Courtes",
+      "features": "Films de Marque",
+      "scriptwriting": "Écriture de Scénarios & Concepts",
+      "postProduction": "Post-Production",
+      "socialMedia": "Réseaux Sociaux & Performance",
+      "webDevelopment": "Développement Web"
+    },
+    "pagesDropdown": {
+      "blogDetails": "Détails du Blog",
+      "blogListView": "Liste du Blog",
+      "contactUs": "Contactez-nous",
+      "faq": "FAQ",
+      "pricing": "Tarifs",
+      "serviceDetails": "Détails du Service",
+      "singleMember": "Membre",
+      "teamMember": "Membre de l'Équipe",
+      "testimonial": "Témoignage",
+      "error404": "404"
+    },
+    "homeVariants": {
+      "home01": "Accueil 01",
+      "home02": "Accueil 02",
+      "home03": "Accueil 03"
+    }
+  },
+
+  "hero": {
+    "heading": "NOUS CRÉONS DES FILMS QUI MARQUENT LES ESPRITS.",
+    "subheading": "Une envergure de studio. Un esprit d'art. Des histoires qui refusent de disparaître.",
+    "getInTouch": "Contactez-nous",
+    "learnMore": "En savoir plus",
+    "loading": "Chargement...",
+    "videoFallback": "Votre navigateur ne prend pas en charge la balise vidéo."
+  },
+
+  "heroTwo": {
+    "heading": "Innovez pour un Meilleur Avenir de Votre Entreprise",
+    "getInTouch": "Contactez-nous",
+    "learnMore": "En savoir plus"
+  },
+
+  "heroThree": {
+    "heading": "Améliorez le Référencement de Votre Site Web",
+    "emailPlaceholder": "Entrez votre email",
+    "subscribe": "S'abonner",
+    "rating": "13k avis (Note 4.7)"
+  },
+
+  "manifesto": {
+    "label": "MANIFESTE",
+    "quote": "Nous sommes un petit studio affamé qui crée des œuvres inoubliables. Nous croyons que chaque marque possède un hymne endormi — un nerf filmique que personne n'a encore touché. Notre mission est de le trouver, le filmer, le monter et le lancer dans le monde avant que votre audience ne cligne des yeux. Nous vivons pour le frisson : cette fraction de seconde où un spectateur se penche en avant et pense « Il faut que je revoie ça. » C'est la norme Molotov — le faire une fois, le faire percutant, le faire viral."
+  },
+
+  "servicesTwo": {
+    "heading": "Que proposons-nous ? Découvrez-le",
+    "items": [
+      { "title": "Transformation Numérique", "description": "Nous transformons les paysages numériques avec des solutions de pointe." },
+      { "title": "Intelligence d'Affaires", "description": "Des insights basés sur les données pour alimenter vos décisions." },
+      { "title": "Sensibilisation à la Cybersécurité", "description": "Protégez vos actifs numériques avec une sécurité complète." }
+    ],
+    "readMore": "En savoir plus"
+  },
+
+  "servicesThree": {
+    "heading": "Transformer les Visions en Services Durables",
+    "items": [
+      { "title": "Analytique SEO" },
+      { "title": "Stratégie de Contenu" },
+      { "title": "Récupération de Pénalités" },
+      { "title": "Consultation SEO" },
+      { "title": "Rapports SEO" }
+    ],
+    "readMore": "En savoir plus"
+  },
+
+  "innerServices": {
+    "services": [
+      {
+        "title": "Reels & Vidéos Courtes",
+        "description": "Nous créons du contenu court qui arrête le défilement, conçu pour des plateformes comme Instagram Reels, TikTok et YouTube Shorts. Du concept au montage final, notre équipe produit du contenu énergique et visuellement frappant qui capte l'attention dès la première seconde. Que ce soit des vitrines produits, du contenu en coulisses, des pièces tendances ou du storytelling de marque — nous faisons en sorte que chaque seconde compte.",
+        "cta": "En savoir plus"
+      },
+      {
+        "title": "Films de Marque & Documentaires",
+        "description": "Notre division films de marque se spécialise dans la production de contenu visuellement riche et narratif qui va au-delà de la promotion — il crée un impact durable. Nous gérons tout, du développement du concept et de l'écriture de scénarios à la production complète et la post-production. Que vous ayez besoin d'un documentaire de marque, d'une histoire de fondateur, d'un film produit ou d'un long métrage, nous apportons une qualité cinématographique et une profondeur émotionnelle à chaque projet.",
+        "cta": "En savoir plus"
+      },
+      {
+        "title": "Écriture de Scénarios & Concepts Créatifs",
+        "description": "Le grand contenu commence par une grande histoire. Notre équipe d'écriture et de concepts développe des récits captivants adaptés à votre marque, votre audience et votre plateforme. Des scripts commerciaux au contenu de marque, en passant par les courts métrages et les concepts de campagne, nous créons des mots et des idées qui connectent, convertissent et persistent. Chaque script est construit autour de la stratégie — pas seulement de la créativité.",
+        "cta": "En savoir plus"
+      },
+      {
+        "title": "Post-Production & Réutilisation de Contenu",
+        "description": "Notre pipeline de post-production couvre tout, du montage vidéo professionnel et de l'étalonnage des couleurs aux graphiques animés, au design sonore et à la livraison finale. Nous proposons également la réutilisation de contenu — transformer une seule production en plusieurs assets optimisés pour différentes plateformes et formats. Un tournage devient une campagne, et chaque image est polie à la perfection.",
+        "cta": "En savoir plus"
+      },
+      {
+        "title": "Réseaux Sociaux & Marketing de Performance",
+        "description": "Nous ne faisons pas que créer du contenu — nous le faisons performer. Nos services de réseaux sociaux et de marketing de performance combinent production créative et stratégie basée sur les données. De la gestion des réseaux sociaux et la création de calendriers de contenu mensuels à la gestion de campagnes publicitaires payantes et l'analyse des performances, nous aidons les marques à développer leur présence et générer des résultats réels.",
+        "cta": "En savoir plus"
+      },
+      {
+        "title": "Développement Web",
+        "description": "Nous construisons des sites web et des applications web rapides, réactifs et visuellement époustouflants. Des pages d'atterrissage personnalisées et des sites portfolio aux plateformes full-stack et solutions e-commerce, notre équipe de développement donne vie à votre présence numérique.",
+        "cta": "En savoir plus"
+      }
+    ]
+  },
+
+  "aboutUs": {
+    "heading": "Nous offrons des Solutions de Croissance en Temps Réel",
+    "listItems": [
+      "Diverses options d'analyse.",
+      "Chargement de page (temps, taille, nombre de requêtes).",
+      "Analyse de big data."
+    ],
+    "button": "Tout explorer"
+  },
+
+  "aboutUsTwo": {
+    "label": "Social-First & Percutant",
+    "counters": {
+      "videosProduced": "Vidéos Produites",
+      "campaignReach": "Portée de Campagne"
+    },
+    "videosValue": "150+",
+    "reachValue": "2M+",
+    "listItems": [
+      "Des visuels de haute qualité qui racontent votre histoire",
+      "Optimisé pour tous les formats – social, diffusion, web",
+      "Un processus guidé par les données avec un instinct créatif"
+    ],
+    "button": "✨ Envie d'en savoir plus ? Contactez-nous"
+  },
+
+  "chose": {
+    "label": "NOTRE PROMESSE",
+    "heading": "Nous trouvons l'image unique qui contient toute l'histoire.",
+    "listItems": [
+      "Nous finissons comme des cinéastes.",
+      "Nous lançons comme des stratèges.",
+      "Nous réutilisons comme des magiciens."
+    ]
+  },
+
+  "choseTwo": {
+    "heading": "Un Nouveau Standard dans la Narration et la Production Cinématographique",
+    "progressBars": [
+      { "label": "Impact artistique", "value": "90%" },
+      { "label": "Force narrative", "value": "80%" },
+      { "label": "Engagement du public", "value": "70%" }
+    ]
+  },
+
+  "client": {
+    "label": "POURQUOI NOUS SOMMES DIFFÉRENTS :"
+  },
+
+  "counter": {
+    "items": [
+      { "value": "20", "label": "Années d'Expertise" },
+      { "value": "12", "label": "Total de Services" },
+      { "value": "10k", "label": "Clients Mondiaux" },
+      { "value": "1k", "label": "Total de Services" }
+    ]
+  },
+
+  "customers": {
+    "heading": "Fait confiance par plus de 15 000 Clients"
+  },
+
+  "faq": {
+    "heading": "Questions Fréquemment Posées",
+    "questions": [
+      {
+        "question": "Avec quelles industries travaillez-vous ?",
+        "answer": "Nous travaillons dans toutes les industries — des startups et marques tech à l'hôtellerie, la mode, l'alimentation, l'immobilier, le sport et les organisations à but non lucratif. Si vous avez une histoire à raconter ou une marque à développer, nous sommes la bonne équipe."
+      },
+      {
+        "question": "Combien d'expérience est nécessaire ?",
+        "answer": "Aucune expérience nécessaire de votre côté. Nous vous guidons à chaque étape du processus — du concept à la livraison finale. Que vous ayez déjà produit du contenu vidéo ou que ce soit votre premier projet, nous rendons tout simple."
+      },
+      {
+        "question": "Comment puis-je obtenir des services ?",
+        "answer": "Contactez-nous simplement via notre formulaire de contact ou réservez une consultation gratuite. Nous discuterons de vos objectifs, de votre calendrier et de votre budget, puis proposerons un plan sur mesure."
+      }
+    ]
+  },
+
+  "team": {
+    "heading": "Les Meilleurs de Notre Équipe Spéciale",
+    "members": [
+      { "name": "Osama Sam", "role": "Designer UX-UI" },
+      { "name": "Dianne Russell", "role": "Assistante Infirmière" },
+      { "name": "Courtney Henry", "role": "Designer Web" },
+      { "name": "Marvin McKinney", "role": "Directeur des Ventes" }
+    ]
+  },
+
+  "testimonials": {
+    "heading": "Conçu pour Chaque Écran",
+    "loading": "Chargement des témoignages..."
+  },
+
+  "videoSection": {
+    "heading": "Nous sommes là pour vous Aider à Trouver votre Service",
+    "personName": "Onam Sarker",
+    "personTitle": "Apple Inc."
+  },
+
+  "working": {
+    "heading": "Créons des vidéos puissantes qui inspirent, engagent et convertissent",
+    "brandName": "MOLOTOV FILMS",
+    "serviceTitle": "Consultation en Production Vidéo",
+    "duration": "30 min",
+    "meetingInfo": "Les détails de la visioconférence seront fournis après confirmation.",
+    "description": "Merci de votre intérêt ! Chez Molotov Films, nous sommes passionnés par la transformation d'histoires authentiques en contenu vidéo puissant qui renforce la confiance et élève votre marque.",
+    "calendarHeading": "📅 Sélectionnez une Date & Heure",
+    "dayHeaders": ["DIM", "LUN", "MAR", "MER", "JEU", "VEN", "SAM"],
+    "calendarNotes": {
+      "unavailable": "🚫 Samedis & dimanches indisponibles",
+      "available": "✅ Dates vertes disponibles"
+    },
+    "bookingPopup": {
+      "heading": "📝 Détails de la Réservation",
+      "selectedDateLabel": "📅 Date Sélectionnée",
+      "email": "Adresse Email *",
+      "subject": "Sujet *",
+      "name": "Nom Complet (optionnel)",
+      "phone": "Numéro de Téléphone (optionnel)",
+      "description": "Parlez-nous de votre projet... (optionnel)",
+      "submitButton": "🚀 Planifier la Consultation",
+      "submitting": "Envoi en cours..."
+    },
+    "steps": [
+      { "number": "1", "label": "Concept & Stratégie" },
+      { "number": "2", "label": "Design & Production" },
+      { "number": "3", "label": "Finition & Prêt à Publier" }
+    ]
+  },
+
+  "videoComparison": {
+    "heading": "Du Brut au",
+    "headingHighlight": "Radieux",
+    "subheading": "Un avant-après cinématographique montrant comment les VFX et l'étalonnage donnent vie à chaque image.",
+    "scrollPrompt": "Faites défiler pour charger les vidéos",
+    "loadingText": "Chargement de la Vidéo {{category}} {{index}}...",
+    "loadingFromCache": "Chargement depuis le cache...",
+    "fetchingFromServer": "Téléchargement depuis le serveur...",
+    "failedToLoad": "Échec du chargement des vidéos",
+    "retry": "Réessayer",
+    "syncingVideos": "Synchronisation des vidéos...",
+    "noVideosAvailable": "Aucune vidéo disponible",
+    "categories": {
+      "coloring": "ÉTALONNAGE",
+      "vfx": "VFX"
+    }
+  },
+
+  "blogOne": {
+    "heading": "Nos Derniers Travaux",
+    "readMore": "En savoir plus",
+    "exploreAll": "Tout explorer"
+  },
+
+  "blogTwo": {
+    "heading": "Nos Dernières Nouvelles & Blog",
+    "postedBy": "Publié par"
+  },
+
+  "blogItem": {
+    "heading": "Blog Associé",
+    "postedBy": "Publié par Sara"
+  },
+
+  "blogPost": {
+    "author": "Sara",
+    "date": "6 août 2024",
+    "category": "Histoires, Médias",
+    "readTime": "5 min de lecture",
+    "title": "3 Façons de se Mentir sur Votre Nouvelle Relation"
+  },
+
+  "pricing": {
+    "heading": "Choisissez un Plan Tarifaire qui vous Convient",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "plans": [
+      {
+        "name": "Débutant",
+        "price": "5,00 €",
+        "period": "/mois",
+        "features": ["2 Utilisateurs", "5 Projets", "Support Limité", "Gestion des Données"]
+      },
+      {
+        "name": "Premium",
+        "price": "25,00 €",
+        "period": "/mois",
+        "features": ["10 Utilisateurs", "25 Projets", "Support Prioritaire", "Gestion des Données"]
+      },
+      {
+        "name": "Plan Premium",
+        "price": "40,00 €",
+        "period": "/mois",
+        "features": ["Utilisateurs Illimités", "Projets Illimités", "Support Privé", "Gestion Privée"]
+      }
+    ],
+    "getStarted": "Commencer"
+  },
+
+  "pricingTwo": {
+    "heading": "Pas de Coûts Cachés. Choisissez un Plan",
+    "plans": [
+      { "name": "Standard", "price": "0,96 €", "period": "/mois" },
+      { "name": "Business", "price": "1,00 €", "period": "/mois" },
+      { "name": "Agence", "price": "1,50 €", "period": "/mois" }
+    ],
+    "getStarted": "Commencer"
+  },
+
+  "footer": {
+    "heading": "Contactez-nous",
+    "subheading": "Allumons votre vision",
+    "sectionLabel": "Général",
+    "addresses": [
+      "Coupure 88a, 9000 Gand",
+      "Shelton St. Londres, Angleterre"
+    ],
+    "phone": "+1 786 6736887",
+    "email": "info@molotovfilms.be",
+    "contactUs": "Contactez-nous",
+    "meetTheArtist": "Rencontrer l'Artiste",
+    "socialMediaLabel": "Réseaux Sociaux",
+    "copyright": "© 2026 Molotov Films. Conçu par Dprime Solutions."
+  },
+
+  "footerTwo": {
+    "heading": "Envie de Créer Quelque Chose de Grand Ensemble ?",
+    "subheading": "Contactez-nous..",
+    "email": "hello@molotovfilms.com",
+    "phone": "+1 707 797 0462",
+    "newsletterHeading": "Newsletter",
+    "newsletterPlaceholder": "Entrez votre email",
+    "newsletterButton": "S'abonner",
+    "quickLinksHeading": "Liens Rapides",
+    "quickLinks": ["Accueil", "Contact", "Service", "À propos"],
+    "supportHeading": "Support",
+    "supportLinks": ["FAQ", "Politique de Confidentialité", "Conditions Générales"],
+    "productsHeading": "Produits",
+    "productLinks": ["Fonctionnalités", "Tarifs", "Équipe"],
+    "copyright": "2024 © Tous droits réservés par Molotov Films.",
+    "privacyPolicy": "Politique de Confidentialité",
+    "termsAndConditions": "Conditions Générales"
+  },
+
+  "innerFooter": {
+    "email": "hello@infosara.com",
+    "copyright": "2024 © Tous droits réservés par Sara."
+  },
+
+  "aboutPage": {
+    "heroHeading": "Nous Créons des Films, Pubs & Contenu Social qui ont de l'Impact",
+    "pageTitle": "À propos",
+    "loadingFromCache": "Chargement depuis le cache...",
+    "loading": "Chargement...",
+    "preparingExperience": "Préparation de votre expérience",
+    "aboutUs": "Chargement de la section À propos...",
+    "storytelling": "Chargement de la section Narration...",
+    "workingProcess": "Chargement du Processus de travail...",
+    "videoComparison": "Chargement de la Comparaison vidéo...",
+    "videoFallback": "Votre navigateur ne prend pas en charge la balise vidéo."
+  },
+
+  "servicesPage": {
+    "heroHeading": "Tous les Médias. Toutes les Histoires. Une Maison de Production.",
+    "heroSubheading": "Nous créons tout — films, vidéos et tout média. Une maison de production conçue pour transformer la vision en histoires inoubliables.",
+    "pageTitle": "Nos Services",
+    "loadingFromCache": "Chargement depuis le cache...",
+    "loading": "Chargement...",
+    "preparingExperience": "Préparation de votre expérience",
+    "services": "Chargement de la section Services...",
+    "testimonials": "Chargement de la section Témoignages...",
+    "blog": "Chargement de la section Blog...",
+    "videoFallback": "Votre navigateur ne prend pas en charge la balise vidéo."
+  },
+
+  "serviceDetailsPage": {
+    "breadcrumbs": ["Accueil", "Détails du Service"],
+    "heroTitle": "Détails du Service",
+    "heroSubtitle": "Découvrez notre gamme complète de services de production cinématographique et vidéo",
+    "loadingFromCache": "Chargement depuis le cache...",
+    "loading": "Chargement...",
+    "preparingExperience": "Préparation de votre expérience",
+    "loadingVideo": "Chargement de la vidéo...",
+    "videoUnavailable": "Vidéo indisponible",
+    "videoFallback": "Votre navigateur ne prend pas en charge la balise vidéo.",
+    "mainHeading": "POP. CUT. ROLL. REPEAT.",
+    "mainSubheading": "De grandes idées. Une exécution plus brillante. Des films qui crient.",
+    "descriptionP1": "Nous sommes une maison de production qui peint avec la lumière et le son — militante sur le métier, téméraire face à l'ennui.",
+    "servicePhases": ["Pré-Production", "Production", "Post-Production"],
+    "descriptionP2": "Imaginez une bande dessinée où chaque case est une affiche de film. C'est notre approche : audace théâtrale, discipline cinématographique. Nous amenons les projets des griffonnages sur une serviette aux masters prêts pour les festivals — avec des scénaristes, des repéreurs, des équipes et des mixeurs qui aiment le travail étrange autant que le propre.",
+    "ourGoal": {
+      "heading": "Notre Objectif",
+      "items": [
+        "Faire exploser la médiocrité avec des films, reels et courts métrages qui s'enflamment.",
+        "Créer du cinéma qu'on ne peut pas scroller.",
+        "Transformer les idées en armes — précises, audacieuses, inoubliables.",
+        "Rester brut, rester cinématographique, rester dangereux."
+      ]
+    },
+    "theChallenge": {
+      "heading": "Le Défi",
+      "text": "L'industrie fonctionne sur des paris sûrs, des tendances vides et une production rapide. Notre défi est de résister au fade, de sculpter la beauté dans le chaos, et de faire frapper chaque image plus fort que la précédente. Nous ne nous adaptons pas aux plateformes — nous les plions. Nous ne suivons pas les délais — nous les transformons en armes. Chez Molotov, chaque projet est une frappe — calculée, explosive, et construite pour marquer."
+    },
+    "successRatio": {
+      "heading": "Taux de Réussite",
+      "description": "Nous sommes reconnus pour notre taux de réussite.",
+      "value": "91%",
+      "link": "Détails"
+    },
+    "failureRatio": {
+      "heading": "Taux d'Échec",
+      "description": "Nous avons un très faible taux d'échec dans notre historique.",
+      "value": "9%",
+      "link": "Détails"
+    },
+    "easyProcess": {
+      "heading": "🎬 Processus Simple, Grand Impact",
+      "description": "Nous gardons les choses nettes, rapides et cinématographiques. Pas de réunions interminables, pas de paroles vides — juste du feu à l'écran.",
+      "steps": [
+        {
+          "title": "Trouver l'Étincelle",
+          "description": "Chaque histoire a un pouls. Nous creusons jusqu'à le capturer — le problème, l'ambiance, l'accroche."
+        },
+        {
+          "title": "Façonner la Vision",
+          "description": "Recherche, remix et affûtage. Culture pop, histoire, bruit de rue — tout nourrit le cadre."
+        },
+        {
+          "title": "Allumer la Mèche",
+          "description": "Le planifier, le tourner, le monter. Rapide quand il le faut, intemporel quand ça compte."
+        }
+      ]
+    },
+    "sidebar": {
+      "pitchPackage": {
+        "heading": "Le Package de Présentation",
+        "items": [
+          { "label": "Étincelle d'Idée", "description": "Concept & Développement" },
+          { "label": "Esquisse de l'Histoire", "description": "Pré-production & Histoire" },
+          { "label": "Visages & Voix", "description": "Casting & Talents" },
+          { "label": "Chasse aux Décors", "description": "Lieux & Permis" },
+          { "label": "Cadre & Flamme", "description": "Cinématographie & Éclairage" },
+          { "label": "Check Sonore", "description": "Audio de Production" },
+          { "label": "Style & Apparence", "description": "Design & Garde-robe" },
+          { "label": "Jour d'Action", "description": "Production Complète" },
+          { "label": "Coupe & Flux", "description": "Montage" },
+          { "label": "Éclat de Couleur", "description": "Étalonnage & Finition" },
+          { "label": "Magie du Mouvement", "description": "VFX & Graphiques" },
+          { "label": "Rush Sonore", "description": "Sound Design & Musique" },
+          { "label": "Lancement Hype", "description": "Marketing & Sortie" },
+          { "label": "Pack Festival", "description": "DCPs & Distribution" }
+        ]
+      },
+      "tagsHeading": "Tags",
+      "tags": ["Cinéma", "Film", "Production", "Scénario", "Marketing", "Reels", "Réseaux sociaux", "Films", "Pubs"]
+    }
+  },
+
+  "postProductionPage": {
+    "heroHeading": "CHAQUE IMAGE COMPTE.",
+    "heroBadge": "✨ Qualité Primée",
+    "heroSubheading": "Post-Production Cinématographique",
+    "heroDescription": "Les rushes sont du potentiel. Nous sommes les alchimistes qui les transforment. Notre post-production n'est pas une phase — c'est une arme. Nous affinons, colorons, mixons et animons jusqu'à ce que chaque image soit une frappe calculée qui commande l'attention.",
+    "loadingShowcase": "🎬 Chargement de la Vitrine...",
+    "services": [
+      {
+        "title": "Montage Vidéo Avancé",
+        "description": "Un montage professionnel qui transforme les rushes en récits captivants.",
+        "features": ["Montage multi-caméra", "Transitions avancées", "Flux narratif", "Optimisation du rythme"]
+      },
+      {
+        "title": "Étalonnage & Correction des Couleurs",
+        "description": "Un travail de couleur cinématographique qui définit l'ambiance de chaque image.",
+        "features": ["Correction colorimétrique", "Étalonnage cinéma", "Amélioration de l'ambiance", "Cohérence de marque"]
+      },
+      {
+        "title": "Sound Design & Mixage",
+        "description": "Une excellence audio qui apporte profondeur et émotion à votre histoire visuelle.",
+        "features": ["Nettoyage audio", "Effets sonores", "Mixage musical", "Amélioration vocale"]
+      },
+      {
+        "title": "Motion Graphics & VFX",
+        "description": "Des effets visuels et animations dynamiques qui élèvent votre contenu.",
+        "features": ["Animation 2D/3D", "Effets visuels", "Séquences de titres", "Intégration de marque"]
+      }
+    ],
+    "contentRepurposing": {
+      "heading": "UN TOURNAGE. UNE CAMPAGNE ENTIÈRE.",
+      "projects": [
+        {
+          "input": "Documentaire Long Format",
+          "output": "Le Moteur Narratif 8x",
+          "multiplier": "Contenu 8x",
+          "outputs": ["Bande-annonce (90s)", "Teasers Sociaux (3x 30s)", "Extraits Podcast (2x)", "Galerie Photo", "Reel en Coulisses"]
+        },
+        {
+          "input": "Vidéo de Lancement Produit",
+          "output": "Le Blitz Omnicanal 12x",
+          "multiplier": "Contenu 12x",
+          "outputs": ["Vidéo Principale", "Reels Instagram (4x)", "YouTube Shorts (3x)", "GIFs Email (2x)", "Suite de Miniatures", "Séquence Stories"]
+        },
+        {
+          "input": "Session d'Interview",
+          "output": "Le Constructeur d'Autorité 6x",
+          "multiplier": "Contenu 6x",
+          "outputs": ["Montage Interview Complet", "Cartes de Citations (3x)", "Clips Audio (2x)", "Transcription Blog"]
+        }
+      ]
+    },
+    "workflow": {
+      "heading": "Notre Protocole Stratégique",
+      "phases": [
+        { "label": "RÉCEPTION", "title": "Le Plan de Mission", "description": "Nous disséquons vos rushes, brief et objectifs." },
+        { "label": "MONTAGE", "title": "Assemblage Tactique", "description": "Nos monteurs construisent la structure narrative." },
+        { "label": "FINITION", "title": "Le Multiplicateur de Force / Finition Visuelle & Audio", "description": "Couleur, son et motion graphics sont appliqués." },
+        { "label": "RÉUTILISATION", "title": "Déploiement Stratégique", "description": "Le contenu est adapté pour chaque plateforme." }
+      ]
+    }
+  },
+
+  "scriptWritingPage": {
+    "breadcrumbs": ["Accueil", "Services", "Écriture de Scénarios"],
+    "heroHeading": "UNE LIGNE QUI TOUCHE",
+    "heroSubheading": "Nous ne vendons pas des histoires — nous déclenchons des petites obsessions. Des films que les gens gardent, partagent et dont ils parlent à 2h du matin.",
+    "mainHeading": "ÉCRIRE. CHANTER. FRAPPER.",
+    "mainSubheading": "Des histoires qui séduisent l'œil et refusent de partir.",
+    "creativeProcess": {
+      "heading": "LE PROCESSUS ADORABLEMENT ÉTRANGE",
+      "steps": [
+        {
+          "title": "Étincelle d'Idée",
+          "subtitle": "La Petite Trahison",
+          "description": "Chaque grand film commence par une ligne griffonnée sur quelque chose de jetable — une serviette, une fenêtre embuée, un PV de stationnement. Nous chassons cette pensée impossible à ignorer — l'accroche dont vous ne pouvez pas vous défaire, le gag visuel qui se rejoue dans votre tête au dîner."
+        },
+        {
+          "title": "Architecture de l'Histoire",
+          "subtitle": "Le Squelette en Costume",
+          "description": "Une bonne vidéo a besoin d'os. De vrais os. Nous construisons la structure : des introductions qui chatouillent, des rebondissements qui retournent l'estomac (doucement), et des fins qui atterrissent comme une longue inspiration après un plongeon."
+        },
+        {
+          "title": "Art du Scénario",
+          "subtitle": "Des Mots qui Portent des Visages",
+          "description": "Le dialogue devrait sonner comme votre ami intelligent — celui qui cite Tarantino et écoute quand même vos problèmes. Nous écrivons des répliques qui sonnent humaines, spécifiques, et un peu trop réelles."
+        },
+        {
+          "title": "Plan Visuel",
+          "subtitle": "Des Storyboards qui Provoquent",
+          "description": "Des cadres qui aiment la composition et manquent de respect aux clichés. Des listes de plans qui se lisent comme des moodboards avec de l'ambition."
+        }
+      ]
+    },
+    "descriptionParagraphs": [
+      "Une vidéo forte commence par une idée encore plus forte — et l'idée commence par des mots. Notre équipe d'écriture ne rédige pas des scénarios ; nous écrivons des sorts.",
+      "Des scripts commerciaux aux structures documentaires, nous travaillons chaque mot avec du rythme, de l'intention et une forme tranquille de rébellion."
+    ],
+    "servicesList": {
+      "heading": "CE QUE VOUS OBTENEZ (en plus chaleureux)",
+      "items": [
+        "Développement de concepts originaux et défendables",
+        "Scripts : commerciaux, de marque, courts, documentaires — tous avec de la personnalité",
+        "Des arcs de personnages avec des secrets et des offres de rédemption",
+        "Traitements visuels, plans de rythme, notes VO, et ajustements festival"
+      ]
+    },
+    "sidebar": {
+      "quote": "Nous esquissons des rêves sur des serviettes, les affûtons en petits dispositifs qui chantent à l'écran...",
+      "quoteAttribution": "— Notre Philosophie Créative",
+      "categoriesHeading": "SAVEURS DE SCÉNARIOS (choisissez une ambiance)",
+      "categories": [
+        "Commercial → rusé et magnétique",
+        "Documentaire → humain et perspicace",
+        "Court métrage → charme concentré",
+        "Social → micro-empathie",
+        "Corporate → narration culturelle",
+        "Éducatif → intelligence ludique"
+      ]
+    }
+  },
+
+  "socialMediaPage": {
+    "heroHeading": "SOCIAL, SURALIMENTÉ.",
+    "heroDescription": "Arrêtez de poster dans le vide. Nous ne gérons pas les réseaux sociaux — nous les transformons en arme de croissance.",
+    "services": [
+      {
+        "title": "Stratégie de Contenu",
+        "description": "Nous construisons la feuille de route",
+        "features": ["Intelligence d'Audience", "Calendriers de Contenu qui Convertissent", "Benchmarking de Performance"]
+      },
+      {
+        "title": "Production Créative",
+        "description": "Arrêter le scroll est le minimum.",
+        "features": ["Design Visuel Disruptif", "Rédaction à Fort Impact", "Contenu Vidéo Viral"]
+      },
+      {
+        "title": "Gestion de Communauté",
+        "description": "C'est là que les marques se construisent vraiment.",
+        "features": ["Engagement Proactif en Temps Réel", "Gestion de Crise & Réputation", "Construction de Tribu & Communauté"]
+      },
+      {
+        "title": "Analytique & Optimisation",
+        "description": "Les données sont notre centre de commande.",
+        "features": ["Suivi de Performance Avancé", "Tests A/B Agressifs", "Analyse ROI Claire"]
+      }
+    ],
+    "ctaHeading": "DES SCROLLEURS AUX CLIENTS.",
+    "platformHeading": "NOUS PARLONS COURAMMENT INTERNET.",
+    "checklist": [
+      "Maîtrise Native des Plateformes",
+      "Vélocité en Temps Réel",
+      "Stratégie Guidée par l'Intelligence"
+    ],
+    "arsenalHeading": "Votre Arsenal pour la Domination Numérique",
+    "processHeading": "Le Plan de la Victoire",
+    "processSteps": [
+      "🎯 Découverte Stratégique",
+      "🎨 Ignition Créative",
+      "📈 Exécuter & Amplifier"
+    ],
+    "loadingShowcase": "📱 Chargement de la vitrine...",
+    "loadingPortfolio": "📱 Chargement du portfolio..."
+  },
+
+  "socialMediaPerformancePage": {
+    "heroHeading": "RÉSEAUX SOCIAUX, SURALIMENTÉS.",
+    "metrics": [
+      { "label": "Taux de Clics", "value": "8,7%" },
+      { "label": "Taux de Conversion", "value": "24,3%" },
+      { "label": "Retour sur Investissement", "value": "340%" },
+      { "label": "Score d'Engagement", "value": "92,1%" }
+    ],
+    "liveMetricsLabel": "Métriques de Performance en Direct",
+    "services": [
+      {
+        "title": "Intelligence Sociale Stratégique",
+        "features": ["Analyse approfondie de l'audience", "Veille concurrentielle", "Prévision des tendances"]
+      },
+      {
+        "title": "Création de Contenu Haute Performance",
+        "features": ["Visuels qui arrêtent le scroll", "Rédaction axée conversion", "Formats natifs de plateforme"]
+      },
+      {
+        "title": "Analytique & Optimisation de Performance",
+        "features": ["Tableaux de bord en temps réel", "Frameworks de tests A/B", "Suivi du ROI"]
+      },
+      {
+        "title": "Gestion Communauté & Conversion",
+        "features": ["Engagement 24/7", "Tunnels de nurturing", "Gestion de la réputation"]
+      }
+    ],
+    "ctaHeading": "DES SCROLLEURS AUX CLIENTS.",
+    "abTesting": {
+      "heading": "Darwinisme Créatif : Seul le Contenu le Plus Fort Survit.",
+      "tests": [
+        {
+          "title": "Test de Variation d'Accroche",
+          "variantA": "Accroche Question",
+          "variantB": "Accroche Affirmation",
+          "improvement": "40% de CTR en plus"
+        },
+        {
+          "title": "Test du Bouton CTA",
+          "variantA": "En savoir plus",
+          "variantB": "Commencer",
+          "improvement": "78% de conversions en plus"
+        },
+        {
+          "title": "Test de Format de Contenu",
+          "variantA": "Post Statique",
+          "variantB": "Contenu Vidéo",
+          "improvement": "57% d'engagement en plus"
+        }
+      ],
+      "winnerLabel": "Gagnant !"
+    },
+    "processHeading": "Le Cycle de l'Intelligence",
+    "processSteps": [
+      {
+        "label": "🎯 Découverte Stratégique",
+        "description": "Nous n'apprenons pas seulement votre marque ; nous décodons son ADN. Nous nous immergeons dans votre monde, votre audience et le paysage concurrentiel pour découvrir votre avantage unique."
+      },
+      {
+        "label": "🎨 Ignition Créative & Tests",
+        "description": "C'est là que la stratégie devient de la magie. Notre équipe créative allume les grandes idées, produisant de multiples variations de contenu qui arrête le scroll, parfaitement aligné avec votre voix de marque."
+      },
+      {
+        "label": "📈 Exécuter, Mesurer & Amplifier",
+        "description": "Nous lançons, écoutons et apprenons — vite. Nous surveillons les performances en temps réel, engageons votre communauté et optimisons continuellement sur les données."
+      }
+    ],
+    "loadingShowcase": "📱 Chargement de la vitrine..."
+  },
+
+  "performanceAdsPage": {
+    "heroHeading": "La Performance n'est pas une Opinion.",
+    "heroDescription": "Nous ne devinons pas — nous ingénierons. Chaque campagne vidéo que nous lançons est une machine haute performance, construite sur les données, alimentée par une stratégie créative et conçue pour livrer des résultats mesurables et explosifs.",
+    "metrics": [
+      { "label": "Taux de Clics", "value": "8,7%" },
+      { "label": "Taux de Conversion", "value": "24,3%" },
+      { "label": "Retour sur Investissement", "value": "340%" },
+      { "label": "Score d'Engagement", "value": "92,1%" }
+    ],
+    "liveMetricsLabel": "Métriques de Performance en Direct",
+    "loadingData": "📊 Chargement des Données de Performance...",
+    "roiAchieved": "+340% de ROI Atteint",
+    "abTesting": {
+      "heading": "Darwinisme Créatif : Seule la Pub la Plus Forte Survit.",
+      "description": "Nous ne créons pas simplement des pubs ; nous élevons des champions. Par des tests A/B rigoureux, nous mettons les variations créatives en compétition dans un environnement en direct. Seuls les plus forts survivent.",
+      "tests": [
+        {
+          "title": "Test de Variation d'Accroche",
+          "variantA": "Accroche Question",
+          "variantB": "Accroche Affirmation",
+          "improvement": "40% de CTR en plus"
+        },
+        {
+          "title": "Test du Bouton CTA",
+          "variantA": "En savoir plus",
+          "variantB": "Commencer",
+          "improvement": "78% de conversions en plus"
+        },
+        {
+          "title": "Test de Durée Vidéo",
+          "variantA": "Pub de 30 Secondes",
+          "variantB": "Pub de 15 Secondes",
+          "improvement": "57% de complétion en plus"
+        }
+      ],
+      "winnerLabel": "Gagnant !"
+    },
+    "processHeading": "Le Cycle de l'Intelligence",
+    "processSteps": [
+      { "number": "1.", "title": "Identifier le Terrain" },
+      { "number": "2.", "title": "Assembler les Candidats" },
+      { "number": "3.", "title": "Le Test en Conditions Réelles" },
+      { "number": "4.", "title": "Décoder les Résultats" },
+      { "number": "5.", "title": "Déployer le Champion" }
+    ]
+  },
+
+  "featuresPage": {
+    "cinemaHeading": "DU CINÉMA QUI ÉTINCELLE, PUIS QUI PIQUE",
+    "brandStories": "DES HISTOIRES DE MARQUE QUI MORDENT",
+    "whatWeCreate": "Ce que Nous Créons",
+    "featuredFilms": "Films en Vedette",
+    "nowPlaying": "À L'AFFICHE",
+    "whyChoose": "Pourquoi Choisir Notre Approche Cinématographique",
+    "categories": [
+      { "title": "Films de Marque", "description": "Élevez votre marque avec une narration cinématographique." },
+      { "title": "Documentaires", "description": "Capturez la vérité avec une vision artistique." },
+      { "title": "Longs Métrages", "description": "Productions cinématographiques complètes." }
+    ],
+    "whyChooseItems": [
+      { "title": "Narration de Précision", "description": "Chaque image sert le récit." },
+      { "title": "Efficacité Créative", "description": "Impact maximum, ressources optimales." },
+      { "title": "Impact Authentique", "description": "Des histoires qui résonnent et perdurent." }
+    ],
+    "loadingShowcase": "🎬 Chargement de la vitrine...",
+    "videoLoadError": "Erreur de Chargement Vidéo",
+    "loadingVideo": "Chargement de la Vidéo...",
+    "selectFilm": "Sélectionnez un film à prévisualiser",
+    "loading": "⏳ Chargement...",
+    "imageError": "❌ Erreur d'Image"
+  },
+
+  "webDevelopmentPage": {
+    "heroBadge": "🚀 Excellence en Développement Web",
+    "heroTitle": "Développement Web",
+    "heroDescription": "Nous architecturons, concevons et construisons des applications web robustes — rapides, sécurisées et évolutives. Des frontends accrocheurs aux backends blindés, nous livrons des produits qui convertissent, fidélisent et croissent.",
+    "metrics": [
+      { "label": "Score de Performance", "value": "98%" },
+      { "label": "Note de Sécurité", "value": "100%" },
+      { "label": "Indice d'Évolutivité", "value": "95%" },
+      { "label": "Boost de Conversion Moyen", "value": "340%" }
+    ],
+    "developmentServicesHeading": "Nos Services de Développement",
+    "developmentServicesSubheading": "Des solutions de développement web à spectre complet adaptées à vos besoins",
+    "services": {
+      "frontend": {
+        "title": "Développement Frontend",
+        "features": ["React & Frameworks Modernes", "Design Responsive", "Optimisation de Performance", "Architecture SEO-Ready"]
+      },
+      "backend": {
+        "title": "Développement Backend",
+        "features": ["Développement API", "Conception de Base de Données", "Systèmes d'Authentification", "Intégration Cloud"]
+      },
+      "fullstack": {
+        "title": "Solutions Full-Stack",
+        "features": ["Applications Web Complètes", "Fonctionnalités Temps Réel", "Intégration de Paiement", "Tableaux de Bord Admin"]
+      },
+      "ecommerce": {
+        "title": "Plateformes E-commerce",
+        "features": ["Paniers Personnalisés", "Gestion d'Inventaire", "Passerelles de Paiement", "Intégration d'Analytique"]
+      }
+    },
+    "developmentProcessHeading": "Notre Processus de Développement",
+    "developmentProcessSubheading": "Une méthodologie éprouvée qui livre des résultats dans les temps et le budget",
+    "processSteps": [
+      { "step": "1", "title": "Découverte & Planification", "description": "Définir les objectifs, contraintes et mesures de succès. Nous analysons vos besoins et créons une feuille de route détaillée." },
+      { "step": "2", "title": "Design & Architecture", "description": "Concevoir des systèmes évolutifs et des flux de données. Nous créons des wireframes, maquettes et spécifications techniques." },
+      { "step": "3", "title": "Développement & Tests", "description": "Livraison itérative avec QA rigoureuse. Nous construisons, testons et affinons votre application avec un feedback continu." },
+      { "step": "4", "title": "Lancement & Optimisation", "description": "Déployer, surveiller, optimiser et itérer. Nous assurons un lancement fluide et une optimisation continue." }
+    ],
+    "portfolioHeading": "Notre Portfolio de Projets",
+    "portfolioSubheading": "Explorez notre gamme diversifiée de projets de développement web",
+    "portfolioNote": "⚠️ Note : Les tableaux de bord admin nécessitent les identifiants fournis sous chaque projet",
+    "projectLabels": {
+      "techStack": "Stack Technique",
+      "loginCredentials": "🔐 Identifiants de Connexion",
+      "email": "Email :",
+      "password": "Mot de passe :",
+      "visitProject": "Visiter le Projet"
+    }
+  },
+
+  "contactUsPage": {
+    "heroHeading": "Contactez-nous",
+    "heroSubheading": "Contactez notre équipe pour toute question sur nos services de production cinématographique.",
+    "selectedDate": "📅 Date Sélectionnée :",
+    "selectDateButton": "📅 Choisir une Date",
+    "selectDateHint": "Cliquez pour choisir une date de rendez-vous préférée depuis notre calendrier",
+    "formHeading": "Envoyez-nous un Message",
+    "fullName": "Nom Complet *",
+    "fullNamePlaceholder": "Votre Nom Complet",
+    "emailLabel": "Adresse Email *",
+    "emailPlaceholder": "votre.email@exemple.com",
+    "phoneLabel": "Numéro de Téléphone (optionnel)",
+    "phonePlaceholder": "+33 1 23 45 67 89",
+    "subjectLabel": "Sujet *",
+    "subjectPlaceholder": "Demande de projet, consultation, etc.",
+    "messageLabel": "Parlez-nous de votre projet *",
+    "messagePlaceholder": "Parlez-nous de votre projet, budget, délai et exigences spécifiques...",
+    "submitButton": "Envoyer le Message",
+    "submitting": "Envoi en cours...",
+    "requiredFields": "❌ L'email, le nom et le sujet sont requis",
+    "success": "✅ Votre message a été envoyé avec succès ! Nous vous contacterons bientôt.",
+    "failure": "❌ Échec de l'envoi. Veuillez réessayer.",
+    "connectionError": "❌ Erreur de connexion. Veuillez vérifier votre internet et réessayer."
+  },
+
+  "blogDetailsPage": {
+    "breadcrumbs": ["Accueil", "Détails du Blog"],
+    "postTitle": "3 Façons de se Mentir sur Votre Nouvelle Relation",
+    "postAuthor": "Publié par Sara Samir",
+    "postCategory": "Histoires, Médias",
+    "readTime": "5 min de lecture",
+    "blockquote": "Des solutions rapides couplées à une performance extraordinaire — une recommandation géniale.",
+    "easyProcess": "Processus Simple pour le Service",
+    "processSteps": [
+      "Trouver le problème en premier",
+      "Rechercher et trouver la solution",
+      "Finaliser la solution & l'appliquer."
+    ],
+    "conclusion": "Conclusion",
+    "tags": ["SEO,", "Marketing Digital,", "Service"],
+    "shareLabel": "Partager :",
+    "commentsHeading": "2 Commentaires",
+    "replyButton": "Répondre",
+    "leaveComment": "Laisser un Commentaire",
+    "commentSubheading": "publiez votre commentaire ou inscrivez-vous si vous n'avez pas de compte.",
+    "nameLabel": "Nom*",
+    "namePlaceholder": "Onam Sarker",
+    "emailLabel": "Email*",
+    "emailPlaceholder": "onamsarker@gmail.com",
+    "commentLabel": "Votre Commentaire",
+    "commentPlaceholder": "Votre Commentaire",
+    "postComment": "Publier le Commentaire",
+    "sidebar": {
+      "searchHeading": "Rechercher",
+      "searchPlaceholder": "Entrez un Nom",
+      "recentPostHeading": "Articles Récents",
+      "categoriesHeading": "Catégories",
+      "categories": [
+        "Service Digital (12)",
+        "Service IT (20)",
+        "Marketing SEO (65)",
+        "Service Digital (65)",
+        "Service Digital (65)"
+      ],
+      "contactForm": {
+        "heading": "Contactez-nous",
+        "description": "Ingénierie collaborative d'impératifs prospectifs avec une technologie transparente.",
+        "nameField": "Entrez un Nom",
+        "emailField": "Email",
+        "messageField": "Écrivez un Message",
+        "submitButton": "Contacter Maintenant"
+      },
+      "tagsHeading": "Tags",
+      "tags": ["Cinéma", "Film", "Production", "Scénario", "Marketing", "Reels", "Réseaux sociaux", "Films", "Pubs"]
+    }
+  },
+
+  "blogGridPage": {
+    "breadcrumbs": ["Accueil", "Grille Blog"]
+  },
+
+  "blogListViewPage": {
+    "breadcrumbs": ["Accueil", "Liste Blog"],
+    "tags": ["Système de Service", "Digital", "Marketing", "Classement SEO", "Outils de Service", "SEO"]
+  },
+
+  "error404": {
+    "heading": "Oups ! vous êtes au mauvais endroit.",
+    "description": "Vous ne trouvez pas ce que vous cherchez ? Prenez un moment pour faire une recherche ou retournez à la page d'accueil.",
+    "button": "Retour à l'accueil"
+  },
+
+  "faqPage": {
+    "breadcrumbs": ["Accueil", "FAQ"]
+  },
+
+  "pricingPage": {
+    "breadcrumbs": ["Accueil", "Nos Tarifs"]
+  },
+
+  "testimonialPage": {
+    "breadcrumbs": ["Accueil", "Témoignage"],
+    "heading": "Ne Nous Faites pas Confiance, Faites Confiance à nos Clients",
+    "testimonialText": "Service efficace et convivial, nous a parfaitement guidés. Satisfaits de notre nouveau chez-nous. Merci !"
+  },
+
+  "teamMemberPage": {
+    "breadcrumbs": ["Accueil", "Membre de l'Équipe"],
+    "altText": "Membre de l'Équipe"
+  },
+
+  "singleMemberPage": {
+    "breadcrumbs": ["Accueil", "Membre"],
+    "overviewHeading": "Aperçu",
+    "blockquote": "Des solutions rapides couplées à une performance extraordinaire — une recommandation géniale.",
+    "blockquoteAuthor": "Sara Samir",
+    "easyProcessHeading": "Processus Simple pour le Service",
+    "processSteps": [
+      "Trouver le problème en premier",
+      "Rechercher et trouver la solution",
+      "Finaliser la solution & l'appliquer."
+    ],
+    "sidebar": {
+      "searchHeading": "Rechercher",
+      "searchPlaceholder": "Entrez un Nom",
+      "contactForm": {
+        "heading": "Contactez-nous",
+        "nameField": "Entrez un Nom",
+        "emailField": "Email",
+        "messageField": "Écrivez un Message",
+        "submitButton": "Contacter Maintenant"
+      },
+      "tagsHeading": "Tags",
+      "tags": ["Système de Service", "Digital", "Marketing", "Classement SEO", "Outils de Service", "SEO"]
+    }
+  },
+
+  "languageSwitcher": {
+    "en": "English",
+    "fr": "Français",
+    "nl": "Belgisch"
+  },
+
+  "navbarTwo": {
+    "callUs": "Appelez-nous",
+    "phone": "+1 707 797 0462",
+    "offer": "Offre en cours jusqu'à vendredi 1,99 €/mois."
+  }
+}

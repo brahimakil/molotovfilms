@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 
 import aboutThumb from "../assets/images/about-3thumb.webp";
@@ -14,6 +15,7 @@ import textPos3 from "../assets/images/hero-union.png";
 import checkIcon from "../assets/images/check-3.svg";
 
 const AboutUsThree = () => {
+  const { t } = useTranslation();
   return (
     <section className="about_us about_us--3">
       <div className="container">
@@ -53,7 +55,7 @@ const AboutUsThree = () => {
 
             <div className="about_head">
               <h2 className="main_titel_three">
-                We offer Real-time <span> Business Grow </span> Solutions
+                {t('aboutUs.heading')}
               </h2>
 
               <p className="text_lg">
@@ -64,24 +66,14 @@ const AboutUsThree = () => {
             </div>
 
             <ul className="about_list">
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-                Various analysis options.
-              </li>
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-                Page Load (time, size, number of requests).
-              </li>
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-                Big data analysis.
-              </li>
+              {t('aboutUs.listItems', { returnObjects: true }).map((item, index) => (
+                <li key={index}>
+                  <span>
+                    <img src={checkIcon} alt="icon" />
+                  </span>
+                  {item}
+                </li>
+              ))}
             </ul>
 
             <div className="about_us_btn">
@@ -89,7 +81,7 @@ const AboutUsThree = () => {
                 to="/about"
                 className="sara-btn__border sara-btn__border--3"
               >
-                Explore all
+                {t('aboutUs.button')}
               </Link>
             </div>
           </div>

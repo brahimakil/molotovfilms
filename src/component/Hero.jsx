@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase/config";
 
 const Hero = () => {
+  const { t } = useTranslation();
   const [videoUrl, setVideoUrl] = useState(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
@@ -144,11 +146,11 @@ const Hero = () => {
             preload="metadata"
           >
             <source src={videoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
+            {t('hero.videoFallback')}
           </video>
         ) : (
           <div style={heroStyles.loadingPlaceholder}>
-            <span>Loading...</span>
+            <span>{t('hero.loading')}</span>
           </div>
         )}
         
@@ -158,15 +160,15 @@ const Hero = () => {
         {/* Hero Content */}
         <div style={heroStyles.heroContent}>
           <h1 style={heroStyles.heroTitle}>
-            WE MAKE FILMS PEOPLE REMEMBER.
+            {t('hero.heading')}
           </h1>
           <p style={heroStyles.heroSubtitle}>
-            Studio-grade scale. Art-house nerve. Stories that refuse to vanish.
+            {t('hero.subheading')}
           </p>
           
           <div style={heroStyles.heroButtons}>
             <Link to="/contuct-us" className="sara-btn">
-              Get in Touch
+              {t('hero.getInTouch')}
             </Link>
             <Link 
               to="/services" 
@@ -187,7 +189,7 @@ const Hero = () => {
                 e.target.style.background = 'transparent';
               }}
             >
-              Learn more
+              {t('hero.learnMore')}
             </Link>
           </div>
         </div>

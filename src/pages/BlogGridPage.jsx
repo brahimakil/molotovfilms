@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import PageHeader from "../component/PageHeader";
 import BlogItem from "../component/BlogItem";
 import thumb1 from "../assets/images/blog-thumb-1.webp";
@@ -13,10 +14,11 @@ import b9 from "../assets/images/b-9.webp";
 import Pagination from "../component/Pagination";
 
 const BlogGridPage = () => {
+  const { t } = useTranslation();
   const breadcrumbs = [
-    { label: "Home", link: "/" },
+    { label: t('blogGridPage.breadcrumbs', { returnObjects: true })[0], link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
-    { label: "Blog Grid", link: null },
+    { label: t('blogGridPage.breadcrumbs', { returnObjects: true })[1], link: null },
   ];
 
   const blogData = [
@@ -33,7 +35,7 @@ const BlogGridPage = () => {
 
   return (
     <>
-      <PageHeader title="Blog Grid" breadcrumbs={breadcrumbs}></PageHeader>
+      <PageHeader title={t('blogGridPage.breadcrumbs', { returnObjects: true })[1]} breadcrumbs={breadcrumbs}></PageHeader>
       <BlogItem blogData={blogData} title="blog-grid"></BlogItem>
       <Pagination></Pagination>
     </>

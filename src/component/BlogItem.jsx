@@ -1,8 +1,10 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import profile from "../assets/images/profile-1.svg";
 
 const BlogItem = ({ blogData, title }) => {
+  const { t } = useTranslation();
   return (
     <section className={`blog ${title === "blog-grid" ? "pb-0" : ""}`}>
       <div className="container">
@@ -11,7 +13,7 @@ const BlogItem = ({ blogData, title }) => {
             <div className="row align-items-center mg_bottom_10px">
               <div className="col-8 col-md-8 col-xxl-6">
                 <div className="blog_head">
-                  <h2 className="main_titel">Related Blog</h2>
+                  <h2 className="main_titel">{t('blogItem.heading')}</h2>
                 </div>
               </div>
             </div> 
@@ -27,7 +29,7 @@ const BlogItem = ({ blogData, title }) => {
                     </div>
                     <div className="blog_item_thumb_over_txt">
                       <Link to="#">
-                        Posted by <span>Sara</span>
+                        {t('blogItem.postedBy')}
                       </Link>
                       <p>August 06, 2024</p>
                     </div>
@@ -46,7 +48,7 @@ const BlogItem = ({ blogData, title }) => {
                   </h3>
                   <div className="blog_btn_main">
                     <Link to="/blog-details" className="blog_btn">
-                      Read More
+                      {t('blogOne.readMore')}
                       <span>
                         <svg
                           width="14"

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import aboutThumb from "../assets/images/abouyus-thumb.webp";
 import pos1 from "../assets/images/about-pos-1.svg";
 import pos2 from "../assets/images/about-pos-2.svg";
@@ -10,6 +11,7 @@ import heroUnion from "../assets/images/hero-union.png";
 import checkIcon from "../assets/images/check.svg";
 
 const AboutUs = () => {
+  const { t } = useTranslation();
   return (
     <section className="about_us">
       <div className="container">
@@ -50,7 +52,7 @@ const AboutUs = () => {
 
             <div className="about_head">
               <h2 className="main_titel">
-                We offer Real-time <span> Business Grow </span> Solutions
+                {t('aboutUs.heading')}
               </h2>
 
               <p className="text_lg">
@@ -61,29 +63,19 @@ const AboutUs = () => {
             </div>
 
             <ul className="about_list">
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-                Various analysis options.
-              </li>
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-                Page Load (time, size, number of requests).
-              </li>
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-                Big data analysis.
-              </li>
+              {t('aboutUs.listItems', { returnObjects: true }).map((item, index) => (
+                <li key={index}>
+                  <span>
+                    <img src={checkIcon} alt="icon" />
+                  </span>
+                  {item}
+                </li>
+              ))}
             </ul>
 
             <div className="about_us_btn">
               <a href="/about" className="sara-btn__border">
-                Explore all
+                {t('aboutUs.button')}
               </a>
             </div>
           </div>

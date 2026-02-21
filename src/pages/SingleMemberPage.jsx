@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import PageHeader from "../component/PageHeader";
 import { Link } from "react-router-dom";
 
@@ -7,14 +8,15 @@ import team1Image from "../assets/images/team-1.webp";
 import profile1Svg from "../assets/images/profile-1.svg";
 
 const SingleMemberPage = () => {
+  const { t } = useTranslation();
   const breadcrumbs = [
-    { label: "Home", link: "/" },
+    { label: t('singleMemberPage.breadcrumbs', { returnObjects: true })[0], link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
-    { label: "Single Member", link: null },
+    { label: t('singleMemberPage.breadcrumbs', { returnObjects: true })[1], link: null },
   ];
   return (
     <>
-      <PageHeader title="Single Member" breadcrumbs={breadcrumbs}></PageHeader>
+      <PageHeader title={t('singleMemberPage.breadcrumbs', { returnObjects: true })[1]} breadcrumbs={breadcrumbs}></PageHeader>
       <section className="team_single">
         <div className="container">
           <div className="row">
@@ -194,7 +196,7 @@ const SingleMemberPage = () => {
               </div>
 
               <div className="s_text_main">
-                <h2>Overview</h2>
+                <h2>{t('singleMemberPage.overviewHeading')}</h2>
                 <p className="text_lg">
                   Before establishing Beratung in 2001, Mathew founded Silicon
                   Valley internet companies and later held management roles at
@@ -252,8 +254,7 @@ const SingleMemberPage = () => {
                 </span>
 
                 <h4>
-                  Quick solutions coupled with extraordinary performance—a
-                  recommendation that's great.
+                  {t('singleMemberPage.blockquote')}
                 </h4>
 
                 <div className="blog_list_view_item-inner">
@@ -263,14 +264,14 @@ const SingleMemberPage = () => {
                   <div className="blog_item_thumb_over_txt">
                     <Link to="#">
                       {" "}
-                      by <span>Sara Samir</span>
+                      by <span>{t('singleMemberPage.blockquoteAuthor')}</span>
                     </Link>
                   </div>
                 </div>
               </div>
 
               <div className="s_text_main">
-                <h2>Easy Process for Service</h2>
+                <h2>{t('singleMemberPage.easyProcessHeading')}</h2>
                 <p className="text_lg">
                   One touch of a red-hot stove is usually all we need to avoid
                   that kind of discomfort in quis elit future. The same Duis
@@ -295,7 +296,7 @@ const SingleMemberPage = () => {
                         ></path>
                       </svg>
                     </span>
-                    Find the problem first
+                    {t('singleMemberPage.processSteps', { returnObjects: true })[0]}
                   </li>
                   <li>
                     <span>
@@ -314,7 +315,7 @@ const SingleMemberPage = () => {
                         ></path>
                       </svg>
                     </span>
-                    Make research and find out the solution
+                    {t('singleMemberPage.processSteps', { returnObjects: true })[1]}
                   </li>
                   <li>
                     <span>
@@ -333,7 +334,7 @@ const SingleMemberPage = () => {
                         ></path>
                       </svg>
                     </span>
-                    Finalise the solution &amp; apply.
+                    {t('singleMemberPage.processSteps', { returnObjects: true })[2]}
                   </li>
                 </ul>
 
@@ -349,18 +350,18 @@ const SingleMemberPage = () => {
             <div className="col-xxl-4 col-lg-4 res_mt res_mt_two">
               <div className="sticky">
                 <div className="card_item">
-                  <h3>Search Anything</h3>
+                  <h3>{t('singleMemberPage.sidebar.searchHeading')}</h3>
 
                   <div className="sarch_item">
                     <label htmlFor="searchAnythingInput" className="sr-only">
-                      Search Anything
+                      {t('singleMemberPage.sidebar.searchHeading')}
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="searchAnythingInput"
                       name="searchAnythingInput"
-                      placeholder="Enter Name"
+                      placeholder={t('singleMemberPage.sidebar.searchPlaceholder')}
                     />
 
                     <button className="sarch_btn" type="submit">
@@ -385,7 +386,7 @@ const SingleMemberPage = () => {
                 </div>
 
                 <div className="card_item mg_top_30px">
-                  <h3>Contact Us</h3>
+                  <h3>{t('singleMemberPage.sidebar.contactForm.heading')}</h3>
                   <p className="text_lg">
                     Collaboratively engineer prospective imperatives with
                     transparent technology.
@@ -394,79 +395,57 @@ const SingleMemberPage = () => {
                   <form className="card_form">
                     <div className="card_form_item">
                       <label htmlFor="cardFormName" className="sr-only">
-                        Enter Name
+                        {t('singleMemberPage.sidebar.contactForm.nameField')}
                       </label>
                       <input
                         type="text"
                         className="form-control"
                         id="cardFormName"
                         name="cardFormName"
-                        placeholder="Enter Name"
+                        placeholder={t('singleMemberPage.sidebar.contactForm.nameField')}
                         autoComplete="name"
                       />
                     </div>
                     <div className="card_form_item">
                       <label htmlFor="cardFormEmail" className="sr-only">
-                        Email
+                        {t('singleMemberPage.sidebar.contactForm.emailField')}
                       </label>
                       <input
                         type="email"
                         className="form-control"
                         id="cardFormEmail"
                         name="cardFormEmail"
-                        placeholder="Email"
+                        placeholder={t('singleMemberPage.sidebar.contactForm.emailField')}
                         autoComplete="email"
                       />
                     </div>
                     <div className="card_form_item">
                       <label htmlFor="cardFormMessage" className="sr-only">
-                        Write Message
+                        {t('singleMemberPage.sidebar.contactForm.messageField')}
                       </label>
                       <textarea
                         className="form-control"
                         id="cardFormMessage"
                         name="cardFormMessage"
                         rows="5"
-                        placeholder="Write Message"
+                        placeholder={t('singleMemberPage.sidebar.contactForm.messageField')}
                       ></textarea>
                     </div>
 
                     <button type="submit" className="sara-btn">
-                      Contact Now
+                      {t('singleMemberPage.sidebar.contactForm.submitButton')}
                     </button>
                   </form>
                 </div>
 
                 <div className="card_item mg_top_30px">
-                  <h3>Tags</h3>
+                  <h3>{t('singleMemberPage.sidebar.tagsHeading')}</h3>
                   <div className="tag_item">
-                    <Link to="#" className="tag_btn">
-                      Service System
-                    </Link>
-                    <Link to="#" className="tag_btn">
-                      Digital
-                    </Link>
-                    <Link to="#" className="tag_btn">
-                      Marketing
-                    </Link>
-                    <Link to="#" className="tag_btn">
-                      SEO Ranking
-                    </Link>
-                    <Link to="#" className="tag_btn">
-                      Service Tools
-                    </Link>
-                    <Link to="#" className="tag_btn">
-                      SEO
-                    </Link>
-                    <Link to="#" className="tag_btn">
-                      Service System
-                    </Link>
-                    <Link to="#" className="tag_btn">
-                      Digital
-                    </Link>
-                    <Link to="#" className="tag_btn">
-                      Marketing
-                    </Link>
+                    {t('singleMemberPage.sidebar.tags', { returnObjects: true }).map((tag, index) => (
+                      <Link to="#" className="tag_btn" key={index}>
+                        {tag}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 // Import placeholder images
 import webImg1 from "../assets/images/s-1.webp";
@@ -7,6 +8,7 @@ import webImg2 from "../assets/images/s-2.webp";
 import webImg3 from "../assets/images/s-3.webp";
 
 const WebDevelopmentPage = () => {
+  const { t } = useTranslation();
   const [activeService, setActiveService] = useState('frontend');
   const [currentProject, setCurrentProject] = useState(0);
   const [animatedValues, setAnimatedValues] = useState({
@@ -21,41 +23,41 @@ const WebDevelopmentPage = () => {
   // Web development services data
   const services = {
     frontend: {
-      title: 'Frontend Development',
-      description: 'Modern, responsive interfaces that convert visitors into customers',
+      title: t('webDevelopmentPage.services.frontend.title'),
+      description: t('webDevelopmentPage.services.frontend.description'),
       icon: '🎨',
       color: '#3B82F6',
-      features: ['React & Modern Frameworks', 'Responsive Design', 'Performance Optimization', 'SEO-Ready Architecture']
+      features: t('webDevelopmentPage.services.frontend.features', { returnObjects: true })
     },
     backend: {
-      title: 'Backend Development',
-      description: 'Robust, scalable server architecture that powers your business',
+      title: t('webDevelopmentPage.services.backend.title'),
+      description: t('webDevelopmentPage.services.backend.description'),
       icon: '⚙️',
       color: '#10B981',
-      features: ['API Development', 'Database Design', 'Authentication Systems', 'Cloud Integration']
+      features: t('webDevelopmentPage.services.backend.features', { returnObjects: true })
     },
     fullstack: {
-      title: 'Full-Stack Solutions',
-      description: 'End-to-end web applications with seamless user experiences',
+      title: t('webDevelopmentPage.services.fullstack.title'),
+      description: t('webDevelopmentPage.services.fullstack.description'),
       icon: '🚀',
       color: '#F59E0B',
-      features: ['Complete Web Apps', 'Real-time Features', 'Payment Integration', 'Admin Dashboards']
+      features: t('webDevelopmentPage.services.fullstack.features', { returnObjects: true })
     },
     ecommerce: {
-      title: 'E-commerce Platforms',
-      description: 'High-converting online stores that drive sales and growth',
+      title: t('webDevelopmentPage.services.ecommerce.title'),
+      description: t('webDevelopmentPage.services.ecommerce.description'),
       icon: '🛒',
       color: '#8B5CF6',
-      features: ['Custom Shopping Carts', 'Inventory Management', 'Payment Gateways', 'Analytics Integration']
+      features: t('webDevelopmentPage.services.ecommerce.features', { returnObjects: true })
     }
   };
 
   // Performance metrics
   const metrics = {
-    performance: { value: 98, label: 'Performance Score', unit: '%', color: '#3B82F6' },
-    security: { value: 100, label: 'Security Rating', unit: '%', color: '#10B981' },
-    scalability: { value: 95, label: 'Scalability Index', unit: '%', color: '#F59E0B' },
-    conversion: { value: 340, label: 'Avg. Conversion Boost', unit: '%', color: '#8B5CF6' }
+    performance: { value: parseInt(t('webDevelopmentPage.metrics', { returnObjects: true })[0].value), label: t('webDevelopmentPage.metrics', { returnObjects: true })[0].label, unit: '%', color: '#3B82F6' },
+    security: { value: parseInt(t('webDevelopmentPage.metrics', { returnObjects: true })[1].value), label: t('webDevelopmentPage.metrics', { returnObjects: true })[1].label, unit: '%', color: '#10B981' },
+    scalability: { value: parseInt(t('webDevelopmentPage.metrics', { returnObjects: true })[2].value), label: t('webDevelopmentPage.metrics', { returnObjects: true })[2].label, unit: '%', color: '#F59E0B' },
+    conversion: { value: parseInt(t('webDevelopmentPage.metrics', { returnObjects: true })[3].value), label: t('webDevelopmentPage.metrics', { returnObjects: true })[3].label, unit: '%', color: '#8B5CF6' }
   };
 
   // Project showcase data
@@ -467,17 +469,16 @@ const WebDevelopmentPage = () => {
                 <div className="hero-content">
                   <div className="fade-in-up" style={{ animationDelay: '0.2s' }}>
                     <span className="hero-badge">
-                      🚀 Web Development Excellence
+                      {t('webDevelopmentPage.heroBadge')}
                     </span>
                   </div>
                   
                   <h1 className="hero-title fade-in-up" style={{ animationDelay: '0.4s' }}>
-                    Web Development
+                    {t('webDevelopmentPage.heroTitle')}
                   </h1>
                   
                   <p className="hero-description fade-in-up" style={{ animationDelay: '0.6s' }}>
-                    We architect, design, and build robust web applications—fast, secure, and scalable.
-                    From eye-catching frontends to bulletproof backends, we deliver products that convert, retain, and grow.
+                    {t('webDevelopmentPage.heroDescription')}
                   </p>
 
                   {/* Enhanced Performance Metrics */}
@@ -513,9 +514,9 @@ const WebDevelopmentPage = () => {
           <div className="row mg_bottom_40px">
             <div className="col-xxl-12 text-center">
               <br />
-              <h2 className="main_titel" style={{ marginBottom: '13px' , marginTop:'4px' }}>Our Development Services</h2>
+              <h2 className="main_titel" style={{ marginBottom: '13px' , marginTop:'4px' }}>{t('webDevelopmentPage.developmentServicesHeading')}</h2>
               <p className="text_lg" style={{ color: '#64748B', maxWidth: '600px', margin: '0 auto' }}>
-                Full-spectrum web development solutions tailored to your business needs
+                {t('webDevelopmentPage.developmentServicesSubheading')}
               </p>
               <br />
             </div>
@@ -631,21 +632,16 @@ const WebDevelopmentPage = () => {
         <div className="container">
           <div className="row mg_bottom_40px">
             <div className="col-xxl-12 text-center">
-              <h2 className="main_titel" style={{ marginBottom: '15px' }}>Our Development Process</h2>
+              <h2 className="main_titel" style={{ marginBottom: '15px' }}>{t('webDevelopmentPage.developmentProcessHeading')}</h2>
               <p className="text_lg" style={{ color: '#64748B', maxWidth: '600px', margin: '0 auto' }}>
-                A proven methodology that delivers results on time and within budget
+                {t('webDevelopmentPage.developmentProcessSubheading')}
               </p>
             </div>
           </div>
 
 <br />
           <div className="row">
-            {[
-              { step: '1', title: 'Discovery & Planning', desc: 'Define goals, constraints, and success measures. We analyze your requirements and create a detailed roadmap.' },
-              { step: '2', title: 'Design & Architecture', desc: 'Design scalable systems and data flows. We create wireframes, mockups, and technical specifications.' },
-              { step: '3', title: 'Development & Testing', desc: 'Iterative delivery with rigorous QA. We build, test, and refine your application with continuous feedback.' },
-              { step: '4', title: 'Launch & Optimization', desc: 'Deploy, monitor, optimize, and iterate. We ensure smooth launch and ongoing performance optimization.' }
-            ].map((process, idx) => (
+            {t('webDevelopmentPage.processSteps', { returnObjects: true }).map((process, idx) => (
               <div key={idx} className="col-md-6 col-lg-3 mg_bottom_30px">
                 <div className="process-card" style={{
                   background: 'rgba(255, 255, 255, 0.9)',
@@ -693,7 +689,7 @@ const WebDevelopmentPage = () => {
                     color: '#64748B',
                     lineHeight: '1.6'
                   }}>
-                    {process.desc}
+                    {process.description}
                   </p>
                 </div>
               </div>
@@ -707,9 +703,9 @@ const WebDevelopmentPage = () => {
         <div className="container">
           <div className="row mg_bottom_40px">
             <div className="col-xxl-12 text-center">
-              <h2 className="main_titel" style={{ marginBottom: '15px' }}>Our Project Portfolio</h2>
+              <h2 className="main_titel" style={{ marginBottom: '15px' }}>{t('webDevelopmentPage.portfolioHeading')}</h2>
               <p className="text_lg" style={{ color: '#64748B', maxWidth: '600px', margin: '0 auto 20px' }}>
-                Explore our diverse range of web development projects
+                {t('webDevelopmentPage.portfolioSubheading')}
               </p>
               <p className="text_base" style={{ 
                 color: '#F59E0B', 
@@ -719,7 +715,7 @@ const WebDevelopmentPage = () => {
                 borderRadius: '25px',
                 display: 'inline-block'
               }}>
-                ⚠️ Note: Admin dashboards require login credentials provided below each project
+                {t('webDevelopmentPage.portfolioNote')}
               </p>
             </div>
           </div>
@@ -794,7 +790,7 @@ const WebDevelopmentPage = () => {
                           textTransform: 'uppercase',
                           letterSpacing: '0.5px'
                         }}>
-                          Tech Stack
+                          {t('webDevelopmentPage.projectLabels.techStack')}
                         </div>
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                           {project.tech.map((tech, techIdx) => (
@@ -829,11 +825,11 @@ const WebDevelopmentPage = () => {
                             textTransform: 'uppercase',
                             letterSpacing: '0.5px'
                           }}>
-                            🔐 Login Credentials
+                            {t('webDevelopmentPage.projectLabels.loginCredentials')}
                           </div>
                           <div style={{ fontSize: '13px', color: '#374151' }}>
-                            <div><strong>Email:</strong> {project.creds.email}</div>
-                            <div><strong>Password:</strong> {project.creds.password}</div>
+                            <div><strong>{t('webDevelopmentPage.projectLabels.email')}</strong> {project.creds.email}</div>
+                            <div><strong>{t('webDevelopmentPage.projectLabels.password')}</strong> {project.creds.password}</div>
                           </div>
                         </div>
                       )}
@@ -860,7 +856,7 @@ const WebDevelopmentPage = () => {
                         onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                         onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                       >
-                        Visit Project
+                        {t('webDevelopmentPage.projectLabels.visitProject')}
                         <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M9 9L13 5M13 5L9 1M13 5L1 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>

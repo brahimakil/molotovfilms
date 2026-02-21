@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import footerLogo from "../assets/main logo/Molotove text Final (2).png";
 
 const InnerFooter = () => {
+  const { t } = useTranslation();
   return (
     <footer className="footer footer--two footer--three footer--inner">
       <div className="container">
@@ -15,12 +17,12 @@ const InnerFooter = () => {
             </div>
 
             <div className="footer_txt">
-              <p>Want to Create Something Great Together?</p>
+              <p>{t('footerTwo.heading')}</p>
             </div>
 
             <div className="footer_txt_two">
               <Link to="#" className="text_lg">
-                Get in Touch..
+                {t('footerTwo.subheading')}
               </Link>
               <ul>
                 <li>
@@ -106,7 +108,7 @@ const InnerFooter = () => {
               <div className="col-lg-6">
                 <div className="footer_head">
                   <h2 className="main_titel">
-                    Join Our <span>Newsletter</span>
+                    {t('footerTwo.newsletterHeading')} <span>Newsletter</span>
                   </h2>
                   <p className="text_lg">
                     Join over <span>68,000</span> people getting our emails
@@ -119,10 +121,10 @@ const InnerFooter = () => {
                   <input
                     type="email"
                     className="form-control"
-                    placeholder="Enter your email"
+                    placeholder={t('footerTwo.newsletterPlaceholder')}
                   />
                   <button type="submit" className="sara-btn">
-                    Subscribe
+                    {t('footerTwo.newsletterButton')}
                   </button>
                 </div>
               </div>
@@ -133,31 +135,31 @@ const InnerFooter = () => {
                 <div className="row">
                   <div className="col-6 col-md-4 col-lg-3">
                     <div className="footer_item">
-                      <h3 className="text_2xl">Quick Link</h3>
+                      <h3 className="text_2xl">{t('footerTwo.quickLinksHeading')}</h3>
                       <ul className="footer_link">
                         <li>
                           <Link to="/" className="text_lg">
-                            Home
+                            {t('nav.home')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/pricing" className="text_lg">
-                            Pricing
+                            {t('nav.pagesDropdown.pricing')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/about" className="text_lg">
-                            About us
+                            {t('nav.aboutUs')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/services" className="text_lg">
-                            Service
+                            {t('nav.service')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/blog-grid" className="text_lg">
-                            Blog
+                            {t('nav.blog')}
                           </Link>
                         </li>
                       </ul>
@@ -165,7 +167,7 @@ const InnerFooter = () => {
                   </div>
                   <div className="col-6 col-md-4 col-lg-3 ml_10px res-ml">
                     <div className="footer_item">
-                      <h3 className="text_2xl">Support</h3>
+                      <h3 className="text_2xl">{t('footerTwo.supportHeading')}</h3>
                       <ul className="footer_link">
                         <li>
                           <Link to="/blog-details" className="text_lg">
@@ -192,7 +194,7 @@ const InnerFooter = () => {
                   </div>
                   <div className="col-6 col-md-4 col-lg-3 ml_10px res-mt">
                     <div className="footer_item">
-                      <h3 className="text_2xl">Products</h3>
+                      <h3 className="text_2xl">{t('footerTwo.productsHeading')}</h3>
                       <ul className="footer_link">
                         <li>
                           <Link to="/blog-details" className="text_lg">
@@ -234,10 +236,7 @@ const InnerFooter = () => {
             <div className="col-md-6 col-xxl-6">
               <div className="copy_write_txt">
                 <h4 className="text_lg">
-                  2024 © All rights reserved by{" "}
-                  <span>
-                    <Link to="/">Sara.</Link>
-                  </span>
+                  {t('innerFooter.copyright')}
                 </h4>
               </div>
             </div>
@@ -245,12 +244,12 @@ const InnerFooter = () => {
               <ul className="copy_write_link">
                 <li>
                   <Link to="/blog-details" className="text_lg">
-                    Privacy Policy
+                    {t('footerTwo.privacyPolicy')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/blog-details" className="text_lg">
-                    Terms & Conditions
+                    {t('footerTwo.termsAndConditions')}
                   </Link>
                 </li>
               </ul>

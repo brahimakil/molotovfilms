@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useTranslation } from 'react-i18next';
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase/config";
 import choseThumb1 from "../assets/images/chose-two-thumb-1.webp";
@@ -15,6 +16,7 @@ import innerC1 from "../assets/images/inner-c-1.svg";
 import heroPos1 from "../assets/images/hero-pos-1.png";
 
 const ChoseTwo = ({ addClass }) => {
+  const { t } = useTranslation();
   const [artisticProgress, setArtisticProgress] = useState(0);
   const [storytellingProgress, setStorytellingProgress] = useState(0);
   const [engagementProgress, setEngagementProgress] = useState(0);
@@ -177,10 +179,7 @@ const ChoseTwo = ({ addClass }) => {
             <div className="col-lg-6 col-xxl-6">
               <div className="chose_two_head">
                 <h2 className="main_titel_three">
-                  A New Standard in <br />
-                  <span>StoryTelling and </span>
-                  <br />
-                  <span>Cinematic Production</span>
+                  {t('choseTwo.heading')}
                 </h2>
                 <p className="text_lg">
                   A comprehensive solution for directors and brands seeking a truly premium look, from masterful cinematography and lighting to world-class color grading and finishing.
@@ -188,63 +187,31 @@ const ChoseTwo = ({ addClass }) => {
               </div>
 
               <div className="chose_renge_main">
-                <div className="chose_renge_item">
-                  <h6>
-                    Artistic impact <span>{Math.round(artisticProgress)}%</span>
-                  </h6>
-                  <div className="chose_renge_ber" style={{ position: 'relative', overflow: 'hidden' }}>
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        height: '100%',
-                        width: `${artisticProgress}%`,
-                        background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
-                        transition: 'width 0.3s ease',
-                        borderRadius: 'inherit'
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="chose_renge_item">
-                  <h6>
-                    Storytelling strength <span>{Math.round(storytellingProgress)}%</span>
-                  </h6>
-                  <div className="chose_renge_ber" style={{ position: 'relative', overflow: 'hidden' }}>
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        height: '100%',
-                        width: `${storytellingProgress}%`,
-                        background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
-                        transition: 'width 0.3s ease',
-                        borderRadius: 'inherit'
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="chose_renge_item">
-                  <h6>
-                    Audience engagement <span>{Math.round(engagementProgress)}%</span>
-                  </h6>
-                  <div className="chose_renge_ber" style={{ position: 'relative', overflow: 'hidden' }}>
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        height: '100%',
-                        width: `${engagementProgress}%`,
-                        background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
-                        transition: 'width 0.3s ease',
-                        borderRadius: 'inherit'
-                      }}
-                    />
-                  </div>
-                </div>
+                {(() => {
+                  const progressBars = t('choseTwo.progressBars', { returnObjects: true });
+                  const progressValues = [artisticProgress, storytellingProgress, engagementProgress];
+                  return progressBars.map((bar, index) => (
+                    <div className="chose_renge_item" key={index}>
+                      <h6>
+                        {bar.label} <span>{Math.round(progressValues[index])}%</span>
+                      </h6>
+                      <div className="chose_renge_ber" style={{ position: 'relative', overflow: 'hidden' }}>
+                        <div 
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            height: '100%',
+                            width: `${progressValues[index]}%`,
+                            background: 'linear-gradient(135deg, #6B7A47, #8B9A5A)',
+                            transition: 'width 0.3s ease',
+                            borderRadius: 'inherit'
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ));
+                })()}
               </div>
             </div>
 

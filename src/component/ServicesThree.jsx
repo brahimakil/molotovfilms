@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import s1 from "../assets/images/s-1.svg";
 import s2 from "../assets/images/s-2.svg";
@@ -8,13 +9,14 @@ import s4 from "../assets/images/s-4.svg";
 import s5 from "../assets/images/s-5.svg";
 
 const ServicesThree = () => {
+  const { t } = useTranslation();
   return (
     <section className="services services--three">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xxl-6">
             <h2 className="main_titel_three">
-              Turning Visions into Best <span> Sustainable Service </span>
+              {t('servicesThree.heading')}
             </h2>
           </div>
         </div>
@@ -36,7 +38,7 @@ const ServicesThree = () => {
                   to="/services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesThree.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -75,7 +77,7 @@ const ServicesThree = () => {
                   to="/services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesThree.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -114,7 +116,7 @@ const ServicesThree = () => {
                   to="/services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesThree.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -153,7 +155,7 @@ const ServicesThree = () => {
                   to="/services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesThree.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -192,7 +194,7 @@ const ServicesThree = () => {
                   to="/services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesThree.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -231,7 +233,7 @@ const ServicesThree = () => {
                   to="/services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesThree.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -270,7 +272,7 @@ const ServicesThree = () => {
                   to="/services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesThree.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -309,7 +311,7 @@ const ServicesThree = () => {
                   to="/services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesThree.readMore')}
                   <span>
                     <svg
                       width="14"

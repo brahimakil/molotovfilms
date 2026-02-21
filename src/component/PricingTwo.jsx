@@ -1,9 +1,11 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import checkIcon from "../assets/images/a-check.svg";
 import checkIcon2 from "../assets/images/check2.svg";
 import { Link } from "react-router-dom";
 
 const PricingTwo = () => {
+  const { t } = useTranslation();
   return (
     <section className="pricing_two">
       <div className="container">
@@ -11,17 +13,17 @@ const PricingTwo = () => {
           <div className="col-xxl-5">
             <div className="pricing_two_head">
               <h2 className="main_titel_two">
-                No Hidden Cost. Choose <span>Pricing Plan</span>
+                {t('pricingTwo.heading')}
               </h2>
             </div>
 
             <div className="bill-type">
-              <div className="monthly">Monthly</div>
+              <div className="monthly">{t('pricing.monthly')}</div>
               <div className="bill-toggle">
                 <input type="checkbox" id="bill-toggle" defaultChecked />
                 <label htmlFor="bill-toggle"></label>
               </div>
-              <div className="annually">Yearly</div>
+              <div className="annually">{t('pricing.yearly')}</div>
             </div>
           </div>
         </div>
@@ -78,7 +80,7 @@ const PricingTwo = () => {
                 to="/pricing"
                 className="sara-btn__border sara-btn__border--2"
               >
-                Get Started
+                {t('pricingTwo.getStarted')}
               </Link>
             </div>
           </div>
@@ -130,7 +132,7 @@ const PricingTwo = () => {
                 </li>
               </ul>
               <Link to="/pricing" className="sara-btn sara-btn_black">
-                Get Started
+                {t('pricingTwo.getStarted')}
               </Link>
             </div>
           </div>
@@ -185,7 +187,7 @@ const PricingTwo = () => {
                 to="/pricing"
                 className="sara-btn__border sara-btn__border--2"
               >
-                Get Started
+                {t('pricingTwo.getStarted')}
               </Link>
             </div>
           </div>

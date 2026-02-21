@@ -9,6 +9,7 @@ import "./css/responsive.css";
 import "./css/custom-colors.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./i18n/i18n.js";
 
 import App from "./App.jsx";
 

@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const InnerServices = () => {
+  const { t } = useTranslation();
+  const services = t('innerServices.services', { returnObjects: true });
   return (
     <section className="services inner_services">
       <div className="container">
@@ -46,18 +49,18 @@ const InnerServices = () => {
               </span>
               <div className="services_item_txt">
                 <h3 className="text_2xl">
-                  <a href="#">Reels & Short-Form Video</a>
+                  <a href="#">{services[0].title}</a>
                 </h3>
 
                 <p className="text_lg">
-                  We produce engaging Reels and short-form videos tailored for Instagram, TikTok, and YouTube. Each piece is shot, edited, and optimized for maximum engagement, turning casual viewers into loyal followers.
+                  {services[0].description}
                 </p>
 
                 <Link
                   to="/services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {services[0].cta}
                   <span>
                     <svg
                       width="14"
@@ -133,18 +136,18 @@ const InnerServices = () => {
               </span>
               <div className="services_item_txt">
                 <h3 className="text_2xl">
-                  <a href="#">Features & Brand & Documentary Films</a>
+                  <a href="#">{services[1].title}</a>
                 </h3>
 
                 <p className="text_lg">
-                  From 15-second ads to full-length films, we bring your message to life with cinematic storytelling and professional production. Every project is customized to match your brand's voice and deliver measurable results.
+                  {services[1].description}
                 </p>
 
                 <Link
                   to="/social-media-strategy"  // Change from "/features-films" to "/social-media-strategy"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {services[1].cta}
                   <span>
                     <svg
                       width="14"
@@ -209,18 +212,18 @@ const InnerServices = () => {
               </span>
               <div className="services_item_txt">
                 <h3 className="text_2xl">
-                  <a href="#">Scriptwriting & Creative Concepts</a>
+                  <a href="#">{services[2].title}</a>
                 </h3>
 
                 <p className="text_lg">
-                  A strong video begins with a strong idea. We develop creative concepts, write scripts, and design storyboards that ensure your campaign has clarity, originality, and purpose.
+                  {services[2].description}
                 </p>
 
                 <Link
                   to="/scriptwriting"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {services[2].cta}
                   <span>
                     <svg
                       width="14"
@@ -295,18 +298,18 @@ const InnerServices = () => {
                 </span>
                 <div className="services_item_txt">
                   <h3 className="text_2xl">
-                    <a href="#">Post-Production & Content Repurposing</a>
+                    <a href="#">{services[3].title}</a>
                   </h3>
 
                   <p className="text_lg">
-                    Our post-production team elevates your footage with advanced editing, sound design, color grading, and motion graphics. We also repurpose your content into multiple formats for maximum reach.
+                    {services[3].description}
                   </p>
 
                   <Link
                     to="/post-production"
                     className="services_item_btm text_lg"
                   >
-                    Read More
+                    {services[3].cta}
                     <span>
                       <svg
                         width="14"
@@ -387,18 +390,18 @@ const InnerServices = () => {
               </span>
               <div className="services_item_txt">
                 <h3 className="text_2xl">
-                  <a href="#">Social Media & Performance Marketing</a>
+                  <a href="#">{services[4].title}</a>
                 </h3>
 
                 <p className="text_lg">
-                  We weaponize social media for growth through data-driven strategies, A/B tested content, and performance optimization. From viral content creation to conversion tracking, we turn followers into customers.
+                  {services[4].description}
                 </p>
 
                 <Link
                   to="/social-media-performance"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {services[4].cta}
                   <span>
                     <svg
                       width="14"
@@ -454,18 +457,18 @@ const InnerServices = () => {
                 </span>
                 <div className="services_item_txt">
                   <h3 className="text_2xl">
-                    <a href="#">Web Development</a>
+                    <a href="#">{services[5].title}</a>
                   </h3>
 
                   <p className="text_lg">
-                    Full-stack engineering for fast, secure, and scalable web applications. We handle frontend, backend, data, performance, and deployment with a focus on outcomes.
+                    {services[5].description}
                   </p>
 
                   <Link
                     to="/web-development"
                     className="services_item_btm text_lg"
                   >
-                    Read More
+                    {services[5].cta}
                     <span>
                       <svg
                         width="14"

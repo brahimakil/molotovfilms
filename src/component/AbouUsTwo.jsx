@@ -8,8 +8,10 @@ import textPos2 from "../assets/images/about-pos-6.svg";
 import unionImg from "../assets/images/hero-union.png";
 import checkIcon from "../assets/images/a-check.svg";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const AbouUsTwo = () => {
+  const { t } = useTranslation();
   const [videosCount, setVideosCount] = useState(0);
   const [reachCount, setReachCount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -117,7 +119,7 @@ const AbouUsTwo = () => {
 
             <div className="about_head">
               <h2 className="main_titel_two">
-              Social-First & <span>Punchy</span> 
+              {t('aboutUsTwo.label')}
               </h2>
 
               <p className="text_lg">
@@ -134,9 +136,9 @@ const AbouUsTwo = () => {
                       color: '#6B7A47'
                     }}
                   >
-                    {videosCount}
+                    {t('aboutUsTwo.videosValue')}
                   </h3>
-                  <p className="text_lg">Videos Produced</p>
+                  <p className="text_lg">{t('aboutUsTwo.counters.videosProduced')}</p>
                 </div>
                 <div className="about_two_item_txt">
                   <h3 
@@ -147,32 +149,22 @@ const AbouUsTwo = () => {
                       color: '#6B7A47'
                     }}
                   >
-                    {reachCount}
+                    {t('aboutUsTwo.reachValue')}
                   </h3>
-                  <p className="text_lg">Campaign Reach</p>
+                  <p className="text_lg">{t('aboutUsTwo.counters.campaignReach')}</p>
                 </div>
               </div>
             </div>
 
             <ul className="about_list">
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-                High-quality visuals with a storyteller’s touch.
-              </li>
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-                Formats made to stop the scroll and drive engagement.
-              </li>
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-                Data-led process: iterate fast, amplify what works.
-              </li>
+              {t('aboutUsTwo.listItems', { returnObjects: true }).map((item, index) => (
+                <li key={index}>
+                  <span>
+                    <img src={checkIcon} alt="icon" />
+                  </span>
+                  {item}
+                </li>
+              ))}
             </ul>
 
             <div className="about_us_btn">
@@ -180,7 +172,7 @@ const AbouUsTwo = () => {
                 to="/about"
                 className="sara-btn__border sara-btn__border--2"
               >
-                ✨ Want to know more? Get in Touch
+                {t('aboutUsTwo.button')}
               </Link>
             </div>
           </div>

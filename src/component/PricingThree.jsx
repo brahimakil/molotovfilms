@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import check4 from "../assets/images/check.svg";
 import check2 from "../assets/images/check2.svg";
 
 const PricingThree = () => {
+  const { t } = useTranslation();
   return (
     <section className="pricing pricing_three">
       <div className="container">
@@ -11,7 +13,7 @@ const PricingThree = () => {
           <div className="col-xxl-6">
             <div className="pricing_head">
               <h2 className="main_titel_three">
-                Choose a <span> Pricing Plan</span> that works for you
+                {t('pricing.heading')}
               </h2>
             </div>
           </div>
@@ -31,7 +33,7 @@ const PricingThree = () => {
                   aria-controls="pills-home"
                   aria-selected="true"
                 >
-                  Monthly
+                  {t('pricing.monthly')}
                 </button>
               </li>
               <li className="nav-item" role="presentation">
@@ -45,7 +47,7 @@ const PricingThree = () => {
                   aria-controls="pills-profile"
                   aria-selected="false"
                 >
-                  Yearly
+                  {t('pricing.yearly')}
                 </button>
               </li>
             </ul>
@@ -109,7 +111,7 @@ const PricingThree = () => {
                         </li>
                       </ul>
                       <Link to="/pricing" className="sara-btn sara-btn_black">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -162,7 +164,7 @@ const PricingThree = () => {
                         </li>
                       </ul>
                       <Link to="/pricing" className="sara-btn sara-btn_green">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -215,7 +217,7 @@ const PricingThree = () => {
                         </li>
                       </ul>
                       <Link to="/pricing" className="sara-btn sara-btn_black">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -272,7 +274,7 @@ const PricingThree = () => {
                         </li>
                       </ul>
                       <Link to="/pricing" className="sara-btn sara-btn_black">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -319,7 +321,7 @@ const PricingThree = () => {
                         </li>
                       </ul>
                       <Link to="/pricing" className="sara-btn sara-btn_green">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -366,7 +368,7 @@ const PricingThree = () => {
                         </li>
                       </ul>
                       <Link to="/pricing" className="sara-btn sara-btn_black">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>

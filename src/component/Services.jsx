@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Services = () => {
+  const { t } = useTranslation();
   return (
     <section className="services" style={{ padding: "80px 0", background: "#ffffff" }}>
       <div className="container">
@@ -26,7 +28,7 @@ const Services = () => {
                 filter: "drop-shadow(2px 2px 4px rgba(0,0,0,0.1))"
               }}
             >
-              MANIFESTO
+              {t('manifesto.label')}
             </h2>
           </div>
 
@@ -57,7 +59,7 @@ const Services = () => {
                 }}>
                   "
                 </span>
-                We're not an agency that does film. We're a small, hungry studio that crafts unforgettable work — cinema with appetite, ads with soul, shorts that spread like rumor. We treat every project as a public act: precise, fierce, and a little dangerous. If it doesn't haunt you tomorrow, we haven't done our job.
+                {t('manifesto.quote')}
                 <span style={{ 
                   fontSize: "3em", 
                   lineHeight: "1", 

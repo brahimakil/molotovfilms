@@ -3,10 +3,12 @@ import cusLogo2 from "../assets/images/cus-logo-2.svg";
 import cusLogo3 from "../assets/images/cus-logo-3.svg";
 import cusLogo4 from "../assets/images/cus-logo-4.svg";
 import cusLogo5 from "../assets/images/cus-logo-5.svg";
+import { useTranslation } from 'react-i18next';
 
 import Slider from "react-slick";
 
 const Customers = ({ addClass }) => {
+  const { t } = useTranslation();
   const settings = {
     slidesToShow: 5,
     autoplay: true,
@@ -37,7 +39,7 @@ const Customers = ({ addClass }) => {
           <div className="col-xxl-12">
             <div className="customers_titel">
               <h2>
-                Trusted by <span>15,000+</span> Customers
+                {t('customers.heading')}
               </h2>
             </div>
           </div>

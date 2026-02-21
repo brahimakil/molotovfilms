@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import vicArrow from "../assets/images/vic-arrow.png";
 import heroVic from "../assets/images/hero-two-vic.svg";
@@ -10,6 +11,7 @@ import heroPos1 from "../assets/images/hero_two_pos-1.svg";
 import heroThumb from "../assets/images/hero-two-thumb.webp";
 
 const HeroTwo = () => {
+  const { t } = useTranslation();
   return (
     <section className="hero_two">
       <div className="container">
@@ -34,12 +36,7 @@ const HeroTwo = () => {
           <div className="col-xxl-8">
             <div className="hero_two_head">
               <h1>
-                Innovate for a
-                <span>
-                  Better <br />
-                  Grow
-                </span>
-                your Future Business
+                {t('heroTwo.heading')}
               </h1>
 
               <p className="text_lg">
@@ -50,13 +47,13 @@ const HeroTwo = () => {
 
             <div className="hero_two_btn">
               <Link to="/contact-us" className="sara-btn sara-btn_gredinet">
-                Get in Touch
+                {t('heroTwo.getInTouch')}
               </Link>
               <Link
                 to="/about"
                 className="sara-btn__border sara-btn__border--2"
               >
-                Learn more
+                {t('heroTwo.learnMore')}
               </Link>
             </div>
           </div>

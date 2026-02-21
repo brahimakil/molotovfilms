@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import error404Image from "../assets/images/404.png";
 
 const Error404 = () => {
+  const { t } = useTranslation();
   return (
     <div className="error">
       <div className="container">
@@ -13,15 +15,14 @@ const Error404 = () => {
             </div>
 
             <div className="error_text">
-              <h3>Opps! you’re on the wrong place.</h3>
+              <h3>{t('error404.heading')}</h3>
               <p>
-                Can not find what you need? Take a moment and do a search below
-                or start from our Homepage.
+                {t('error404.description')}
               </p>
 
               <div className="error_btn">
                 <Link to="/" className="sara-btn">
-                  Back to home
+                  {t('error404.button')}
                 </Link>
               </div>
             </div>

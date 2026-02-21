@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import AbouUsTwo from "../component/AbouUsTwo";
 import ChoseTwo from "../component/ChoseTwo";
 import Working from "../component/Working";
@@ -8,6 +9,7 @@ import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 
 const AboutPage = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoaded, setVideoLoaded] = useState(false);
@@ -341,13 +343,13 @@ const AboutPage = () => {
               }}
             >
               <source src={videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
+              {t('aboutPage.videoFallback')}
             </video>
           ) : videoError ? (
             <div style={heroStyles.loadingPlaceholder}>
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
-                <div>About Us</div>
+                <div>{t('aboutPage.pageTitle')}</div>
               </div>
             </div>
           ) : (
@@ -363,9 +365,9 @@ const AboutPage = () => {
                   margin: '0 auto 20px'
                 }} />
                 <div style={{ fontSize: '18px', marginBottom: '10px' }}>
-                  {localStorage.getItem('about_hero_video_url') ? 'Loading from cache...' : 'Loading...'}
+                  {localStorage.getItem('about_hero_video_url') ? t('aboutPage.loadingFromCache') : t('aboutPage.loading')}
                 </div>
-                <div style={{ fontSize: '14px', opacity: 0.8 }}>Preparing your experience</div>
+                <div style={{ fontSize: '14px', opacity: 0.8 }}>{t('aboutPage.preparingExperience')}</div>
               </div>
             </div>
           )}
@@ -388,7 +390,7 @@ const AboutPage = () => {
                   margin: '0 auto 15px auto'
                 }}
               />
-              We Create Films, <span style={{color: '#6B8E23'}}>Ads & Social Content</span> That Drive Impact
+              {t('aboutPage.heroHeading')}
             </h1>
             {/* <div style={heroStyles.heroButtons}>
               <a 
@@ -407,7 +409,7 @@ const AboutPage = () => {
         {loadAboutUsTwo ? (
           <AbouUsTwo />
         ) : (
-          <SectionPlaceholder height="500px" message="Loading About Us section..." />
+          <SectionPlaceholder height="500px" message={t('aboutPage.aboutUs')} />
         )}
       </div>
 
@@ -416,7 +418,7 @@ const AboutPage = () => {
         {loadChoseTwo ? (
           <ChoseTwo addClass="inner_chose" />
         ) : (
-          <SectionPlaceholder height="600px" message="Loading Storytelling section..." />
+          <SectionPlaceholder height="600px" message={t('aboutPage.storytelling')} />
         )}
       </div>
 
@@ -425,7 +427,7 @@ const AboutPage = () => {
         {loadWorking ? (
           <Working />
         ) : (
-          <SectionPlaceholder height="800px" message="Loading Working Process section..." />
+          <SectionPlaceholder height="800px" message={t('aboutPage.workingProcess')} />
         )}
       </div>
 
@@ -437,7 +439,7 @@ const AboutPage = () => {
         {loadVideoComparison ? (
           <VideoComparison />
         ) : (
-          <SectionPlaceholder height="700px" message="Loading Video Comparison section..." />
+          <SectionPlaceholder height="700px" message={t('aboutPage.videoComparison')} />
         )}
       </div>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import PageHeader from "../component/PageHeader";
 import BlogItem from "../component/BlogItem";
 import { Link } from "react-router-dom";
@@ -17,10 +18,11 @@ import comment3 from "../assets/images/comment-3.svg";
 import b5 from "../assets/images/b-5.webp";
 
 const BlogDetailsPage = () => {
+  const { t } = useTranslation();
   const breadcrumbs = [
-    { label: "Home", link: "/" },
+    { label: t('blogDetailsPage.breadcrumbs', { returnObjects: true })[0], link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
-    { label: "Blog Details", link: null },
+    { label: t('blogDetailsPage.breadcrumbs', { returnObjects: true })[1], link: null },
   ];
 
   const blogData = [
@@ -29,7 +31,7 @@ const BlogDetailsPage = () => {
   ];
   return (
     <>
-      <PageHeader title="Blog Details" breadcrumbs={breadcrumbs}></PageHeader>
+      <PageHeader title={t('blogDetailsPage.breadcrumbs', { returnObjects: true })[1]} breadcrumbs={breadcrumbs}></PageHeader>
       <section className="blog_details">
         <div className="container">
           <div className="row">
@@ -416,7 +418,7 @@ const BlogDetailsPage = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="comment_main">
-                    <h2>2 Comments</h2>
+                    <h2>{t('blogDetailsPage.commentsHeading')}</h2>
                     <div className="comment-box">
                       <div className="comment-box_thumb">
                         <img src={comment1} alt="Commenter profile picture" />
@@ -501,9 +503,9 @@ const BlogDetailsPage = () => {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="leav_comment_box">
-                    <h3>Leave A Comment</h3>
+                    <h3>{t('blogDetailsPage.leaveComment')}</h3>
                     <p>
-                      post your comment or signup if you dont have any account.
+                      {t('blogDetailsPage.commentSubheading')}
                     </p>
                     <form className="comment_form">
                       <div className="comment_form_item">
@@ -550,7 +552,7 @@ const BlogDetailsPage = () => {
                         ></textarea>
                       </div>
                       <button type="submit" className="sara-btn">
-                        Post Comment
+                        {t('blogDetailsPage.postComment')}
                       </button>
                     </form>
                   </div>

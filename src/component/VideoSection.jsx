@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import prof from "../assets/images/prof.svg";
 import videoThumb from "../assets/images/vedio-thumb.webp";
 import videoIcon from "../assets/images/vedio.svg";
 import playIcon from "../assets/images/play.svg";
 
 const VideoSection = () => {
+  const { t } = useTranslation();
   const [videoActive, setVideoActive] = useState(false);
 
   return (
@@ -13,7 +15,7 @@ const VideoSection = () => {
         <div className="row">
           <div className="col-lg-6 col-xxl-6">
             <h2 className="main_titel_three">
-              We're here Help to you Find your <span>Service</span>
+              {t('videoSection.heading')}
             </h2>
           </div>
 
@@ -31,9 +33,9 @@ const VideoSection = () => {
               </div>
               <div className="vedio_prof-txt">
                 <a href="#" className="text_xl">
-                  Onam Sarker
+                  {t('videoSection.personName')}
                 </a>
-                <p className="text_base">Apple Inc.</p>
+                <p className="text_base">{t('videoSection.personTitle')}</p>
               </div>
             </div>
           </div>

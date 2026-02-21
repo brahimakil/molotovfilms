@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import contactMainImage from "../assets/contactusmainimage/vlcsnap-2025-08-25-09h48m17s104 (1).png";
 
 const ContactUsPage = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -41,7 +43,7 @@ const ContactUsPage = () => {
     e.preventDefault();
     
     if (!formData.email || !formData.subject || !formData.name) {
-      setSubmitMessage('❌ Email, name, and subject are required');
+      setSubmitMessage(t('contactUsPage.requiredFields'));
       return;
     }
 
@@ -65,7 +67,7 @@ const ContactUsPage = () => {
       const result = await response.json();
       
       if (result.success) {
-        setSubmitMessage('✅ Your message has been sent successfully! We\'ll contact you soon.');
+        setSubmitMessage(t('contactUsPage.success'));
         setFormData({
           email: '',
           subject: '',
@@ -77,11 +79,11 @@ const ContactUsPage = () => {
         window.history.replaceState({}, document.title, "/contuct-us");
         setSelectedDate('');
       } else {
-        setSubmitMessage('❌ Failed to send message. Please try again.');
+        setSubmitMessage(t('contactUsPage.failure'));
       }
       
     } catch (error) {
-      setSubmitMessage('❌ Connection error. Please check your internet and try again.');
+      setSubmitMessage(t('contactUsPage.connectionError'));
     }
     
     setIsSubmitting(false);
@@ -110,10 +112,10 @@ const ContactUsPage = () => {
           <div className="row justify-content-center">
             <div className="col-lg-12 text-center mb-5">
               <h1 style={{ fontSize: "48px", fontWeight: "700", color: "#ffffff", marginBottom: "20px" }}>
-                Contact Us
+                {t('contactUsPage.heroHeading')}
               </h1>
               <p style={{ fontSize: "18px", color: "#cccccc", maxWidth: "600px", margin: "0 auto" }}>
-                Get in touch with our team for any inquiries about our film production services.
+                {t('contactUsPage.heroSubheading')}
               </p>
               {selectedDate ? (
                 <div style={{ 
@@ -126,7 +128,7 @@ const ContactUsPage = () => {
                   fontSize: "16px",
                   fontWeight: "600"
                 }}>
-                  📅 Selected Date: {selectedDate}
+                  {t('contactUsPage.selectedDate')} {selectedDate}
                 </div>
               ) : (
                 <div style={{ marginTop: "20px" }}>
@@ -155,7 +157,7 @@ const ContactUsPage = () => {
                       e.target.style.transform = "translateY(0)";
                     }}
                   >
-                    📅 Select Date
+                    {t('contactUsPage.selectDateButton')}
                   </button>
                   <p style={{ 
                     fontSize: "14px", 
@@ -163,7 +165,7 @@ const ContactUsPage = () => {
                     marginTop: "10px",
                     fontStyle: "italic"
                   }}>
-                    Click to choose a preferred meeting date from our calendar
+                    {t('contactUsPage.selectDateHint')}
                   </p>
                 </div>
               )}
@@ -187,7 +189,7 @@ const ContactUsPage = () => {
                   color: "#333", 
                   marginBottom: "30px" 
                 }}>
-                  Send us a Message
+                  {t('contactUsPage.formHeading')}
                 </h3>
 
                 {/* Submit Message */}
@@ -209,7 +211,7 @@ const ContactUsPage = () => {
                     <div className="col-lg-6">
                       <div className="form-group mb-4">
                         <label style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "10px", display: "block" }}>
-                          Full Name *
+                          {t('contactUsPage.fullName')}
                         </label>
                         <input 
                           type="text" 
@@ -217,7 +219,7 @@ const ContactUsPage = () => {
                           value={formData.name}
                           onChange={handleInputChange}
                           className="form-control" 
-                          placeholder="Your Full Name"
+                          placeholder={t('contactUsPage.fullNamePlaceholder')}
                           required
                       style={{
                             height: "55px",
@@ -232,7 +234,7 @@ const ContactUsPage = () => {
                     <div className="col-lg-6">
                       <div className="form-group mb-4">
                         <label style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "10px", display: "block" }}>
-                          Email Address *
+                          {t('contactUsPage.emailLabel')}
                         </label>
                         <input 
                           type="email" 
@@ -240,7 +242,7 @@ const ContactUsPage = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           className="form-control" 
-                          placeholder="your.email@example.com"
+                          placeholder={t('contactUsPage.emailPlaceholder')}
                           required
                           style={{
                             height: "55px",
@@ -258,7 +260,7 @@ const ContactUsPage = () => {
                     <div className="col-lg-6">
                       <div className="form-group mb-4">
                         <label style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "10px", display: "block" }}>
-                          Phone Number (optional)
+                          {t('contactUsPage.phoneLabel')}
                         </label>
                         <input 
                           type="tel" 
@@ -266,7 +268,7 @@ const ContactUsPage = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           className="form-control" 
-                          placeholder="+1 (555) 123-4567"
+                          placeholder={t('contactUsPage.phonePlaceholder')}
                           style={{
                             height: "55px",
                             fontSize: "16px",
@@ -280,7 +282,7 @@ const ContactUsPage = () => {
                     <div className="col-lg-6">
                       <div className="form-group mb-4">
                         <label style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "10px", display: "block" }}>
-                          Subject *
+                          {t('contactUsPage.subjectLabel')}
                       </label>
                       <input
                         type="text"
@@ -288,7 +290,7 @@ const ContactUsPage = () => {
                           value={formData.subject}
                           onChange={handleInputChange}
                         className="form-control"
-                          placeholder="Project inquiry, consultation, etc."
+                          placeholder={t('contactUsPage.subjectPlaceholder')}
                           required
                           style={{
                             height: "55px",
@@ -304,7 +306,7 @@ const ContactUsPage = () => {
                   
                   <div className="form-group mb-4">
                     <label style={{ fontSize: "16px", fontWeight: "600", color: "#333", marginBottom: "10px", display: "block" }}>
-                      Tell us about your project *
+                      {t('contactUsPage.messageLabel')}
                       </label>
                       <textarea
                       name="description"
@@ -312,7 +314,7 @@ const ContactUsPage = () => {
                       onChange={handleInputChange}
                         className="form-control"
                       rows="6" 
-                      placeholder="Tell us about your project, budget, timeline, and any specific requirements..."
+                      placeholder={t('contactUsPage.messagePlaceholder')}
                       required
                       style={{
                         fontSize: "16px",
@@ -340,7 +342,7 @@ const ContactUsPage = () => {
                       transition: "all 0.3s ease"
                     }}
                   >
-                    {isSubmitting ? "Sending..." : "Send Message"}
+                    {isSubmitting ? t('contactUsPage.submitting') : t('contactUsPage.submitButton')}
                     </button>
                   </form>
                 </div>

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import headerLogImg from "../assets/main logo/Molotove text Final (2).png";
-import Select from "react-select";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "./LanguageSwitcher";
 import MobileMenu from "./MobileMenu";
 
 const NavbarTwo = () => {
@@ -23,11 +24,7 @@ const NavbarTwo = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const languageOptions = [
-    { value: "Eng", label: "ENG" },
-    { value: "Ban", label: "BAN" },
-    { value: "Ind", label: "IND" },
-  ];
+  const { t } = useTranslation();
 
   const addClass = "navbar-2";
 
@@ -40,7 +37,7 @@ const NavbarTwo = () => {
               <ul className="header_contact">
                 <li>
                   <a href="tel:+17077970462" className="text_base">
-                    <span>Call us </span>+1 707 797 0462
+                    <span>{t('navbarTwo.callUs')} </span>{t('navbarTwo.phone')}
                   </a>
                 </li>
               </ul>
@@ -50,7 +47,7 @@ const NavbarTwo = () => {
               <div className="header_offer_main">
                 <div className="header_txt">
                   <p>
-                    <span>Offer</span> is going on till friday $1.99/mo.
+                    <span>Offer</span> {t('navbarTwo.offer')}
                   </p>
                 </div>
                 <span className="header_txt_btn">
@@ -62,12 +59,7 @@ const NavbarTwo = () => {
             <div className="col-lg-3 col-xl-3 col-xxl-3">
               <div className="header_right">
                 <div className="header_luang_btn">
-                  <Select
-                    options={languageOptions}
-                    defaultValue={languageOptions[0]}
-                    classNamePrefix="custom-select"
-                    isSearchable={false}
-                  />
+                  <LanguageSwitcher />
                 </div>
                 <ul className="header_right_social_icon">
                   <li>
@@ -133,7 +125,7 @@ const NavbarTwo = () => {
                   <ul className="menu">
                     <li>
                       <Link to="#" className="text_base">
-                        Home
+                        {t('nav.home')}
                         <span>
                           <svg
                             width="12"
@@ -155,34 +147,34 @@ const NavbarTwo = () => {
                       <ul>
                         <li>
                           <Link to="/" className="text_base">
-                            Home One
+                            {t('nav.homeVariants.home01')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/home-two" className="text_base">
-                            Home Two
+                            {t('nav.homeVariants.home02')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/home-three" className="text_base">
-                            Home Three
+                            {t('nav.homeVariants.home03')}
                           </Link>
                         </li>
                       </ul>
                     </li>
                     <li>
                       <Link to="/services" className="text_base">
-                        Service
+                        {t('nav.service')}
                       </Link>
                     </li>
                     <li>
                       <Link to="/about" className="text_base">
-                        About Us
+                        {t('nav.aboutUs')}
                       </Link>
                     </li>
                     <li>
                       <Link to="#" className="text_base">
-                        Pages
+                        {t('nav.pages')}
                         <span>
                           <svg
                             width="12"
@@ -204,59 +196,59 @@ const NavbarTwo = () => {
                       <ul>
                         <li>
                           <Link to="/blog-details" className="text_base">
-                            Blog Details
+                            {t('nav.pagesDropdown.blogDetails')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/blog-list-view" className="text_base">
-                            Blog List View
+                            {t('nav.pagesDropdown.blogListView')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/contact-us" className="text_base">
-                            Contact Us
+                            {t('nav.pagesDropdown.contactUs')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/faq" className="text_base">
-                            FAQ
+                            {t('nav.pagesDropdown.faq')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/pricing" className="text_base">
-                            Pricing
+                            {t('nav.pagesDropdown.pricing')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/services-details" className="text_base">
-                            Service Details
+                            {t('nav.pagesDropdown.serviceDetails')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/single-member" className="text_base">
-                            Single Member
+                            {t('nav.pagesDropdown.singleMember')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/team" className="text_base">
-                            Team Member
+                            {t('nav.pagesDropdown.teamMember')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/testimonial" className="text_base">
-                            Testimonial
+                            {t('nav.pagesDropdown.testimonial')}
                           </Link>
                         </li>
                         <li>
                           <Link to="/404" className="text_base">
-                            404
+                            {t('nav.pagesDropdown.error404')}
                           </Link>
                         </li>
                       </ul>
                     </li>
                     <li>
                       <Link to="/blog-grid" className="text_base">
-                        Blog
+                        {t('nav.blog')}
                       </Link>
                     </li>
                   </ul>
@@ -265,7 +257,7 @@ const NavbarTwo = () => {
               <div className="col-lg-2 col-xl-2 col-xxl-2">
                 <div className="menu_btn">
                   <Link className="sara-btn sara-btn_blue" to="/contact-us">
-                    Contact us
+                    {t('nav.contactUs')}
                   </Link>
                 </div>
               </div>

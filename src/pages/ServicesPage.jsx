@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useTranslation } from 'react-i18next';
 import InnerServices from "../component/InnerServices";
 import Faq from "../component/Faq";
 import Testimonials from "../component/Testimonials";
@@ -8,6 +9,7 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import useResponsive from "../utils/useResponsive";
 
 const ServicesPage = () => {
+  const { t } = useTranslation();
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -334,13 +336,13 @@ const ServicesPage = () => {
               }}
             >
               <source src={videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
+              {t('servicesPage.videoFallback')}
             </video>
           ) : videoError ? (
             <div style={heroStyles.fallbackImage}>
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
-                <div>Our Services</div>
+                <div>{t('servicesPage.pageTitle')}</div>
               </div>
             </div>
           ) : (
@@ -356,9 +358,9 @@ const ServicesPage = () => {
                   margin: '0 auto 20px'
                 }} />
                 <div style={{ fontSize: '18px', marginBottom: '10px' }}>
-                  {localStorage.getItem('services_hero_video_url') ? 'Loading from cache...' : 'Loading...'}
+                  {localStorage.getItem('services_hero_video_url') ? t('servicesPage.loadingFromCache') : t('servicesPage.loading')}
                 </div>
-                <div style={{ fontSize: '14px', opacity: 0.8 }}>Preparing your experience</div>
+                <div style={{ fontSize: '14px', opacity: 0.8 }}>{t('servicesPage.preparingExperience')}</div>
               </div>
             </div>
           )}
@@ -369,11 +371,11 @@ const ServicesPage = () => {
           {/* Hero Content */}
           <div style={heroStyles.heroContent}>
             <h1 style={heroStyles.heroTitle}>
-              All <span style={{color: '#6B8E23'}}>Media.</span> All <span style={{color: '#6B8E23'}}> Stories.</span> One <span style={{color: '#6B8E23'}}> Production </span> House.
+              {t('servicesPage.heroHeading')}
             </h1>
             <br /> <br />
             <p style={heroStyles.heroSubtitle}>
-            We create it all — films, videos, and everything media. A film house built to turn vision into unforgettable stories.
+            {t('servicesPage.heroSubheading')}
             </p>
        
           </div>
@@ -387,7 +389,7 @@ const ServicesPage = () => {
         {loadTestimonials ? (
           <Testimonials addClass="inner_testimonails" />
         ) : (
-          <SectionPlaceholder height="500px" message="Loading Testimonials section..." />
+          <SectionPlaceholder height="500px" message={t('servicesPage.testimonials')} />
         )}
       </div>
 
@@ -397,7 +399,7 @@ const ServicesPage = () => {
         {loadInnerServices ? (
           <InnerServices />
         ) : (
-          <SectionPlaceholder height="600px" message="Loading Services section..." />
+          <SectionPlaceholder height="600px" message={t('servicesPage.services')} />
         )}
       </div>
 {/* 
@@ -406,7 +408,7 @@ const ServicesPage = () => {
         {loadBlog ? (
           <Blog />
         ) : (
-          <SectionPlaceholder height="400px" message="Loading Blog section..." />
+          <SectionPlaceholder height="400px" message={t('servicesPage.blog')} />
         )}
       </div> */}
 

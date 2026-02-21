@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
 import workingPos1 from "../assets/images/working-pos-one.svg";
 import workingThumb from "../assets/images/working_thumb.webp";
@@ -13,6 +14,7 @@ import { FaLightbulb, FaVideo, FaShare } from 'react-icons/fa';
 import { FaBrain, FaCogs, FaRocket } from 'react-icons/fa';
 
 const Working = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -129,7 +131,7 @@ const Working = () => {
               <div className="col-12">
                 <div className="working_head" style={{ textAlign: 'center', marginBottom: '30px' }}>
                   <h2 className="main_titel">
-                    Let's create powerful videos that <span>inspire, engage, and convert</span>
+                    {t('working.heading')}
                   </h2>
 
                   <p>
@@ -185,7 +187,7 @@ const Working = () => {
               <div className="col-xxl-6">
                 <div className="working_head">
                   <h2 className="main_titel">
-                    Let's create powerful videos that <span>inspire, engage, and convert</span>
+                    {t('working.heading')}
                   </h2>
 
                   <p>
@@ -319,7 +321,7 @@ const Working = () => {
                     position: 'relative',
                     zIndex: 2
                   }}>
-                    MOLOTOV FILMS
+                    {t('working.brandName')}
                   </h2>
 
                   {/* Service Title */}
@@ -331,7 +333,7 @@ const Working = () => {
                     position: 'relative',
                     zIndex: 2
                   }}>
-                    Video Production Consultation
+                    {t('working.serviceTitle')}
                   </h3>
 
                   {/* Duration */}
@@ -360,7 +362,7 @@ const Working = () => {
                       fontSize: isMobile ? '0.9rem' : '1rem',
                       fontWeight: '500'
                     }}>
-                      30 min
+                      {t('working.duration')}
                     </span>
                   </div>
 
@@ -384,7 +386,7 @@ const Working = () => {
                         color: 'rgba(255, 255, 255, 0.8)',
                         fontSize: isMobile ? '0.8rem' : '0.85rem'
                       }}>
-                        Web conferencing details provided upon confirmation.
+                        {t('working.meetingInfo')}
                       </span>
                     </div>
                   </div>
@@ -399,7 +401,7 @@ const Working = () => {
                     position: 'relative',
                     zIndex: 2
                   }}>
-                    Thank you for your interest! At Molotov Films, we're passionate about turning authentic stories into powerful video content that builds trust and elevates your brand.
+                    {t('working.description')}
                   </p>
                 </div>
 
@@ -511,7 +513,7 @@ const Working = () => {
                       gap: '4px', // Increased gap
                       marginBottom: '15px' // Increased margin
                     }}>
-                      {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((day) => (
+                      {t('working.dayHeaders', { returnObjects: true }).map((day) => (
                         <div key={day} style={{
                           textAlign: 'center',
                           padding: isMobile ? '10px 4px' : '12px 6px', // Increased padding
@@ -621,10 +623,10 @@ const Working = () => {
                       textAlign: 'center'
                     }}>
                       <div style={{ marginBottom: '6px' }}>
-                        <span style={{ color: '#ef4444' }}>🚫</span> Saturdays & Sundays unavailable
+                        <span style={{ color: '#ef4444' }}>🚫</span> {t('working.calendarNotes.unavailable')}
                       </div>
                       <div>
-                        <span style={{ color: '#6B7A47' }}>✅</span> Green dates available
+                        <span style={{ color: '#6B7A47' }}>✅</span> {t('working.calendarNotes.available')}
                           </div>
                     </div>
                   </div>
@@ -959,7 +961,7 @@ const Working = () => {
                       color: 'white',
                       margin: '0',
                       lineHeight: '1.3'
-                    }}>Concept & Strategy</p>
+                    }}>{t('working.steps', { returnObjects: true })[0].label}</p>
                   </div>
                 </div>
                 {!isMobile && (
@@ -1028,7 +1030,7 @@ const Working = () => {
                       color: 'white',
                       margin: '0',
                       lineHeight: '1.3'
-                    }}>Design & Production</p>
+                    }}>{t('working.steps', { returnObjects: true })[1].label}</p>
                   </div>
                 </div>
                 {!isMobile && (
@@ -1097,7 +1099,7 @@ const Working = () => {
                       color: 'white',
                       margin: '0',
                       lineHeight: '1.3'
-                    }}>Polished & Publish-Ready</p>
+                    }}>{t('working.steps', { returnObjects: true })[2].label}</p>
                   </div>
                 </div>
               </div>

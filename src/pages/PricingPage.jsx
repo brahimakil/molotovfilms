@@ -1,18 +1,20 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import PageHeader from "../component/PageHeader";
 import Pricing from "../component/Pricing";
 import Testimonials from "../component/Testimonials";
 import BlogOne from "../component/BlogOne";
 
 const PricingPage = () => {
+  const { t } = useTranslation();
   const breadcrumbs = [
-    { label: "Home", link: "/" },
+    { label: t('pricingPage.breadcrumbs', { returnObjects: true })[0], link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
-    { label: "Our Pricing", link: null },
+    { label: t('pricingPage.breadcrumbs', { returnObjects: true })[1], link: null },
   ];
   return (
     <>
-      <PageHeader title="Our Pricing" breadcrumbs={breadcrumbs}></PageHeader>
+      <PageHeader title={t('pricingPage.breadcrumbs', { returnObjects: true })[1]} breadcrumbs={breadcrumbs}></PageHeader>
       <Pricing></Pricing>
       <Testimonials addClass="inner_testimonails"></Testimonials>
       <BlogOne></BlogOne>

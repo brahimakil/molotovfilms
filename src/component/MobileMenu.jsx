@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const MobileMenu = ({ headerLogImg, addClass }) => {
   const [menuActive, setMenuActive] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { t } = useTranslation();
 
   // CHECK SCREEN SIZE AND HIDE ON DESKTOP
   useEffect(() => {
@@ -21,10 +24,10 @@ const MobileMenu = ({ headerLogImg, addClass }) => {
   const closeMenu = () => setMenuActive(false);
 
   const menuItems = [
-    { label: "Home", path: "/" },
-    { label: "Services", path: "/services" },
-    { label: "About Us", path: "/about" },
-    { label: "Contact", path: "/contuct-us" }
+    { label: t('nav.home'), path: "/" },
+    { label: t('nav.services'), path: "/services" },
+    { label: t('nav.aboutUs'), path: "/about" },
+    { label: t('nav.contact'), path: "/contuct-us" }
   ];
 
   // HIDE COMPLETELY ON DESKTOP
@@ -161,6 +164,9 @@ const MobileMenu = ({ headerLogImg, addClass }) => {
               </li>
             ))}
           </ul>
+          <div style={{ display: 'flex', justifyContent: 'center', padding: '15px 0 5px' }}>
+            <LanguageSwitcher />
+          </div>
         </div>
       </div>
     </div>

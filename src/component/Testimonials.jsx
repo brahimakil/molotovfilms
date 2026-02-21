@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import Slider from "react-slick";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
@@ -12,6 +13,7 @@ import elioImg from "../assets/imgoftestimonial/elio.jpg"; // Add Elio's image i
 import mahdiImg from "/mahdi2.jpg"; // Add Mahdi's image import
 
 const Testimonials = ({ addClass }) => {
+  const { t } = useTranslation();
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -149,7 +151,7 @@ const Testimonials = ({ addClass }) => {
               letterSpacing: '-0.02em',
               lineHeight: '1.2'
             }}>
-              Crafted for Every Screen
+              {t('testimonials.heading')}
             </h2>
             <div className="services_txt">
               <p className="text_lg" style={{
@@ -247,7 +249,7 @@ const Testimonials = ({ addClass }) => {
                     animation: 'spin 1s linear infinite'
                   }} />
                   <div style={{ fontSize: '14px', opacity: 0.9 }}>
-                    Loading video...
+                    {t('testimonials.loading')}
                   </div>
                 </div>
               ) : (

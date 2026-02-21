@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import Slider from "react-slick";
 import clients1 from "../assets/images/clients-1.png";
 import clients2 from "../assets/images/clients-2.png";
@@ -51,6 +52,7 @@ const clientsData = [
 ];
 
 const Client = () => {
+  const { t } = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -121,7 +123,7 @@ const Client = () => {
                 WebkitTextFillColor: 'transparent',
                 textShadow: 'none'
               }}>
-                WHY WE'RE DIFFERENT :
+                {t('client.label')}
               </h2>
               <p className="main_titel mb-0" style={{
                 lineHeight: '1.6', 

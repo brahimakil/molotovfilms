@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import blogThumb1 from "../assets/images/blog-thumb-1.webp";
 import blogThumb2 from "../assets/images/blog-thumb-2.webp";
 import blogThumb3 from "../assets/images/blog-thumb-3.webp";
@@ -42,6 +43,7 @@ const blogPosts = [
 ];
 
 const BlogOne = () => {
+  const { t } = useTranslation();
   return (
     <section className="blog">
       <div className="container">
@@ -49,14 +51,14 @@ const BlogOne = () => {
           <div className="col-8 col-md-8 col-xxl-6">
             <div className="blog_head">
               <h2 className="main_titel">
-                Our Latest <span>Work</span>
+                {t('blogOne.heading')}
               </h2>
             </div>
           </div>
           <div className="col-md-4 col-xxl-6">
             <div className="blog_head_btn">
               <Link to="/blog-details" className="sara-btn__border">
-                Explore all
+                {t('blogOne.exploreAll')}
               </Link>
             </div>
           </div>
@@ -90,7 +92,7 @@ const BlogOne = () => {
                   </h3>
                   <div className="blog_btn_main">
                     <Link to={post.link} className="blog_btn">
-                      Read More
+                      {t('blogOne.readMore')}
                       <span>
                         <svg
                           width="14"
@@ -118,7 +120,7 @@ const BlogOne = () => {
           <div className="col-xxl-12">
             <div className="blog_head_btn_two">
               <Link to="/blog-details" className="sara-btn__border">
-                Explore all
+                {t('blogOne.exploreAll')}
               </Link>
             </div>
           </div>

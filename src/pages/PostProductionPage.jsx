@@ -4,6 +4,7 @@ import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 import SEO, { seoData } from "../component/SEO";
 import useResponsive from "../utils/useResponsive";
+import { useTranslation } from 'react-i18next';
 
 // Import placeholder images for post-production showcase
 import editingImg from "../assets/images/s-1.webp";
@@ -11,6 +12,7 @@ import colorGradingImg from "../assets/images/s-2.webp";
 import motionGraphicsImg from "../assets/images/s-3.webp";
 
 const PostProductionPage = () => {
+  const { t } = useTranslation();
   const [showcaseVideoUrl, setShowcaseVideoUrl] = useState('');
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [activeService, setActiveService] = useState('editing');
@@ -21,56 +23,56 @@ const PostProductionPage = () => {
   // Post-production services data with new color scheme
   const services = {
     editing: {
-      title: 'Advanced Video Editing',
-      description: 'Precision cuts, seamless transitions, and storytelling that captivates',
+      title: t('postProductionPage.services.0.title'),
+      description: t('postProductionPage.services.0.description'),
       icon: '✂️',
       color: '#556b2f',
-      features: ['Multi-cam editing', 'Advanced transitions', 'Narrative flow', 'Pacing optimization']
+      features: t('postProductionPage.services.0.features', { returnObjects: true })
     },
     color: {
-      title: 'Color Grading & Correction',
-      description: 'Cinematic color palettes that enhance mood and visual impact',
+      title: t('postProductionPage.services.1.title'),
+      description: t('postProductionPage.services.1.description'),
       icon: '🎨',
       color: '#f4d03f',
-      features: ['Color correction', 'Cinematic grading', 'Mood enhancement', 'Brand consistency']
+      features: t('postProductionPage.services.1.features', { returnObjects: true })
     },
     sound: {
-      title: 'Sound Design & Mixing',
-      description: 'Immersive audio experiences that complement your visuals',
+      title: t('postProductionPage.services.2.title'),
+      description: t('postProductionPage.services.2.description'),
       icon: '🎵',
       color: '#2d3e2d',
-      features: ['Audio cleanup', 'Sound effects', 'Music mixing', 'Voice enhancement']
+      features: t('postProductionPage.services.2.features', { returnObjects: true })
     },
     motion: {
-      title: 'Motion Graphics & VFX',
-      description: 'Dynamic animations and visual effects that bring ideas to life',
+      title: t('postProductionPage.services.3.title'),
+      description: t('postProductionPage.services.3.description'),
       icon: '⚡',
       color: '#556b2f',
-      features: ['2D/3D animation', 'Visual effects', 'Title sequences', 'Brand integration']
+      features: t('postProductionPage.services.3.features', { returnObjects: true })
     }
   };
 
   // Content repurposing showcase
   const repurposingProjects = [
     {
-      original: 'Long-form Documentary',
-      creativeTitle: 'The 8x Narrative Engine',
-      outputs: ['Official Trailer', 'Social Media Cuts', 'Quote Graphics', 'Podcast Audio Rip'],
-      multiplier: '8x',
+      original: t('postProductionPage.contentRepurposing.projects.0.input'),
+      creativeTitle: t('postProductionPage.contentRepurposing.projects.0.output'),
+      outputs: t('postProductionPage.contentRepurposing.projects.0.outputs', { returnObjects: true }),
+      multiplier: t('postProductionPage.contentRepurposing.projects.0.multiplier'),
       description: 'One documentary becomes 8 pieces of content'
     },
     {
-      original: 'Product Launch Video',
-      creativeTitle: 'The 12x Omnichannel Blitz',
-      outputs: ['Instagram Stories Teasers', 'Hypnotic YouTube Shorts', 'LinkedIn Thought-Leadership Clips', 'High-Impact Email Campaign GIFs', 'Behind-the-Scenes Reels'],
-      multiplier: '12x',
+      original: t('postProductionPage.contentRepurposing.projects.1.input'),
+      creativeTitle: t('postProductionPage.contentRepurposing.projects.1.output'),
+      outputs: t('postProductionPage.contentRepurposing.projects.1.outputs', { returnObjects: true }),
+      multiplier: t('postProductionPage.contentRepurposing.projects.1.multiplier'),
       description: 'Maximum reach across all platforms'
     },
     {
-      original: 'Interview Session',
-      creativeTitle: 'The 6x Authority Builder',
-      outputs: ['Highlight Reels', '"Mic Drop" Quote Cards', 'Full Audio Podcast Episode', 'Blog Content'],
-      multiplier: '6x',
+      original: t('postProductionPage.contentRepurposing.projects.2.input'),
+      creativeTitle: t('postProductionPage.contentRepurposing.projects.2.output'),
+      outputs: t('postProductionPage.contentRepurposing.projects.2.outputs', { returnObjects: true }),
+      multiplier: t('postProductionPage.contentRepurposing.projects.2.multiplier'),
       description: 'Every conversation becomes multiple touchpoints'
     }
   ];
@@ -151,7 +153,7 @@ const PostProductionPage = () => {
                   textAlign: isMobile ? 'center' : 'left'
                 }}>
                   <br /><br />
-                  MAKE EVERY FRAME COUNT.
+                  {t('postProductionPage.heroHeading')}
                   <span style={{
                     background: 'linear-gradient(135deg, #f4d03f, #556b2f, #ffffff)',
                     backgroundClip: 'text',
@@ -159,7 +161,7 @@ const PostProductionPage = () => {
                     WebkitTextFillColor: 'transparent',
                     display: 'block'
                   }}>
-                    Cinematic Post-Production
+                    {t('postProductionPage.heroSubheading')}
                   </span>
                 </h1>
                 
@@ -171,7 +173,7 @@ const PostProductionPage = () => {
                   maxWidth: isMobile ? '100%' : '600px',
                   textAlign: isMobile ? 'center' : 'left'
                 }}>
-                  Your raw footage is potential. We're the alchemists who turn it into cinematic gold. Through razor-sharp editing, breathtaking color, immersive sound, and hypnotic motion graphics, we don't just finish your video—we ignite it.
+                  {t('postProductionPage.heroDescription')}
                 </p>
 
                 {/* Service Selector */}
@@ -289,7 +291,7 @@ const PostProductionPage = () => {
                     color: 'white',
                     fontSize: isMobile ? '1rem' : '1.3rem'
                   }}>
-                    🎬 Loading Showcase...
+                    {t('postProductionPage.loadingShowcase')}
                   </div>
                 )}
                 
@@ -306,7 +308,7 @@ const PostProductionPage = () => {
                   fontWeight: 'bold',
                   backdropFilter: 'blur(10px)'
                 }}>
-                  ✨ Award-Winning Quality
+                  {t('postProductionPage.heroBadge')}
                 </div>
               </div>
             </div>
@@ -328,7 +330,7 @@ const PostProductionPage = () => {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
-ONE SHOOT. AN ENTIRE CAMPAIGN.
+{t('postProductionPage.contentRepurposing.heading')}
 </h2>
               <p style={{ fontSize: '1.3rem', color: '#556b2f', lineHeight: '1.8', maxWidth: '800px', margin: '0 auto' }}>
               Stop the content treadmill. The most successful brands don't create more; they create smarter. We strategically dissect your hero content—transforming one long-form video into a full arsenal of platform-native assets. Get more reach, more engagement, and a bigger ROI from a single investment.
@@ -438,7 +440,7 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                       display: 'inline-block',
                       marginTop: '10px'
                     }}>
-                      {project.multiplier} Content
+                      {project.multiplier}
                     </div>
                   </div>
 
@@ -486,7 +488,7 @@ ONE SHOOT. AN ENTIRE CAMPAIGN.
                 marginBottom: '60px',
                 color: 'white'
               }}>
-Our Strategic Protocol
+{t('postProductionPage.workflow.heading')}
 </h2>
             </div>
           </div>
@@ -494,30 +496,30 @@ Our Strategic Protocol
           <div className="row g-4">
             {[
               {
-                phase: 'INTAKE',
-                title: 'The Mission Blueprint',
-                description: 'Every successful project begins with intelligence. We perform a deep analysis of your raw footage, aligning with your strategic objectives to architect a precise post-production blueprint. This is the master plan for achieving maximum impact..',
+                phase: t('postProductionPage.workflow.phases.0.label'),
+                title: t('postProductionPage.workflow.phases.0.title'),
+                description: t('postProductionPage.workflow.phases.0.description'),
                 icon: '🔍',
                 color: '#556b2f'
               },
               {
-                phase: 'EDIT',
-                title: 'Tactical Assembly',
-                description: 'Execution begins. Our editors assemble the narrative with tactical precision. Every cut, transition, and sequence is purposefully crafted to engage the audience, drive the story forward, and achieve the core mission objective. There is no wasted motion.',
+                phase: t('postProductionPage.workflow.phases.1.label'),
+                title: t('postProductionPage.workflow.phases.1.title'),
+                description: t('postProductionPage.workflow.phases.1.description'),
                 icon: '✂️',
                 color: '#f4d03f'
               },
               {
-                phase: 'The Force Multiplier',
-                title: 'Visual & Audio Polish',
-                description: 'This is where we apply the force multiplier. We add a layer of advanced polish that dramatically elevates the final product. Through cinematic color grading, immersive sound design, and sharp motion graphics, we transform a great video into an undeniable asset with commanding presence.',
+                phase: t('postProductionPage.workflow.phases.2.label'),
+                title: t('postProductionPage.workflow.phases.2.title'),
+                description: t('postProductionPage.workflow.phases.2.description'),
                 icon: '🎨',
                 color: '#2d3e2d'
               },
               {
-                phase: 'REPURPOSE',
-                title: 'Strategic Deployment',
-                description: 'The primary asset is complete. Now, we deploy the campaign. We strategically repurpose the core content',
+                phase: t('postProductionPage.workflow.phases.3.label'),
+                title: t('postProductionPage.workflow.phases.3.title'),
+                description: t('postProductionPage.workflow.phases.3.description'),
                 color: '#556b2f',
                 icon: '📱'
               } 

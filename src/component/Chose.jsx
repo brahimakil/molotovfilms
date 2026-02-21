@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import checkIcon from "../assets/images/check.svg";
 import choseThumb from "../assets/images/chose_thumb.webp";
 import choseCardOne from "../assets/images/choees_card-one.svg";
@@ -7,6 +8,7 @@ import pos3 from "../assets/images/about-pos-3.svg";
 import pos4 from "../assets/images/about-pos-4.svg";
 
 const Chose = () => {
+  const { t } = useTranslation();
   return (
     <section className="chose">
       <div className="container">
@@ -14,34 +16,25 @@ const Chose = () => {
           <div className="col-lg-6">
             <div className="about_head">
               <h2 className="main_titel">
-                OUR PROMISE
+                {t('chose.label')}
 
               </h2>
 
               <p className="text_lg">
-               We find the single image that holds the whole story.
+               {t('chose.heading')}
 
               </p>
             </div>
 
             <ul className="about_list">
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-We finish like filmmakers — not suppliers.
-              </li>
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-We launch like strategists — not hobbyists.
-              </li>
-              <li>
-                <span>
-                  <img src={checkIcon} alt="icon" />
-                </span>
-We repurpose like magicians — one shoot, many lives.              </li>
+              {t('chose.listItems', { returnObjects: true }).map((item, index) => (
+                <li key={index}>
+                  <span>
+                    <img src={checkIcon} alt="icon" />
+                  </span>
+                  {item}
+                </li>
+              ))}
             </ul>
 
             <div className="about_us_btn">

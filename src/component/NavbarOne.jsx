@@ -3,9 +3,12 @@ import headerLogImg from "../assets/main logo/Molotove text Final (2).png";
 import { useEffect, useState } from "react";
 import Select from "react-select";
 import MobileMenu from "./MobileMenu";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 function NavbarOne() {
   const [isServiceHovered, setIsServiceHovered] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,7 +52,7 @@ function NavbarOne() {
                   <ul className="menu">
                     <li>
                       <Link to="/" className="text_base">
-                        Home
+                        {t('nav.home')}
                         <span>
                         
                         </span>
@@ -65,7 +68,7 @@ function NavbarOne() {
                               style={{ position: 'relative' }}
                             >
                               <Link to="/services" className="text_base">
-                                Service
+                                {t('nav.service')}
                                 <span>
                                   <svg
                                     width="14"
@@ -131,7 +134,7 @@ function NavbarOne() {
                                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                                     e.target.style.transform = 'translateY(0)';
                                   }}>
-                                    Reels & Short-Form Video
+                                    {t('nav.serviceDropdown.reels')}
                                   </Link>
                                 </li>
                                 <li style={{ margin: '0', padding: '0' }}>
@@ -159,7 +162,7 @@ function NavbarOne() {
                                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                                     e.target.style.transform = 'translateY(0)';
                                   }}>
-                                    Features & Brand Films
+                                    {t('nav.serviceDropdown.features')}
                                   </Link>
                                 </li>
                                 <li style={{ margin: '0', padding: '0' }}>
@@ -187,7 +190,7 @@ function NavbarOne() {
                                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                                     e.target.style.transform = 'translateY(0)';
                                   }}>
-                                    Scriptwriting & Concepts
+                                    {t('nav.serviceDropdown.scriptwriting')}
                                   </Link>
                                 </li>
                                 <li style={{ margin: '0', padding: '0' }}>
@@ -215,7 +218,7 @@ function NavbarOne() {
                                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                                     e.target.style.transform = 'translateY(0)';
                                   }}>
-                                    Post-Production
+                                    {t('nav.serviceDropdown.postProduction')}
                                   </Link>
                                 </li>
                                 <li style={{ margin: '0', padding: '0' }}>
@@ -244,7 +247,7 @@ function NavbarOne() {
                                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                                     e.target.style.transform = 'translateY(0)';
                                   }}>
-                                    Social Media & Performance
+                                    {t('nav.serviceDropdown.socialMedia')}
                                   </Link>
                                 </li>
                                 <li style={{ margin: '0', padding: '0' }}>
@@ -272,7 +275,7 @@ function NavbarOne() {
                                     e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                                     e.target.style.transform = 'translateY(0)';
                                   }}>
-                                    Web Development
+                                    {t('nav.serviceDropdown.webDevelopment')}
                                   </Link>
                                 </li>
                               </ul>
@@ -281,13 +284,13 @@ function NavbarOne() {
                         </li>
                     <li>
                       <Link to="/about" className="text_base">
-                        About Us
+                        {t('nav.aboutUs')}
                       </Link>
                     </li>
                  
                     <li>
                       <Link to="/contuct-us" className="text_base">
-                        Contact Us
+                        {t('nav.contactUs')}
                   
                       </Link>
                     
@@ -296,8 +299,8 @@ function NavbarOne() {
                 </div>
               </div>
               <div className="col-lg-2 col-xl-2 col-xxl-2">
-                <div className="menu_bg_right">
-                  {/* Meet the Artist button removed - moved to footer */}
+                <div className="menu_bg_right" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                  <LanguageSwitcher />
                 </div>
               </div>
             </div>

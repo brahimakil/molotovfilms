@@ -1,0 +1,986 @@
+{
+  "nav": {
+    "home": "Home",
+    "service": "Dienst",
+    "services": "Diensten",
+    "aboutUs": "Over Ons",
+    "contactUs": "Contacteer Ons",
+    "contact": "Contact",
+    "blog": "Blog",
+    "pages": "Pagina's",
+    "serviceDropdown": {
+      "reels": "Reels & Korte Video's",
+      "features": "Merkfilms",
+      "scriptwriting": "Scriptwriting & Concepten",
+      "postProduction": "Post-Productie",
+      "socialMedia": "Social Media & Prestaties",
+      "webDevelopment": "Webontwikkeling"
+    },
+    "pagesDropdown": {
+      "blogDetails": "Blog Details",
+      "blogListView": "Blog Lijstweergave",
+      "contactUs": "Contacteer Ons",
+      "faq": "FAQ",
+      "pricing": "Prijzen",
+      "serviceDetails": "Dienstgegevens",
+      "singleMember": "Lid",
+      "teamMember": "Teamlid",
+      "testimonial": "Getuigenis",
+      "error404": "404"
+    },
+    "homeVariants": {
+      "home01": "Home 01",
+      "home02": "Home 02",
+      "home03": "Home 03"
+    }
+  },
+
+  "hero": {
+    "heading": "WIJ MAKEN FILMS DIE MENSEN ONTHOUDEN.",
+    "subheading": "Studio-schaal. Kunstzinnige durf. Verhalen die weigeren te verdwijnen.",
+    "getInTouch": "Neem Contact Op",
+    "learnMore": "Meer weten",
+    "loading": "Laden...",
+    "videoFallback": "Uw browser ondersteunt de videotag niet."
+  },
+
+  "heroTwo": {
+    "heading": "Innoveer voor een Betere Toekomst van Uw Bedrijf",
+    "getInTouch": "Neem Contact Op",
+    "learnMore": "Meer weten"
+  },
+
+  "heroThree": {
+    "heading": "Verbeter de SEO-ranglijst van Uw Website",
+    "emailPlaceholder": "Voer uw e-mail in",
+    "subscribe": "Abonneren",
+    "rating": "13k beoordelingen (4.7 Score)"
+  },
+
+  "manifesto": {
+    "label": "MANIFEST",
+    "quote": "Wij zijn een kleine, hongerige studio die onvergetelijk werk maakt. Wij geloven dat elk merk een slapend anthem heeft — een filmische zenuw die niemand nog heeft geraakt. Onze taak is het te vinden, te filmen, te monteren en de wereld in te lanceren voordat uw publiek kan knipperen. Wij leven voor het kippenvelmoment: dat fractie van een seconde wanneer een kijker naar voren leunt en denkt, 'Dat moet ik opnieuw zien.' Dat is de Molotov-standaard — maak het één keer, maak het bijtend, maak het viraal."
+  },
+
+  "servicesTwo": {
+    "heading": "Wat bieden wij aan? Bekijk het",
+    "items": [
+      { "title": "Digitale Transformatie", "description": "Wij transformeren digitale landschappen met geavanceerde oplossingen." },
+      { "title": "Business Intelligence", "description": "Datagestuurde inzichten voor uw bedrijfsbeslissingen." },
+      { "title": "Cybersecurity Bewustzijn", "description": "Bescherm uw digitale activa met uitgebreide beveiliging." }
+    ],
+    "readMore": "Meer Lezen"
+  },
+
+  "servicesThree": {
+    "heading": "Visies Omzetten in Duurzame Dienstverlening",
+    "items": [
+      { "title": "SEO Analyse" },
+      { "title": "Content Strategie" },
+      { "title": "Boeteherstel" },
+      { "title": "SEO Consultatie" },
+      { "title": "SEO Rapportage" }
+    ],
+    "readMore": "Meer Lezen"
+  },
+
+  "innerServices": {
+    "services": [
+      {
+        "title": "Reels & Korte Video's",
+        "description": "Wij creëren scrollstoppende korte content ontworpen voor platformen zoals Instagram Reels, TikTok en YouTube Shorts. Van concept tot eindmontage produceert ons team energieke, visueel opvallende content die de aandacht grijpt in de eerste seconde. Of het nu productshowcases, behind-the-scenes content, trendstukken of merkverhalen zijn — wij zorgen dat elke seconde telt.",
+        "cta": "Meer Lezen"
+      },
+      {
+        "title": "Merkfilms & Documentaires",
+        "description": "Onze merk- en filmproductiedivisie is gespecialiseerd in het produceren van visueel rijke, verhaalgedreven content die verder gaat dan promotie — het creëert blijvende impact. Wij behandelen alles van conceptontwikkeling en scriptwriting tot volledige productie en postproductie. Of u nu een merkdocumentaire, een oprichtersverhaal, een productfilm of een volledige speelfilm nodig heeft, wij brengen cinematografische kwaliteit en emotionele diepte in elk project.",
+        "cta": "Meer Lezen"
+      },
+      {
+        "title": "Scriptwriting & Creatieve Concepten",
+        "description": "Geweldige content begint met een geweldig verhaal. Ons scriptwriting- en conceptteam ontwikkelt overtuigende verhalen afgestemd op uw merk, publiek en platform. Van commerciële scripts en merkinhoud tot korte films en campagneconcepten, wij creëren woorden en ideeën die verbinden, converteren en blijven hangen. Elk script is gebouwd rond strategie — niet alleen creativiteit.",
+        "cta": "Meer Lezen"
+      },
+      {
+        "title": "Post-Productie & Content Hergebruik",
+        "description": "Onze postproductiepipeline dekt alles van professionele videomontage en kleurcorrectie tot motion graphics, geluidsontwerp en definitieve levering. Wij bieden ook content hergebruik aan — het transformeren van één productie in meerdere assets geoptimaliseerd voor verschillende platformen en formaten. Eén shoot wordt een campagne, en elk beeld is gepolijst tot perfectie.",
+        "cta": "Meer Lezen"
+      },
+      {
+        "title": "Social Media & Performance Marketing",
+        "description": "Wij maken niet alleen content — wij laten het presteren. Onze social media en performance marketing diensten combineren creatieve productie met datagestuurde strategie. Van het beheren van social kanalen en het creëren van maandelijkse contentkalenders tot het runnen van betaalde advertentiecampagnes en het analyseren van prestaties, wij helpen merken hun aanwezigheid te laten groeien en echte resultaten te behalen.",
+        "cta": "Meer Lezen"
+      },
+      {
+        "title": "Webontwikkeling",
+        "description": "Wij bouwen snelle, responsieve en visueel verbluffende websites en webapplicaties. Van custom landingspagina's en portfolio sites tot full-stack platformen en e-commerce oplossingen, ons ontwikkelteam geeft uw digitale aanwezigheid leven.",
+        "cta": "Meer Lezen"
+      }
+    ]
+  },
+
+  "aboutUs": {
+    "heading": "Wij Bieden Realtime Bedrijfsgroeioplossingen",
+    "listItems": [
+      "Diverse analyse-opties.",
+      "Paginalading (tijd, grootte, aantal verzoeken).",
+      "Big data analyse."
+    ],
+    "button": "Alles verkennen"
+  },
+
+  "aboutUsTwo": {
+    "label": "Social-First & Krachtig",
+    "counters": {
+      "videosProduced": "Geproduceerde Video's",
+      "campaignReach": "Campagne Bereik"
+    },
+    "videosValue": "150+",
+    "reachValue": "2M+",
+    "listItems": [
+      "Hoogwaardige beelden die uw verhaal vertellen",
+      "Geoptimaliseerd voor alle formaten – social, uitzending, web",
+      "Datagedreven proces met creatief instinct"
+    ],
+    "button": "✨ Meer weten? Neem Contact Op"
+  },
+
+  "chose": {
+    "label": "ONZE BELOFTE",
+    "heading": "Wij vinden het ene beeld dat het hele verhaal bevat.",
+    "listItems": [
+      "Wij voltooien als filmmakers.",
+      "Wij lanceren als strategen.",
+      "Wij hergebruiken als goochelaars."
+    ]
+  },
+
+  "choseTwo": {
+    "heading": "Een Nieuwe Standaard in Storytelling en Cinematografische Productie",
+    "progressBars": [
+      { "label": "Artistieke impact", "value": "90%" },
+      { "label": "Vertelkracht", "value": "80%" },
+      { "label": "Publieksbetrokkenheid", "value": "70%" }
+    ]
+  },
+
+  "client": {
+    "label": "WAAROM WIJ ANDERS ZIJN:"
+  },
+
+  "counter": {
+    "items": [
+      { "value": "20", "label": "Jaren Ervaring" },
+      { "value": "12", "label": "Totaal Diensten" },
+      { "value": "10k", "label": "Wereldwijde Klanten" },
+      { "value": "1k", "label": "Totaal Diensten" }
+    ]
+  },
+
+  "customers": {
+    "heading": "Vertrouwd door meer dan 15.000 Klanten"
+  },
+
+  "faq": {
+    "heading": "Veelgestelde Vragen",
+    "questions": [
+      {
+        "question": "Met welke industrieën werken jullie?",
+        "answer": "Wij werken in alle sectoren — van startups en techmerken tot horeca, mode, voeding, vastgoed, sport en non-profit organisaties. Als u een verhaal te vertellen heeft of een merk te laten groeien, zijn wij het juiste team."
+      },
+      {
+        "question": "Hoeveel ervaring is er nodig?",
+        "answer": "Geen ervaring nodig van uw kant. Wij begeleiden u door elke stap van het proces — van concept tot definitieve levering. Of u eerder videocontent heeft geproduceerd of dit uw eerste project is, wij maken het naadloos."
+      },
+      {
+        "question": "Hoe krijg ik diensten?",
+        "answer": "Neem gewoon contact op via ons contactformulier of boek een gratis consultatie. We bespreken uw doelen, tijdlijn en budget, en stellen vervolgens een plan op maat voor."
+      }
+    ]
+  },
+
+  "team": {
+    "heading": "De Beste van Ons Speciale Team",
+    "members": [
+      { "name": "Osama Sam", "role": "UX-UI Designer" },
+      { "name": "Dianne Russell", "role": "Verpleegassistente" },
+      { "name": "Courtney Henry", "role": "Webdesigner" },
+      { "name": "Marvin McKinney", "role": "Directeur Verkoop" }
+    ]
+  },
+
+  "testimonials": {
+    "heading": "Gemaakt voor Elk Scherm",
+    "loading": "Getuigenissen laden..."
+  },
+
+  "videoSection": {
+    "heading": "Wij Helpen U Uw Dienst te Vinden",
+    "personName": "Onam Sarker",
+    "personTitle": "Apple Inc."
+  },
+
+  "working": {
+    "heading": "Laten we krachtige video's maken die inspireren, betrekken en converteren",
+    "brandName": "MOLOTOV FILMS",
+    "serviceTitle": "Videoproductie Consultatie",
+    "duration": "30 min",
+    "meetingInfo": "Vergaderdetails worden na bevestiging verstrekt.",
+    "description": "Bedankt voor uw interesse! Bij Molotov Films zijn we gepassioneerd om authentieke verhalen om te zetten in krachtige videocontent die vertrouwen opbouwt en uw merk naar een hoger niveau tilt.",
+    "calendarHeading": "📅 Selecteer een Datum & Tijd",
+    "dayHeaders": ["ZON", "MAA", "DIN", "WOE", "DON", "VRI", "ZAT"],
+    "calendarNotes": {
+      "unavailable": "🚫 Zaterdagen & zondagen niet beschikbaar",
+      "available": "✅ Groene datums beschikbaar"
+    },
+    "bookingPopup": {
+      "heading": "📝 Boekingsgegevens",
+      "selectedDateLabel": "📅 Geselecteerde Datum",
+      "email": "E-mailadres *",
+      "subject": "Onderwerp *",
+      "name": "Volledige Naam (optioneel)",
+      "phone": "Telefoonnummer (optioneel)",
+      "description": "Vertel ons over uw project... (optioneel)",
+      "submitButton": "🚀 Consultatie Plannen",
+      "submitting": "Verzenden..."
+    },
+    "steps": [
+      { "number": "1", "label": "Concept & Strategie" },
+      { "number": "2", "label": "Ontwerp & Productie" },
+      { "number": "3", "label": "Gepolijst & Publicatieklaar" }
+    ]
+  },
+
+  "videoComparison": {
+    "heading": "Van Ruw naar",
+    "headingHighlight": "Stralend",
+    "subheading": "Een cinematografische voor-en-na die laat zien hoe VFX en kleurcorrectie elk beeld tot leven brengen.",
+    "scrollPrompt": "Scroll naar beneden om video's te laden",
+    "loadingText": "{{category}} Video {{index}} laden...",
+    "loadingFromCache": "Laden uit cache...",
+    "fetchingFromServer": "Ophalen van server...",
+    "failedToLoad": "Laden van video's mislukt",
+    "retry": "Opnieuw proberen",
+    "syncingVideos": "Video's synchroniseren...",
+    "noVideosAvailable": "Geen video's beschikbaar",
+    "categories": {
+      "coloring": "KLEURING",
+      "vfx": "VFX"
+    }
+  },
+
+  "blogOne": {
+    "heading": "Ons Laatste Werk",
+    "readMore": "Meer Lezen",
+    "exploreAll": "Alles verkennen"
+  },
+
+  "blogTwo": {
+    "heading": "Ons Laatste Nieuws & Blog",
+    "postedBy": "Geplaatst door"
+  },
+
+  "blogItem": {
+    "heading": "Gerelateerde Blog",
+    "postedBy": "Geplaatst door Sara"
+  },
+
+  "blogPost": {
+    "author": "Sara",
+    "date": "6 augustus 2024",
+    "category": "Verhalen, Media",
+    "readTime": "5 min leestijd",
+    "title": "3 Manieren om Tegen Jezelf te Liegen Over je Nieuwe Relatie"
+  },
+
+  "pricing": {
+    "heading": "Kies een Prijsplan dat bij U Past",
+    "monthly": "Maandelijks",
+    "yearly": "Jaarlijks",
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "€5,00",
+        "period": "/maand",
+        "features": ["2 Gebruikers", "5 Projecten", "Beperkte Ondersteuning", "Gegevensbeheer"]
+      },
+      {
+        "name": "Premium",
+        "price": "€25,00",
+        "period": "/maand",
+        "features": ["10 Gebruikers", "25 Projecten", "Prioriteit Ondersteuning", "Gegevensbeheer"]
+      },
+      {
+        "name": "Premium Plan",
+        "price": "€40,00",
+        "period": "/maand",
+        "features": ["Onbeperkte Gebruikers", "Onbeperkte Projecten", "Privé Ondersteuning", "Privé Beheer"]
+      }
+    ],
+    "getStarted": "Aan de Slag"
+  },
+
+  "pricingTwo": {
+    "heading": "Geen Verborgen Kosten. Kies een Plan",
+    "plans": [
+      { "name": "Standaard", "price": "€0,96", "period": "/maand" },
+      { "name": "Business", "price": "€1,00", "period": "/maand" },
+      { "name": "Kantoor", "price": "€1,50", "period": "/maand" }
+    ],
+    "getStarted": "Aan de Slag"
+  },
+
+  "footer": {
+    "heading": "Neem contact op",
+    "subheading": "Laten we uw visie ontsteken",
+    "sectionLabel": "Algemeen",
+    "addresses": [
+      "Coupure 88a, 9000 Gent",
+      "Shelton St. Londen, Engeland"
+    ],
+    "phone": "+1 786 6736887",
+    "email": "info@molotovfilms.be",
+    "contactUs": "Contacteer ons",
+    "meetTheArtist": "Ontmoet de Artiest",
+    "socialMediaLabel": "Sociale Media",
+    "copyright": "© 2026 Molotov Films. Ontworpen door Dprime Solutions."
+  },
+
+  "footerTwo": {
+    "heading": "Wilt U Samen Iets Geweldigs Creëren?",
+    "subheading": "Neem Contact Op..",
+    "email": "hello@molotovfilms.com",
+    "phone": "+1 707 797 0462",
+    "newsletterHeading": "Nieuwsbrief",
+    "newsletterPlaceholder": "Voer uw e-mail in",
+    "newsletterButton": "Abonneren",
+    "quickLinksHeading": "Snelle Links",
+    "quickLinks": ["Home", "Contact", "Dienst", "Over Ons"],
+    "supportHeading": "Ondersteuning",
+    "supportLinks": ["FAQ", "Privacybeleid", "Algemene Voorwaarden"],
+    "productsHeading": "Producten",
+    "productLinks": ["Functies", "Prijzen", "Team"],
+    "copyright": "2024 © Alle rechten voorbehouden door Molotov Films.",
+    "privacyPolicy": "Privacybeleid",
+    "termsAndConditions": "Algemene Voorwaarden"
+  },
+
+  "innerFooter": {
+    "email": "hello@infosara.com",
+    "copyright": "2024 © Alle rechten voorbehouden door Sara."
+  },
+
+  "aboutPage": {
+    "heroHeading": "Wij Creëren Films, Advertenties & Social Content met Impact",
+    "pageTitle": "Over Ons",
+    "loadingFromCache": "Laden uit cache...",
+    "loading": "Laden...",
+    "preparingExperience": "Uw ervaring voorbereiden",
+    "aboutUs": "Over Ons sectie laden...",
+    "storytelling": "Storytelling sectie laden...",
+    "workingProcess": "Werkproces laden...",
+    "videoComparison": "Videovergelijking laden...",
+    "videoFallback": "Uw browser ondersteunt de videotag niet."
+  },
+
+  "servicesPage": {
+    "heroHeading": "Alle Media. Alle Verhalen. Eén Productiehuis.",
+    "heroSubheading": "Wij creëren alles — films, video's en alle media. Een filmhuis gebouwd om visie om te zetten in onvergetelijke verhalen.",
+    "pageTitle": "Onze Diensten",
+    "loadingFromCache": "Laden uit cache...",
+    "loading": "Laden...",
+    "preparingExperience": "Uw ervaring voorbereiden",
+    "services": "Diensten sectie laden...",
+    "testimonials": "Getuigenissen sectie laden...",
+    "blog": "Blog sectie laden...",
+    "videoFallback": "Uw browser ondersteunt de videotag niet."
+  },
+
+  "serviceDetailsPage": {
+    "breadcrumbs": ["Home", "Dienstgegevens"],
+    "heroTitle": "Dienstgegevens",
+    "heroSubtitle": "Ontdek ons uitgebreide aanbod van film- en videoproductiediensten",
+    "loadingFromCache": "Laden uit cache...",
+    "loading": "Laden...",
+    "preparingExperience": "Uw ervaring voorbereiden",
+    "loadingVideo": "Video laden...",
+    "videoUnavailable": "Video niet beschikbaar",
+    "videoFallback": "Uw browser ondersteunt de videotag niet.",
+    "mainHeading": "POP. CUT. ROLL. REPEAT.",
+    "mainSubheading": "Grote ideeën. Slimmere uitvoering. Films die schreeuwen.",
+    "descriptionP1": "Wij zijn een productiehuis dat schildert met licht en geluid — militant over vakmanschap, roekeloos tegenover saaiheid.",
+    "servicePhases": ["Pre-Productie", "Productie", "Post-Productie"],
+    "descriptionP2": "Stel je een stripverhaal voor waar elk paneel een filmposter is. Dat is onze aanpak: theatrale durf, cinematografische discipline. Wij nemen projecten van krabbels op een servet tot festivalwaardige masters — met scenarioschrijvers, scouts, crews en mixers die van het rare werk net zoveel houden als van het nette.",
+    "ourGoal": {
+      "heading": "Ons Doel",
+      "items": [
+        "Middelmatigheid opblazen met films, reels en shorts die ontvlammen.",
+        "Cinema maken die niet weggescrolld kan worden.",
+        "Ideeën omzetten in wapens — precies, gedurfd, onvergetelijk.",
+        "Rauw blijven, cinematografisch blijven, gevaarlijk blijven."
+      ]
+    },
+    "theChallenge": {
+      "heading": "De Uitdaging",
+      "text": "De industrie draait op veilige gokken, lege trends en snelle productie. Onze uitdaging is het flauwheid te weerstaan, schoonheid uit chaos te snijden en elk beeld harder te laten raken dan het vorige. Wij passen ons niet aan platformen aan — wij buigen ze. Wij volgen geen tijdlijnen — wij bewapenen ze. Bij Molotov is elk project een aanval — berekend, explosief en gebouwd om een merkteken achter te laten."
+    },
+    "successRatio": {
+      "heading": "Succesratio",
+      "description": "Wij staan bekend om onze succesratio.",
+      "value": "91%",
+      "link": "Details"
+    },
+    "failureRatio": {
+      "heading": "Faalratio",
+      "description": "Wij hebben een zeer lage faalratio in onze werkgeschiedenis.",
+      "value": "9%",
+      "link": "Details"
+    },
+    "easyProcess": {
+      "heading": "🎬 Eenvoudig Proces, Grote Impact",
+      "description": "Wij houden het scherp, snel en cinematografisch. Geen eindeloze vergaderingen, geen leeg gepraat — alleen vuur op het scherm.",
+      "steps": [
+        {
+          "title": "Vind de Vonk",
+          "description": "Elk verhaal heeft een pols. Wij graven tot we het vangen — het probleem, de sfeer, de haak."
+        },
+        {
+          "title": "Vorm de Visie",
+          "description": "Onderzoek, remix en verscherp. Popcultuur, geschiedenis, straatgeluid — het voedt allemaal het kader."
+        },
+        {
+          "title": "Steek de Lont Aan",
+          "description": "Plan het, film het, monteer het. Snel wanneer nodig, tijdloos wanneer het telt."
+        }
+      ]
+    },
+    "sidebar": {
+      "pitchPackage": {
+        "heading": "Het Pitch Pakket",
+        "items": [
+          { "label": "Idee Vonk", "description": "Concept & Ontwikkeling" },
+          { "label": "Verhaalschets", "description": "Voorbereiding & Verhaal" },
+          { "label": "Gezichten & Stemmen", "description": "Casting & Talent" },
+          { "label": "Locatie Jacht", "description": "Locaties & Vergunningen" },
+          { "label": "Kader & Vlam", "description": "Cinematografie & Belichting" },
+          { "label": "Geluidscheck", "description": "Productie Audio" },
+          { "label": "Stijl & Uiterlijk", "description": "Design & Garderobe" },
+          { "label": "Actiedag", "description": "Volledige Productie" },
+          { "label": "Knip & Stroom", "description": "Montage" },
+          { "label": "Kleur Pop", "description": "Kleuring & Afwerking" },
+          { "label": "Bewegingsmagie", "description": "VFX & Graphics" },
+          { "label": "Geluidsrush", "description": "Design & Score" },
+          { "label": "Hype Drop", "description": "Marketing & Release" },
+          { "label": "Festival Pack", "description": "DCPs & Distributie" }
+        ]
+      },
+      "tagsHeading": "Tags",
+      "tags": ["Cinema", "Film", "Productie", "Script", "Marketing", "Reels", "Sociale media", "Films", "Advertenties"]
+    }
+  },
+
+  "postProductionPage": {
+    "heroHeading": "LAAT ELK BEELD TELLEN.",
+    "heroBadge": "✨ Bekroonde Kwaliteit",
+    "heroSubheading": "Cinematografische Post-Productie",
+    "heroDescription": "Ruw beeldmateriaal is potentieel. Wij zijn de alchemisten die het transformeren. Onze postproductie is geen fase — het is een wapen. Wij verfijnen, kleuren, mixen en animeren tot elk beeld een berekende aanval is die aandacht afdwingt.",
+    "loadingShowcase": "🎬 Showcase Laden...",
+    "services": [
+      {
+        "title": "Geavanceerde Videomontage",
+        "description": "Professionele montage die ruw beeldmateriaal transformeert in boeiende verhalen.",
+        "features": ["Multi-camera montage", "Geavanceerde overgangen", "Narratieve flow", "Tempo-optimalisatie"]
+      },
+      {
+        "title": "Kleurcorrectie & Grading",
+        "description": "Cinematografisch kleurwerk dat de sfeer en toon instelt voor elk beeld.",
+        "features": ["Kleurcorrectie", "Cinematografische grading", "Sfeerverbetering", "Merkconsistentie"]
+      },
+      {
+        "title": "Geluidsontwerp & Mixing",
+        "description": "Audio-excellentie die diepte en emotie geeft aan uw visuele verhaal.",
+        "features": ["Audio opschoning", "Geluidseffecten", "Muziek mixing", "Stemverbetering"]
+      },
+      {
+        "title": "Motion Graphics & VFX",
+        "description": "Dynamische visuele effecten en animaties die uw content naar een hoger niveau tillen.",
+        "features": ["2D/3D animatie", "Visuele effecten", "Titelsequenties", "Merkintegratie"]
+      }
+    ],
+    "contentRepurposing": {
+      "heading": "ÉÉN OPNAME. EEN HELE CAMPAGNE.",
+      "projects": [
+        {
+          "input": "Langformat Documentaire",
+          "output": "De 8x Verhalenmotor",
+          "multiplier": "8x Content",
+          "outputs": ["Hoofdtrailer (90s)", "Social Teasers (3x 30s)", "Podcast Clips (2x)", "Fotogalerij", "Behind-The-Scenes Reel"]
+        },
+        {
+          "input": "Productlancering Video",
+          "output": "De 12x Omnichannel Blitz",
+          "multiplier": "12x Content",
+          "outputs": ["Hoofdvideo", "Instagram Reels (4x)", "YouTube Shorts (3x)", "E-mail GIFs (2x)", "Thumbnail Suite", "Story Reeks"]
+        },
+        {
+          "input": "Interview Sessie",
+          "output": "De 6x Autoriteit Bouwer",
+          "multiplier": "6x Content",
+          "outputs": ["Volledige Interview Montage", "Citaatkaarten (3x)", "Audiogram Clips (2x)", "Blog Transcriptie"]
+        }
+      ]
+    },
+    "workflow": {
+      "heading": "Ons Strategisch Protocol",
+      "phases": [
+        { "label": "INTAKE", "title": "De Missie Blauwdruk", "description": "Wij ontleden uw ruw beeldmateriaal, briefing en doelstellingen." },
+        { "label": "MONTAGE", "title": "Tactische Assemblage", "description": "Onze editors bouwen de verhalende structuur." },
+        { "label": "AFWERKING", "title": "De Krachtversterker / Visuele & Audio Afwerking", "description": "Kleur, geluid en motion graphics worden toegepast." },
+        { "label": "HERGEBRUIK", "title": "Strategische Inzet", "description": "Content wordt aangepast voor elk platform." }
+      ]
+    }
+  },
+
+  "scriptWritingPage": {
+    "breadcrumbs": ["Home", "Diensten", "Scriptwriting"],
+    "heroHeading": "ÉÉN LIEFDEVOLLE LIJN",
+    "heroSubheading": "Wij verkopen geen verhalen — wij veroorzaken kleine obsessies. Films die mensen bewaren, delen en om 2 uur 's nachts bespreken.",
+    "mainHeading": "SCHRIJF. ZING. SLAAG.",
+    "mainSubheading": "Verhalen die het oog verleiden en vervolgens weigeren te vertrekken.",
+    "creativeProcess": {
+      "heading": "HET VREEMD LIEFLIJKE PROCES",
+      "steps": [
+        {
+          "title": "Idee Vonk",
+          "subtitle": "Het Kleine Verraad",
+          "description": "Elke geweldige film begint met een lijn gekrabbeld op iets wegwerpbaars — een servet, een beslagen raam, een parkeerbon. Wij jagen op die ene onmisbare gedachte — de haak die je niet kunt loslaten, de visuele grap die herhaalt in je hoofd bij het avondeten."
+        },
+        {
+          "title": "Verhaalarchitectuur",
+          "subtitle": "Het Skelet in Kostuum",
+          "description": "Een sterke video heeft botten nodig. Echte botten. Wij bouwen structuur: opzetten die kietelen, wendingen die de maag omdraaien (zachtjes), en eindes die landen als een diepe ademhaling na een lange duik."
+        },
+        {
+          "title": "Script Vakmanschap",
+          "subtitle": "Woorden die Gezichten Dragen",
+          "description": "Dialoog moet klinken als je slimme vriend — degene die Tarantino citeert en toch naar je problemen luistert. Wij schrijven regels die menselijk klinken, specifiek en een beetje te echt."
+        },
+        {
+          "title": "Visuele Blauwdruk",
+          "subtitle": "Storyboards die Uitdagen",
+          "description": "Kaders die van compositie houden en clichés niet respecteren. Shotlijsten die lezen als moodboards met ambitie."
+        }
+      ]
+    },
+    "descriptionParagraphs": [
+      "Een sterke video begint met een nog sterker idee — en een idee begint met woorden. Ons scriptteam schrijft niet gewoon scripts; wij schrijven spreuken.",
+      "Van commerciële scripts tot documentaire structuren, wij werken elk woord met ritme, intentie en een stille vorm van rebellie."
+    ],
+    "servicesList": {
+      "heading": "WAT U KRIJGT (maar warmer)",
+      "items": [
+        "Eigenzinnige, verdedigbare conceptontwikkeling",
+        "Scripts: commercieel, merk, kort, documentaire — allemaal met persoonlijkheid",
+        "Personage-ontwikkeling met geheimen en verlossing",
+        "Visuele behandelingen, tempomappen, VO-notities en festivalaanpassingen"
+      ]
+    },
+    "sidebar": {
+      "quote": "Wij schetsen dromen op servetten, slijpen ze tot kleine apparaatjes die zingen op het scherm...",
+      "quoteAttribution": "— Onze Creatieve Filosofie",
+      "categoriesHeading": "SCRIPT SMAKEN (kies een stemming)",
+      "categories": [
+        "Commercieel → sluw en magnetisch",
+        "Documentaire → menselijk en onderzoekend",
+        "Korte film → geconcentreerde charme",
+        "Social → micro-empathie",
+        "Corporate → culturele storytelling",
+        "Educatief → speelse intelligentie"
+      ]
+    }
+  },
+
+  "socialMediaPage": {
+    "heroHeading": "SOCIAL, SUPERCHARGED.",
+    "heroDescription": "Stop met posten in het niets. Wij beheren geen social media; wij bewapenen het voor groei.",
+    "services": [
+      {
+        "title": "Content Strategie",
+        "description": "Wij bouwen de routekaart",
+        "features": ["Publieksintelligentie", "Content Kalenders die Converteren", "Performance Benchmarking"]
+      },
+      {
+        "title": "Creatieve Productie",
+        "description": "Scrollstoppen is het absolute minimum.",
+        "features": ["Disruptief Visueel Ontwerp", "High-Impact Teksten", "Virale Videocontent"]
+      },
+      {
+        "title": "Community Management",
+        "description": "Hier worden merken echt gebouwd.",
+        "features": ["Proactieve Realtime Betrokkenheid", "Crisis- & Reputatiebeheer", "Community Opbouw"]
+      },
+      {
+        "title": "Analyse & Optimalisatie",
+        "description": "Data is ons commandocentrum.",
+        "features": ["Geavanceerde Prestatietracking", "Agressieve A/B Testing", "Heldere ROI Analyse"]
+      }
+    ],
+    "ctaHeading": "VAN SCROLLERS NAAR KLANTEN.",
+    "platformHeading": "WIJ SPREKEN VLOEIEND INTERNET.",
+    "checklist": [
+      "Platform-Native Meesterschap",
+      "Realtime Snelheid",
+      "Intelligentiegedreven Strategie"
+    ],
+    "arsenalHeading": "Uw Arsenaal voor Digitale Dominantie",
+    "processHeading": "De Blauwdruk voor Overwinning",
+    "processSteps": [
+      "🎯 Strategische Ontdekking",
+      "🎨 Creatieve Ontbranding",
+      "📈 Uitvoeren & Versterken"
+    ],
+    "loadingShowcase": "📱 Showcase laden...",
+    "loadingPortfolio": "📱 Portfolio laden..."
+  },
+
+  "socialMediaPerformancePage": {
+    "heroHeading": "SOCIAL MEDIA, SUPERCHARGED.",
+    "metrics": [
+      { "label": "Click-Through Rate", "value": "8,7%" },
+      { "label": "Conversieratio", "value": "24,3%" },
+      { "label": "Rendement op Investering", "value": "340%" },
+      { "label": "Engagement Score", "value": "92,1%" }
+    ],
+    "liveMetricsLabel": "Live Prestatie Metrics",
+    "services": [
+      {
+        "title": "Strategische Sociale Intelligentie",
+        "features": ["Diepgaande publieksanalyse", "Concurrentie-inzicht", "Trendvoorspelling"]
+      },
+      {
+        "title": "High-Performance Content Creatie",
+        "features": ["Scrollstoppende beelden", "Conversiegericht schrijven", "Platform-native formaten"]
+      },
+      {
+        "title": "Prestatie Analyse & Optimalisatie",
+        "features": ["Realtime dashboards", "A/B test frameworks", "ROI tracking"]
+      },
+      {
+        "title": "Community & Conversie Management",
+        "features": ["24/7 betrokkenheid", "Lead nurturing funnels", "Reputatiebeheer"]
+      }
+    ],
+    "ctaHeading": "VAN SCROLLERS NAAR KLANTEN.",
+    "abTesting": {
+      "heading": "Creatief Darwinisme: Alleen de Sterkste Content Overleeft.",
+      "tests": [
+        {
+          "title": "Haak Variatie Test",
+          "variantA": "Vraag Haak",
+          "variantB": "Stelling Haak",
+          "improvement": "40% hogere CTR"
+        },
+        {
+          "title": "CTA Knop Test",
+          "variantA": "Meer Weten",
+          "variantB": "Aan de Slag",
+          "improvement": "78% meer conversies"
+        },
+        {
+          "title": "Content Formaat Test",
+          "variantA": "Statische Post",
+          "variantB": "Video Content",
+          "improvement": "57% betere betrokkenheid"
+        }
+      ],
+      "winnerLabel": "Winnaar!"
+    },
+    "processHeading": "De Intelligentiecyclus",
+    "processSteps": [
+      {
+        "label": "🎯 Strategische Ontdekking",
+        "description": "Wij leren niet alleen uw merk; wij decoderen het DNA. Wij duiken in uw wereld, uw publiek en het concurrentielandschap om uw unieke winnende voordeel te ontdekken."
+      },
+      {
+        "label": "🎨 Creatieve Ontbranding & Testen",
+        "description": "Hier wordt strategie magie. Ons creatieve team ontbrandt de grote ideeën en produceert meerdere variaties van scrollstoppende content die perfect aansluit bij uw merkgeluid."
+      },
+      {
+        "label": "📈 Uitvoeren, Meten & Versterken",
+        "description": "Wij lanceren, luisteren en leren — snel. Wij monitoren prestaties realtime, engageren uw community en optimaliseren continu op basis van harde data."
+      }
+    ],
+    "loadingShowcase": "📱 Showcase laden..."
+  },
+
+  "performanceAdsPage": {
+    "heroHeading": "Prestatie is Geen Mening.",
+    "heroDescription": "Wij raden niet — wij engineeren. Elke videocampagne die wij lanceren is een high-performance machine, gebouwd op data, aangedreven door creatieve strategie en ontworpen om meetbare, explosieve resultaten te leveren.",
+    "metrics": [
+      { "label": "Click-Through Rate", "value": "8,7%" },
+      { "label": "Conversieratio", "value": "24,3%" },
+      { "label": "Rendement op Investering", "value": "340%" },
+      { "label": "Engagement Score", "value": "92,1%" }
+    ],
+    "liveMetricsLabel": "Live Prestatie Metrics",
+    "loadingData": "📊 Prestatiegegevens Laden...",
+    "roiAchieved": "+340% ROI Behaald",
+    "abTesting": {
+      "heading": "Creatief Darwinisme: Alleen de Sterkste Advertentie Overleeft.",
+      "description": "Wij maken niet zomaar advertenties; wij kweken kampioenen. Door rigoureuze A/B testing zetten wij creatieve variaties tegen elkaar in een live omgeving. Alleen de sterkste overleeft.",
+      "tests": [
+        {
+          "title": "Haak Variatie Test",
+          "variantA": "Vraag Haak",
+          "variantB": "Stelling Haak",
+          "improvement": "40% hogere CTR"
+        },
+        {
+          "title": "CTA Knop Test",
+          "variantA": "Meer Weten",
+          "variantB": "Aan de Slag",
+          "improvement": "78% meer conversies"
+        },
+        {
+          "title": "Video Lengte Test",
+          "variantA": "30 Seconden Ad",
+          "variantB": "15 Seconden Ad",
+          "improvement": "57% betere voltooiing"
+        }
+      ],
+      "winnerLabel": "Winnaar!"
+    },
+    "processHeading": "De Intelligentiecyclus",
+    "processSteps": [
+      { "number": "1.", "title": "Identificeer het Slagveld" },
+      { "number": "2.", "title": "Verzamel de Uitdagers" },
+      { "number": "3.", "title": "De Live-Fire Test" },
+      { "number": "4.", "title": "Decodeer de Resultaten" },
+      { "number": "5.", "title": "Zet de Kampioen In" }
+    ]
+  },
+
+  "featuresPage": {
+    "cinemaHeading": "CINEMA DIE VONKT, DAN STEEKT",
+    "brandStories": "MERKVERHALEN DIE BIJTEN",
+    "whatWeCreate": "Wat Wij Creëren",
+    "featuredFilms": "Uitgelichte Films",
+    "nowPlaying": "NU SPEELT",
+    "whyChoose": "Waarom Kiezen voor Onze Cinematografische Aanpak",
+    "categories": [
+      { "title": "Merkfilms", "description": "Til uw merk naar een hoger niveau met cinematografische storytelling." },
+      { "title": "Documentaires", "description": "Vang waarheid met artistieke visie." },
+      { "title": "Speelfilms", "description": "Volledige cinematografische producties." }
+    ],
+    "whyChooseItems": [
+      { "title": "Precisiestorytelling", "description": "Elk beeld dient het verhaal." },
+      { "title": "Creatieve Efficiëntie", "description": "Maximale impact, optimale middelen." },
+      { "title": "Authentieke Impact", "description": "Verhalen die resoneren en standhouden." }
+    ],
+    "loadingShowcase": "🎬 Showcase laden...",
+    "videoLoadError": "Video Laadfout",
+    "loadingVideo": "Video Laden...",
+    "selectFilm": "Selecteer een film om te bekijken",
+    "loading": "⏳ Laden...",
+    "imageError": "❌ Afbeeldingsfout"
+  },
+
+  "webDevelopmentPage": {
+    "heroBadge": "🚀 Webontwikkeling Excellentie",
+    "heroTitle": "Webontwikkeling",
+    "heroDescription": "Wij architectureren, ontwerpen en bouwen robuuste webapplicaties — snel, veilig en schaalbaar. Van oogverblindende frontends tot onkraakbare backends, wij leveren producten die converteren, behouden en groeien.",
+    "metrics": [
+      { "label": "Prestatiescore", "value": "98%" },
+      { "label": "Veiligheidsscore", "value": "100%" },
+      { "label": "Schaalbaarheidsindex", "value": "95%" },
+      { "label": "Gem. Conversieboost", "value": "340%" }
+    ],
+    "developmentServicesHeading": "Onze Ontwikkeldiensten",
+    "developmentServicesSubheading": "Volspectrum webontwikkelingsoplossingen afgestemd op uw bedrijfsbehoeften",
+    "services": {
+      "frontend": {
+        "title": "Frontend Ontwikkeling",
+        "features": ["React & Moderne Frameworks", "Responsief Ontwerp", "Prestatie-optimalisatie", "SEO-Ready Architectuur"]
+      },
+      "backend": {
+        "title": "Backend Ontwikkeling",
+        "features": ["API Ontwikkeling", "Database Ontwerp", "Authenticatiesystemen", "Cloud Integratie"]
+      },
+      "fullstack": {
+        "title": "Full-Stack Oplossingen",
+        "features": ["Complete Web Apps", "Realtime Functies", "Betaalintegratie", "Admin Dashboards"]
+      },
+      "ecommerce": {
+        "title": "E-commerce Platformen",
+        "features": ["Custom Winkelwagens", "Voorraadbeheer", "Betaalplatformen", "Analyse Integratie"]
+      }
+    },
+    "developmentProcessHeading": "Ons Ontwikkelproces",
+    "developmentProcessSubheading": "Een bewezen methodologie die resultaten levert op tijd en binnen budget",
+    "processSteps": [
+      { "step": "1", "title": "Ontdekking & Planning", "description": "Definieer doelen, beperkingen en succesmaatstaven. Wij analyseren uw vereisten en maken een gedetailleerde routekaart." },
+      { "step": "2", "title": "Ontwerp & Architectuur", "description": "Ontwerp schaalbare systemen en datastromen. Wij maken wireframes, mockups en technische specificaties." },
+      { "step": "3", "title": "Ontwikkeling & Testen", "description": "Iteratieve levering met rigoureuze QA. Wij bouwen, testen en verfijnen uw applicatie met continue feedback." },
+      { "step": "4", "title": "Lancering & Optimalisatie", "description": "Implementeren, monitoren, optimaliseren en itereren. Wij zorgen voor een soepele lancering en doorlopende optimalisatie." }
+    ],
+    "portfolioHeading": "Ons Projectportfolio",
+    "portfolioSubheading": "Verken ons diverse aanbod van webontwikkelingsprojecten",
+    "portfolioNote": "⚠️ Let op: Admin dashboards vereisen inloggegevens die onder elk project staan",
+    "projectLabels": {
+      "techStack": "Tech Stack",
+      "loginCredentials": "🔐 Inloggegevens",
+      "email": "E-mail:",
+      "password": "Wachtwoord:",
+      "visitProject": "Project Bezoeken"
+    }
+  },
+
+  "contactUsPage": {
+    "heroHeading": "Contacteer Ons",
+    "heroSubheading": "Neem contact op met ons team voor vragen over onze filmproductiediensten.",
+    "selectedDate": "📅 Geselecteerde Datum:",
+    "selectDateButton": "📅 Datum Selecteren",
+    "selectDateHint": "Klik om een voorkeursdatum te kiezen uit onze kalender",
+    "formHeading": "Stuur ons een Bericht",
+    "fullName": "Volledige Naam *",
+    "fullNamePlaceholder": "Uw Volledige Naam",
+    "emailLabel": "E-mailadres *",
+    "emailPlaceholder": "uw.email@voorbeeld.com",
+    "phoneLabel": "Telefoonnummer (optioneel)",
+    "phonePlaceholder": "+32 2 123 45 67",
+    "subjectLabel": "Onderwerp *",
+    "subjectPlaceholder": "Projectvraag, consultatie, enz.",
+    "messageLabel": "Vertel ons over uw project *",
+    "messagePlaceholder": "Vertel ons over uw project, budget, tijdlijn en specifieke vereisten...",
+    "submitButton": "Bericht Verzenden",
+    "submitting": "Verzenden...",
+    "requiredFields": "❌ E-mail, naam en onderwerp zijn verplicht",
+    "success": "✅ Uw bericht is succesvol verzonden! We nemen snel contact met u op.",
+    "failure": "❌ Verzenden mislukt. Probeer het opnieuw.",
+    "connectionError": "❌ Verbindingsfout. Controleer uw internet en probeer het opnieuw."
+  },
+
+  "blogDetailsPage": {
+    "breadcrumbs": ["Home", "Blog Details"],
+    "postTitle": "3 Manieren om Tegen Jezelf te Liegen Over je Nieuwe Relatie",
+    "postAuthor": "Geplaatst door Sara Samir",
+    "postCategory": "Verhalen, Media",
+    "readTime": "5 min leestijd",
+    "blockquote": "Snelle oplossingen gekoppeld aan buitengewone prestaties — een geweldige aanbeveling.",
+    "easyProcess": "Eenvoudig Serviceproces",
+    "processSteps": [
+      "Vind eerst het probleem",
+      "Doe onderzoek en vind de oplossing",
+      "Rond de oplossing af & pas toe."
+    ],
+    "conclusion": "Conclusie",
+    "tags": ["SEO,", "Digitale Marketing,", "Service"],
+    "shareLabel": "Delen:",
+    "commentsHeading": "2 Reacties",
+    "replyButton": "Reageren",
+    "leaveComment": "Laat een Reactie Achter",
+    "commentSubheading": "plaats uw reactie of registreer als u geen account heeft.",
+    "nameLabel": "Naam*",
+    "namePlaceholder": "Onam Sarker",
+    "emailLabel": "E-mail*",
+    "emailPlaceholder": "onamsarker@gmail.com",
+    "commentLabel": "Uw Reactie",
+    "commentPlaceholder": "Uw Reactie",
+    "postComment": "Reactie Plaatsen",
+    "sidebar": {
+      "searchHeading": "Zoek Iets",
+      "searchPlaceholder": "Voer Naam In",
+      "recentPostHeading": "Recente Artikelen",
+      "categoriesHeading": "Categorieën",
+      "categories": [
+        "Digitale Dienst (12)",
+        "IT Dienst (20)",
+        "SEO Marketing (65)",
+        "Digitale Dienst (65)",
+        "Digitale Dienst (65)"
+      ],
+      "contactForm": {
+        "heading": "Contacteer Ons",
+        "description": "Collaboratieve engineering van toekomstige vereisten met transparante technologie.",
+        "nameField": "Voer Naam In",
+        "emailField": "E-mail",
+        "messageField": "Schrijf Bericht",
+        "submitButton": "Nu Contact Opnemen"
+      },
+      "tagsHeading": "Tags",
+      "tags": ["Cinema", "Film", "Productie", "Script", "Marketing", "Reels", "Sociale media", "Films", "Advertenties"]
+    }
+  },
+
+  "blogGridPage": {
+    "breadcrumbs": ["Home", "Blog Raster"]
+  },
+
+  "blogListViewPage": {
+    "breadcrumbs": ["Home", "Blog Lijstweergave"],
+    "tags": ["Service Systeem", "Digitaal", "Marketing", "SEO Ranking", "Service Tools", "SEO"]
+  },
+
+  "error404": {
+    "heading": "Oeps! u bent op de verkeerde plek.",
+    "description": "Kunt u niet vinden wat u nodig heeft? Neem even de tijd om te zoeken of begin opnieuw vanaf onze Homepage.",
+    "button": "Terug naar home"
+  },
+
+  "faqPage": {
+    "breadcrumbs": ["Home", "FAQ"]
+  },
+
+  "pricingPage": {
+    "breadcrumbs": ["Home", "Onze Prijzen"]
+  },
+
+  "testimonialPage": {
+    "breadcrumbs": ["Home", "Getuigenis"],
+    "heading": "Vertrouw Ons Niet, Vertrouw Onze Klanten",
+    "testimonialText": "Efficiënte en vriendelijke dienstverlening, perfect begeleid. Tevreden met ons nieuwe thuis. Bedankt!"
+  },
+
+  "teamMemberPage": {
+    "breadcrumbs": ["Home", "Teamlid"],
+    "altText": "Teamlid"
+  },
+
+  "singleMemberPage": {
+    "breadcrumbs": ["Home", "Lid"],
+    "overviewHeading": "Overzicht",
+    "blockquote": "Snelle oplossingen gekoppeld aan buitengewone prestaties — een geweldige aanbeveling.",
+    "blockquoteAuthor": "Sara Samir",
+    "easyProcessHeading": "Eenvoudig Serviceproces",
+    "processSteps": [
+      "Vind eerst het probleem",
+      "Doe onderzoek en vind de oplossing",
+      "Rond de oplossing af & pas toe."
+    ],
+    "sidebar": {
+      "searchHeading": "Zoek Iets",
+      "searchPlaceholder": "Voer Naam In",
+      "contactForm": {
+        "heading": "Contacteer Ons",
+        "nameField": "Voer Naam In",
+        "emailField": "E-mail",
+        "messageField": "Schrijf Bericht",
+        "submitButton": "Nu Contact Opnemen"
+      },
+      "tagsHeading": "Tags",
+      "tags": ["Service Systeem", "Digitaal", "Marketing", "SEO Ranking", "Service Tools", "SEO"]
+    }
+  },
+
+  "languageSwitcher": {
+    "en": "English",
+    "fr": "Français",
+    "nl": "Belgisch"
+  },
+
+  "navbarTwo": {
+    "callUs": "Bel ons",
+    "phone": "+1 707 797 0462",
+    "offer": "Aanbieding geldig tot vrijdag €1,99/maand."
+  }
+}

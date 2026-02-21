@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import bannerShape from "../assets/images/banner-three-shep.svg";
 import starIcon from "../assets/images/star-icon.svg";
 import ratingImg from "../assets/images/reting.svg";
@@ -10,6 +11,7 @@ import aboutPos1 from "../assets/images/about-pos-1.svg";
 import heroPos3 from "../assets/images/hero-3pos-3.svg";
 
 const HeroThree = () => {
+  const { t } = useTranslation();
   return (
     <section className="hero_three">
       <div className="container">
@@ -22,7 +24,7 @@ const HeroThree = () => {
           <div className="col-xl-6">
             <div className="hero_three_head">
               <h1>
-                Enhance Website <span>SEO Rankings</span> to New Heights
+                {t('heroThree.heading')}
               </h1>
             </div>
             <div className="hero_txt">
@@ -37,10 +39,10 @@ const HeroThree = () => {
                   type="email"
                   className="form-control"
                   id="exampleFormControlInput1"
-                  placeholder="Enter your email"
+                  placeholder={t('heroThree.emailPlaceholder')}
                 />
                 <button type="submit" className="sara-btn sara-btn_green">
-                  Subscribe
+                  {t('heroThree.subscribe')}
                 </button>
               </div>
             </div>
@@ -53,7 +55,7 @@ const HeroThree = () => {
                   <img src={ratingImg} alt="rating icon" />
                 </div>
                 <p className="text_lg">
-                  13k rating <span>(4.7 Rating)</span>
+                  {t('heroThree.rating')}
                 </p>
               </div>
             </div>

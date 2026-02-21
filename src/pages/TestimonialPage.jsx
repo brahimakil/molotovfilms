@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import PageHeader from "../component/PageHeader";
 import Testimonials from "../component/Testimonials";
 // Import images for clients section
@@ -8,10 +9,11 @@ import clients3Image from "../assets/images/clients-3.png";
 import { Link } from "react-router-dom";
 
 const TestimonialPage = () => {
+  const { t } = useTranslation();
   const breadcrumbs = [
-    { label: "Home", link: "/" },
+    { label: t('testimonialPage.breadcrumbs', { returnObjects: true })[0], link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
-    { label: "Testimonial", link: null },
+    { label: t('testimonialPage.breadcrumbs', { returnObjects: true })[1], link: null },
   ];
 
   const clientsData = [
@@ -20,60 +22,54 @@ const TestimonialPage = () => {
       image: clients1Image,
       name: "Kathryn Murphy",
       location: "Palestine, State of",
-      quote:
-        "Efficient and friendly service, guided us perfectly. Satisfied with our new home. Thank you!",
+      quote: t('testimonialPage.testimonialText'),
     },
     {
       id: 2,
       image: clients2Image,
       name: "Onam Sarker",
       location: "Pembroke Pines",
-      quote:
-        "Efficient and friendly service, guided us perfectly. Satisfied with our new home. Thank you!",
+      quote: t('testimonialPage.testimonialText'),
     },
     {
       id: 3,
       image: clients3Image,
       name: "Esther Howard",
       location: "8080 Railroad St.",
-      quote:
-        "Efficient and friendly service, guided us perfectly. Satisfied with our new home. Thank you!",
+      quote: t('testimonialPage.testimonialText'),
     },
     {
       id: 4,
       image: clients1Image,
       name: "Kathryn Murphy",
       location: "Palestine, State of",
-      quote:
-        "Efficient and friendly service, guided us perfectly. Satisfied with our new home. Thank you!",
+      quote: t('testimonialPage.testimonialText'),
     },
     {
       id: 5,
       image: clients2Image,
       name: "Onam Sarker",
       location: "Pembroke Pines",
-      quote:
-        "Efficient and friendly service, guided us perfectly. Satisfied with our new home. Thank you!",
+      quote: t('testimonialPage.testimonialText'),
     },
     {
       id: 6,
       image: clients3Image,
       name: "Esther Howard",
       location: "8080 Railroad St.",
-      quote:
-        "Efficient and friendly service, guided us perfectly. Satisfied with our new home. Thank you!",
+      quote: t('testimonialPage.testimonialText'),
     },
   ];
 
   return (
     <>
-      <PageHeader title="Testimonial" breadcrumbs={breadcrumbs}></PageHeader>
+      <PageHeader title={t('testimonialPage.breadcrumbs', { returnObjects: true })[1]} breadcrumbs={breadcrumbs}></PageHeader>
       <Testimonials addClass="inner_testimonails"></Testimonials>
       <section className="clients clients_two">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-9 col-xxl-6">
-              <h2 className="main_titel">Don’t Trust Us, Trust our clients</h2>
+              <h2 className="main_titel">{t('testimonialPage.heading')}</h2>
             </div>
           </div>
 

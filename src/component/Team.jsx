@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import Slider from "react-slick";
 
 import team1 from "../assets/images/team-1.webp";
@@ -16,6 +17,7 @@ const teamMembers = [
 ];
 
 const Team = () => {
+  const { t } = useTranslation();
   const settings = {
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -37,7 +39,7 @@ const Team = () => {
           <div className="col-xxl-5">
             <div className="team_head">
               <h2 className="main_titel_two">
-                Best of our Special <span>Team Member</span>
+                {t('team.heading')}
               </h2>
             </div>
           </div>

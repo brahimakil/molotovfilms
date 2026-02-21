@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import blogThumb1 from "../assets/images/blog-thumb-1.webp";
 import blogThumb2 from "../assets/images/blog-thumb-2.webp";
 import blogThumb3 from "../assets/images/blog-thumb-3.webp";
@@ -36,6 +37,7 @@ const blogPosts = [
 ];
 
 const BlogThree = () => {
+  const { t } = useTranslation();
   return (
     <section className="blog blog_three">
       <div className="container">
@@ -43,7 +45,7 @@ const BlogThree = () => {
           <div className="col-xxl-6">
             <div className="blog_head">
               <h2 className="main_titel_three">
-                Our Latest <span>News & Blog</span>
+                {t('blogTwo.heading')}
               </h2>
             </div>
           </div>
@@ -61,7 +63,7 @@ const BlogThree = () => {
                     </div>
                     <div className="blog_item_thumb_over_txt">
                       <a href="#">
-                        Posted by <span>{post.author}</span>
+                        {t('blogTwo.postedBy')} <span>{post.author}</span>
                       </a>
                       <p>{post.date}</p>
                     </div>
@@ -81,7 +83,7 @@ const BlogThree = () => {
 
                   <div className="blog_btn_main">
                     <Link to="/blog-details" className="blog_btn">
-                      Read More
+                      {t('blogOne.readMore')}
                       <span>
                         <svg
                           width="14"
@@ -110,7 +112,7 @@ const BlogThree = () => {
           <div className="col-xxl-12">
             <div className="blog_head_btn_btm">
               <Link to="/blog" className="sara-btn__border sara-btn__border--3">
-                Explore all
+                {t('blogOne.exploreAll')}
               </Link>
             </div>
           </div>

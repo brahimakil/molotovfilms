@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 import useResponsive from "../utils/useResponsive";
+import { useTranslation } from 'react-i18next';
 
 const ScriptWriting = () => {
+  const { t } = useTranslation();
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -16,26 +18,26 @@ const ScriptWriting = () => {
   const creativeSteps = [
     {
       number: "01",
-      title: "Idea Spark",
-      description: "The Tiny Betrayal We find the small, oddly human detail that quietly betrays the ordinary. That nick becomes the engine — a misstep, a laugh, a silence that says everything.",
+      title: t('scriptWritingPage.creativeProcess.steps.0.title'),
+      description: `${t('scriptWritingPage.creativeProcess.steps.0.subtitle')} ${t('scriptWritingPage.creativeProcess.steps.0.description')}`,
       icon: "💡"
     },
     {
       number: "02", 
-      title: "Story Architecture",
-      description: "The Skeleton With Costume We dress structural rigor in personality. Three acts with teeth, stakes that pulse, and reversals that feel inevitable and slightly mischievous. ",
+      title: t('scriptWritingPage.creativeProcess.steps.1.title'),
+      description: `${t('scriptWritingPage.creativeProcess.steps.1.subtitle')} ${t('scriptWritingPage.creativeProcess.steps.1.description')}`,
       icon: "🏗️"
     },
     {
       number: "03",
-      title: "Script Craft",
-      description: "   Words That Wear Faces Dialogue that sounds lived-in and slightly uncanny. Scenes that breathe; beats that pinch the heart. We write lines actors want to steal home.               ",
+      title: t('scriptWritingPage.creativeProcess.steps.2.title'),
+      description: `${t('scriptWritingPage.creativeProcess.steps.2.subtitle')} ${t('scriptWritingPage.creativeProcess.steps.2.description')}`,
       icon: "✍️"
     },
     {
       number: "04",
-      title: "Visual Blueprint",
-      description: "Storyboards That Sneer Frames that love composition and disrespect cliché. Shot   ",
+      title: t('scriptWritingPage.creativeProcess.steps.3.title'),
+      description: `${t('scriptWritingPage.creativeProcess.steps.3.subtitle')} ${t('scriptWritingPage.creativeProcess.steps.3.description')}`,
       icon: "🎬"
     }
   ];
@@ -192,22 +194,23 @@ const ScriptWriting = () => {
 
         <div style={heroStyles.heroContent}>
           <h1 style={heroStyles.heroTitle}>
-          ONE LOVING LINE
+          {t('scriptWritingPage.heroHeading')}
           </h1>
           <p style={heroStyles.heroSubtitle}>
-          We don't sell stories — we spark tiny obsessions. Films people keep, share, and talk about at 2 AM.          </p>
+          {t('scriptWritingPage.heroSubheading')}
+          </p>
           
           <div style={heroStyles.breadcrumb}>
             <Link to="/" style={heroStyles.breadcrumbLink}>
-              Home
+              {t('scriptWritingPage.breadcrumbs.0')}
             </Link>
             <span style={{ color: 'rgba(255, 255, 255, 0.5)' }}>→</span>
             <Link to="/services" style={heroStyles.breadcrumbLink}>
-              Services
+              {t('scriptWritingPage.breadcrumbs.1')}
             </Link>
             <span style={{ color: 'rgba(255, 255, 255, 0.5)' }}>→</span>
             <span style={heroStyles.breadcrumbCurrent}>
-              Scriptwriting
+              {t('scriptWritingPage.breadcrumbs.2')}
             </span>
           </div>
         </div>
@@ -227,10 +230,10 @@ const ScriptWriting = () => {
                     WebkitTextFillColor: 'transparent',
                     fontWeight: '700'
                   }}>
-WRITE. SING. PUNCH.
+{t('scriptWritingPage.mainHeading')}
 </span>
                   <br />
-                  <span style={{ color: '#2d3e2d' }}>Stories that flirt with the eye and then refuse to leave.</span>
+                  <span style={{ color: '#2d3e2d' }}>{t('scriptWritingPage.mainSubheading')}</span>
                   </h2>
               </div>
 
@@ -242,7 +245,7 @@ WRITE. SING. PUNCH.
                   color: '#2d3e2d',
                   fontWeight: '600'
                 }}>
-THE WEIRDLY LOVABLE PROCESS
+{t('scriptWritingPage.creativeProcess.heading')}
   </h3>
                 
                 <div className="row g-4">
@@ -322,7 +325,7 @@ THE WEIRDLY LOVABLE PROCESS
                   color: '#2d3e2d',
                   marginBottom: '25px'
                 }}>
-                  A strong video begins with a strong idea. We develop creative concepts, write scripts, and design storyboards that ensure your campaign has clarity, originality, and purpose. Our process helps transform raw ideas into compelling narratives that speak directly to your audience.
+                  {t('scriptWritingPage.descriptionParagraphs.0')}
                 </p>
 
                 <p style={{ 
@@ -331,7 +334,7 @@ THE WEIRDLY LOVABLE PROCESS
                   color: '#556b2f',
                   marginBottom: '30px'
                 }}>
-                  Every great film starts with words on a page. Our scriptwriting team crafts dialogue that feels authentic, creates characters that resonate, and builds stories that engage from the first frame to the last. We don't just write scripts—we architect experiences that move audiences and drive results.
+                  {t('scriptWritingPage.descriptionParagraphs.1')}
                 </p>
               </div>
 
@@ -343,7 +346,7 @@ THE WEIRDLY LOVABLE PROCESS
                   color: '#2d3e2d',
                   fontWeight: '600'
                 }}>
-WHAT YOU GET (but warmer)
+{t('scriptWritingPage.servicesList.heading')}
 </h3>
                 
                 <div className="row">
@@ -363,7 +366,7 @@ WHAT YOU GET (but warmer)
                           borderRadius: '50%',
                           marginRight: '15px'
                         }} />
-Odd, defendable concept development
+{t('scriptWritingPage.servicesList.items.0')}
 </li>
                       <li style={{ 
                         marginBottom: '15px',
@@ -379,7 +382,7 @@ Odd, defendable concept development
                           borderRadius: '50%',
                           marginRight: '15px'
                         }} />
-Scripts: commercial, branded, short, documentary all with personality
+{t('scriptWritingPage.servicesList.items.1')}
 </li>
                       <li style={{ 
                         marginBottom: '15px',
@@ -395,7 +398,7 @@ Scripts: commercial, branded, short, documentary all with personality
                           borderRadius: '50%',
                           marginRight: '15px'
                         }} />
-Character arcs that hold secrets and offers of redemption
+{t('scriptWritingPage.servicesList.items.2')}
 </li>
                     </ul>
                   </div>
@@ -415,7 +418,7 @@ Character arcs that hold secrets and offers of redemption
                           borderRadius: '50%',
                           marginRight: '15px'
                         }} />
-Visual treatments, pacing maps, VO notes, and festival-aware tweaks
+{t('scriptWritingPage.servicesList.items.3')}
 </li>
                      
                     </ul>
@@ -458,7 +461,7 @@ Visual treatments, pacing maps, VO notes, and festival-aware tweaks
                   position: 'relative',
                   zIndex: 2
                 }}>
-We sketch dreams on napkins, sharpen them into little devices that sing on screen. Think pop-colour ideas with a soft, strange heart — scripts that wink, storyboards that hum, and treatments that make directors smile and audiences fall in love.
+{t('scriptWritingPage.sidebar.quote')}
 </p>
                 <div style={{ 
                   fontSize: '1rem',
@@ -466,7 +469,7 @@ We sketch dreams on napkins, sharpen them into little devices that sing on scree
                   fontWeight: '600',
                   color: '#f4d03f'
                 }}>
-                  — Our Creative Philosophy
+                  {t('scriptWritingPage.sidebar.quoteAttribution')}
                 </div>
               </div>
 
@@ -482,18 +485,10 @@ We sketch dreams on napkins, sharpen them into little devices that sing on scree
                   marginBottom: '25px',
                   color: '#2d3e2d'
                 }}>
-SCRIPT FLAVOURS (pick a mood)
+{t('scriptWritingPage.sidebar.categoriesHeading')}
 </h3>
                 <ul style={{ listStyle: 'none', padding: 0 }}>
-                  {[
-                    "Commercial → sly and magnetic",
-                    "Documentary → humane and probing", 
-                    "Short film → concentrated charm",
-                    "Social → micro-empathy",
-                    "Corporate → cultural storytelling",
-                    "Educational → playful intelligence",
-         
-                  ].map((item, index) => (
+                  {t('scriptWritingPage.sidebar.categories', { returnObjects: true }).map((item, index) => (
                     <li key={index} style={{
                       padding: '12px 0',
                       borderBottom: index < 7 ? '1px solid #e8f5e8' : 'none',

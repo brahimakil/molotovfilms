@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import PageHeader from "../component/PageHeader";
 import { Link } from "react-router-dom";
 import blogThumb1 from "../assets/images/blog-thumb-1.webp";
@@ -8,14 +9,15 @@ import profile1 from "../assets/images/profile-1.svg";
 import b5 from "../assets/images/b-5.webp";
 
 const BlogListViewPage = () => {
+  const { t } = useTranslation();
   const breadcrumbs = [
-    { label: "Home", link: "/" },
+    { label: t('blogListViewPage.breadcrumbs', { returnObjects: true })[0], link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
-    { label: "Blog List View", link: null },
+    { label: t('blogListViewPage.breadcrumbs', { returnObjects: true })[1], link: null },
   ];
   return (
     <>
-      <PageHeader title="Blog List View" breadcrumbs={breadcrumbs}></PageHeader>
+      <PageHeader title={t('blogListViewPage.breadcrumbs', { returnObjects: true })[1]} breadcrumbs={breadcrumbs}></PageHeader>
       <section className="blog_list_view">
         <div className="container">
           <div className="row">
@@ -59,7 +61,7 @@ const BlogListViewPage = () => {
                     </p>
 
                     <Link to="/blog-details" className="sara-btn__border">
-                      Read More
+                      {t('blogListViewPage.readMore')}
                       <span>
                         <svg
                           width="15"
@@ -117,7 +119,7 @@ const BlogListViewPage = () => {
                     </p>
 
                     <Link to="/blog-details" className="sara-btn__border">
-                      Read More
+                      {t('blogListViewPage.readMore')}
                       <span>
                         <svg
                           width="15"
@@ -175,7 +177,7 @@ const BlogListViewPage = () => {
                     </p>
 
                     <Link to="/blog-details" className="sara-btn__border">
-                      Read More
+                      {t('blogListViewPage.readMore')}
                       <span>
                         <svg
                           width="15"
@@ -245,18 +247,18 @@ const BlogListViewPage = () => {
 
             <div className="col-xxl-4 col-lg-5 res_mt res_mt_two">
               <div className="card_item">
-                <h3>Search Anything</h3>
+                <h3>{t('blogListViewPage.searchPlaceholder')}</h3>
 
                 <div className="sarch_item">
                   <label htmlFor="searchAnything" className="sr-only">
-                    Search
+                    {t('blogListViewPage.searchPlaceholder')}
                   </label>
                   <input
                     type="text"
                     className="form-control"
                     id="searchAnything"
                     name="searchQuery"
-                    placeholder="Enter Name"
+                    placeholder={t('blogListViewPage.searchPlaceholder')}
                     autoComplete="off" // Added autocomplete for search
                   />
 
@@ -282,7 +284,7 @@ const BlogListViewPage = () => {
               </div>
 
               <div className="card_item mg_top_30px">
-                <h3>Recent Post</h3>
+                <h3>{t('blogListViewPage.recentPostsHeading')}</h3>
 
                 <div className="card_item_blog">
                   <div className="card_item_thumb">
@@ -370,7 +372,7 @@ const BlogListViewPage = () => {
               </div>
 
               <div className="card_item mg_top_30px">
-                <h3>Categories</h3>
+                <h3>{t('blogListViewPage.categoriesHeading')}</h3>
 
                 <ul>
                   <li className="text_2xl">
@@ -445,7 +447,7 @@ const BlogListViewPage = () => {
               </div>
 
               <div className="card_item mg_top_30px">
-                <h3>Tags</h3>
+                <h3>{t('blogListViewPage.tagsHeading')}</h3>
                 <div className="tag_item">
                   <Link to="#" className="tag_btn">
                     Service System

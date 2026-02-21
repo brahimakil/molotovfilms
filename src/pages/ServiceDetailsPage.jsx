@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
+import { useTranslation } from 'react-i18next';
 
 // Import images
 // import s3Image from "../assets/images/s-3.webp"; // Remove this line
 
 const ServiceDetailsPage = () => {
+  const { t } = useTranslation();
   const [videoUrl, setVideoUrl] = useState('');
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -510,9 +512,9 @@ const ServiceDetailsPage = () => {
   };
 
   const breadcrumbs = [
-    { label: "Home", link: "/" },
+    { label: t('serviceDetailsPage.breadcrumbs', { returnObjects: true })[0], link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
-    { label: "Service Details", link: null },
+    { label: t('serviceDetailsPage.breadcrumbs', { returnObjects: true })[1], link: null },
   ];
 
   return (
@@ -538,7 +540,7 @@ const ServiceDetailsPage = () => {
               }}
             >
               <source src={videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
+              {t('serviceDetailsPage.videoFallback')}
             </video>
           ) : videoError ? (
             <div style={heroStyles.fallbackImage}>
@@ -559,9 +561,9 @@ const ServiceDetailsPage = () => {
                 margin: '0 auto 20px'
               }} />
               <div style={{ fontSize: '18px', marginBottom: '10px' }}>
-                {localStorage.getItem('service_details_hero_video_url') ? 'Loading from cache...' : 'Loading...'}
+                {localStorage.getItem('service_details_hero_video_url') ? t('serviceDetailsPage.loadingFromCache') : t('serviceDetailsPage.loading')}
               </div>
-              <div style={{ fontSize: '14px', opacity: 0.8 }}>Preparing your experience</div>
+              <div style={{ fontSize: '14px', opacity: 0.8 }}>{t('serviceDetailsPage.preparingExperience')}</div>
             </div>
           )}
           
@@ -570,9 +572,9 @@ const ServiceDetailsPage = () => {
           
           {/* Hero Content */}
           <div style={heroStyles.heroContent}>
-            <h1 style={heroStyles.heroTitle}>Service Details</h1>
+            <h1 style={heroStyles.heroTitle}>{t('serviceDetailsPage.heroTitle')}</h1>
             <p style={heroStyles.heroSubtitle}>
-              Discover our comprehensive range of film and video production services
+              {t('serviceDetailsPage.heroSubtitle')}
             </p>
             <div style={heroStyles.breadcrumb}>
               {breadcrumbs.map((item, index) => (
@@ -611,7 +613,7 @@ const ServiceDetailsPage = () => {
                     WebkitTextFillColor: 'transparent',
                     fontWeight: '700'
                   }}>
-                POP. CUT. ROLL. REPEAT.
+                {t('serviceDetailsPage.mainHeading')}
                   </span>
                   <br />
                   <span style={{
@@ -619,7 +621,7 @@ const ServiceDetailsPage = () => {
                     fontWeight: '500',
                     color: '#555'
                   }}>
-                    Big ideas. Brighter execution. Films that shout.
+                    {t('serviceDetailsPage.mainSubheading')}
                   </span>
                 </h2>
               </div>
@@ -648,7 +650,7 @@ const ServiceDetailsPage = () => {
                     }}
                   >
                     <source src={mainVideoUrl} type="video/mp4" />
-                    Your browser does not support the video tag.
+                    {t('serviceDetailsPage.videoFallback')}
                   </video>
                 ) : mainVideoError ? (
                   <div style={{
@@ -663,7 +665,7 @@ const ServiceDetailsPage = () => {
                   }}>
                     <div style={{ textAlign: 'center' }}>
                       <div style={{ fontSize: '3rem', marginBottom: '15px' }}>🎬</div>
-                      <div style={{ fontSize: '18px' }}>Video unavailable</div>
+                      <div style={{ fontSize: '18px' }}>{t('serviceDetailsPage.videoUnavailable')}</div>
                     </div>
                   </div>
                 ) : (
@@ -687,15 +689,14 @@ const ServiceDetailsPage = () => {
                         animation: 'spin 1s linear infinite',
                         margin: '0 auto 15px'
                       }} />
-                      <div style={{ fontSize: '16px' }}>Loading video...</div>
+                      <div style={{ fontSize: '16px' }}>{t('serviceDetailsPage.loadingVideo')}</div>
                     </div>
                   </div>
                 )}
               </div>
               <div className="service_details_txt">
                 <p className="text_lg">
-                We’re a production house that paints in light and sound  militant about craft, reckless about boring.
-
+                {t('serviceDetailsPage.descriptionP1')}
                 </p>
               </div>
               <div className="row">
@@ -737,7 +738,7 @@ const ServiceDetailsPage = () => {
                       </svg>
                     </span>
                     <Link to="#" className="text_xl">
-                      Pre-Production
+                      {t('serviceDetailsPage.servicePhases', { returnObjects: true })[0]}
                     </Link>
                   </div>
                 </div>
@@ -790,7 +791,7 @@ const ServiceDetailsPage = () => {
                       </svg>
                     </span>
                     <Link to="#" className="text_xl">
-                      Production
+                      {t('serviceDetailsPage.servicePhases', { returnObjects: true })[1]}
                     </Link>
                   </div>
                 </div>
@@ -847,7 +848,7 @@ const ServiceDetailsPage = () => {
                       </svg>
                     </span>
                     <Link to="#" className="text_xl">
-                      Post-Production
+                      {t('serviceDetailsPage.servicePhases', { returnObjects: true })[2]}
                     </Link>
                   </div>
                 </div>
@@ -855,14 +856,14 @@ const ServiceDetailsPage = () => {
 
               <div className="service_details_txt">
                 <p className="text_lg">
-                Imagine a comic-strip panel where every frame is a film poster. That’s our approach: theatrical boldness, cinematic discipline. We take projects from scribbles on a napkin to festival-ready masters — with scriptsmiths, scouts, crews and mixers who love the weird work as much as the clean one.
+                {t('serviceDetailsPage.descriptionP2')}
                 </p>
               </div>
 
               <div className="row">
                 <div className="col-lg-6">
                   <div className="our_goal_item">
-                    <h2>Our Goal </h2>
+                    <h2>{t('serviceDetailsPage.ourGoal.heading')}</h2>
                     <ul>
                       <li>
                         <span>
@@ -894,7 +895,7 @@ const ServiceDetailsPage = () => {
                             </defs>
                           </svg>
                         </span>
-                        Blow up mediocrity with films, reels, and shorts that ignite.
+                        {t('serviceDetailsPage.ourGoal.items', { returnObjects: true })[0]}
                       </li>
                       <li>
                         <span>
@@ -926,7 +927,7 @@ const ServiceDetailsPage = () => {
                             </defs>
                           </svg>
                         </span>
-                        Craft cinema that refuses to be scrolled past.
+                        {t('serviceDetailsPage.ourGoal.items', { returnObjects: true })[1]}
                       </li>
                       <li>
                         <span>
@@ -958,7 +959,7 @@ const ServiceDetailsPage = () => {
                             </defs>
                           </svg>
                         </span>
-                        Turn ideas into weapons — precise, bold, unforgettable.
+                        {t('serviceDetailsPage.ourGoal.items', { returnObjects: true })[2]}
                       </li>
                       <li>
                         <span>
@@ -990,7 +991,7 @@ const ServiceDetailsPage = () => {
                             </defs>
                           </svg>
                         </span>
-                        Stay raw, stay cinematic, stay dangerous.
+                        {t('serviceDetailsPage.ourGoal.items', { returnObjects: true })[3]}
                       </li>
                     </ul>
                   </div>
@@ -998,13 +999,9 @@ const ServiceDetailsPage = () => {
 
                 <div className="col-lg-6">
                   <div className="our_goal_item">
-                    <h2>The Challenge</h2>
+                    <h2>{t('serviceDetailsPage.theChallenge.heading')}</h2>
                     <p>
-                    The industry runs on safe bets, empty trends, and fast churn.
-Our challenge is to resist the bland, to carve beauty out of chaos, and to make every frame hit harder than the last.
-We don’t adapt to platforms , we bend them.
-We don’t follow timelines , we weaponize them.
-At Molotov, every project is a strike , calculated, explosive, and built to leave a mark.
+                    {t('serviceDetailsPage.theChallenge.text')}
                     </p>
                   </div>
                 </div>
@@ -1014,9 +1011,9 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                 <div className="col-lg-6">
                   <div className="ratio_item">
                     <div className="ratio_item_text">
-                      <h4 className="text_2xl">Success Ratio</h4>
-                      <p>We’re best for our success work ration.</p>
-                      <Link to="#"> Details </Link>
+                      <h4 className="text_2xl">{t('serviceDetailsPage.successRatio.heading')}</h4>
+                      <p>{t('serviceDetailsPage.successRatio.description')}</p>
+                      <Link to="#"> {t('serviceDetailsPage.successRatio.link')} </Link>
                     </div>
 
                     <div className="ratio_item_inner">
@@ -1057,9 +1054,9 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                 <div className="col-lg-6">
                   <div className="ratio_item">
                     <div className="ratio_item_text">
-                      <h4 className="text_2xl">Failure Ratio</h4>
-                      <p>We’ve very low failur ratio in our work history.</p>
-                      <Link to="#"> Details </Link>
+                      <h4 className="text_2xl">{t('serviceDetailsPage.failureRatio.heading')}</h4>
+                      <p>{t('serviceDetailsPage.failureRatio.description')}</p>
+                      <Link to="#"> {t('serviceDetailsPage.failureRatio.link')} </Link>
                     </div>
                     <div className="ratio_item_inner">
                       <h2 className="text_xl">9%</h2>
@@ -1125,7 +1122,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                           }}
                         >
                           <source src={s3VideoUrl} type="video/mp4" />
-                          Your browser does not support the video tag.
+                          {t('serviceDetailsPage.videoFallback')}
                         </video>
                       ) : s3VideoError ? (
                         <div style={{
@@ -1140,7 +1137,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                         }}>
                           <div style={{ textAlign: 'center' }}>
                             <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
-                            <div>Video unavailable</div>
+                            <div>{t('serviceDetailsPage.videoUnavailable')}</div>
                           </div>
                         </div>
                       ) : (
@@ -1164,7 +1161,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                               animation: 'spin 1s linear infinite',
                               margin: '0 auto 10px'
                             }} />
-                            <div style={{ fontSize: '14px' }}>Loading video...</div>
+                            <div style={{ fontSize: '14px' }}>{t('serviceDetailsPage.loadingVideo')}</div>
                           </div>
                         </div>
                       )}
@@ -1197,7 +1194,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                           }}
                         >
                           <source src={heistVideoUrl} type="video/mp4" />
-                          Your browser does not support the video tag.
+                          {t('serviceDetailsPage.videoFallback')}
                         </video>
                       ) : heistVideoError ? (
                         <div style={{
@@ -1212,7 +1209,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                         }}>
                           <div style={{ textAlign: 'center' }}>
                             <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
-                            <div>Video unavailable</div>
+                            <div>{t('serviceDetailsPage.videoUnavailable')}</div>
                           </div>
                         </div>
                       ) : (
@@ -1236,7 +1233,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                               animation: 'spin 1s linear infinite',
                               margin: '0 auto 10px'
                             }} />
-                            <div style={{ fontSize: '14px' }}>Loading video...</div>
+                            <div style={{ fontSize: '14px' }}>{t('serviceDetailsPage.loadingVideo')}</div>
                           </div>
                         </div>
                       )}
@@ -1265,7 +1262,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                           }}
                         >
                           <source src={heist2VideoUrl} type="video/mp4" />
-                          Your browser does not support the video tag.
+                          {t('serviceDetailsPage.videoFallback')}
                         </video>
                       ) : heist2VideoError ? (
                         <div style={{
@@ -1280,7 +1277,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                         }}>
                           <div style={{ textAlign: 'center' }}>
                             <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
-                            <div>Video unavailable</div>
+                            <div>{t('serviceDetailsPage.videoUnavailable')}</div>
                           </div>
                         </div>
                       ) : (
@@ -1304,7 +1301,7 @@ At Molotov, every project is a strike , calculated, explosive, and built to leav
                               animation: 'spin 1s linear infinite',
                               margin: '0 auto 10px'
                             }} />
-                            <div style={{ fontSize: '14px' }}>Loading video...</div>
+                            <div style={{ fontSize: '14px' }}>{t('serviceDetailsPage.loadingVideo')}</div>
                           </div>
                         </div>
                       )}

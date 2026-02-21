@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
 
 const VideoComparison = () => {
+  const { t } = useTranslation();
   const [currentCategory, setCurrentCategory] = useState('COLORING'); // COLORING or VFX
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0); // 0, 1, 2 for videos 1, 2, 3
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -410,10 +412,10 @@ const VideoComparison = () => {
           <div className="col-12">
             <div style={{ textAlign: 'center', marginBottom: '50px' }}>
               <h2 className="main_titel_two" style={{ marginBottom: '20px' }}>
-                From Raw to <span>Radiant</span>
+                {t('videoComparison.heading')} <span>{t('videoComparison.headingHighlight')}</span>
               </h2>
               <p className="text_lg" style={{ maxWidth: '600px', margin: '0 auto' }}>
-                A cinematic before-and-after showcasing how VFX and color grading bring every frame to life.
+                {t('videoComparison.subheading')}
               </p>
             </div>
           </div>
@@ -431,7 +433,7 @@ const VideoComparison = () => {
               }}>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: '2rem', marginBottom: '10px' }}>🎬</div>
-                  <div style={{ fontSize: '18px', color: '#666' }}>Scroll down to load videos</div>
+                  <div style={{ fontSize: '18px', color: '#666' }}>{t('videoComparison.scrollPrompt')}</div>
                 </div>
               </div>
             ) : currentVideoLoading && !currentVideo ? (
@@ -454,7 +456,7 @@ const VideoComparison = () => {
                   }} />
                   <div style={{ fontSize: '18px' }}>Loading {currentCategory} Video {currentVideoIndex + 1}...</div>
                   <div style={{ fontSize: '14px', opacity: 0.7, marginTop: '5px' }}>
-                    {localStorage.getItem(`video_comparison_${currentCategory}_${currentVideoIndex}`) ? 'Loading from cache...' : 'Fetching from server...'}
+                    {localStorage.getItem(`video_comparison_${currentCategory}_${currentVideoIndex}`) ? t('videoComparison.loadingFromCache') : t('videoComparison.fetchingFromServer')}
                   </div>
                 </div>
               </div>
@@ -468,7 +470,7 @@ const VideoComparison = () => {
               }}>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: '2rem', marginBottom: '10px' }}>⚠️</div>
-                  <div style={{ fontSize: '18px', color: '#666' }}>Failed to load videos</div>
+                  <div style={{ fontSize: '18px', color: '#666' }}>{t('videoComparison.failedToLoad')}</div>
                   <button 
                     onClick={() => loadVideoUrls(currentCategory, currentVideoIndex)}
                     style={{
@@ -481,7 +483,7 @@ const VideoComparison = () => {
                       cursor: 'pointer'
                     }}
                   >
-                    Retry
+                    {t('videoComparison.retry')}
                   </button>
                 </div>
               </div>
@@ -543,7 +545,7 @@ const VideoComparison = () => {
                       color: '#333',
                       minWidth: '40px'
                     }}>
-                      COLORING
+                      {t('videoComparison.categories.coloring')}
                     </div>
                   )}
 
@@ -562,7 +564,7 @@ const VideoComparison = () => {
                     {/* Loading Indicator */}
                     {!canPlay && (
                       <div style={loadingIndicatorStyle}>
-                        Syncing videos... {videosReady.before ? '✓' : '○'} {videosReady.after ? '✓' : '○'}
+                        {t('videoComparison.syncingVideos')} {videosReady.before ? '✓' : '○'} {videosReady.after ? '✓' : '○'}
                       </div>
                     )}
 
@@ -624,7 +626,7 @@ const VideoComparison = () => {
                       color: '#333',
                       minWidth: '40px'
                     }}>
-                      VFX
+                      {t('videoComparison.categories.vfx')}
                     </div>
                   )}
 
@@ -673,7 +675,7 @@ const VideoComparison = () => {
                       width: '100%'
                     }}>
                       <div style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '10px', color: '#333' }}>COLORING</div>
+                        <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '10px', color: '#333' }}>{t('videoComparison.categories.coloring')}</div>
                         <div style={{ display: 'flex', gap: '10px' }}>
                           {videoCategories.COLORING.map((_, index) => (
                             <div
@@ -691,7 +693,7 @@ const VideoComparison = () => {
                       </div>
                       
                       <div style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '10px', color: '#333' }}>VFX</div>
+                        <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '10px', color: '#333' }}>{t('videoComparison.categories.vfx')}</div>
                         <div style={{ display: 'flex', gap: '10px' }}>
                           {videoCategories.VFX.map((_, index) => (
                             <div
@@ -713,7 +715,7 @@ const VideoComparison = () => {
               </>
             ) : (
               <div style={{ textAlign: 'center', padding: '40px' }}>
-                <p>No videos available</p>
+                <p>{t('videoComparison.noVideosAvailable')}</p>
               </div>
             )}
           </div>

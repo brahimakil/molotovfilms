@@ -1,9 +1,11 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import check from "../assets/images/check.svg";
 import check2 from "../assets/images/check2.svg";
 import { Link } from "react-router-dom";
 
 const Pricing = () => {
+  const { t } = useTranslation();
   return (
     <section className="pricing">
       <div className="container">
@@ -11,7 +13,7 @@ const Pricing = () => {
           <div className="col-xxl-6">
             <div className="pricing_head">
               <h2 className="main_titel">
-                Choose a <span> Pricing Plan</span> that works for you
+                {t('pricing.heading')}
               </h2>
             </div>
           </div>
@@ -32,7 +34,7 @@ const Pricing = () => {
                   aria-controls="pills-home"
                   aria-selected="true"
                 >
-                  Monthly
+                  {t('pricing.monthly')}
                 </button>
               </li>
               <li className="nav-item" role="presentation">
@@ -47,7 +49,7 @@ const Pricing = () => {
                   aria-controls="pills-profile"
                   aria-selected="false"
                 >
-                  Yearly
+                  {t('pricing.yearly')}
                 </button>
               </li>
             </ul>
@@ -115,7 +117,7 @@ const Pricing = () => {
                       </ul>
 
                       <Link to="/pricing" className="sara-btn sara-btn_black">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -171,7 +173,7 @@ const Pricing = () => {
                       </ul>
 
                       <Link to="/pricing" className="sara-btn">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -227,7 +229,7 @@ const Pricing = () => {
                       </ul>
 
                       <Link to="/pricing" className="sara-btn sara-btn_black">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -292,7 +294,7 @@ const Pricing = () => {
                       </ul>
 
                       <Link to="/pricing" className="sara-btn sara-btn_black">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -348,7 +350,7 @@ const Pricing = () => {
                       </ul>
 
                       <Link to="/pricing" className="sara-btn">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>
@@ -404,7 +406,7 @@ const Pricing = () => {
                       </ul>
 
                       <Link to="/pricing" className="sara-btn sara-btn_black">
-                        Get Started
+                        {t('pricing.getStarted')}
                       </Link>
                     </div>
                   </div>

@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ServicesTwo = () => {
+  const { t } = useTranslation();
+  const items = t('servicesTwo.items', { returnObjects: true });
   return (
     <section className="services services--two">
       <div className="container">
@@ -9,13 +12,12 @@ const ServicesTwo = () => {
           <div className="col-sm-6 col-lg-4 col-xxl-4">
             <div className="services_head">
               <h2 className="main_titel_two">
-                What we offer?
-                <span> Let’s Check</span> it out
+                {t('servicesTwo.heading')}
               </h2>
 
               <p className="text_lg">
-                You’ve pored over your customers’ input. You’ve fleshed out your
-                idea – and it’s taking real form! You know it satisfied a in
+                Youâ€™ve pored over your customersâ€™ input. Youâ€™ve fleshed out your
+                idea â€“ and itâ€™s taking real form! You know it satisfied a in
                 your market
               </p>
 
@@ -53,20 +55,18 @@ const ServicesTwo = () => {
               </span>
               <div className="services_item_txt">
                 <h3 className="text_2xl">
-                  <Link to="#"> Digital Transformation </Link>
+                  <Link to="#">{items[0].title}</Link>
                 </h3>
 
                 <p className="text_lg">
-                  Convert data noise to intelligent insights for competitive
-                  differentiation quality check. Competitive differentiation and
-                  quality assurance.
+                  {items[0].description}
                 </p>
 
                 <Link
                   to="/services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesTwo.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -169,20 +169,18 @@ const ServicesTwo = () => {
               </span>
               <div className="services_item_txt">
                 <h3 className="text_2xl">
-                  <Link to="#">Business Intelligence</Link>
+                  <Link to="#">{items[1].title}</Link>
                 </h3>
 
                 <p className="text_lg">
-                  Convert data noise to intelligent insights for competitive
-                  differentiation quality check. Competitive differentiation and
-                  quality assurance.
+                  {items[1].description}
                 </p>
 
                 <Link
                   to="services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesTwo.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -227,20 +225,18 @@ const ServicesTwo = () => {
               </span>
               <div className="services_item_txt">
                 <h3 className="text_2xl">
-                  <Link to="#">Cybersecurity Awareness</Link>
+                  <Link to="#">{items[2].title}</Link>
                 </h3>
 
                 <p className="text_lg">
-                  Convert data noise to intelligent insights for competitive
-                  differentiation quality check. Competitive differentiation and
-                  quality assurance.
+                  {items[2].description}
                 </p>
 
                 <Link
                   to="services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesTwo.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -287,20 +283,18 @@ const ServicesTwo = () => {
               </span>
               <div className="services_item_txt">
                 <h3 className="text_2xl">
-                  <Link to="#">Cybersecurity Awareness</Link>
+                  <Link to="#">{items[2].title}</Link>
                 </h3>
 
                 <p className="text_lg">
-                  Convert data noise to intelligent insights for competitive
-                  differentiation quality check. Competitive differentiation and
-                  quality assurance.
+                  {items[2].description}
                 </p>
 
                 <Link
                   to="services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesTwo.readMore')}
                   <span>
                     <svg
                       width="14"
@@ -345,20 +339,18 @@ const ServicesTwo = () => {
               </span>
               <div className="services_item_txt">
                 <h3 className="text_2xl">
-                  <Link to="#">Cybersecurity Awareness</Link>
+                  <Link to="#">{items[2].title}</Link>
                 </h3>
 
                 <p className="text_lg">
-                  Convert data noise to intelligent insights for competitive
-                  differentiation quality check. Competitive differentiation and
-                  quality assurance.
+                  {items[2].description}
                 </p>
 
                 <Link
                   to="services-detais"
                   className="services_item_btm text_lg"
                 >
-                  Read More
+                  {t('servicesTwo.readMore')}
                   <span>
                     <svg
                       width="14"

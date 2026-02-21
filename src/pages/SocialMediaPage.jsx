@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
+import { useTranslation } from 'react-i18next';
 
 // Import placeholder images from available assets
 import socialImage1 from "../assets/images/s-1.webp"; // Social media placeholder
@@ -9,6 +10,8 @@ import socialImage2 from "../assets/images/s-2.webp"; // Content creation placeh
 import socialImage3 from "../assets/images/s-3.webp"; // Engagement placeholder
 
 const SocialMediaPage = () => {
+  const { t } = useTranslation();
+
   // Video loading states
   const [showcaseVideoUrl, setShowcaseVideoUrl] = useState('');
   const [showcaseVideoLoaded, setShowcaseVideoLoaded] = useState(false);
@@ -24,31 +27,31 @@ const SocialMediaPage = () => {
   const socialServices = [
     {
       id: 1,
-      title: "Content Strategy",
-      description: "We build the roadmap",
+      title: t('socialMediaPage.services', { returnObjects: true })[0].title,
+      description: t('socialMediaPage.services', { returnObjects: true })[0].description,
       icon: "📊",
-      features: ["Audience Intelligence", "Content Calendars That Convert", "Performance Benchmarking"]
+      features: t('socialMediaPage.services', { returnObjects: true })[0].features
     },
     {
       id: 2,
-      title: "Creative Production",
-      description: "Scroll-stopping is the bare minimum.",
+      title: t('socialMediaPage.services', { returnObjects: true })[1].title,
+      description: t('socialMediaPage.services', { returnObjects: true })[1].description,
       icon: "🎨",
-      features: ["Disruptive Visual Design", "High-Impact Copywriting", "Viral-Ready Video Content"]
+      features: t('socialMediaPage.services', { returnObjects: true })[1].features
     },
     {
       id: 3,
-      title: "Community Management",
-      description: "This is where brands are truly built. ",
+      title: t('socialMediaPage.services', { returnObjects: true })[2].title,
+      description: t('socialMediaPage.services', { returnObjects: true })[2].description,
       icon: "💬",
-      features: ["Proactive Real-Time Engagement", "Crisis & Reputation Management", "Tribe & Community Building"]
+      features: t('socialMediaPage.services', { returnObjects: true })[2].features
     },
     {
       id: 4,
-      title: "Analytics & Optimization",
-      description: "Data is our command center.",
+      title: t('socialMediaPage.services', { returnObjects: true })[3].title,
+      description: t('socialMediaPage.services', { returnObjects: true })[3].description,
       icon: "📈",
-      features: ["Advanced Performance Tracking", "Aggressive A/B Testing", "Crystal-Clear ROI Analysis"]
+      features: t('socialMediaPage.services', { returnObjects: true })[3].features
     }
   ];
 
@@ -154,7 +157,7 @@ const SocialMediaPage = () => {
                 marginBottom: '30px',
                 textShadow: '0 0 30px rgba(255,255,255,0.3)'
               }}>
-SOCIAL, SUPERCHARGED.
+{t('socialMediaPage.heroHeading')}
 </h1>
               
               <p style={{
@@ -163,7 +166,7 @@ SOCIAL, SUPERCHARGED.
                 opacity: 0.9,
                 lineHeight: '1.6'
               }}>
-Stop posting into the void. We don't just manage social media; we weaponize it for growth. We architect digital strategies that capture attention, build cult followings, and drive real-world revenue.              </p>
+{t('socialMediaPage.heroDescription')}              </p>
               
               
             </div>
@@ -187,10 +190,10 @@ Stop posting into the void. We don't just manage social media; we weaponize it f
                 WebkitTextFillColor: 'transparent',
                 marginBottom: '30px'
               }}>
-FROM SCROLLERS TO CUSTOMERS.
+{t('socialMediaPage.ctaHeading')}
 </h2>
               <p style={{ fontSize: '1.2rem', color: '#666', lineHeight: '1.8' }}>
-              The internet is loud. We’re louder. In a world of infinite scroll, attention is the only currency that matters. We don't just make content that gets noticed—we create magnetic experiences that get remembered, shared, and converted into loyal customers.              </p>
+              {t('socialMediaPage.ctaDescription')}              </p>
             </div>
           </div>
 
@@ -225,7 +228,7 @@ FROM SCROLLERS TO CUSTOMERS.
                     justifyContent: 'center',
                     borderRadius: '15px'
                   }}>
-                    <div>📱 Loading showcase...</div>
+                    <div>{t('socialMediaPage.loadingShowcase')}</div>
                   </div>
                 )}
               </div>
@@ -237,20 +240,20 @@ FROM SCROLLERS TO CUSTOMERS.
                 color: '#333',
                 marginBottom: '20px'
               }}>
-WE SPEAK FLUENT INTERNET.
+{t('socialMediaPage.platformHeading')}
 </h3>
               <p style={{ fontSize: '1.1rem', color: '#666', lineHeight: '1.7', marginBottom: '25px' }}>
-              TikTok isn't LinkedIn. Instagram isn't X. We know. As native speakers on every platform, we craft content that feels right because it is right. We translate your brand's core message into the viral language of today's culture, ensuring you're not just on the platform, but leading the conversation.
+              {t('socialMediaPage.platformDescription')}
               </p>
               <ul style={{ listStyle: 'none', padding: 0 }}>
                 <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>Platform-Native Mastery:</strong> Content meticulously engineered to win on each social ecosystem.
+                  ✓ <span dangerouslySetInnerHTML={{ __html: t('socialMediaPage.checklist', { returnObjects: true })[0] }} />
                 </li>
                 <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>Real-Time Velocity:</strong>We move at the speed of culture, not corporate calendars.
+                  ✓ <span dangerouslySetInnerHTML={{ __html: t('socialMediaPage.checklist', { returnObjects: true })[1] }} />
                 </li>
                 <li style={{ marginBottom: '10px', fontSize: '1rem' }}>
-                  ✓ <strong>Intelligence-Driven Strategy:</strong>Every single move is backed by data, not guesswork.
+                  ✓ <span dangerouslySetInnerHTML={{ __html: t('socialMediaPage.checklist', { returnObjects: true })[2] }} />
                 </li>
               </ul>
             </div>
@@ -266,7 +269,7 @@ WE SPEAK FLUENT INTERNET.
                 color: '#333',
                 marginBottom: '50px'
               }}>
-Your Arsenal for Digital Dominance
+{t('socialMediaPage.arsenalHeading')}
 </h3>
             </div>
           </div>
@@ -323,27 +326,27 @@ Your Arsenal for Digital Dominance
                 color: '#333',
                 marginBottom: '20px'
               }}>
-The Blueprint for Victory
+{t('socialMediaPage.processHeading')}
 </h3>
               <div style={{ marginBottom: '30px' }}>
                 <h5 style={{ color: '#38BDF8', fontWeight: 'bold', marginBottom: '10px' }}>
-                  🎯 Strategic Discovery
+                  {t('socialMediaPage.processSteps', { returnObjects: true })[0].title}
                 </h5>
                 <p style={{ color: '#666', marginBottom: '20px' }}>
-                We don't just learn your brand; we decode its DNA. We immerse ourselves in your world, your audience, and the competitive landscape to unearth your unique winning advantage.                </p>
+                {t('socialMediaPage.processSteps', { returnObjects: true })[0].description}                </p>
                 
                 <h5 style={{ color: '#6427FF', fontWeight: 'bold', marginBottom: '10px' }}>
-                  🎨 Creative Ignition
+                  {t('socialMediaPage.processSteps', { returnObjects: true })[1].title}
                 </h5>
                 <p style={{ color: '#666', marginBottom: '20px' }}>
-                This is where strategy becomes magic. Our creative team ignites the big ideas, producing thumb-stopping content that’s perfectly aligned with your brand voice and strategic goals.
+                {t('socialMediaPage.processSteps', { returnObjects: true })[1].description}
                 </p>
                 
                 <h5 style={{ color: '#38BDF8', fontWeight: 'bold', marginBottom: '10px' }}>
-                📈 Execute & Amplify
+                {t('socialMediaPage.processSteps', { returnObjects: true })[2].title}
                 </h5>
                 <p style={{ color: '#666' }}>
-                We launch, listen, and learn—fast. We monitor performance in real-time, engage with your community, and continuously optimize based on hard data to turn good results into unbeatable ones.                </p>
+                {t('socialMediaPage.processSteps', { returnObjects: true })[2].description}                </p>
               </div>
             </div>
             <div className="col-lg-7">
@@ -375,7 +378,7 @@ The Blueprint for Victory
                     justifyContent: 'center',
                     borderRadius: '15px'
                   }}>
-                    <div>📱 Loading portfolio...</div>
+                    <div>{t('socialMediaPage.loadingPortfolio')}</div>
                   </div>
                 )}
               </div>

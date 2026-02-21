@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import PageHeader from "../component/PageHeader";
 import { Link } from "react-router-dom";
 
@@ -17,10 +18,11 @@ import team11Image from "../assets/images/team-11.webp";
 import team12Image from "../assets/images/team-12.webp";
 
 const TeamMemberPage = () => {
+  const { t } = useTranslation();
   const breadcrumbs = [
-    { label: "Home", link: "/" },
+    { label: t('teamMemberPage.breadcrumbs', { returnObjects: true })[0], link: "/" },
     { label: <i className="fa-solid fa-angle-right"></i>, link: null },
-    { label: "Team Member", link: null },
+    { label: t('teamMemberPage.breadcrumbs', { returnObjects: true })[1], link: null },
   ];
 
   const teamMembersData = [
@@ -364,7 +366,7 @@ const TeamMemberPage = () => {
 
   return (
     <>
-      <PageHeader title="Team Member" breadcrumbs={breadcrumbs}></PageHeader>
+      <PageHeader title={t('teamMemberPage.breadcrumbs', { returnObjects: true })[1]} breadcrumbs={breadcrumbs}></PageHeader>
       <section className="team_member">
         <div className="container">
           <div className="row g-4">

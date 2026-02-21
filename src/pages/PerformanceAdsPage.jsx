@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { storage } from "../firebase/config";
 import { ref, getDownloadURL } from 'firebase/storage';
+import { useTranslation } from 'react-i18next';
 
 // Import placeholder images
 import analyticsImg from "../assets/images/s-1.webp";
@@ -9,6 +10,8 @@ import testingImg from "../assets/images/s-2.webp";
 import optimizationImg from "../assets/images/s-3.webp";
 
 const PerformanceAdsPage = () => {
+  const { t } = useTranslation();
+
   // Video loading states
   const [heroVideoUrl, setHeroVideoUrl] = useState('');
   const [heroVideoLoaded, setHeroVideoLoaded] = useState(false);
@@ -29,37 +32,37 @@ const PerformanceAdsPage = () => {
 
   // Performance metrics data
   const metricsData = {
-    ctr: { value: 8.7, label: 'Click-Through Rate', unit: '%', color: '#3B82F6' },
-    conversions: { value: 24.3, label: 'Conversion Rate', unit: '%', color: '#10B981' },
-    roi: { value: 340, label: 'Return on Investment', unit: '%', color: '#F59E0B' },
-    engagement: { value: 92.1, label: 'Engagement Score', unit: '%', color: '#8B5CF6' }
+    ctr: { value: 8.7, label: t('performanceAdsPage.metrics', { returnObjects: true })[0].label, unit: '%', color: '#3B82F6' },
+    conversions: { value: 24.3, label: t('performanceAdsPage.metrics', { returnObjects: true })[1].label, unit: '%', color: '#10B981' },
+    roi: { value: 340, label: t('performanceAdsPage.metrics', { returnObjects: true })[2].label, unit: '%', color: '#F59E0B' },
+    engagement: { value: 92.1, label: t('performanceAdsPage.metrics', { returnObjects: true })[3].label, unit: '%', color: '#8B5CF6' }
   };
 
   // A/B Testing showcase data
   const abTestResults = [
     {
       id: 1,
-      title: "Hook Variation Test",
-      variantA: { name: "Question Hook", performance: 6.2, image: analyticsImg },
-      variantB: { name: "Statement Hook", performance: 8.7, image: testingImg },
+      title: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[0].title,
+      variantA: { name: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[0].variantA, performance: 6.2, image: analyticsImg },
+      variantB: { name: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[0].variantB, performance: 8.7, image: testingImg },
       winner: "B",
-      improvement: "40% higher CTR"
+      improvement: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[0].improvement
     },
     {
       id: 2,
-      title: "CTA Button Test",
-      variantA: { name: "Learn More", performance: 4.1, image: testingImg },
-      variantB: { name: "Get Started", performance: 7.3, image: optimizationImg },
+      title: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[1].title,
+      variantA: { name: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[1].variantA, performance: 4.1, image: testingImg },
+      variantB: { name: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[1].variantB, performance: 7.3, image: optimizationImg },
       winner: "B",
-      improvement: "78% more conversions"
+      improvement: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[1].improvement
     },
     {
       id: 3,
-      title: "Video Length Test",
-      variantA: { name: "30 Second Ad", performance: 5.8, image: optimizationImg },
-      variantB: { name: "15 Second Ad", performance: 9.1, image: analyticsImg },
+      title: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[2].title,
+      variantA: { name: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[2].variantA, performance: 5.8, image: optimizationImg },
+      variantB: { name: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[2].variantB, performance: 9.1, image: analyticsImg },
       winner: "B",
-      improvement: "57% better completion"
+      improvement: t('performanceAdsPage.abTesting.tests', { returnObjects: true })[2].improvement
     }
   ];
 
@@ -157,7 +160,7 @@ const PerformanceAdsPage = () => {
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent'
                 }}>
-Performance is Not an Opinion.
+{t('performanceAdsPage.heroHeading')}
 </h1>
                 <p style={{
                   fontSize: '1.3rem',
@@ -165,7 +168,7 @@ Performance is Not an Opinion.
                   color: '#CBD5E1',
                   lineHeight: '1.6'
                 }}>
-Stop gambling with your ad spend. We engineer high-performance video campaigns by transforming creative variables into mathematical certainties. We let the data declare the winner, maximizing your ROI with ruthless efficiency.                </p>
+{t('performanceAdsPage.heroDescription')}                </p>
                 
                 {/* Real-time Metrics Dashboard */}
                 <div style={{
@@ -175,7 +178,7 @@ Stop gambling with your ad spend. We engineer high-performance video campaigns b
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.2)'
                 }}>
-                  <h3 style={{ color: 'white', marginBottom: '20px', fontSize: '1.2rem' }}>Live Performance Metrics</h3>
+                  <h3 style={{ color: 'white', marginBottom: '20px', fontSize: '1.2rem' }}>{t('performanceAdsPage.liveMetricsLabel')}</h3>
                   <div className="row g-3">
                     {Object.entries(metricsData).map(([key, data]) => (
                       <div key={key} className="col-6">
@@ -254,7 +257,7 @@ Stop gambling with your ad spend. We engineer high-performance video campaigns b
                     color: 'white',
                     fontSize: '1.2rem'
                   }}>
-                    📊 Loading Performance Data...
+                    {t('performanceAdsPage.loadingData')}
                   </div>
                 )}
                 
@@ -271,7 +274,7 @@ Stop gambling with your ad spend. We engineer high-performance video campaigns b
                   fontWeight: 'bold',
                   backdropFilter: 'blur(10px)'
                 }}>
-                  +340% ROI Achieved
+                  {t('performanceAdsPage.roiAchieved')}
                 </div>
               </div>
             </div>
@@ -293,9 +296,9 @@ Stop gambling with your ad spend. We engineer high-performance video campaigns b
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
-Creative Darwinism: <br></br> Only the Strongest Ad Survives.              </h2>
+<span dangerouslySetInnerHTML={{ __html: t('performanceAdsPage.abTesting.heading') }} />              </h2>
               <p style={{ fontSize: '1.2rem', color: '#64748b', lineHeight: '1.8' }}>
-              We don't guess—we prove. In the battle for attention, every single element matters. The first three seconds, the call-to-action, the music, the message—each is a weapon in your arsenal. We systematically test every variable against the others to forge the most powerful, highest-converting version of your ad. The weak are discarded; the champion scales.              </p>
+              {t('performanceAdsPage.abTesting.description')}              </p>
             </div>
           </div>
 
@@ -348,7 +351,7 @@ Creative Darwinism: <br></br> Only the Strongest Ad Survives.              </h2>
                         <div style={{ color: '#6b7280', fontSize: '0.9rem' }}>{test.variantA.performance}% CTR</div>
                       </div>
                       {test.winner === 'A' && (
-                        <div style={{ color: '#10b981', fontWeight: 'bold' }}>Winner!</div>
+                        <div style={{ color: '#10b981', fontWeight: 'bold' }}>{t('performanceAdsPage.abTesting.winnerLabel')}</div>
                       )}
                     </div>
 
@@ -377,7 +380,7 @@ Creative Darwinism: <br></br> Only the Strongest Ad Survives.              </h2>
                         <div style={{ color: '#6b7280', fontSize: '0.9rem' }}>{test.variantB.performance}% CTR</div>
                       </div>
                       {test.winner === 'B' && (
-                        <div style={{ color: '#10b981', fontWeight: 'bold' }}>Winner!</div>
+                        <div style={{ color: '#10b981', fontWeight: 'bold' }}>{t('performanceAdsPage.abTesting.winnerLabel')}</div>
                       )}
                     </div>
                   </div>
